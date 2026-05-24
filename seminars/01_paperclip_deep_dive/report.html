@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>01_paperclip_deep_dive</title>
+  <title>Session 1 — AI Agent 패러다임 비교 &amp; Paperclip 심층 분석</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -47,8 +47,10 @@
       </div>
       <span class="report-cover__signature">AI Odyssey · YouTube</span>
       <span class="report-cover__kicker">Seminar Brief · </span>
-      <h1 class="report-cover__title">01_paperclip_deep_dive</h1>
-      <p class="report-cover__subtitle">핵심 요약 한 단락.</p>
+      <h1 class="report-cover__title">Session 1 <br><span style="color:var(--brand-primary);">—</span> AI Agent 패러다임 비교 &amp; Paperclip 심층 분석</h1>
+      <p class="report-cover__subtitle">커넥트브릭(젝터스튜디오) 격주 세미나 · Session 1
+일자: 2026-05-28(목) 15:00-17:00 (2h)
+발표자: 송태영</p>
       <dl class="report-cover__meta">
         <div><dt>저자</dt><dd>송태영</dd></div>
         <div><dt>발행</dt><dd></dd></div>
@@ -73,21 +75,154 @@
 <section class="report-section s0 page-break">
 <div class="report-section__kicker">Section 00 · 섹션 0. Executive Summary</div>
 <h2>섹션 0. Executive Summary</h2>
+<p class="report-section__lede">본 리포트는 커넥트브릭 개발팀 6명을 대상으로 한 <strong>1회차 세미나의 상세 자료</strong> 다. 청중이 가져갈 3가지 변화를 위해 5장의 본문으로 구성된다.</p>
+<h3 id="청중이-가져갈-3가지-변화">청중이 가져갈 3가지 변화</h3>
+<ol class="nums">
+<li><strong>(인식)</strong> 멀티에이전트 프레임워크는 4가지 패러다임으로 분류된다 — <strong>그래프 / 역할극 / skill / 조직</strong> .</li>
+<li><strong>(판단)</strong> 자사 도메인(F&amp;B 마케팅 자동화)에 어떤 패러다임이 mental model 측면에서 가장 잘 맞는지 판단 근거 확보.</li>
+<li><strong>(실행)</strong> Paperclip을 사내 도구로 dogfood 하면서 자사 제품 거버넌스 벤치마크로 활용할지 결정.</li>
+</ol>
+<h3 id="핵심-메시지-3개">핵심 메시지 3개</h3>
+<table class="cmp-table">
+<thead>
+<tr>
+<th>#</th>
+<th>메시지</th>
+<th>본문</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T1</td>
+<td><strong>능력 경쟁은 끝났고, 코디네이션이 새 병목이다</strong></td>
+<td>1장</td>
+</tr>
+<tr>
+<td>T2</td>
+<td><strong>프레임워크는 패러다임이다 — 그래프/역할극/skill/조직</strong></td>
+<td>2장</td>
+</tr>
+<tr>
+<td>T3</td>
+<td><strong>거버넌스는 런타임 강제여야 한다</strong></td>
+<td>3장</td>
+</tr>
+</tbody>
+</table>
+<h3 id="본-리포트의-구성">본 리포트의 구성</h3>
+<table class="cmp-table">
+<thead>
+<tr>
+<th>장</th>
+<th>제목</th>
+<th>분량</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Weekly Digest — 에이전트 생태계 2026 5월 (사전 자료 확장판)</td>
+<td>2~3 페이지</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4-Way 패러다임 분류 (그래프 / 역할극 / skill / 조직)</td>
+<td>3~4 페이지</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Paperclip 심층 — 아키텍처 + 거버넌스 + 운영 모델</td>
+<td>5~7 페이지</td>
+</tr>
+<tr>
+<td>4</td>
+<td>라이브 데모 워크스루 (시연 시나리오 + 시연 항목 6개)</td>
+<td>3~4 페이지</td>
+</tr>
+<tr>
+<td>5</td>
+<td>F&amp;B 마케팅 자동화 관점 시사점 + Q&amp;A 토론 시드</td>
+<td>2~3 페이지</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Next Step — Session 2 예고 + 컨설팅 follow-up</td>
+<td>1~2 페이지</td>
+</tr>
+</tbody>
+</table>
+<p>부록 — 라이브 데모 사례의 source 인 Nevo David 파이프라인 정정 노트는 <code>research/03_case_nevo_marketing.md</code> 참조 (PRD 기획 단계의 &quot;Paperclip 사용자&quot; 표현은 1차 확인 안 됨, 본 리포트는 그의 도구 스택을 Paperclip org chart로 묶은 reference architecture로 재포지셔닝).</p>
+<h3 id="산출물-3종-어떻게-활용하나">산출물 3종 — 어떻게 활용하나</h3>
+<ul class="bullets">
+<li><strong>digest.html</strong> (사전 자료) — 세미나 전 30분 안에 훑어 트렌드 감각을 잡는 용도</li>
+<li><strong>report.html</strong> (본 리포트) — 세미나 후 다시 펴서 자세한 근거·표·인용을 확인하는 용도</li>
+<li><strong>slides.html</strong> (발표 슬라이드) — 세미나 당일 화면에 뜨는 자료</li>
+</ul>
 
 </section>
 
     <aside class="section-divider" aria-hidden="true">
       <div class="section-divider__tag">섹션 01</div>
-      <h2 class="section-divider__title">01. Section 제목</h2>
-      
+      <h2 class="section-divider__title">1. Weekly Digest</h2>
+      <p class="section-divider__subtitle">에이전트 생태계 2026 5월</p>
       <div class="section-divider__rule"></div>
       <div class="section-divider__num">01</div>
     </aside>
     
 <section class="report-section s1 page-break">
-<div class="report-section__kicker">Section 01 · 01. Section 제목</div>
-<h1 id="01.-section-제목">01. Section 제목</h1>
-<p>본문 placeholder. 회차 콘텐츠 작성 시 이 파일을 편집하거나 추가 NN_*.md 파일로 분할.</p>
+<div class="report-section__kicker">Section 01 · 1. Weekly Digest</div>
+<h1 id="1.-weekly-digest-에이전트-생태계-2026-5월">1. Weekly Digest — 에이전트 생태계 2026 5월</h1>
+<blockquote>
+<p><strong>1줄 thesis</strong> — 능력 경쟁은 끝났고, <strong>코디네이션이 새 병목</strong> 이다.</p>
+</blockquote>
+<h2 id="1.1-왜-지금-에이전트-회사-인가-큰-그림">1.1 왜 지금 &quot;에이전트 회사&quot; 인가 — 큰 그림</h2>
+<p>2024년 말부터 2025년까지의 흐름은 <em>&quot;모델 한 개의 능력을 어디까지 끌어올릴 수 있나&quot;</em> 의 경쟁이었다. Claude 4 / GPT-5o / Gemini 2.5 세대를 지나면서 단일 호출의 reasoning · tool use 품질이 충분히 올라간 결과, 병목은 <strong>모델 한 개의 IQ가 아니라 &quot;여러 호출을 어떻게 조정하고, 어디까지 자율 실행을 맡길 것인가&quot; 의 코디네이션 비용</strong> 으로 이동했다.</p>
+<p>LangChain의 <em>State of Agent Engineering 2025/2026</em> 설문(1,340명, 2025-11~12 수집)에서 응답자의 <strong>57%가 에이전트를 production에 투입</strong> 했다고 답했고, 1만 명 이상 대기업으로 좁히면 <strong>67%가 production 단계</strong> 다.[^langchain]</p>
+<p>이 맥락에서 <strong>&quot;한 사람 + N개 에이전트로 운영되는 회사&quot;</strong> 담론이 단순 밈을 넘어 실제 도구 카테고리로 굳어졌다. 2026-03-04 공개된 오픈소스 <strong>Paperclip</strong> 은 6주 만에 GitHub 53,000+ stars를 모았는데, 핵심은 &quot;에이전트를 더 똑똑하게 만든다&quot; 가 아니라 <em>&quot;에이전트들에게 직책·예산·승인 라인을 부여하고 조직도(org chart) 위에서 운영한다&quot;</em> 는 발상이다.[^paperclip-gh][^jimmysong] Gartner는 multi-agent 시스템 관련 문의가 <strong>2024 Q1 → 2025 Q2 +1,445% 증가</strong> 했다고 보고했고[^mlmastery], SK AX도 <em>&quot;2026년부터 10개 이상 에이전트가 협업하는 시스템이 보편화&quot;</em> 라는 국내 전망을 내놓았다.[^skax-multi] Paperclip은 이 흐름의 가장 가시적인 산출물 중 하나로 보는 것이 적절하다.</p>
+<h2 id="1.2-메타-트렌드-5개-깊이판">1.2 메타 트렌드 5개 — 깊이판</h2>
+<p>본 절은 사전 디지스트(<code>digest.html</code>)의 5 트렌드를 각각 한 단락 더 풀어서 정리한다. 디지스트가 30분 안에 훑는 사전 자료라면, 본 절은 세미나 후 다시 펴서 인용·근거를 확인하는 용도다.</p>
+<h3 id="1.2.1-멀티에이전트-프레임워크의-패러다임-분화">1.2.1 멀티에이전트 프레임워크의 패러다임 분화</h3>
+<p>2025년까지 &quot;에이전트 프레임워크&quot; 라는 한 덩어리로 묶여 있던 영역이 2026년에는 패러다임별로 분명히 갈렸다. <strong>LangGraph</strong> (상태 그래프 + HITL 체크포인트, v0.4) / <strong>CrewAI</strong> (역할·프로세스 기반 crew, 엔터프라이즈 관측성 추가) / <strong>AutoGen v2 / AG2</strong> (대화형 GroupChat, 1.0 GA) / <strong>OpenAI Agents SDK</strong> / <strong>Google ADK</strong> / <strong>Deep Agents</strong> (Anthropic 계열, skill 중심) 등이 각자 다른 멘탈 모델을 표방한다.[^pecollective][^turing]</p>
+<p><strong>왜 중요한가</strong> — &quot;어떤 프레임워크를 쓰지?&quot; 가 더 이상 취향 문제가 아니라 <em>&quot;우리 워크플로의 모양이 그래프냐, 역할극이냐, 대화냐, 회사냐&quot;</em> 라는 질문이 됐다. 본 리포트 2장에서 이 4분류를 본격적으로 다룬다.</p>
+<h3 id="1.2.2-mcpmodel-context-protocol의-사실상-표준화">1.2.2 MCP(Model Context Protocol)의 사실상 표준화</h3>
+<p>2024년 11월 Anthropic이 발표한 MCP가 18개월 만에 <strong>에이전트-도구 인터페이스의 사실상 표준</strong> 이 됐다. 공개 MCP 서버 레지스트리는 <strong>2025 Q1 1,200개 → 2026년 4월 9,400개+</strong> 로 늘었고 (월간 +18% 성장), Claude / ChatGPT / Gemini / Cursor / Windsurf / Zed / JetBrains AI / Vercel AI SDK / OpenAI Agents SDK가 모두 MCP를 네이티브로 채택했다.[^digitalapplied][^mcp-roadmap]</p>
+<p><strong>왜 중요한가</strong> — 2025년까지의 통합은 <em>&quot;벤더별 plugin / function calling 스펙을 일일이 맞춰 짜기&quot;</em> 였는데, MCP 이후로는 <strong>&quot;한 번 MCP 서버를 만들면 어떤 호스트에서든 붙는다&quot;</strong> 가 됐다. F&amp;B 마케팅 자동화 관점에서도 Shopify · Meta Ads · Instagram · GA4 · Slack 같은 외부 시스템을 MCP 서버 한 번 작성으로 모든 에이전트에 공유 가능. 단 2026년 현재 미해결 영역은 <strong>SSO 통합 auth · 감사 로그 · 게이트웨이 정책</strong> 으로, 엔터프라이즈 채택의 핵심 과제로 남아 있다.[^thenewstack]</p>
+<h3 id="1.2.3-agent-skills-프롬프트-자산의-코드화">1.2.3 Agent Skills — 프롬프트 자산의 코드화</h3>
+<p>Anthropic이 2025-12-18 <strong>Agent Skills 오픈 스펙</strong> 을 공개했다.[^anthropic-skills] 폴더 하나에 <code>SKILL.md</code> (YAML frontmatter + Markdown 지시문) + 보조 스크립트/리소스를 담는 단순 포맷이고, 핵심은 <strong>staged loading</strong> — 메타데이터만 부팅 시 읽고, 실제 호출될 때만 본문이 컨텍스트에 들어가서 토큰 비용을 잡는 구조다. 2026년 3월 시점 <strong>32개 도구</strong> (Gemini CLI · JetBrains Junie · AWS Kiro · Block Goose · Cursor · OpenCode 등)가 동일한 SKILL.md를 읽는다.[^venturebeat]</p>
+<p><strong>왜 중요한가</strong> — 그동안 사내에 흩어져 있던 <em>&quot;ChatGPT 프롬프트 모음.docx&quot;</em> , <em>&quot;노션 프롬프트 라이브러리&quot;</em> 같은 비공식 자산이 <strong>버전 관리 가능한 코드 디렉토리</strong> 가 된다. F&amp;B 마케팅이라면 <em>브랜드 톤 매뉴얼 / 신메뉴 출시 카피 SOP / Meta Ads 캠페인 셋업 절차</em> 를 각각 skill 폴더로 묶으면, 같은 자산을 Claude Code · Cursor · Paperclip의 모든 에이전트가 똑같이 호출 가능.</p>
+<h3 id="1.2.4-coding-agent의-성숙-sdk-가격-재편">1.2.4 Coding Agent의 성숙 + SDK 가격 재편</h3>
+<p>Claude Code SDK가 2026년 3월 <strong>Claude Agent SDK</strong> 로 개명되며 <em>&quot;코드 전용&quot;</em> 프레임이 떨어져 나갔다. 같은 SDK 위에서 PowerPoint · Excel · Word · PDF 용 pre-built skill이 함께 제공되고, Cursor · Aider · Goose · OpenCode 같은 third-party 코딩 에이전트들이 같은 SKILL.md 포맷을 공유한다.[^anthropic-sdk] 한편 <strong>2026년 6월 15일부터 Claude Agent SDK · <code>claude -p</code> · GitHub Actions의 subscription 토큰이 별도 $200/월 크레딧 버킷으로 분리</strong> 되어, 헤비 유저의 실효 비용이 12~175배까지 오르는 정책 변경이 진행 중이다.[^releasebot]</p>
+<p><strong>왜 중요한가</strong> — <em>&quot;코딩 에이전트 = 개발자 전용&quot;</em> 의 구도가 깨지고 있다. Excel · PDF · PPT skill을 가진 동일 SDK가 마케팅 · 기획 · 운영 시나리오로 들어오는 중이고, 동시에 가격 모델이 <em>&quot;API 종량제&quot;</em> 로 회귀하면서 <strong>운영 비용을 처음부터 설계 변수로 두는 cost-aware 아키텍처</strong> 가 필수가 됐다.</p>
+<h3 id="1.2.5-관찰성평가의-표준화-otel-langsmith-라인">1.2.5 관찰성·평가의 표준화 — OTel + LangSmith 라인</h3>
+<p>2026년 3월 LangSmith가 OpenTelemetry full support를 추가하면서, <strong>Laminar · Langfuse · LangSmith · Phoenix가 모두 OTLP를 공통 수신 포맷</strong> 으로 받게 됐다. 즉 에이전트 trace가 벤더 종속 없이 이식 가능해진 첫 해다.[^braintrust][^agentmarketcap] LangChain 설문 기준 <strong>production 운영 팀의 89%가 observability를 도입</strong> 했고, 62%는 단계별 step · tool call 단위 trace를 본다.</p>
+<p><strong>왜 중요한가</strong> — 멀티 에이전트가 늘어날수록 <em>&quot;왜 이 캠페인 카피가 이렇게 나왔는지&quot;</em> 의 사후 추적성이 production의 사활을 가른다. LangChain 설문에서 production 진입을 가로막는 1위 이유가 <strong>&quot;quality&quot; (32%)</strong> 였는데, 관찰성 없는 품질 개선은 불가능하므로 OTel은 사실상 진입 요건이 되고 있다.</p>
+<h2 id="1.3-fb-마케팅-자동화-관점-시드-3개">1.3 F&amp;B 마케팅 자동화 관점 — 시드 3개</h2>
+<blockquote>
+<p>본격 적용 논의는 5장 — 여기선 시드만 던진다.</p>
+</blockquote>
+<ol class="nums">
+<li><strong>조직형 오케스트레이션의 자연스러움</strong> — Paperclip식 org-chart + 예산·승인 라인 모델은 F&amp;B 마케팅의 <em>캠페인 단위 워크플로 + 브랜드 매니저 승인</em> 구조와 mental model이 가장 잘 맞는다 (가설, Q&amp;A에서 검증).</li>
+<li><strong>MCP 서버 = 통합 ROI 최대 영역</strong> — Meta Ads · GA4 · 인스타 DM · Shopify · POS · 배달앱을 MCP 서버로 한 번 감싸면, 카피라이팅 · 캠페인 분석 · CS 에이전트가 모두 같은 도구를 쓸 수 있다.</li>
+<li><strong>Brand 톤 = SKILL.md 로 자산화</strong> — 브랜드 가이드라인 · 금지어 · 페르소나를 Agent Skill로 패키징하면 Claude · Cursor · Paperclip 어디서든 동일 톤이 강제된다 — 흩어진 프롬프트 사이로 새는 일관성 문제의 구조적 해법.</li>
+</ol>
+<hr />
+<h2 id="references">References</h2>
+<p>[^langchain]: LangChain. (2026). <em>State of Agent Engineering 2025/2026</em> (n=1,340). https://www.langchain.com/state-of-agent-engineering
+[^paperclip-gh]: Paperclip AI. (2026). <em>paperclipai/paperclip — GitHub</em>. https://github.com/paperclipai/paperclip
+[^jimmysong]: Jimmy Song. (2026). <em>Paperclip: Open-Source Orchestration for Zero-Human Companies</em>. https://jimmysong.io/ai/paperclip/
+[^mlmastery]: MachineLearningMastery. (2026). <em>7 Agentic AI Trends to Watch in 2026</em>. https://machinelearningmastery.com/7-agentic-ai-trends-to-watch-in-2026/
+[^skax-multi]: SK AX. (2026). <em>2026년 기업 AI 전환의 해답, 멀티에이전트 시스템</em>. https://www.skax.co.kr/insight/trend/3626
+[^pecollective]: pecollective. (2026). <em>AI Agent Frameworks Compared: LangGraph vs CrewAI vs AutoGen</em>. https://pecollective.com/blog/ai-agent-frameworks-compared/
+[^turing]: Turing. (2026). <em>A Detailed Comparison of Top 6 AI Agent Frameworks in 2026</em>. https://www.turing.com/resources/ai-agent-frameworks
+[^digitalapplied]: Digital Applied. (2026). <em>MCP Adoption Statistics 2026</em>. https://www.digitalapplied.com/blog/mcp-adoption-statistics-2026-model-context-protocol
+[^mcp-roadmap]: Model Context Protocol. (2026). <em>The 2026 MCP Roadmap</em>. https://blog.modelcontextprotocol.io/posts/2026-mcp-roadmap/
+[^thenewstack]: The New Stack. (2026). <em>MCP's biggest growing pains for production use will soon be solved</em>. https://thenewstack.io/model-context-protocol-roadmap-2026/
+[^anthropic-skills]: Anthropic. (2026). <em>Equipping agents for the real world with Agent Skills</em>. https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills
+[^venturebeat]: VentureBeat. (2026). <em>Anthropic launches enterprise Agent Skills and opens the standard</em>. https://venturebeat.com/technology/anthropic-launches-enterprise-agent-skills-and-opens-the-standard
+[^anthropic-sdk]: Anthropic. (2026). <em>Building agents with the Claude Agent SDK</em>. https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk
+[^releasebot]: Releasebot. (2026). <em>Anthropic Release Notes — May 2026</em>. https://releasebot.io/updates/anthropic
+[^braintrust]: Braintrust. (2026). <em>Agent Observability: The Complete Guide for 2026</em>. https://www.braintrust.dev/articles/agent-observability-complete-guide-2026
+[^agentmarketcap]: AgentMarketCap. (2026). <em>OpenTelemetry for AI Agents: The Missing Observability Standard</em>. https://agentmarketcap.ai/blog/2026/04/07/opentelemetry-ai-agents-observability-standard</p>
 
 </section>
   </article>

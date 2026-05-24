@@ -51,13 +51,45 @@
 <section class="report-section s1 page-break">
 <div class="report-section__kicker">Section 01 · Weekly Digest</div>
 <hr />
-<h2 id="title-weekly-digest-01paperclipdeepdivedate">title: &quot;Weekly Digest — 01_paperclip_deep_dive&quot;
-date:</h2>
+<h2 id="title-weekly-digest-session-1-사전-자료subtitle-에이전트-생태계-2026-5월date-2026-05-28">title: &quot;Weekly Digest — Session 1 사전 자료&quot;
+subtitle: &quot;에이전트 생태계 2026 5월&quot;
+date: 2026-05-28</h2>
 <h1 id="weekly-digest">Weekly Digest</h1>
 <blockquote>
-<p>한 줄 요약.</p>
+<p><strong>1줄 thesis</strong> — 능력 경쟁은 끝났고, <strong>코디네이션이 새 병목</strong> 이다.</p>
 </blockquote>
-<p>본문 — 트렌드 요약, 핵심 키워드, 사전 읽기용 짧은 글(2~4페이지).</p>
+<p>본 글은 커넥트브릭 격주 세미나 <strong>Session 1</strong> 의 사전 읽기 자료다. 본 세션의 메인 주제(에이전트 패러다임 비교 + Paperclip 심층 분석)에 들어가기 전, 청중이 30분 안에 훑어 2026년 5월 시점 에이전트 생태계의 큰 그림을 잡을 수 있도록 정리했다.</p>
+<h2 id="5-메타-트렌드-2026-5월">5 메타 트렌드 (2026 5월)</h2>
+<h3 id="1.-멀티에이전트-프레임워크의-패러다임-분화">1. 멀티에이전트 프레임워크의 패러다임 분화</h3>
+<p>2025년까지 &quot;에이전트 프레임워크&quot; 라는 한 덩어리였던 영역이 2026년에는 <strong>그래프형(LangGraph) / 역할극형(CrewAI·AutoGen) / skill 중심(Deep Agents·Claude Agent SDK) / 조직형(Paperclip)</strong> 으로 분명히 갈렸다. 더 이상 &quot;어떤 프레임워크를 쓰지&quot; 가 취향 문제가 아니라 <em>&quot;우리 워크플로의 모양이 그래프냐, 역할극이냐, 회사냐&quot;</em> 라는 질문이 됐다. LangChain 설문(n=1,340) 기준 <strong>production 진입률 57%</strong> (1만 명+ 대기업은 67%)에 도달했다.</p>
+<h3 id="2.-mcpmodel-context-protocol의-사실상-표준화">2. MCP(Model Context Protocol)의 사실상 표준화</h3>
+<p>2024년 11월 Anthropic이 발표한 MCP가 18개월 만에 <strong>에이전트-도구 인터페이스의 사실상 표준</strong> 이 됐다. 공개 MCP 서버 레지스트리는 2025 Q1 1,200개에서 2026년 4월 9,400개+로 늘었고 (월간 +18% 성장), Claude·ChatGPT·Gemini·Cursor·Windsurf·OpenAI Agents SDK 등이 모두 네이티브 채택. &quot;한 번 MCP 서버 만들면 어떤 호스트에서든 붙는다&quot; 가 됐다. 다만 SSO 통합 auth · 감사 로그 · 게이트웨이 정책은 미해결 영역으로 남아 있다.</p>
+<h3 id="3.-agent-skills-프롬프트-자산의-코드화">3. Agent Skills — 프롬프트 자산의 코드화</h3>
+<p>Anthropic이 2025-12-18 공개한 <strong>Agent Skills 오픈 스펙</strong> 은 폴더 한 개에 <code>SKILL.md</code> (YAML frontmatter + Markdown 지시문) + 보조 리소스를 담는 단순 포맷이다. 핵심은 <strong>staged loading</strong> — 메타데이터만 부팅 시 읽고, 호출될 때만 본문이 컨텍스트에 들어가 토큰 비용을 잡는다. 2026-03 기준 32개 도구(Gemini CLI · Cursor · Block Goose · OpenCode 등)가 동일 SKILL.md를 읽는다. 흩어진 프롬프트 라이브러리가 <strong>버전 관리 가능한 코드 디렉토리</strong> 가 된다.</p>
+<h3 id="4.-coding-agent의-성숙-sdk-가격-재편">4. Coding Agent의 성숙 + SDK 가격 재편</h3>
+<p>Claude Code SDK가 2026-03 <strong>Claude Agent SDK</strong> 로 개명되며 &quot;코드 전용&quot; 프레임이 떨어져 나갔다. 동일 SDK 위에서 PowerPoint·Excel·Word·PDF 용 pre-built skill이 함께 제공되고, Cursor·Aider·Goose가 같은 SKILL.md 포맷을 공유한다. 한편 2026-06-15부터 SDK·<code>claude -p</code>·GitHub Actions의 subscription 토큰이 별도 $200/월 크레딧 버킷으로 분리되어, 헤비 유저의 실효 비용이 12~175배까지 오르는 정책 변경이 진행 중이다. <strong>cost-aware 아키텍처가 필수</strong> 가 됐다.</p>
+<h3 id="5.-관찰성평가의-표준화-otel-langsmith-라인">5. 관찰성·평가의 표준화 — OTel + LangSmith 라인</h3>
+<p>2026-03 LangSmith가 OpenTelemetry full support를 추가하면서 <strong>Laminar · Langfuse · LangSmith · Phoenix가 모두 OTLP를 공통 수신 포맷</strong> 으로 받게 됐다. 에이전트 trace가 벤더 종속 없이 이식 가능해진 첫 해다. LangChain 설문에서 <strong>production 운영 팀의 89%가 observability 도입</strong>, 62%는 step·tool call 단위 trace를 본다. production 진입을 가로막는 1위 이유가 &quot;quality&quot;(32%)인데, 관찰성 없는 품질 개선이 불가능하므로 OTel은 사실상 진입 요건.</p>
+<h2 id="왜-지금-에이전트-회사-인가">왜 지금 &quot;에이전트 회사&quot; 인가</h2>
+<p>위 5 트렌드의 교집합이 <strong>&quot;한 사람 + N개 에이전트로 운영되는 회사&quot;</strong> 라는 담론이다. 2026-03-04 공개된 오픈소스 <strong>Paperclip</strong> 이 6주 만에 GitHub 53,000+ stars를 모은 이유는 &quot;에이전트를 더 똑똑하게 만든다&quot; 가 아니라 <em>&quot;에이전트들에게 직책·예산·승인 라인을 부여하고 조직도(org chart) 위에서 운영한다&quot;</em> 는 발상이다. Gartner는 multi-agent 시스템 관련 문의가 <strong>2024 Q1 → 2025 Q2 +1,445% 증가</strong> 라고 보고했고, SK AX는 &quot;2026년부터 10개 이상 에이전트가 협업하는 시스템이 보편화&quot; 라는 국내 전망을 내놓았다.</p>
+<h2 id="fb-마케팅-자동화-관점-3가지-시드">F&amp;B 마케팅 자동화 관점 3가지 시드</h2>
+<blockquote>
+<p>본격 적용 논의는 본 리포트 5장 — 여기선 시드만.</p>
+</blockquote>
+<ol class="nums">
+<li><strong>조직형 오케스트레이션의 자연스러움</strong> — Paperclip식 org-chart + 예산·승인 라인 모델은 F&amp;B 마케팅의 <em>캠페인 단위 워크플로 + 브랜드 매니저 승인</em> 구조와 mental model이 가장 잘 맞는다 (가설, 청중과 검증).</li>
+<li><strong>MCP 서버 = 통합 ROI 최대 영역</strong> — Meta Ads / GA4 / 인스타 DM / Shopify / POS 를 MCP 서버로 한 번 감싸면, 카피라이팅·캠페인 분석·CS 에이전트가 모두 같은 도구를 쓸 수 있다.</li>
+<li><strong>Brand 톤 = SKILL.md 로 자산화</strong> — 브랜드 가이드라인·금지어·페르소나를 Agent Skill로 패키징하면 Claude·Cursor·Paperclip 어디서든 동일 톤이 강제된다.</li>
+</ol>
+<h2 id="사전-읽기-추천-선택">사전 읽기 추천 (선택)</h2>
+<p>세미나 전 30분 안에 훑어 오면 좋을 자료:</p>
+<ol class="nums">
+<li><strong><a href="https://www.skax.co.kr/insight/trend/3624">SK AX — 2026 에이전트 AI 트렌드 (한국어, ~10분)</a></strong> — 국내 대기업 시각의 에이전틱 AI 전환 정리. <a href="https://www.skax.co.kr/insight/trend/3626">멀티에이전트 후속 글</a>과 같이 권장.</li>
+<li><strong><a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills">Anthropic Engineering — Equipping agents for the real world with Agent Skills (영문, ~15분)</a></strong> — Skill 시스템의 가장 정확한 1차 출처.</li>
+<li><strong><a href="https://paperclip.ing/">Paperclip 공식 사이트</a> + <a href="https://github.com/paperclipai/paperclip">GitHub README</a> (영문, ~10분)</strong> — 본 세션 메인 주제. 최소한 README의 <em>&quot;org chart / budget / governance&quot;</em> 섹션은 보고 와 주세요.</li>
+</ol>
+<hr />
+<p><strong>다음 산출물 — Session 1 본 리포트 (<code>report.html</code>)</strong>: 위 트렌드를 깊이 풀어내고, 4-way 패러다임 비교 + Paperclip 심층 분석 + F&amp;B 적용 시사점까지 다룹니다.</p>
 
 </section>
   </article>
