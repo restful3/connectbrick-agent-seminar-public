@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>01_paperclip_deep_dive</title>
+  <title>AI Agent 패러다임 비교 & Paperclip 심층 분석</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -45,13 +45,840 @@
   <div class="cover-signature">AI Odyssey · YouTube</div>
   <div class="cover-hero">
     <div class="cover-kicker animate-in">Seminar Deck</div>
-    <h1 class="animate-in delay-1">01_paperclip_deep_dive</h1>
-    <p class="cover-subtitle animate-in delay-2">한 줄 부제</p>
+    <h1 class="animate-in delay-1">AI Agent 패러다임 비교 & Paperclip 심층 분석</h1>
+    <p class="cover-subtitle animate-in delay-2">커넥트브릭 격주 세미나 · Session 1 2026-05-28 (목) · 송태영</p>
   </div>
   <div class="cover-meta">
     <div><strong>발표자</strong>송태영</div>
     <div><strong>채널</strong>송태영</div>
-    <div><strong>일시</strong></div>
+    <div><strong>일시</strong>2026-05-28</div>
+  </div>
+</section>
+<section class="slide" aria-label="Weekly Digest — 1줄 thesis">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">Weekly Digest — 1줄 thesis</h1>
+  <div class="slide-title-rule"></div>
+  <p class="slide-subtitle animate-in delay-1"><strong>능력 경쟁은 끝났고, 코디네이션이 새 병목이다</strong></p>
+  <div class="slide-body">
+<ul class="bullets">
+<li>LangChain 설문(n=1,340): production 진입률 <strong>57%</strong> (1만 명+ 대기업은 67%)</li>
+<li>Gartner: multi-agent 시스템 문의 <strong>2024 Q1 → 2025 Q2 +1,445%</strong></li>
+<li>SK AX: &quot;2026년부터 10개 이상 에이전트가 협업하는 시스템이 보편화&quot;</li>
+</ul>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>01</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="5 메타 트렌드 (2026 5월)">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">5 메타 트렌드 (2026 5월)</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<table class="cmp-table">
+<thead>
+<tr>
+<th>#</th>
+<th>트렌드</th>
+<th>핵심</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>멀티에이전트 패러다임 분화</td>
+<td>그래프 / 역할극 / skill / 조직</td>
+</tr>
+<tr>
+<td>2</td>
+<td>MCP 사실상 표준화</td>
+<td>9,400+ 서버, 18개월 만에 표준</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Agent Skills (SKILL.md)</td>
+<td>32개 도구가 공유, staged loading</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Coding agent → 범용 SDK</td>
+<td>Claude Agent SDK 개명 + $200 버킷</td>
+</tr>
+<tr>
+<td>5</td>
+<td>관찰성 OTel + LangSmith</td>
+<td>89% production팀 도입, 진입 요건화</td>
+</tr>
+</tbody>
+</table>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>02</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="왜 지금 "에이전트 회사" 인가">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">왜 지금 "에이전트 회사" 인가</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<ul class="bullets">
+<li>모델 IQ 경쟁이 <strong>충분</strong>해진 결과 → 병목이 <strong>코디네이션 비용</strong> 으로 이동</li>
+<li>2026-03-04 <strong>Paperclip</strong> 공개, 6주 만에 GitHub <strong>53,000+ stars</strong></li>
+<li>핵심 발상: &quot;에이전트를 더 똑똑하게&quot; 가 아니라 <strong>&quot;직책·예산·승인 라인을 부여하고 조직도 위에서 운영&quot;</strong></li>
+</ul>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>03</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="4-Way 패러다임 분류">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">4-Way 패러다임 분류</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<table class="cmp-table">
+<thead>
+<tr>
+<th>패러다임</th>
+<th>대표</th>
+<th>핵심 unit</th>
+<th>governance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>그래프형</td>
+<td>LangGraph</td>
+<td>노드(step)</td>
+<td>엣지에 HITL</td>
+</tr>
+<tr>
+<td>역할극형</td>
+<td>CrewAI / AutoGen</td>
+<td>발언(turn)</td>
+<td>critic 역할</td>
+</tr>
+<tr>
+<td>skill 중심</td>
+<td>Deep Agents / Claude Agent SDK</td>
+<td>skill 호출</td>
+<td>사용자 코드 가드</td>
+</tr>
+<tr>
+<td><strong>조직형</strong></td>
+<td><strong>Paperclip</strong></td>
+<td><strong>이슈·태스크</strong></td>
+<td><strong>런타임 강제</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>본 4분류는 작성자(송태영) 정리 — 학술 분류 아님. <strong>mental model</strong> 축으로 보면 워크플로 모양과의 fit이 갈린다.</p>
+</blockquote>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>04</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="그래프형 + 역할극형">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">그래프형 + 역할극형</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<p><strong>그래프형 (LangGraph)</strong> — 노드(step)와 엣지(transition)로 결정적 분기를 명시. HITL 체크포인트는 엣지에 삽입. <em>결정적 분기 + 승인 게이트가 많은 워크플로에 자연스럽다.</em></p>
+<p><strong>역할극형 (CrewAI, AutoGen)</strong> — 역할 + 대화 + 협상. 누가 누구에게 메시지를 보내는가의 런타임 합의. <em>발산적 브레인스토밍, 다관점 검토에 자연스럽다.</em></p>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>05</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="skill 중심 + 조직형">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">skill 중심 + 조직형</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<p><strong>skill 중심 (Deep Agents, Claude Agent SDK)</strong> — 도구 라이브러리 + 메인 루프. <code>SKILL.md</code> 의 staged loading. <em>코딩, 문서 작성, RAG-heavy 작업에 자연스럽다.</em></p>
+<p><strong>조직형 (Paperclip)</strong> — 회사: org chart + goal + budget + governance. <strong>이슈 단위로 작업이 흐르고 보고 라인이 위임을 강제</strong>한다. <em>캠페인 단위 deliverable + 승인 라인 + 예산 한도가 있는 워크플로에 자연스럽다.</em> → <strong>본 회차 deep dive (3장)</strong></p>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>06</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="Paperclip — 한 줄 정의">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">Paperclip — 한 줄 정의</h1>
+  <div class="slide-title-rule"></div>
+  <p class="slide-subtitle animate-in delay-1"><em>&quot;Node.js server and React UI that orchestrates a team of AI agents to run a business&quot;</em></p>
+  <div class="slide-body">
+<p><strong>슬로건</strong>: <em>&quot;If OpenClaw is an employee, Paperclip is the company.&quot;</em></p>
+<p>핵심 차별 — 에이전트 프레임워크가 아니라 <strong>에이전트들이 일하는 조직(control plane)</strong>.</p>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>07</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="8 서브시스템 아키텍처">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">8 서브시스템 아키텍처</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<pre><code class="language-text">React UI ──REST/WS── Node.js API 서버 ── 8 서브시스템
+                          │
+            ┌─────────────┼────────────────┐
+       PostgreSQL    외부 에이전트 어댑터    Plugins
+       (issues,      (Claude Code/Codex/
+        activity,     CLI/HTTP/Plugin)
+        cost, secrets)
+</code></pre>
+<p>① Identity &amp; Access ② Org Chart &amp; Agents ③ Work &amp; Task ④ <strong>Heartbeat Execution</strong> ⑤ Workspaces &amp; Runtime ⑥ Governance ⑦ Budget ⑧ Routines</p>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>08</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="Heartbeat 루프 — 핵심 실행 모델">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">Heartbeat 루프 — 핵심 실행 모델</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<pre><code class="language-text">1. Issue 생성 → company/project/goal/parent 링크 부여
+2. DB-backed wakeup queue에 enqueue (coalescing)
+3. 하트비트 도착 → Budget check → Workspace resolve
+   → Secret injection → Skill loading → Adapter 호출
+4. Atomic checkout (execution lock — no double-work)
+5. 에이전트 실행 → 구조화 로그 / cost / 세션 상태
+6. (옵션) Governance 승인 게이트
+</code></pre>
+<blockquote>
+<p><em>&quot;Agents resume the same task context across heartbeats instead of restarting from scratch.&quot;</em></p>
+</blockquote>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>09</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="Org Chart + 위임 모델">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">Org Chart + 위임 모델</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<ul class="bullets">
+<li><strong>트리 강제</strong>: 모든 에이전트는 정확히 한 명의 매니저 (<code>reportsTo</code>), 사이클 금지</li>
+<li><strong>루트는 CEO</strong> — board (사람) 에게 직접 보고</li>
+<li><strong>chainOfCommand</strong>: escalation / delegation / visibility 3 용도</li>
+<li><strong>Hire-on-Demand</strong>: CEO → <code>hire_agent</code> approval → 사람 승인 → 새 에이전트 합류</li>
+</ul>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>10</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="거버넌스 — 런타임 강제 (T3)">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">거버넌스 — 런타임 강제 (T3)</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<p><strong>Approval Queue</strong> (회사 거버넌스 레벨):</p>
+<table class="cmp-table">
+<thead>
+<tr>
+<th>타입</th>
+<th>미승인 시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hire_agent</code></td>
+<td>채용 대기, 트리 변경 차단</td>
+</tr>
+<tr>
+<td><code>ceo_strategy</code></td>
+<td>CEO가 태스크를 <code>in_progress</code> 로 못 옮김</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Execution Policy</strong> (이슈 레벨, 선택적):</p>
+<table class="cmp-table">
+<thead>
+<tr>
+<th>Layer</th>
+<th>강제?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Comment required</td>
+<td>항상 on</td>
+</tr>
+<tr>
+<td>Review stage</td>
+<td>이슈별 옵션</td>
+</tr>
+<tr>
+<td>Approval stage</td>
+<td>이슈별 옵션</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>핵심 — &quot;에이전트가 잊을&quot; 가능성을 <strong>시스템이 차단</strong></p>
+</blockquote>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>11</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="예산 거버넌스 — 8 차원 추적">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">예산 거버넌스 — 8 차원 추적</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<p>추적: company / agent / project / goal / issue / provider / model / (UTC 월)</p>
+<table class="cmp-table">
+<thead>
+<tr>
+<th>Threshold</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>80%</td>
+<td>Soft alert</td>
+</tr>
+<tr>
+<td>100%</td>
+<td><strong>Hard stop — auto-paused + 큐 cancel</strong></td>
+</tr>
+</tbody>
+</table>
+<ul class="bullets">
+<li>단위: <strong>cent USD</strong></li>
+<li>단점: <strong>일/분 단위 budget 없음</strong> → 단기 burst 컨트롤 약함</li>
+<li>외부 비용(SaaS·인프라)은 추적 대상 외</li>
+</ul>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>12</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="운영 위험 vs Paperclip 안전망">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">운영 위험 vs Paperclip 안전망</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<table class="cmp-table">
+<thead>
+<tr>
+<th>위험</th>
+<th>Paperclip 대응</th>
+<th>잔여 위험</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>비용 폭주</td>
+<td>budget 80/100% hard-stop</td>
+<td>단일 heartbeat burst</td>
+</tr>
+<tr>
+<td>중복 작업</td>
+<td>atomic checkout</td>
+<td>—</td>
+</tr>
+<tr>
+<td>컨텍스트 손실</td>
+<td>persistent agent state</td>
+<td>모델 context window</td>
+</tr>
+<tr>
+<td>무한 루프</td>
+<td>heartbeat 자연 차단 + budget 백업</td>
+<td>adapter 내부 루프</td>
+</tr>
+<tr>
+<td>무단 결정</td>
+<td>strategy/hire approval 필수</td>
+<td>통째 승인 패턴</td>
+</tr>
+<tr>
+<td>품질 누락</td>
+<td>execution policy 강제</td>
+<td>reviewer 환각 전파</td>
+</tr>
+<tr>
+<td><strong>할루시네이션</strong></td>
+<td><strong>직접 차단 없음</strong></td>
+<td><strong>본질적 잔여</strong></td>
+</tr>
+</tbody>
+</table>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>13</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label=""왜 조직형이 다른가" 결론">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">"왜 조직형이 다른가" 결론</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<p>다른 3 패러다임이 <strong>&quot;어떻게 일하느냐 (workflow)&quot;</strong> 를 표현한다면,
+<strong>조직형은 &quot;어떻게 일하지 않게 하느냐 (stop rules)&quot;</strong> 를 시스템에 박았다.</p>
+<p>→ 거버넌스 / 예산 / 승인이 <strong>런타임에서 강제</strong> 되는 첫 패러다임.</p>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>14</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="라이브 데모 — 시나리오">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">라이브 데모 — 시나리오</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<pre><code class="language-text">[Goal] &quot;이번 주 인스타 릴스 3개 발행&quot;
+  ↓
+CEO 에이전트 → Strategy proposal (사람 승인)
+  ↓
+Content Strategist → 5개 후보 topic 제안 (Issue로)
+  ↓
+Writer → 승인된 1건 스크립트 작성
+  ↓
+Editor → 리뷰 stage (execution policy 작동)
+  ↓
+Publisher (mock) → Postiz upload + 다채널 예약
+</code></pre>
+<blockquote>
+<p>Nevo David 파이프라인 모방 — Paperclip org chart로 묶은 reference architecture</p>
+</blockquote>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>15</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="데모 1/6 — Approval Queue UI">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">데모 1/6 — Approval Queue UI</h1>
+  <div class="slide-title-rule"></div>
+  <p class="slide-subtitle animate-in delay-1">운영자 권한으로 보드 대시보드 조작</p>
+  <div class="slide-body">
+<p><em>(약 2~3분 · 캡처 백업: <code>assets/demo_screenshots/01_approval_queue.png</code>)</em></p>
+<p>핵심 — CEO Strategy / hire_agent 두 가지 approval 타입의 payload 검토 흐름.</p>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>16</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="데모 2/6 — Strategy 승인 → Subtask">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">데모 2/6 — Strategy 승인 → Subtask</h1>
+  <div class="slide-title-rule"></div>
+  <p class="slide-subtitle animate-in delay-1">CEO Strategy 승인 직후 자동 Subtask 생성</p>
+  <div class="slide-body">
+<p><em>(약 3~4분 · 캡처 백업: <code>assets/demo_screenshots/02_strategy_subtask.png</code>)</em></p>
+<p>핵심 — goal ancestry가 어떻게 하위 issue 모두에 상속되는가.</p>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>17</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="데모 3/6 — Writer Heartbeat">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">데모 3/6 — Writer Heartbeat</h1>
+  <div class="slide-title-rule"></div>
+  <p class="slide-subtitle animate-in delay-1">Writer 에이전트의 heartbeat 도착 → execution lock → 작업</p>
+  <div class="slide-body">
+<p><em>(약 3~4분 · 캡처 백업: <code>assets/demo_screenshots/03_writer_heartbeat.png</code>)</em></p>
+<p>핵심 — atomic checkout이 동시 실행을 어떻게 차단하는가.</p>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>18</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="데모 4/6 — Execution Policy">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">데모 4/6 — Execution Policy</h1>
+  <div class="slide-title-rule"></div>
+  <p class="slide-subtitle animate-in delay-1">Editor 리뷰 stage 강제 → Writer 가 리뷰 없이 publish 못 함</p>
+  <div class="slide-body">
+<p><em>(약 2~3분 · 캡처 백업: <code>assets/demo_screenshots/04_execution_policy.png</code>)</em></p>
+<p>핵심 — 거버넌스가 런타임에서 강제됨을 시연.</p>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>19</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="데모 5/6 — Activity Log">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">데모 5/6 — Activity Log</h1>
+  <div class="slide-title-rule"></div>
+  <p class="slide-subtitle animate-in delay-1">모든 mutation의 actor / action / entity / details / timestamp</p>
+  <div class="slide-body">
+<p><em>(약 2~3분 · 캡처 백업: <code>assets/demo_screenshots/05_activity_log.png</code>)</em></p>
+<p>핵심 — 감사 추적성. agent CRUD / approval 결정 / budget 변경 모두 immutable log.</p>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>20</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="데모 6/6 — Budget 알림">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">데모 6/6 — Budget 알림</h1>
+  <div class="slide-title-rule"></div>
+  <p class="slide-subtitle animate-in delay-1">80% soft alert → 100% hard-stop → 큐 자동 cancel</p>
+  <div class="slide-body">
+<p><em>(약 2~3분 · 캡처 백업: <code>assets/demo_screenshots/06_budget_stop.png</code>)</em></p>
+<p>핵심 — 8 차원 중 어디서 hard-stop이 걸렸는지 즉시 확인.</p>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>21</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="Q&A 토론 시드">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">Q&A 토론 시드</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<ol class="nums">
+<li><strong>가설 검증</strong> — F&amp;B에 정말 조직형이 그래프형보다 잘 맞나? 캠페인 1회의 분기 복잡도가 그래프 표현이 더 명확하지 않나?</li>
+<li><strong>현실 검증</strong> — Stage A (사내 도구) 운영 비용이 ROI 넘는가? 1인 운영 가능한가?</li>
+<li><strong>비교 검증</strong> — LangGraph로 이미 production이면 Paperclip 마이그레이션 비용 대비 거버넌스 이득?</li>
+<li><strong>한국 시장</strong> — Postiz 미지원 채널 publisher 빌드 vs 한국 SaaS (스푼·플레이콘 등) 활용 비용?</li>
+<li><strong>장기 전략</strong> — 6개월 후에도 Paperclip이 살아남을지? momentum vs 단명 가능성?</li>
+</ol>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>22</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="F&B 적용 매핑 — 그대로 vs 바꿀 것">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">F&B 적용 매핑 — 그대로 vs 바꿀 것</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<table class="cmp-table">
+<thead>
+<tr>
+<th>영역</th>
+<th>Nevo 패턴</th>
+<th>F&amp;B 그대로</th>
+<th>바꿀 것</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>콘텐츠 원천</td>
+<td>outlier transcript + KB</td>
+<td>△</td>
+<td>레시피·식재·플레이팅 KB로 재설계</td>
+</tr>
+<tr>
+<td>채널</td>
+<td>Postiz 25+</td>
+<td>△</td>
+<td>카카오/네이버/배달앱 어댑터 신규</td>
+</tr>
+<tr>
+<td>비주얼</td>
+<td>agent-media UGC</td>
+<td>△</td>
+<td>실촬 + generative 하이브리드</td>
+</tr>
+<tr>
+<td>SEO</td>
+<td>yt-dlp + Deepgram</td>
+<td>×</td>
+<td>메뉴/위치/시즌 기반 재설계</td>
+</tr>
+<tr>
+<td>휴먼 게이트</td>
+<td>idea/verifier/final</td>
+<td>✓</td>
+<td>식품표시광고법 게이트 추가</td>
+</tr>
+<tr>
+<td>slop 룰북</td>
+<td>54 패턴/3 severity</td>
+<td>✓</td>
+<td>F&amp;B 전용 패턴 신규</td>
+</tr>
+</tbody>
+</table>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>23</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="한국 채널 갭 + 음식 비주얼 하이브리드">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">한국 채널 갭 + 음식 비주얼 하이브리드</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<p><strong>한국 채널 갭</strong> (Postiz 미지원):</p>
+<ul class="bullets">
+<li>카카오톡 채널 · 네이버 플레이스 · 네이버 블로그 · 배달앱(쿠팡이츠/배민/요기요) · 인스타 DM 응대</li>
+<li>→ 별도 publisher 에이전트 + 한국 채널 어댑터 직접 개발</li>
+</ul>
+<p><strong>음식 비주얼 하이브리드</strong>:</p>
+<ul class="bullets">
+<li>ASMR/현장 슬로모/플레이팅 클로즈업 → <strong>실촬 필수</strong></li>
+<li>셰프/사장님 talking head → <strong>agent-media generative 가능</strong></li>
+<li>→ 실촬 라이브러리 + generative talking head 조합</li>
+</ul>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>24</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="Session 1 — 청중이 가져갈 3가지 변화">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">Session 1 — 청중이 가져갈 3가지 변화</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<table class="cmp-table">
+<thead>
+<tr>
+<th>차원</th>
+<th>변화</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>인식</strong></td>
+<td>멀티에이전트는 4 패러다임으로 분류된다 — 그래프/역할극/skill/<strong>조직</strong></td>
+</tr>
+<tr>
+<td><strong>판단</strong></td>
+<td>F&amp;B 마케팅에 어떤 패러다임이 mental model 측면에서 맞는지 판단 근거</td>
+</tr>
+<tr>
+<td><strong>실행</strong></td>
+<td>Paperclip을 dogfood 하면서 자사 제품 거버넌스 벤치마크로 쓸지 결정</td>
+</tr>
+</tbody>
+</table>
+<p><strong>핵심 메시지 3개</strong> — T1 코디네이션 새 병목 · T2 프레임워크는 패러다임 · T3 거버넌스 런타임 강제</p>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>25</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="Session 2 예고 — Orchestration 구조">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">Session 2 예고 — Orchestration 구조</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<p><strong>다룰 주제</strong> (2주 후):</p>
+<ul class="bullets">
+<li>단일 에이전트 vs 멀티 에이전트 설계 기준</li>
+<li>Agentic Design Pattern (Planning / Reflection / Tool Use / Multi-agent collab)</li>
+<li>젝터스튜디오 F&amp;B 워크플로우 초안 진단</li>
+</ul>
+<p><strong>4세션 로드맵</strong>:</p>
+<ol class="nums">
+<li><strong>Session 1 (오늘)</strong> — AI Agent 패러다임 + Paperclip 심층</li>
+<li>Session 2 — Orchestration 구조 deep dive</li>
+<li>Session 3 — Tool Use &amp; Context (MCP)</li>
+<li>Session 4 — 상용화 시행착오 + 평가</li>
+</ol>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>26</span> / 27</span>
+  </div>
+</section>
+<section class="slide" aria-label="컨설팅 follow-up — 가져갈 숙제">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">컨설팅 follow-up — 가져갈 숙제</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<table class="cmp-table">
+<thead>
+<tr>
+<th>우선순위</th>
+<th>항목</th>
+<th>Session 2 연결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>(필수)</strong></td>
+<td>자사 에이전트 아키텍처 1페이지 정리</td>
+<td>Session 2 진단 입력</td>
+</tr>
+<tr>
+<td>(옵션)</td>
+<td>Paperclip 로컬 인스턴스 dogfood (Stage A)</td>
+<td>hello-world goal 1개부터</td>
+</tr>
+<tr>
+<td>(옵션)</td>
+<td>한국 채널 publisher 에이전트 spec 초안</td>
+<td>5.2 기반</td>
+</tr>
+<tr>
+<td>(옵션)</td>
+<td>F&amp;B slop 룰북 v0 + execution policy 매핑</td>
+<td>5.4 기반</td>
+</tr>
+</tbody>
+</table>
+
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>27</span> / 27</span>
   </div>
 </section>
 <section class="slide slide--closing" aria-label="감사합니다">
@@ -62,7 +889,7 @@
   <div class="slide-body" style="justify-content:flex-start;">
     <div class="cover-kicker animate-in">Q&A</div>
     <h1 class="animate-in delay-1">감사합니다</h1>
-    <p class="closing-sub animate-in delay-2">Q&amp;A</p>
+    <p class="closing-sub animate-in delay-2">Q&amp;A · 송태영 · AI Odyssey · YouTube 다음 회: Session 2 — Orchestration 구조 deep dive</p>
 
   </div>
 </section>
@@ -73,7 +900,7 @@
       <button onclick="prevSlide()" aria-label="Previous slide">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
-      <span class="slide-counter"><span id="slideCur">1</span> / <span id="slideTotal">2</span></span>
+      <span class="slide-counter"><span id="slideCur">1</span> / <span id="slideTotal">29</span></span>
       <button onclick="nextSlide()" aria-label="Next slide">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
       </button>
