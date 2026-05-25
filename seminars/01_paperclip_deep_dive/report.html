@@ -4581,7 +4581,7 @@ Publisher → Postiz upload + 다채널 예약 (mock 처리)
 
 </section>
 <section class="report-appendix s-refs page-break">
-  <h3 id="부록-c.-참고문헌">부록 C. 참고문헌</h3>
+  <h2 id="참고문헌">참고문헌</h2>
   <h4>1장 Weekly Digest</h4>
   <ol class="references" style="list-style:none; padding:0;">
     <li id="ref-1" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[1]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">LangChain. (2026). *State of Agent Engineering 2025/2026* (n=1,340). <a href="https://www.langchain.com/state-of-agent-engineering" target="_blank" rel="noopener">https://www.langchain.com/state-of-agent-engineering</a></span></li>
@@ -4678,10 +4678,10 @@ Publisher → Postiz upload + 다채널 예약 (mock 처리)
   window.buildDrawerTOC = function () {
     var list = document.getElementById('tocDrawerList');
     if (!list || list.children.length) return;
-    var headings = Array.from(document.querySelectorAll('.report-section h1, .report-section h2'));
+    var headings = Array.from(document.querySelectorAll('.report-section h1, .report-section h2, .report-appendix h2'));
     headings.forEach(function (h, idx) {
       var label = getHeadingLabel(h);
-      if (!label || /^References$/i.test(label)) return;
+      if (!label || /^References$/i.test(label)) label = '참고문헌';
       var id = ensureHeadingId(h, idx + 1);
       var li = document.createElement('li');
       li.className = 'report-toc-drawer__item report-toc-drawer__item--' + h.tagName.toLowerCase();
@@ -4777,25 +4777,14 @@ Publisher → Postiz upload + 다채널 예약 (mock 처리)
       });
     });
 
-    // 2) 부록 묶음 — 단일 "부록" 부모 + 부록 A·B·C + 참고 문헌 H2 들
-    var appendixSections = Array.from(
-      document.querySelectorAll('.report-section, .report-appendix')
-    ).filter(isAppendixSection);
-
-    if (appendixSections.length) {
+    // 2) 참고문헌 — report 말미의 독립 섹션
+    var refs = document.querySelector('.report-appendix.s-refs');
+    if (refs) {
+      var refsHeading = refs.querySelector(':scope > h2');
       secCount += 1;
-      var firstSec = appendixSections[0];
-      if (!firstSec.id) firstSec.id = 'section-' + secCount;
-      tocList.appendChild(makeItem(firstSec.id, String(secCount).padStart(2, '0'), '부록', false));
-
-      var appSubCount = 0;
-      appendixSections.forEach(function (sec) {
-        sec.querySelectorAll(':scope > h2').forEach(function (h2) {
-          appSubCount += 1;
-          if (!h2.id) h2.id = (sec.id || 'appendix-' + secCount) + '-h2-' + appSubCount;
-          tocList.appendChild(makeItem(h2.id, secCount + '.' + appSubCount, h2.textContent, true));
-        });
-      });
+      if (!refs.id) refs.id = 'section-' + secCount;
+      if (refsHeading && !refsHeading.id) refsHeading.id = refs.id + '-h2';
+      tocList.appendChild(makeItem(refs.id, String(secCount).padStart(2, '0'), refsHeading ? refsHeading.textContent : '참고문헌', false));
     }
   };
 

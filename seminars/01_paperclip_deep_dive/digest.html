@@ -3422,10 +3422,10 @@ date: 2026-05-28</h2>
   window.buildDrawerTOC = function () {
     var list = document.getElementById('tocDrawerList');
     if (!list || list.children.length) return;
-    var headings = Array.from(document.querySelectorAll('.report-section h1, .report-section h2'));
+    var headings = Array.from(document.querySelectorAll('.report-section h1, .report-section h2, .report-appendix h2'));
     headings.forEach(function (h, idx) {
       var label = getHeadingLabel(h);
-      if (!label || /^References$/i.test(label)) return;
+      if (!label || /^References$/i.test(label)) label = '참고문헌';
       var id = ensureHeadingId(h, idx + 1);
       var li = document.createElement('li');
       li.className = 'report-toc-drawer__item report-toc-drawer__item--' + h.tagName.toLowerCase();
@@ -3521,25 +3521,14 @@ date: 2026-05-28</h2>
       });
     });
 
-    // 2) 부록 묶음 — 단일 "부록" 부모 + 부록 A·B·C + 참고 문헌 H2 들
-    var appendixSections = Array.from(
-      document.querySelectorAll('.report-section, .report-appendix')
-    ).filter(isAppendixSection);
-
-    if (appendixSections.length) {
+    // 2) 참고문헌 — report 말미의 독립 섹션
+    var refs = document.querySelector('.report-appendix.s-refs');
+    if (refs) {
+      var refsHeading = refs.querySelector(':scope > h2');
       secCount += 1;
-      var firstSec = appendixSections[0];
-      if (!firstSec.id) firstSec.id = 'section-' + secCount;
-      tocList.appendChild(makeItem(firstSec.id, String(secCount).padStart(2, '0'), '부록', false));
-
-      var appSubCount = 0;
-      appendixSections.forEach(function (sec) {
-        sec.querySelectorAll(':scope > h2').forEach(function (h2) {
-          appSubCount += 1;
-          if (!h2.id) h2.id = (sec.id || 'appendix-' + secCount) + '-h2-' + appSubCount;
-          tocList.appendChild(makeItem(h2.id, secCount + '.' + appSubCount, h2.textContent, true));
-        });
-      });
+      if (!refs.id) refs.id = 'section-' + secCount;
+      if (refsHeading && !refsHeading.id) refsHeading.id = refs.id + '-h2';
+      tocList.appendChild(makeItem(refs.id, String(secCount).padStart(2, '0'), refsHeading ? refsHeading.textContent : '참고문헌', false));
     }
   };
 
