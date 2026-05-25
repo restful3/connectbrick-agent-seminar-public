@@ -112,7 +112,7 @@
 </section>
 <section class="slide slide--section" aria-label="Section 01 divider">
   <div class="section-tag">Section</div>
-  <h1>Weekly Digest</h1>
+  <h1>위클리 다이제스트</h1>
   <p class="section-subtitle">에이전트 생태계 2026년 5월</p>
   <div class="section-rule"></div>
   <div class="section-num">01</div>
@@ -189,43 +189,13 @@
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
-<p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">다섯 흐름은 모두 에이전트가 답변자에서 실행자로 이동하면서 생긴 운영 요구입니다.</p>
-<table class="cmp-table">
-<thead>
-<tr>
-<th>#</th>
-<th>트렌드</th>
-<th>발표에서 볼 포인트</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>에이전트 실행 하네스</td>
-<td>코딩 도구가 업무 실행 환경으로 확장</td>
-</tr>
-<tr>
-<td>2</td>
-<td>MCP 표준화</td>
-<td>도구·데이터 연결의 공통 인터페이스</td>
-</tr>
-<tr>
-<td>3</td>
-<td>A2A와 프로토콜 계층화</td>
-<td>도구 연결 다음은 에이전트 간 연결</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Agent Skills</td>
-<td>프롬프트 자산이 버전 관리 가능한 SOP로 이동</td>
-</tr>
-<tr>
-<td>5</td>
-<td>관찰성·평가·비용</td>
-<td>상용 운영의 기본 안전장치</td>
-</tr>
-</tbody>
-</table>
+<div style="display:grid; grid-template-columns: repeat(5, 1fr); gap:14px; align-items:stretch;">
+  <div class="flow__step" style="min-height:250px;"><div class="flow__num">1</div><div class="flow__title">Harness</div><div class="flow__desc">코딩 도구가 파일·셸·메모리·샌드박스를 가진 업무 실행 환경으로 확장</div></div>
+  <div class="flow__step" style="min-height:250px;"><div class="flow__num">2</div><div class="flow__title">MCP</div><div class="flow__desc">도구와 데이터 연결이 API 목록이 아니라 공통 인터페이스가 됨</div></div>
+  <div class="flow__step" style="min-height:250px;"><div class="flow__num">3</div><div class="flow__title">A2A</div><div class="flow__desc">도구 연결 다음 병목은 전문 에이전트 간 발견과 호출 계약</div></div>
+  <div class="flow__step" style="min-height:250px;"><div class="flow__num">4</div><div class="flow__title">Skills</div><div class="flow__desc">프롬프트가 버전 관리 가능한 SOP와 보조 파일 패키지로 이동</div></div>
+  <div class="flow__step" style="min-height:250px;"><div class="flow__num">5</div><div class="flow__title">Ops</div><div class="flow__desc">평가·관찰성·비용 통제가 상용 운영의 기본 안전장치가 됨</div></div>
+</div>
 
   </div>
   <div class="slide-footer">
@@ -473,37 +443,12 @@ campaign-setup/
   
   <div class="slide-body">
 <p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">발산과 비판이 품질을 좌우하는 작업은 고정 플로우보다 역할 간 대화 구조가 자연스럽습니다.</p>
-<table class="cmp-table">
-<thead>
-<tr>
-<th>구성</th>
-<th>의미</th>
-<th>자연스러운 용도</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>researcher</td>
-<td>소재와 근거 발굴</td>
-<td>트렌드 리서치</td>
-</tr>
-<tr>
-<td>copywriter</td>
-<td>후보 생성</td>
-<td>캠페인 카피 A/B</td>
-</tr>
-<tr>
-<td>critic</td>
-<td>반박과 품질 검토</td>
-<td>브랜드 톤·리스크 리뷰</td>
-</tr>
-<tr>
-<td>manager</td>
-<td>다음 발언권 결정</td>
-<td>수렴 조건 관리</td>
-</tr>
-</tbody>
-</table>
+<div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:16px;">
+  <div class="flow__step"><div class="flow__title">Researcher</div><div class="flow__desc">소재와 근거 발굴<br><strong>트렌드 리서치</strong></div></div>
+  <div class="flow__step"><div class="flow__title">Copywriter</div><div class="flow__desc">후보 생성<br><strong>캠페인 카피 A/B</strong></div></div>
+  <div class="flow__step flow__step--active"><div class="flow__title">Critic</div><div class="flow__desc">반박과 품질 검토<br><strong>브랜드 톤·리스크 리뷰</strong></div></div>
+  <div class="flow__step"><div class="flow__title">Manager</div><div class="flow__desc">다음 발언권 결정<br><strong>수렴 조건 관리</strong></div></div>
+</div>
 <blockquote>
 <p>역할극형은 “누가 무엇을 말하는가”가 품질을 좌우하는 영역에 강하지만, 승인·예산 같은 운영 규칙은 별도 장치가 필요합니다.</p>
 </blockquote>
@@ -524,17 +469,25 @@ campaign-setup/
   
   <div class="slide-body">
 <p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">브랜드 톤·금지어·캠페인 SOP처럼 반복되는 지식은 필요할 때만 로드되는 능력 패키지로 관리합니다.</p>
-<pre><code class="language-text">.agents/skills/
-├── brand-tone/
-│   ├── SKILL.md
-│   ├── guidelines.md
-│   └── forbidden.json
-├── meta-ads-campaign/
-│   ├── SKILL.md
-│   └── setup.py
-└── instagram-reels/
-    └── SKILL.md
-</code></pre>
+<div class="flow">
+  <div class="flow__step">
+    <div class="flow__num">1</div>
+    <div class="flow__title">SOP</div>
+    <div class="flow__desc">브랜드 톤, 금지어, 캠페인 절차를 작업 기준으로 정리</div>
+  </div>
+  <div class="flow__arrow">→</div>
+  <div class="flow__step flow__step--active">
+    <div class="flow__num">2</div>
+    <div class="flow__title">SKILL.md</div>
+    <div class="flow__desc">호출 조건과 절차를 버전 관리 가능한 폴더로 패키징</div>
+  </div>
+  <div class="flow__arrow">→</div>
+  <div class="flow__step">
+    <div class="flow__num">3</div>
+    <div class="flow__title">Shared</div>
+    <div class="flow__desc">Claude, Cursor, Paperclip 에이전트가 같은 기준을 재사용</div>
+  </div>
+</div>
 <blockquote>
 <p>브랜드 톤, 금지어, 캠페인 SOP처럼 반복되는 지식은 프롬프트 문서가 아니라 버전 관리 가능한 skill 패키지가 됩니다.</p>
 </blockquote>
@@ -594,37 +547,12 @@ campaign-setup/
   
   <div class="slide-body">
 <p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">네 조건이 겹칠수록 이슈·승인 큐·예산 한도·조직도가 별도 래퍼가 아니라 시스템의 기본 모델이어야 합니다.</p>
-<table class="cmp-table">
-<thead>
-<tr>
-<th>조건</th>
-<th>질문</th>
-<th>시스템 요소</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>프로젝트 단위 산출물</td>
-<td>결과물이 이슈처럼 추적되는가</td>
-<td>issue / task</td>
-</tr>
-<tr>
-<td>사람 승인 라인</td>
-<td>외부 공개 전 사람이 반드시 보는가</td>
-<td>approval queue</td>
-</tr>
-<tr>
-<td>예산 한도</td>
-<td>비용 초과가 정책 위반인가</td>
-<td>budget hard-stop</td>
-</tr>
-<tr>
-<td>병렬 협업</td>
-<td>작성·검수·발행이 동시에 도는가</td>
-<td>org chart / delegation</td>
-</tr>
-</tbody>
-</table>
+<div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:16px;">
+  <div class="flow__step"><div class="flow__title">산출물</div><div class="flow__desc">결과물이 이슈처럼 추적되는가<br><strong>issue / task</strong></div></div>
+  <div class="flow__step flow__step--active"><div class="flow__title">승인</div><div class="flow__desc">외부 공개 전 사람이 반드시 보는가<br><strong>approval queue</strong></div></div>
+  <div class="flow__step"><div class="flow__title">예산</div><div class="flow__desc">비용 초과가 정책 위반인가<br><strong>budget hard-stop</strong></div></div>
+  <div class="flow__step"><div class="flow__title">병렬 협업</div><div class="flow__desc">작성·검수·발행이 동시에 도는가<br><strong>org chart</strong></div></div>
+</div>
 <blockquote>
 <p>이 네 가지가 동시에 있으면, 조직형 사고 방식이 그래프·역할극·skill 중심보다 운영 구조를 더 직접적으로 받아냅니다.</p>
 </blockquote>
@@ -647,11 +575,11 @@ campaign-setup/
 <div class="callout">
   <strong>기본 뼈대는 조직형</strong>으로 두고, 작성 단계는 역할극형, 브랜드 톤은 skill 중심, 승인 라인은 그래프형 체크포인트로 섞을 수 있습니다.
 </div>
-<ul class="bullets">
-<li>n8n / Make / Zapier 같은 시각 워크플로는 반복 파이프라인에 강함</li>
-<li>Google Antigravity류는 개발자 워크스페이스와 에이전트 관찰 UI에 가까움</li>
-<li>Paperclip 사례는 이 하이브리드 구조의 “운영 control plane” 후보로 검토</li>
-</ul>
+<div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;">
+  <div class="flow__step"><div class="flow__title">시각 워크플로</div><div class="flow__desc">n8n / Make / Zapier<br>반복 파이프라인에 강함</div></div>
+  <div class="flow__step"><div class="flow__title">개발자 워크스페이스</div><div class="flow__desc">Antigravity류<br>실행·관찰 UI에 가까움</div></div>
+  <div class="flow__step flow__step--active"><div class="flow__title">Control Plane</div><div class="flow__desc">Paperclip 사례<br>승인·예산·위임을 운영 단위로 묶음</div></div>
+</div>
 
   </div>
   <div class="slide-footer">
@@ -716,17 +644,16 @@ campaign-setup/
     <span class="slide-footer__page"><span>16</span> / 21</span>
   </div>
 </section>
-<section class="slide" aria-label="Company · Org Chart · Issue">
+<section class="slide" aria-label="Company → Issue">
   <div class="slide-header">
     <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
     <div class="slide-section-tag">Section 03 · Model</div>
   </div>
-  <h1 class="slide-title animate-in">Company · Org Chart · Issue</h1>
+  <h1 class="slide-title animate-in">Company → Issue</h1>
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
-<p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">조직형 패러다임은 목표를 이슈로 쪼개고, 담당자와 보고 라인을 붙여서 실행 맥락을 잃지 않게 합니다.</p>
-<img src="figs/org-chart.svg" alt="Org Chart + 위임/승인 라인" style="max-height: 370px;">
+<img src="figs/org-chart.svg" alt="Org Chart + 위임/승인 라인" style="max-height: 455px;">
 <blockquote>
 <p>“누가 말했나”보다 “어떤 목표의 어떤 이슈를 누가 맡았나”가 운영 단위가 됩니다.</p>
 </blockquote>
@@ -737,17 +664,16 @@ campaign-setup/
     <span class="slide-footer__page"><span>17</span> / 21</span>
   </div>
 </section>
-<section class="slide" aria-label="Heartbeat — wake, act, sleep">
+<section class="slide" aria-label="Heartbeat 루프">
   <div class="slide-header">
     <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
     <div class="slide-section-tag">Section 03 · Heartbeat</div>
   </div>
-  <h1 class="slide-title animate-in">Heartbeat — wake, act, sleep</h1>
+  <h1 class="slide-title animate-in">Heartbeat 루프</h1>
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
-<p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">계속 떠도는 자유 루프가 아니라, 이슈가 들어오면 깨우고 실행한 뒤 다시 잠재우는 방식입니다.</p>
-<img src="figs/heartbeat-loop.svg" alt="Heartbeat 한 사이클" style="max-height: 360px;">
+<img src="figs/heartbeat-loop.svg" alt="Heartbeat 한 사이클" style="max-height: 455px;">
 <blockquote>
 <p>execution lock은 같은 이슈를 여러 에이전트가 동시에 처리하는 중복 작업과 비용 낭비를 막습니다.</p>
 </blockquote>
@@ -758,17 +684,16 @@ campaign-setup/
     <span class="slide-footer__page"><span>18</span> / 21</span>
   </div>
 </section>
-<section class="slide" aria-label="Governance — 알림이 아니라 차단">
+<section class="slide" aria-label="승인 전에는 멈춘다">
   <div class="slide-header">
     <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
     <div class="slide-section-tag">Section 03 · Governance</div>
   </div>
-  <h1 class="slide-title animate-in">Governance — 알림이 아니라 차단</h1>
+  <h1 class="slide-title animate-in">승인 전에는 멈춘다</h1>
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
-<p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">조직형의 핵심은 리뷰와 승인이 권장사항이 아니라, 다음 실행을 막는 런타임 규칙이라는 점입니다.</p>
-<img src="figs/approval-state-machine.svg" alt="Approval Queue 상태 머신" style="max-height: 350px;">
+<img src="figs/approval-state-machine.svg" alt="Approval Queue 상태 머신" style="max-height: 390px;">
 <table class="cmp-table">
 <thead>
 <tr>
@@ -794,17 +719,16 @@ campaign-setup/
     <span class="slide-footer__page"><span>19</span> / 21</span>
   </div>
 </section>
-<section class="slide" aria-label="Budget — 비용도 운영 규칙이다">
+<section class="slide" aria-label="비용도 실행 조건이다">
   <div class="slide-header">
     <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
     <div class="slide-section-tag">Section 03 · Budget</div>
   </div>
-  <h1 class="slide-title animate-in">Budget — 비용도 운영 규칙이다</h1>
+  <h1 class="slide-title animate-in">비용도 실행 조건이다</h1>
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
-<p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">에이전트 운영에서 비용은 사후 정산 항목이 아니라, 실행을 계속할지 멈출지 정하는 조건입니다.</p>
-<img src="figs/budget-8d.svg" alt="예산 거버넌스 — 8 차원 추적 + 80/100% 임계" style="max-height: 350px;">
+<img src="figs/budget-8d.svg" alt="예산 거버넌스 — 8 차원 추적 + 80/100% 임계" style="max-height: 410px;">
 <blockquote>
 <p>80%에서는 경고, 100%에서는 자동 pause. 중요한 것은 “기록”이 아니라 “중단”입니다.</p>
 </blockquote>
@@ -869,7 +793,17 @@ campaign-setup/
   <div class="slide-body" style="justify-content:flex-start;">
     <div class="cover-kicker animate-in">Demo</div>
     <h1 class="animate-in delay-1">별도 시연에서 볼 것</h1>
-    <p class="closing-sub animate-in delay-2">이제 자료가 아니라 <code>quantsquard-company</code> 시연에서 목표 → 이슈 → heartbeat → 승인/리뷰 → 로그 흐름을 확인합니다.</p>
+    <p class="closing-sub animate-in delay-2"></p>
+<div class="flow">
+  <div class="flow__step"><div class="flow__num">1</div><div class="flow__title">Goal</div><div class="flow__desc">목표가 어떤 이슈로 쪼개지는가</div></div>
+  <div class="flow__arrow">→</div>
+  <div class="flow__step"><div class="flow__num">2</div><div class="flow__title">Heartbeat</div><div class="flow__desc">에이전트가 언제 깨어나고 잠드는가</div></div>
+  <div class="flow__arrow">→</div>
+  <div class="flow__step flow__step--active"><div class="flow__num">3</div><div class="flow__title">Control</div><div class="flow__desc">승인·리뷰·로그가 어디에 남는가</div></div>
+</div>
+<blockquote>
+<p>이제 <code>quantsquard-company</code> 시연에서 자료가 아닌 실제 실행 흐름을 확인합니다.</p>
+</blockquote>
 
   </div>
 </section>
