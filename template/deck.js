@@ -214,14 +214,6 @@ document.addEventListener('touchend', function(e) {
   touchStart = null;
 });
 
-// Click left/right third of screen
-document.querySelector('.deck').addEventListener('click', function(e) {
-  if (e.target.closest('.slide-nav') || e.target.closest('.viz-menu') || e.target.closest('.toc-toggle') || e.target.closest('.toc-panel') || e.target.closest('button') || e.target.closest('a')) return;
-  var x = e.clientX, w = window.innerWidth;
-  if (x < w * 0.33) prevSlide();
-  else if (x > w * 0.66) nextSlide();
-});
-
 // ===== Number Counter (per slide) =====
 function animateCountersOnSlide(slide) {
   var els = slide.querySelectorAll('[data-count]');
