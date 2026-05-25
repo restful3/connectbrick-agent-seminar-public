@@ -3659,18 +3659,18 @@ html.reader-size-large .continuous-mode {
 </thead>
 <tbody>
 <tr>
-<td>T1</td>
+<td>1</td>
 <td><strong>능력 경쟁은 끝났고, 코디네이션이 새 병목이다</strong></td>
 <td>1장</td>
 </tr>
 <tr>
-<td>T2</td>
+<td>2</td>
 <td><strong>프레임워크는 패러다임이다 — 그래프/역할극/skill/조직</strong></td>
 <td>2장</td>
 </tr>
 <tr>
-<td>T3</td>
-<td><strong>거버넌스는 런타임 강제여야 한다</strong></td>
+<td>3</td>
+<td><strong>거버넌스는 런타임에서 강제되어야 한다</strong></td>
 <td>3장</td>
 </tr>
 </tbody>
@@ -4451,8 +4451,8 @@ html.reader-size-large .continuous-mode {
 <p><strong>(c) 복리 오류 (Compounding Errors) — 단계당 90% × 5단계 = 59%</strong> . 다단계 자율 실행은 <em>각 단계의 정확도가 높아 보여도</em> 누적되면 상용 운영 신뢰성에 미달한다.<sup class="ref-cite"><a href="https://www.youtube.com/watch?v=EsTrWCV0Ph4" target="_blank" rel="noopener">[22]</a></sup> 외부 발행처럼 <em>5~10 단계가 직렬로 도는</em> 워크플로는 단계별 95% 이상이거나 HITL 체크포인트가 반드시 끼어 있어야 한다. Paperclip의 executionPolicy review/approval stage가 <em>바로 이 자리에</em> 끼어들 수 있는 자리다 — 비싼 액션(외부 publish, 결제) 직전마다 강제 게이트.</p>
 <p><strong>(d) 위험한 자율성 방치</strong> — 샌드박스 없이 파일 시스템·DB·외부 서비스 권한을 넓게 주면, 에이전트가 실수로 되돌리기 어려운 작업을 실행할 수 있다.<sup class="ref-cite"><a href="https://www.youtube.com/watch?v=EsTrWCV0Ph4" target="_blank" rel="noopener">[22]</a></sup> Paperclip의 atomic checkout이 <em>작업 격리</em> 는 보장하지만 <em>destructive action 권한 자체</em> 는 adapter에 위임된다. 대응 — adapter 단에 <strong>capability allowlist + destructive action 차단 (<code>rm -rf</code> 패턴, DB DELETE 명령 등)</strong> 을 박는다. 외부 publish · 광고비 집행 · 고객 DB 변경 같은 행동이 destructive action 후보다.</p>
 <p>본 4 패턴은 §3.5의 <em>런타임 강제 거버넌스</em> 와 직교한다 — <em>&quot;승인 받았어도 모델이 거짓 보고하면 게이트가 의미 없다&quot;</em> 가 이 절의 메시지다. <em>시스템 거버넌스 + 모델 행동 가드레일</em> 의 이중 구조가 상용 운영 안전성의 필수 조건이다.</p>
-<h2 id="3.8-왜-조직형이-다른가-결론-t3-메시지">3.8 &quot;왜 조직형이 다른가&quot; 결론 (T3 메시지)</h2>
-<p>본 장의 결론을 본 세미나의 T3 메시지로 응축하면 한 줄이다 — <strong>거버넌스가 런타임 강제(runtime-enforced)여야 한다</strong>.</p>
+<h2 id="3.8-결론-조직형은-거버넌스를-시스템에-박는다">3.8 결론 — 조직형은 거버넌스를 시스템에 박는다</h2>
+<p>본 장의 결론을 한 줄로 응축하면 이렇다 — <strong>거버넌스는 문서가 아니라 런타임에서 강제되는 규칙이어야 한다</strong>.</p>
 <p>이 명제가 다른 패러다임과 결정적으로 갈리는 지점은 다음 셋이다.</p>
 <ol class="nums">
 <li><strong>승인은 알림이 아니라 차단이다</strong>. <code>hire_agent</code> / <code>ceo_strategy</code> approval queue는 단순 알림이 아니라 미승인 시 태스크 진행 자체를 막는다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup> 다른 패러다임은 <em>&quot;approve 함수를 호출 안 하면 그냥 안 부르는&quot;</em> 수준에 가깝다 — 즉 거버넌스가 사용자의 자율 규율에 맡겨진다.</li>
@@ -4512,9 +4512,9 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
 <h2 id="4.3-6-시연-항목-워크스루">4.3 6 시연 항목 워크스루</h2>
 <p>시연 항목은 다음 6개로 구성한다.</p>
 <p><strong>1. Approval queue UI 조작 (2~3분)</strong> — 운영자(human-in-the-loop) 권한으로 로그인된 화면에서 Approval queue 패널을 연다. 비어있는 상태에서 시작해, 다음 단계에서 자동으로 항목이 쌓이는 흐름을 예고. 운영자 권한이 회사 전체 거버넌스 게이트 역할임을 한 문장 설명.</p>
-<p><strong>2. CEO Strategy 승인 → Subtask 자동 생성 (3~4분)</strong> — Goal 입력란에 <code>&quot;이번 주 인스타 릴스 3개 발행&quot;</code> 을 등록. CEO가 heartbeat 루프에서 Strategy proposal을 만들어 queue에 올리고, 발표자가 승인하면 Content Strategist / Writer / Editor / Publisher 4개 Subtask가 자동 생성·위임된다. 메시지 T3 &quot;거버넌스 런타임 강제&quot;의 첫 증거.</p>
+<p><strong>2. CEO Strategy 승인 → Subtask 자동 생성 (3~4분)</strong> — Goal 입력란에 <code>&quot;이번 주 인스타 릴스 3개 발행&quot;</code> 을 등록. CEO가 heartbeat 루프에서 Strategy proposal을 만들어 queue에 올리고, 발표자가 승인하면 Content Strategist / Writer / Editor / Publisher 4개 Subtask가 자동 생성·위임된다. 핵심 메시지인 &quot;거버넌스는 런타임에서 강제되어야 한다&quot;의 첫 증거다.</p>
 <p><strong>3. Writer 에이전트 실행 (heartbeat → execution lock) (3~4분)</strong> — Writer 상세 화면에서 heartbeat 카운터 증가와 execution lock 점유 모습을 노출한다. 동일 이슈에 다른 에이전트가 끼어들지 못하는 상호 배제(mutual exclusion)가 시각적으로 드러난다. Activity log에는 LLM 호출 + skill 호출이 실시간으로 추가된다.</p>
-<p><strong>4. Execution policy review stage 작동 (2~3분)</strong> — Writer draft 완료 시 이슈가 자동으로 <code>review</code> stage로 전환되고 Editor가 다음 heartbeat에서 픽업. 이 stage 전환은 prompt가 아닌 <strong>executionPolicy</strong> 설정으로 강제되어 에이전트가 &quot;잊을&quot; 가능성이 차단됨 — T3의 직접 증거.</p>
+<p><strong>4. Execution policy review stage 작동 (2~3분)</strong> — Writer draft 완료 시 이슈가 자동으로 <code>review</code> stage로 전환되고 Editor가 다음 heartbeat에서 픽업. 이 stage 전환은 prompt가 아닌 <strong>executionPolicy</strong> 설정으로 강제되어 에이전트가 &quot;잊을&quot; 가능성이 차단된다. 거버넌스가 단순 안내가 아니라 실행 규칙으로 작동한다는 직접 증거다.</p>
 <p><strong>5. Activity log 살펴보기 (2~3분)</strong> — 회사 단위 Activity log에서 1~4번 모든 이벤트(승인 / Subtask 생성 / heartbeat / LLM·skill 호출 / stage 전환)가 시간순으로 쌓인 모습을 보여준다. 감사 추적(audit trail)의 완결성. 고객에게 공개되는 결과물의 검수·승인 이력을 남기는 자산이라는 한 줄 코멘트.</p>
 <p><strong>6. Budget 알림 (80%/100% 시뮬레이션) (2~3분)</strong> — 사전 셋업이 80% 직전이었으므로 직전 LLM 비용이 누적되면 즉시 80% soft 알림 발생. 발표자가 한도를 더 낮춰 100% hard-stop을 트리거하면 진행 중 Subtask 자동 pause + 대기 큐 cancel. 8개 차원(company/agent/project/goal/issue/provider/model/UTC월) 추적의 의미 한 줄 정리.</p>
 <p><strong>합계</strong>: 약 14~20분. 시간 압박 시 6번 Budget 알림 시연을 짧게 처리하면 약 5분 절감 가능하다.</p>
@@ -4683,9 +4683,9 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
 </table>
 <p>핵심 메시지 3개를 한 줄씩 다시 묶으면:</p>
 <ul class="bullets">
-<li><strong>T1 — 코디네이션이 새 병목</strong>: 능력 경쟁은 사실상 끝났다. 병목은 &quot;여러 호출을 어떻게 조정하는가&quot;로 이동했다.</li>
-<li><strong>T2 — 프레임워크는 패러다임</strong>: 라이브러리 선택이 아니라 <strong>우리 워크플로의 모양</strong> 을 먼저 정의해야 한다.</li>
-<li><strong>T3 — 거버넌스는 런타임 강제</strong>: approval queue / executionPolicy / 다차원 budget이 <em>알림이 아니라 차단</em> 으로 작동해야 사람이 잊어도 시스템이 막는다.</li>
+<li><strong>핵심 메시지 1 — 코디네이션이 새 병목</strong>: 능력 경쟁은 사실상 끝났다. 병목은 &quot;여러 호출을 어떻게 조정하는가&quot;로 이동했다.</li>
+<li><strong>핵심 메시지 2 — 프레임워크는 패러다임</strong>: 라이브러리 선택이 아니라 <strong>우리 워크플로의 모양</strong> 을 먼저 정의해야 한다.</li>
+<li><strong>핵심 메시지 3 — 거버넌스는 런타임에서 강제되어야 한다</strong>: approval queue / executionPolicy / 다차원 budget이 <em>알림이 아니라 차단</em> 으로 작동해야 사람이 잊어도 시스템이 막는다.</li>
 </ul>
 <h2 id="6.2-session-2-예고-orchestration-구조-deep-dive">6.2 Session 2 예고 — Orchestration 구조 deep dive</h2>
 <p>Session 2의 주제는 <strong>&quot;Agent 워크플로우와 Orchestration 구조&quot;</strong> 다. Session 1이 <em>패러다임을 비교하고 한 케이스를 깊이</em> 보았다면, Session 2는 <em>그 위에서 어떻게 워크플로를 설계할 것인가</em> 로 한 단계 내려간다.</p>
