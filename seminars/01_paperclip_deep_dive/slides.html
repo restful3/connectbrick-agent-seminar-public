@@ -126,6 +126,7 @@
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
+<p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">2026년의 변화는 “더 똑똑한 모델”보다 “여러 에이전트를 제품처럼 운영하는 능력”으로 옮겨가고 있습니다.</p>
 <div class="kpi-grid">
   <div class="kpi">
     <span class="kpi__value">57%</span>
@@ -133,7 +134,7 @@
     <span class="kpi__sub">LangChain 설문 n=1,340</span>
   </div>
   <div class="kpi">
-    <span class="kpi__value">+1,445%</span>
+    <span class="kpi__value" style="font-size: clamp(30px, 47cqi / 10, 56px);">+1,445%</span>
     <span class="kpi__label">multi-agent 문의</span>
     <span class="kpi__sub">Gartner 2024 Q1 → 2025 Q2</span>
   </div>
@@ -167,7 +168,8 @@
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
-<p><img src="figs/agent-stack-map-2026-v2.svg" alt="2026 에이전트 생태계 스택" /></p>
+<p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">모델은 가장 아래층이고, 제품 품질은 실행 하네스·프로토콜·오케스트레이션·운영 규칙이 함께 맞물릴 때 결정됩니다.</p>
+<img src="figs/agent-stack-map-2026-v2.svg" alt="2026 에이전트 생태계 스택" style="max-height: 360px;">
 <blockquote>
 <p>단일 모델 호출이 아니라 실행 하네스, 프로토콜, 오케스트레이션, 운영 규칙의 조합이 제품 품질을 결정합니다.</p>
 </blockquote>
@@ -187,6 +189,7 @@
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
+<p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">다섯 흐름은 모두 에이전트가 답변자에서 실행자로 이동하면서 생긴 운영 요구입니다.</p>
 <table class="cmp-table">
 <thead>
 <tr>
@@ -239,7 +242,8 @@
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
-<p><img src="figs/langchain-production-discipline.svg" alt="LangChain State of Agent Engineering — production discipline snapshot" /></p>
+<p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">운영 단계에서는 결과가 좋아 보이는지보다, 실패를 추적하고 재현하며 비용과 품질을 제어할 수 있는지가 먼저입니다.</p>
+<img src="figs/langchain-production-discipline.svg" alt="LangChain State of Agent Engineering — production discipline snapshot" style="max-height: 350px;">
 <blockquote>
 <p>운영으로 들어가면 품질, 추적성, 비용, 승인 기준이 모델 선택만큼 중요해집니다.</p>
 </blockquote>
@@ -259,7 +263,8 @@
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
-<img src="figs/compounding-error-curve-v2.svg" alt="복리 오류 곡선 — 단계 수가 늘수록 최종 성공률이 급락" style="max-height: 360px;">
+<p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">단계별 성공률이 90~95%로 높아 보여도, 5~10단계가 직렬로 이어지면 최종 성공률은 60% 안팎까지 떨어집니다.</p>
+<img src="figs/compounding-error-curve-v2.svg" alt="복리 오류 곡선 — 단계 수가 늘수록 최종 성공률이 급락" style="max-height: 340px;">
 <blockquote>
 <p>외부 발행·고객 접점·비용 집행처럼 5~10단계가 직렬로 도는 업무에는 HITL과 단계별 평가가 필요합니다.</p>
 </blockquote>
@@ -286,6 +291,7 @@
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
+<p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">프레임워크 이름보다 먼저 봐야 할 것은 작업의 기본 단위가 step인지, turn인지, skill인지, issue인지입니다.</p>
 <table class="cmp-table">
 <thead>
 <tr>
@@ -346,6 +352,7 @@
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
+<p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">순서와 승인 지점이 고정된 파이프라인은 그래프로 그릴 때 추적성과 재개성이 가장 좋습니다.</p>
 <div class="stack">
   <div class="stack__top">
     <strong>StateGraph</strong>
@@ -374,6 +381,7 @@
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
+<p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">발산과 비판이 품질을 좌우하는 작업은 고정 플로우보다 역할 간 대화 구조가 자연스럽습니다.</p>
 <table class="cmp-table">
 <thead>
 <tr>
@@ -424,6 +432,7 @@
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
+<p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">브랜드 톤·금지어·캠페인 SOP처럼 반복되는 지식은 필요할 때만 로드되는 능력 패키지로 관리합니다.</p>
 <pre><code class="language-text">.agents/skills/
 ├── brand-tone/
 │   ├── SKILL.md
@@ -454,6 +463,7 @@
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
+<p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">프로젝트·승인·예산·위임이 함께 있으면 “어떻게 일하나”보다 “어디서 멈추나”가 먼저 설계 대상이 됩니다.</p>
 <div class="flow">
   <div class="flow__step">
     <div class="flow__num">1</div>
@@ -492,6 +502,7 @@
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
+<p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">네 조건이 겹칠수록 이슈·승인 큐·예산 한도·조직도가 별도 래퍼가 아니라 시스템의 기본 모델이어야 합니다.</p>
 <table class="cmp-table">
 <thead>
 <tr>
