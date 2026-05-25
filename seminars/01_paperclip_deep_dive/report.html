@@ -4111,14 +4111,7 @@ html.reader-size-large .continuous-mode {
 <p>곧 Paperclip은 <em>&quot;더 똑똑한 한 명의 에이전트&quot;</em> 를 만드는 도구가 아니라, <em>&quot;여러 에이전트가 일하는 <strong>회사라는 컨테이너</strong>&quot;</em> 를 제공하는 도구다. 이 프레임이 다른 패러다임과의 차이를 가른다.</p>
 <h2 id="3.2-8-서브시스템-아키텍처">3.2 8 서브시스템 아키텍처</h2>
 <p>Paperclip의 시스템 다이어그램은 React UI ↔ Node.js API 서버를 중심으로 8개 서브시스템이 PostgreSQL과 외부 어댑터를 끼고 도는 구조다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">[20]</a></sup><sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup></p>
-<div class="asset-caption asset-caption--code"><span class="asset-caption__chip">코드 5</span><span class="asset-caption__title">3.2 8 서브시스템 아키텍처</span></div>
-<pre class="code-block code-block--text" data-lang="text"><code class="language-text">React UI ──REST/WS── Node.js API 서버 ── 8개 서브시스템
-                          │
-            ┌─────────────┼────────────────┐
-       PostgreSQL    외부 에이전트 어댑터    Plugins
-       (issues,      (Claude Code / Codex /  (out-of-process
-        activity,     CLI / HTTP / Plugin)    workers)
-        cost, secrets)</code></pre>
+<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 6</span><span class="asset-caption__title">Paperclip 아키텍처 — React UI ↔ Node.js API 서버 (8 서브시스템) ↔ Postgres·Adapters·Plugins</span></figcaption><img src="figs/paperclip-architecture.svg" alt="Paperclip 아키텍처 — React UI ↔ Node.js API 서버 (8 서브시스템) ↔ Postgres·Adapters·Plugins" /><small class="asset-note">React UI 가 REST/WS 로 Node.js API 서버와 통신, 서버 내부에 8개 서브시스템 (④ Heartbeat 가 핵심 루프) 이 동거. 서버는 PostgreSQL (issues/activity/cost/secrets), 외부 에이전트 어댑터 (Claude Code/Codex/CLI/HTTP/Plugin), Plugins (out-of-process workers) 와 연결. 작성자 시각화.</small></figure>
 <p>8개 서브시스템은 다음과 같다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">[20]</a></sup></p>
 <table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 6</span><span class="asset-caption__title">3.2 8 서브시스템 아키텍처</span></div></caption>
 <thead>
@@ -4172,7 +4165,7 @@ html.reader-size-large .continuous-mode {
 </tbody>
 </table>
 <p>데이터 모델의 골격은 <strong>Company → Project → Goal → Issue</strong> 4계층이며, Issue 한 건이 &quot;원자 작업 단위(atomic work unit)&quot; 다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">[20]</a></sup><sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup></p>
-<div class="asset-caption asset-caption--code"><span class="asset-caption__chip">코드 6</span><span class="asset-caption__title">3.2 8 서브시스템 아키텍처</span></div>
+<div class="asset-caption asset-caption--code"><span class="asset-caption__chip">코드 5</span><span class="asset-caption__title">3.2 8 서브시스템 아키텍처</span></div>
 <pre class="code-block code-block--text" data-lang="text"><code class="language-text">Company (격리 단위, deployment당 무제한, export/import 가능)
  ├── Board Users / Members
  ├── Agents (role, title, reportsTo, budget, adapter)
@@ -4186,9 +4179,9 @@ html.reader-size-large .continuous-mode {
             └── activity[] (immutable audit log)</code></pre>
 <p>여기서 핵심 원칙은 모델/에이전트 <strong>불가지론(model-agnostic)</strong> 이다 — <em>&quot;If it can receive a heartbeat, it's hired&quot;</em> 라는 공식 문구가 이를 압축한다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">[20]</a></sup></p>
 <h2 id="3.3-heartbeat-루프-핵심-실행-모델">3.3 Heartbeat 루프 — 핵심 실행 모델</h2>
-<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 6</span><span class="asset-caption__title">Heartbeat 한 박자 — 6 단계 라이프사이클</span></figcaption><img src="figs/heartbeat-loop.svg" alt="Heartbeat 한 박자 — 6 단계 라이프사이클" /><small class="asset-note">Issue 생성 → enqueue → wake → atomic checkout(execution lock) → adapter 실행 → sleep (DB 영속). 한 issue는 한 번에 한 에이전트만 잡음 (&quot;no double-work, no runaway spend&quot;). 다음 박자에서 잠든 에이전트가 동일 task context로 깨어남 (persistent agent state). 작성자 시각화.</small></figure>
+<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 7</span><span class="asset-caption__title">Heartbeat 한 박자 — 6 단계 라이프사이클</span></figcaption><img src="figs/heartbeat-loop.svg" alt="Heartbeat 한 박자 — 6 단계 라이프사이클" /><small class="asset-note">Issue 생성 → enqueue → wake → atomic checkout(execution lock) → adapter 실행 → sleep (DB 영속). 한 issue는 한 번에 한 에이전트만 잡음 (&quot;no double-work, no runaway spend&quot;). 다음 박자에서 잠든 에이전트가 동일 task context로 깨어남 (persistent agent state). 작성자 시각화.</small></figure>
 <p>Paperclip의 모든 일은 <strong>하트비트 한 박자(one heartbeat)</strong> 위에서 도는데, 이는 다른 패러다임의 <em>&quot;continuous agent loop&quot;</em> 와 결정적으로 다르다. 한 박자의 라이프사이클은 다음과 같다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">[20]</a></sup><sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup></p>
-<div class="asset-caption asset-caption--code"><span class="asset-caption__chip">코드 7</span><span class="asset-caption__title">3.3 Heartbeat 루프 — 핵심 실행 모델</span></div>
+<div class="asset-caption asset-caption--code"><span class="asset-caption__chip">코드 6</span><span class="asset-caption__title">3.3 Heartbeat 루프 — 핵심 실행 모델</span></div>
 <pre class="code-block code-block--text" data-lang="text"><code class="language-text">1. Issue 생성 (수동 / Routine cron·webhook·API / 다른 에이전트 위임)
    → company / project / goal / parent 링크 부여 (goal ancestry 결정)
 2. DB-backed wakeup queue에 enqueue (coalescing으로 중복 병합)
@@ -4200,11 +4193,11 @@ html.reader-size-large .continuous-mode {
 <p>세 가지 의미가 두드러진다.</p>
 <p>첫째, <strong>atomic checkout + execution lock</strong>. 한 issue는 한 번에 한 에이전트만 잡는다. 공식 README는 이를 <em>&quot;no double-work, no runaway spend&quot;</em> 라는 문구로 설명한다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">[20]</a></sup> 동일 issue를 두 에이전트가 동시에 가져가 같은 비용을 두 번 태우는 사고를 시스템 레벨에서 차단한다.</p>
 <p>둘째, <strong>goal ancestry로 컨텍스트 상속</strong>. 에이전트는 <em>&quot;왜 이 일을 하는가&quot;</em> 를 자기 정의(role/budget/permissions) + 조직 컨텍스트(reporting line/회사 미션) + 작업 컨텍스트(issue + parent + blockers + 첨부) + 세션 컨텍스트(이전 하트비트 상태)를 함께 받아 안다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">[20]</a></sup></p>
-<div class="asset-caption asset-caption--code"><span class="asset-caption__chip">코드 8</span><span class="asset-caption__title">3.3 Heartbeat 루프 — 핵심 실행 모델</span></div>
+<div class="asset-caption asset-caption--code"><span class="asset-caption__chip">코드 7</span><span class="asset-caption__title">3.3 Heartbeat 루프 — 핵심 실행 모델</span></div>
 <pre class="code-block code-block--text" data-lang="text"><code class="language-text">Company Mission → Project Goal → Parent Issue → Sub-issue / Agent</code></pre>
 <p>셋째, <strong>세션 영속성(session persistence)</strong>. 하트비트 사이에 에이전트는 죽는 게 아니라 <em>&quot;잠든다&quot;</em> — 다음 하트비트에서 DB에 적재된 상태를 그대로 이어 받는다. Paperclip 문서는 에이전트가 매번 처음부터 시작하지 않고 같은 작업 맥락을 이어받는다고 설명한다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">[20]</a></sup> 큐 자체도 DB-backed라 서버 재시작 후 복원된다.</p>
 <h2 id="3.4-org-chart-위임-모델">3.4 Org Chart + 위임 모델</h2>
-<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 7</span><span class="asset-caption__title">Org Chart + 위임/승인 라인 (콘텐츠 운영 예시)</span></figcaption><img src="figs/org-chart.svg" alt="Org Chart + 위임/승인 라인 (콘텐츠 운영 예시)" /><small class="asset-note">엄격한 트리: Board(사람) → CEO Agent → Content/Brand/Publish Manager → Workers (Writer/Researcher/Brand Verifier/Postiz Pub/Channel Pub). 실선은 위임, 빨간 점선은 승인 라인(CEO → Board). 미승인 시 하위 task 진행 차단. 작성자 시각화.</small></figure>
+<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 8</span><span class="asset-caption__title">Org Chart + 위임/승인 라인 (콘텐츠 운영 예시)</span></figcaption><img src="figs/org-chart.svg" alt="Org Chart + 위임/승인 라인 (콘텐츠 운영 예시)" /><small class="asset-note">엄격한 트리: Board(사람) → CEO Agent → Content/Brand/Publish Manager → Workers (Writer/Researcher/Brand Verifier/Postiz Pub/Channel Pub). 실선은 위임, 빨간 점선은 승인 라인(CEO → Board). 미승인 시 하위 task 진행 차단. 작성자 시각화.</small></figure>
 <p>조직도는 <strong>엄격한 트리(strict hierarchy)</strong> 다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup></p>
 <ul class="bullets">
 <li>모든 에이전트는 <code>reportsTo</code> 필드를 갖고, <strong>정확히 한 명의 매니저</strong> 에게 보고한다. 사이클 금지(acyclic), 단일 부모.</li>
@@ -4251,7 +4244,7 @@ html.reader-size-large .continuous-mode {
 <h3 id="3.4.1-hire-on-demand-패턴">3.4.1 Hire-on-Demand 패턴</h3>
 <p>구조 자체는 정적(트리, 단일 부모, 사이클 금지)이지만 <strong>인원 구성은 동적</strong> 이다 — CEO가 작업이 더 필요해지면 <code>hire_agent</code> approval을 보드(사람)에게 제출 → 승인 시 새 에이전트가 트리에 붙는다. 이것을 <strong>필요 시 채용(Hire-on-Demand)</strong> 패턴으로 부른다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup></p>
 <p>위임 라이프사이클을 한국어 흐름으로 풀면 다음과 같다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup></p>
-<div class="asset-caption asset-caption--code"><span class="asset-caption__chip">코드 9</span><span class="asset-caption__title">3.4.1 Hire-on-Demand 패턴</span></div>
+<div class="asset-caption asset-caption--code"><span class="asset-caption__chip">코드 8</span><span class="asset-caption__title">3.4.1 Hire-on-Demand 패턴</span></div>
 <pre class="code-block code-block--text" data-lang="text"><code class="language-text">사람이 회사 목표를 등록
   → CEO 에이전트가 다음 하트비트에서 깨어남
   → CEO가 전략안을 만들고 사람 승인 요청을 생성
@@ -4265,9 +4258,9 @@ html.reader-size-large .continuous-mode {
 <h2 id="3.5-거버넌스-런타임-강제">3.5 거버넌스 — 런타임 강제</h2>
 <p>본 장의 메시지 중 가장 결정적인 부분이다. Paperclip의 거버넌스는 <strong>두 축이 런타임에서 작동</strong> 한다 — (A) 회사 레벨의 <strong>Approval Queue</strong>, (B) 태스크 레벨의 <strong>Execution Policy</strong>.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup></p>
 <h3 id="3.5.1-a-approval-queue-회사-레벨">3.5.1 (A) Approval Queue — 회사 레벨</h3>
-<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 8</span><span class="asset-caption__title">Approval Queue — 상태 머신</span></figcaption><img src="figs/approval-state-machine.svg" alt="Approval Queue — 상태 머신" /><small class="asset-note">submitted → pending → approved/rejected/revision_requested → resubmitted → pending. 미승인 시 CEO는 하위 task를 in_progress로 <em>못 옮김</em> (단순 알림이 아닌 차단). 작성자 시각화.</small></figure>
+<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 9</span><span class="asset-caption__title">Approval Queue — 상태 머신</span></figcaption><img src="figs/approval-state-machine.svg" alt="Approval Queue — 상태 머신" /><small class="asset-note">submitted → pending → approved/rejected/revision_requested → resubmitted → pending. 미승인 시 CEO는 하위 task를 in_progress로 <em>못 옮김</em> (단순 알림이 아닌 차단). 작성자 시각화.</small></figure>
 <p><code>hire_agent</code> 와 <code>ceo_strategy</code> 두 가지가 명시적 승인 타입이다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup></p>
-<div class="asset-caption asset-caption--code"><span class="asset-caption__chip">코드 10</span><span class="asset-caption__title">3.5.1 (A) Approval Queue — 회사 레벨</span></div>
+<div class="asset-caption asset-caption--code"><span class="asset-caption__chip">코드 9</span><span class="asset-caption__title">3.5.1 (A) Approval Queue — 회사 레벨</span></div>
 <pre class="code-block code-block--text" data-lang="text"><code class="language-text">pending → approved
        → rejected
        → revision_requested → resubmitted → pending</code></pre>
@@ -4311,7 +4304,7 @@ html.reader-size-large .continuous-mode {
 </ul>
 <p>곧 자율 실행 위에 <strong>사람이 언제든 잡아끄는 비대칭 권한</strong>이 존재한다. 거버넌스의 안전망이 <em>&quot;논리적 강제 + 인간 비대칭 오버라이드&quot;</em> 의 이중 구조다.</p>
 <h2 id="3.6-예산-거버넌스">3.6 예산 거버넌스</h2>
-<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 9</span><span class="asset-caption__title">예산 거버넌스 — 8 차원 추적 + 80/100% 임계</span></figcaption><img src="figs/budget-8d.svg" alt="예산 거버넌스 — 8 차원 추적 + 80/100% 임계" /><small class="asset-note">매 heartbeat가 cost event 발행 → 8 차원(company/agent/project/goal/issue/provider/model/month)에 동시 집계 → 80% soft alert / 100% hard stop(auto-pause + 큐 cancel). 한계: 일/분 단위 budget 없음 → adapter 사전 제한 필요. 작성자 시각화.</small></figure>
+<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 10</span><span class="asset-caption__title">예산 거버넌스 — 8 차원 추적 + 80/100% 임계</span></figcaption><img src="figs/budget-8d.svg" alt="예산 거버넌스 — 8 차원 추적 + 80/100% 임계" /><small class="asset-note">매 heartbeat가 cost event 발행 → 8 차원(company/agent/project/goal/issue/provider/model/month)에 동시 집계 → 80% soft alert / 100% hard stop(auto-pause + 큐 cancel). 한계: 일/분 단위 budget 없음 → adapter 사전 제한 필요. 작성자 시각화.</small></figure>
 <p>비용은 <strong>8개 차원</strong> 으로 추적된다 — company · agent · project · goal · issue · provider · model · 월별 UTC 집계. 각 하트비트가 cost event를 보고하며, 필드는 <code>provider / model / inputTokens / outputTokens / costInCents</code> 다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup></p>
 <p>정책은 단순 명료한 두 임계다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup></p>
 <table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 9</span><span class="asset-caption__title">3.6 예산 거버넌스</span></div></caption>
@@ -4444,7 +4437,7 @@ html.reader-size-large .continuous-mode {
 </table>
 <p>표의 메시지를 한 줄로 압축하면 — <strong>Paperclip은 &quot;조직 운영의 구조적 안전망&quot; 을 제공하지만, &quot;모델 출력의 진실성&quot; 은 보장하지 않는다</strong>. 후자는 reviewer-of-record(사람 또는 검증 에이전트)를 execution policy로 강제하는 책임이 운영자에게 남아 있다.</p>
 <h3 id="3.7.1-4-실패-패턴-paperclip이-직접-못-막는-것">3.7.1 4 실패 패턴 — Paperclip이 <em>직접</em> 못 막는 것</h3>
-<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 10</span><span class="asset-caption__title">Paperclip이 직접 못 막는 4 실패 패턴</span></figcaption><img src="figs/4-failure-patterns.svg" alt="Paperclip이 직접 못 막는 4 실패 패턴" /><small class="asset-note">2×2 quadrant: 좌측은 <strong>컨텍스트/평가 (모델 인지)</strong> 영역, 우측은 <strong>권한/규모 (시스템 권한)</strong> 영역. ① Context Anxiety (조기 종료 선언) · ② Poor Self-eval (자기 칭찬 통과) · ③ 복리 오류 (90%×5단계 = 59%) · ④ 위험한 자율성 (C/D 드라이브 삭제). 시스템 거버넌스(Paperclip) + 모델 행동 가드레일(adapter/skill)의 이중 구조 필요. 작성자 시각화.</small></figure>
+<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 11</span><span class="asset-caption__title">Paperclip이 직접 못 막는 4 실패 패턴</span></figcaption><img src="figs/4-failure-patterns.svg" alt="Paperclip이 직접 못 막는 4 실패 패턴" /><small class="asset-note">2×2 quadrant: 좌측은 <strong>컨텍스트/평가 (모델 인지)</strong> 영역, 우측은 <strong>권한/규모 (시스템 권한)</strong> 영역. ① Context Anxiety (조기 종료 선언) · ② Poor Self-eval (자기 칭찬 통과) · ③ 복리 오류 (90%×5단계 = 59%) · ④ 위험한 자율성 (C/D 드라이브 삭제). 시스템 거버넌스(Paperclip) + 모델 행동 가드레일(adapter/skill)의 이중 구조 필요. 작성자 시각화.</small></figure>
 <p>위 표가 <em>시스템 차원의 안전망 vs 잔여 위험</em> 의 매핑이라면, 본 절은 <strong>에이전트 자체의 행동학적 실패 4 패턴</strong> 이다. 본 4 패턴은 시스템 거버넌스로 막기 어렵고 <em>에이전트 설계와 reviewer 룰북</em> 으로 막아야 한다.<sup class="ref-cite"><a href="https://www.youtube.com/watch?v=EsTrWCV0Ph4" target="_blank" rel="noopener">[22]</a></sup></p>
 <p><strong>(a) Context Anxiety — <em>&quot;다 끝났다&quot;고 조기 선언</em></strong> . 컨텍스트가 차오르면 에이전트가 작업이 덜 끝났음에도 <em>마무리 지으려는 행동 변화</em> 가 나타난다. 본 세션 Paperclip 데모의 Writer 에이전트가 <em>드래프트가 아직 부족한데도 stage 전환을 요청하는 시나리오</em> 가 이에 해당한다. Paperclip의 execution policy review stage는 <em>전환을 강제</em> 하지만 <em>완성도를 판정하지는 못한다</em>. 대응 — review stage에 <em>&quot;최소 길이/항목 충족 여부&quot;</em> 같은 정량 기준을 verifier 에이전트로 박는다.</p>
 <p><strong>(b) Poor Self-evaluation — <em>형편없는 결과를 칭찬하며 통과</em></strong> . 자기 결과물 검토를 시키면 LLM이 <em>자기 출력을 좋게 평가</em> 하는 편향이 강하게 나타난다. <em>카피라이팅 → 카피라이터 자기 검수 → 통과</em> 같은 구조가 위험한 이유다. 대응 — 평가자 에이전트는 <strong>냉소적/적대적 페르소나 + 분리된 컨텍스트</strong>, 가능하면 <strong>다른 모델 패밀리</strong> 로 둔다 (장피엠의 Claude vs Codex 교차 비판 패턴이 이 답 — §5.3 참고).</p>
@@ -4482,7 +4475,7 @@ html.reader-size-large .continuous-mode {
 </blockquote>
 <h2 id="4.1-시나리오-정의-nevo-david-파이프라인-모방">4.1 시나리오 정의 (Nevo David 파이프라인 모방)</h2>
 <p>데모는 Nevo David가 공개한 5-skill 마케팅 파이프라인을 Paperclip의 조직도(org chart) 위로 재구성한 참조 아키텍처(reference architecture)를 따른다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">[25]</a></sup><sup class="ref-cite"><a href="https://postiz.com/blog/automate-social-media-claude-code-ai-agents" target="_blank" rel="noopener">[26]</a></sup> 여기서 참조 아키텍처란 &quot;그가 실제로 Paperclip을 썼다&quot;는 뜻이 아니라, 공개된 도구 조합을 Paperclip 방식으로 재배치한 설계 예시라는 뜻이다.</p>
-<div class="asset-caption asset-caption--code"><span class="asset-caption__chip">코드 11</span><span class="asset-caption__title">4.1 시나리오 정의 (Nevo David 파이프라인 모방)</span></div>
+<div class="asset-caption asset-caption--code"><span class="asset-caption__chip">코드 10</span><span class="asset-caption__title">4.1 시나리오 정의 (Nevo David 파이프라인 모방)</span></div>
 <pre class="code-block code-block--text" data-lang="text"><code class="language-text">[Goal] &quot;이번 주 인스타 릴스 3개 발행&quot;
   ↓
 CEO 에이전트 → Strategy proposal (사람 승인)
@@ -4611,12 +4604,12 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
 <h2 id="5.3-한국-실무자-패턴-운영-방식의-참고-사례">5.3 한국 실무자 패턴 — 운영 방식의 참고 사례</h2>
 <p>본 절의 한국어 영상 2건은 특정 업종 사례라기보다, <strong>1인/소규모 팀이 에이전트 자동화를 운영할 때 생기는 패턴</strong> 을 보여주는 참고 자료다.<sup class="ref-cite"><a href="https://www.youtube.com/watch?v=c-a4GBOxhXQ" target="_blank" rel="noopener">[30]</a></sup></p>
 <h3 id="5.3.1-장피엠-ai-에이전트-전환기-조회수-159k">5.3.1 장피엠 — &quot;AI 에이전트 전환기&quot; (조회수 159K)</h3>
-<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 11</span><span class="asset-caption__title">장피엠 — &quot;나의 AI 에이전트 전환기&quot; (조회수 159K)</span></figcaption><a href="https://www.youtube.com/watch?v=c-a4GBOxhXQ" target="_blank" rel="noopener"><img src="figs/yt-jangpm-thumb.jpg" alt="장피엠 — &quot;나의 AI 에이전트 전환기&quot; (조회수 159K)" /></a><small class="asset-note">장피엠 YouTube 영상 썸네일. 28분 길이, Claude Code + OpenClau로 일상 업무를 에이전트 전환한 1인 운영 사례. 한국어 권 운영 사례 중 상위. 출처: <a href="https://www.youtube.com/watch?v=c-a4GBOxhXQ" target="_blank" rel="noopener">youtube.com/watch?v=c-a4GBOxhXQ</a>.</small></figure>
+<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 12</span><span class="asset-caption__title">장피엠 — &quot;나의 AI 에이전트 전환기&quot; (조회수 159K)</span></figcaption><a href="https://www.youtube.com/watch?v=c-a4GBOxhXQ" target="_blank" rel="noopener"><img src="figs/yt-jangpm-thumb.jpg" alt="장피엠 — &quot;나의 AI 에이전트 전환기&quot; (조회수 159K)" /></a><small class="asset-note">장피엠 YouTube 영상 썸네일. 28분 길이, Claude Code + OpenClau로 일상 업무를 에이전트 전환한 1인 운영 사례. 한국어 권 운영 사례 중 상위. 출처: <a href="https://www.youtube.com/watch?v=c-a4GBOxhXQ" target="_blank" rel="noopener">youtube.com/watch?v=c-a4GBOxhXQ</a>.</small></figure>
 <p><strong>Auto-research 패턴</strong> 은 업무와 평가 기준을 같이 주고, AI가 자기 결과물을 채점한 뒤 기준 미달이면 재제출하는 루프다. 이 패턴은 특정 도메인보다도 <strong>초안 품질을 일정 기준 이상으로 올리는 운영 방식</strong> 으로 볼 수 있다.</p>
 <p><strong>Cross-critique 패턴</strong> 은 한 모델의 결과물을 다른 모델에게 비판하게 하는 방식이다. 단일 self-evaluation은 자기 결과물을 좋게 평가하는 편향이 있으므로, 평가자 역할을 분리하는 것이 중요하다. 이는 본 리포트 §3.7.1의 Poor Self-evaluation 위험을 줄이는 실무 패턴이다.</p>
 <p><strong>유지보수 비용과 인지 과부하</strong> 도 핵심 메시지다. 자동화 파이프라인은 외부 도구·API·웹사이트 변경에 계속 영향을 받으며, 에이전트가 늘수록 사람이 검토해야 할 출력도 늘어난다. 즉 ROI 계산에는 &quot;만드는 시간&quot;뿐 아니라 &quot;계속 고치는 시간&quot;과 &quot;검토하는 시간&quot;이 포함되어야 한다.</p>
 <h3 id="5.3.2-월텍남-google-anti-gravity-조회수-206k">5.3.2 월텍남 — Google Anti-gravity (조회수 206K)</h3>
-<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 12</span><span class="asset-caption__title">월텍남 — &quot;업무 전부 자동화&quot; 구글 Anti-gravity (조회수 206K)</span></figcaption><a href="https://www.youtube.com/watch?v=GzGcQzMo_Rw" target="_blank" rel="noopener"><img src="figs/yt-woltechnam-thumb.jpg" alt="월텍남 — &quot;업무 전부 자동화&quot; 구글 Anti-gravity (조회수 206K)" /></a><small class="asset-note">월텍남(월스트리트 테크남) YouTube 영상 썸네일. 9분 30초 길이, Google이 2026년 출시한 시각 워크플로 빌더 Anti-gravity 소개. 노코드 운영자에게 진입 장벽 낮은 형태의 산 증인. 출처: <a href="https://www.youtube.com/watch?v=GzGcQzMo_Rw" target="_blank" rel="noopener">youtube.com/watch?v=GzGcQzMo_Rw</a>.</small></figure>
+<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 13</span><span class="asset-caption__title">월텍남 — &quot;업무 전부 자동화&quot; 구글 Anti-gravity (조회수 206K)</span></figcaption><a href="https://www.youtube.com/watch?v=GzGcQzMo_Rw" target="_blank" rel="noopener"><img src="figs/yt-woltechnam-thumb.jpg" alt="월텍남 — &quot;업무 전부 자동화&quot; 구글 Anti-gravity (조회수 206K)" /></a><small class="asset-note">월텍남(월스트리트 테크남) YouTube 영상 썸네일. 9분 30초 길이, Google이 2026년 출시한 시각 워크플로 빌더 Anti-gravity 소개. 노코드 운영자에게 진입 장벽 낮은 형태의 산 증인. 출처: <a href="https://www.youtube.com/watch?v=GzGcQzMo_Rw" target="_blank" rel="noopener">youtube.com/watch?v=GzGcQzMo_Rw</a>.</small></figure>
 <p>이 사례에서 가져올 메시지는 <strong>시각 워크플로 + 단계별 피드백</strong> 이다. 기술자가 아닌 운영자에게는 코드형 그래프나 조직도형 거버넌스보다, 각 단계 결과물을 보고 &quot;다시 생성 / 수정 / 승인&quot; 할 수 있는 UI가 더 자연스러울 수 있다.</p>
 <p>따라서 커넥트브릭 제품 관점의 질문은 하나다. 백엔드는 Paperclip처럼 조직형 거버넌스를 쓰더라도, 사용자가 보는 화면은 <strong>시각 워크플로형</strong> 이어야 하는가?</p>
 <h2 id="5.4-도입-순서-제품-적용-전에-사내-운영으로-먼저-검증">5.4 도입 순서 — 제품 적용 전에 사내 운영으로 먼저 검증</h2>
