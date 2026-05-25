@@ -2732,10 +2732,11 @@ aside.reading-more,
 
 /* ----- 0. 글로벌 캔버스 ----- */
 html.theme-light:has(.continuous-mode) {
-  background: #FAFAF9;
+  background: #F7F8FA;
 }
 body:has(> .continuous-mode) {
   padding: 0;
+  overflow-x: hidden;
 }
 .continuous-mode {
   max-width: none;
@@ -2745,39 +2746,92 @@ body:has(> .continuous-mode) {
   box-shadow: none;
 }
 
-/* ----- 1. Hero Cover — A4 풀페이지 → 헤더 banner ----- */
+/* ----- 1. Article header — A4 cover -> technical blog title block ----- */
 .continuous-mode .report-cover {
   break-after: auto !important;
   page-break-after: auto !important;
   min-height: auto;
-  width: 100%;
-  max-width: none;
-  padding: clamp(48px, 8vw, 96px) clamp(20px, 6vw, 96px) clamp(56px, 10vw, 112px);
+  width: auto;
+  max-width: 760px;
   margin: 0 auto;
-  background:
-    radial-gradient(1400px 800px at 82% 18%, rgba(37,99,235,0.10) 0%, rgba(37,99,235,0) 60%),
-    radial-gradient(900px 600px at 12% 85%, rgba(15,44,89,0.08) 0%, rgba(15,44,89,0) 60%),
-    linear-gradient(180deg, #FFFFFF 0%, #FAFAF9 100%);
-  border-bottom: 1px solid rgba(15,44,89,0.08);
+  padding: 72px 32px 44px;
+  background: transparent;
+  border-bottom: 1px solid rgba(15,44,89,0.12);
+  box-sizing: border-box;
+  overflow: visible;
 }
 .continuous-mode .report-cover::before {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: auto;
-  width: 4px;
-  height: 100%;
-  background: linear-gradient(180deg, #0F2C59 0%, #2563EB 100%);
+  display: none;
+}
+.continuous-mode .report-cover__wordmark {
+  margin-bottom: 40px;
+  padding-left: 12px;
+  border-left: 3px solid var(--brand-primary);
+}
+.continuous-mode .report-cover__wordmark-name {
+  font-size: 22px;
+  letter-spacing: 0;
+}
+.continuous-mode .report-cover__wordmark-sub {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+}
+.continuous-mode .report-cover__signature {
+  position: static;
+  order: 2;
+  align-self: flex-start;
+  margin-top: 14px;
+  font-family: 'Inter', 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  color: var(--text-secondary);
+}
+.continuous-mode .report-cover__kicker {
+  order: 1;
+  margin-bottom: 18px;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  gap: 8px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
 }
 .continuous-mode .report-cover__title {
-  font-size: clamp(32px, 5.2vw, 56px);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
+  order: 3;
+  max-width: 100%;
+  margin: 18px 0 16px;
+  font-size: 48px;
+  line-height: 1.06;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
 }
 .continuous-mode .report-cover__subtitle {
-  font-size: clamp(16px, 2.2vw, 22px);
+  order: 4;
+  max-width: 68ch;
+  margin: 0 0 28px;
+  font-size: 18px;
+  line-height: 1.65;
   color: var(--text-secondary);
-  margin-top: 12px;
+}
+.continuous-mode .report-cover__meta {
+  order: 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(15,44,89,0.12);
+  font-size: 13px;
+}
+.continuous-mode .report-cover__meta div {
+  min-width: 120px;
+}
+.continuous-mode .report-cover__meta dt {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  margin-bottom: 3px;
+}
+.continuous-mode .report-cover__meta dd {
+  color: var(--text-secondary);
 }
 
 /* ----- 2. Main container — 본문 max-width 760px ----- */
@@ -2794,106 +2848,90 @@ body:has(> .continuous-mode) {
   padding-bottom: clamp(48px, 7vw, 80px);
 }
 
-/* ----- 3. TOC — sleek inline list ----- */
+/* ----- 3. TOC — compact article outline ----- */
 .continuous-mode .report-toc {
-  padding-top: 56px;
-  padding-bottom: 56px;
-  border-bottom: 1px solid rgba(15,44,89,0.06);
+  padding-top: 28px;
+  padding-bottom: 28px;
+  margin-top: 0;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(15,44,89,0.08);
 }
 .continuous-mode .report-toc__title {
-  font-size: 11pt;
+  font-size: 12px;
   font-weight: 800;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--brand-primary);
-  margin-bottom: 24px;
+  margin-bottom: 14px;
+  padding-bottom: 0;
+  border-bottom: none;
 }
 .continuous-mode .report-toc__item {
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.04);
+  padding: 5px 0;
+  border-bottom: none;
+  font-size: 14px;
   transition: background 0.15s ease;
 }
+.continuous-mode .report-toc__item--h3 { display: none; }
 .continuous-mode .report-toc__item:hover {
-  background: rgba(37,99,235,0.04);
+  background: transparent;
 }
 .continuous-mode .report-toc__num {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9pt;
+  font-size: 12px;
   color: var(--brand-primary);
   font-weight: 700;
-  margin-right: 14px;
-  min-width: 28px;
+  margin-right: 10px;
+  min-width: 24px;
   display: inline-block;
 }
+.continuous-mode .report-toc__leader,
+.continuous-mode .report-toc__page {
+  display: none;
+}
+.continuous-mode .report-toc__label {
+  font-weight: 500;
+  color: var(--text-secondary);
+}
 
-/* ----- 4. Section dividers — full-width hero band ----- */
+/* ----- 4. Section dividers — disabled for blog reading ----- */
 .continuous-mode.show-divider .section-divider {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  min-height: auto;
-  height: auto;
-  padding: clamp(56px, 9vw, 96px) clamp(24px, 6vw, 64px);
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  background:
-    radial-gradient(1200px 600px at 50% 50%, rgba(37,99,235,0.18) 0%, rgba(37,99,235,0) 60%),
-    linear-gradient(135deg, #091F40 0%, #0F2C59 50%, #1a0f3d 100%);
-  position: relative;
-  overflow: hidden;
-  break-before: auto !important;
-  break-after: auto !important;
-  page-break-before: auto !important;
-  page-break-after: auto !important;
+  display: none !important;
 }
 .continuous-mode.show-divider .section-divider::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
-  opacity: 0.5;
-  pointer-events: none;
+  display: none;
 }
 .continuous-mode.show-divider .section-divider > * { position: relative; z-index: 1; }
 
 /* ----- 5. Section kicker (eyebrow over title) ----- */
 .continuous-mode .report-section__kicker {
-  font-size: 11pt;
-  font-weight: 800;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--brand-primary);
-  margin-bottom: 12px;
+  display: none;
 }
 
 /* ----- 6. Typography — heading rhythm ----- */
 .continuous-mode .report-section h1 {
-  font-size: clamp(28px, 4.5vw, 42px);
+  font-size: 36px;
   line-height: 1.1;
   margin-top: 0;
   margin-bottom: 24px;
 }
 .continuous-mode .report-section h2 {
-  font-size: clamp(22px, 3.2vw, 30px);
+  font-size: 28px;
   line-height: 1.2;
   margin-top: 56px;
   margin-bottom: 16px;
-  letter-spacing: -0.022em;
+  letter-spacing: 0;
   scroll-margin-top: 24px;
 }
 .continuous-mode .report-section h3 {
-  font-size: clamp(18px, 2.4vw, 22px);
+  font-size: 21px;
   margin-top: 40px;
   margin-bottom: 12px;
   color: var(--text);
   scroll-margin-top: 24px;
 }
 .continuous-mode .report-section h4 {
-  font-size: clamp(15px, 2vw, 17px);
+  font-size: 16px;
   font-weight: 700;
   margin-top: 28px;
   margin-bottom: 8px;
@@ -2972,9 +3010,7 @@ body:has(> .continuous-mode) {
   line-height: 1.6;
 }
 .continuous-mode .report-section blockquote::before {
-  content: "💡 ";
-  font-size: 14px;
-  margin-right: 4px;
+  content: "";
 }
 .continuous-mode .report-section blockquote p { margin: 0; }
 .continuous-mode .report-section blockquote p + p { margin-top: 10px; }
@@ -2982,6 +3018,7 @@ body:has(> .continuous-mode) {
 /* ----- 10. Tables — modern data ----- */
 .continuous-mode .report-section table {
   width: 100%;
+  max-width: 100%;
   margin: 24px 0;
   border-collapse: separate;
   border-spacing: 0;
@@ -3061,18 +3098,64 @@ body:has(> .continuous-mode) {
 
 /* ----- 14. Responsive — narrow viewports ----- */
 @media (max-width: 720px) {
+  .continuous-mode .report-cover {
+    padding: 44px 18px 32px;
+  }
+  .continuous-mode .report-cover__wordmark {
+    margin-bottom: 28px;
+  }
+  .continuous-mode .report-cover__signature {
+    max-width: 100%;
+  }
+  .continuous-mode .report-cover__kicker {
+    font-size: 11px;
+    white-space: normal;
+  }
+  .continuous-mode .report-cover__title {
+    font-size: 34px;
+    line-height: 1.12;
+  }
+  .continuous-mode .report-cover__subtitle {
+    font-size: 16px;
+  }
+  .continuous-mode .report-cover__meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
   .continuous-mode .report-toc,
   .continuous-mode .report-section {
     padding-left: 18px;
     padding-right: 18px;
   }
+  .continuous-mode .report-toc {
+    padding-top: 24px;
+    padding-bottom: 20px;
+  }
   .continuous-mode .report-section h2 { margin-top: 40px; }
+  .continuous-mode .report-section h1 { font-size: 30px; }
+  .continuous-mode .report-section h2 { font-size: 24px; }
+  .continuous-mode .report-section h3 { font-size: 20px; }
+  .continuous-mode .report-section h4 { font-size: 15px; }
   .continuous-mode .report-section pre { font-size: 12px; padding: 14px 16px; }
-  .continuous-mode .report-section table { font-size: 12.5px; }
+  .continuous-mode .report-section table {
+    display: block;
+    overflow-x: auto;
+    font-size: 12.5px;
+    -webkit-overflow-scrolling: touch;
+  }
   .continuous-mode .report-section table th,
   .continuous-mode .report-section table td { padding: 8px 10px; }
+  .continuous-mode .report-section p,
+  .continuous-mode .report-section li {
+    font-size: 16px;
+    line-height: 1.72;
+  }
+  .continuous-mode .report-section img,
+  .continuous-mode .report-section svg {
+    border-radius: 8px;
+  }
 }
-
 
 </style>
   <style id="brand-vars">:root{
@@ -3101,7 +3184,7 @@ body:has(> .continuous-mode) {
   </style>
 </head>
 <body>
-  <article class="report continuous-mode show-divider">
+  <article class="report continuous-mode">
 
     <section class="report-cover">
       <div class="report-cover__wordmark">
@@ -3119,12 +3202,6 @@ body:has(> .continuous-mode) {
         <div><dt>발행</dt><dd></dd></div>
       </dl>
     </section>
-    
-
-    <nav class="report-toc page-break">
-      <h1 class="report-toc__title">목차</h1>
-      <ol class="report-toc__list"></ol>
-    </nav>
     
 
     <aside class="section-divider" aria-hidden="true">
