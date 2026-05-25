@@ -805,7 +805,8 @@ pre {
   font-family: 'JetBrains Mono', 'D2 Coding', monospace;
   font-size: 9.5pt;
   line-height: 1.65;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: visible;
   position: relative;
   border: 1px solid rgba(37, 99, 235, 0.22);
   box-shadow:
@@ -814,7 +815,8 @@ pre {
   break-inside: auto;
   orphans: 3;
   widows: 3;
-  white-space: pre-wrap;
+  white-space: pre;
+  -webkit-overflow-scrolling: touch;
 }
 /* 상단 IDE 스타일 바 — 좌측 traffic-light 닷 3개 + 본문보다 살짝 밝은 배경, 통짜 검은 박스 인상 완화. */
 pre::before {
@@ -862,6 +864,38 @@ pre code {
   font-family: inherit !important;
   display: block;
   white-space: inherit;
+  min-width: max-content;
+}
+
+pre .c, pre .ch, pre .cm, pre .cp, pre .cpf, pre .c1, pre .cs {
+  color: #8B949E;
+  font-style: italic;
+}
+pre .k, pre .kc, pre .kd, pre .kn, pre .kp, pre .kr, pre .kt {
+  color: #FF7B72;
+  font-weight: 700;
+}
+pre .s, pre .sa, pre .sb, pre .sc, pre .dl, pre .sd, pre .s2, pre .se, pre .sh, pre .si, pre .sx, pre .sr, pre .s1, pre .ss {
+  color: #A5D6FF;
+}
+pre .m, pre .mb, pre .mf, pre .mh, pre .mi, pre .mo, pre .il {
+  color: #79C0FF;
+}
+pre .na, pre .nc, pre .nd, pre .ne, pre .nf, pre .fm {
+  color: #D2A8FF;
+}
+pre .nt, pre .nl, pre .nv, pre .vc, pre .vg, pre .vi, pre .vm {
+  color: #7EE787;
+}
+pre .nb, pre .bp {
+  color: #FFA657;
+}
+pre .o, pre .ow, pre .p {
+  color: #C9D1D9;
+}
+pre .err {
+  color: #FFDCD7;
+  background: rgba(248, 81, 73, 0.18);
 }
 .codeblock {
   margin: 8px 0;
@@ -3090,19 +3124,23 @@ body:has(> .continuous-mode) {
   color: #E6EDF3;
   border: 1px solid rgba(255,255,255,0.04);
   border-radius: 10px;
-  padding: 18px 22px;
+  padding: 42px 22px 18px;
   margin: 20px 0 24px;
   overflow-x: auto;
+  overflow-y: visible;
   font-size: 13px;
   line-height: 1.55;
   box-shadow: 0 6px 24px rgba(15,44,89,0.08);
+  white-space: pre;
+  -webkit-overflow-scrolling: touch;
 }
 .continuous-mode .report-section pre code {
   background: transparent;
-  color: inherit;
   font-family: 'JetBrains Mono', 'Menlo', monospace;
   font-size: 13px;
   padding: 0;
+  white-space: pre;
+  min-width: max-content;
 }
 .continuous-mode .report-section p code,
 .continuous-mode .report-section li code,
