@@ -3457,50 +3457,50 @@ body:has(> .continuous-mode) {
 </blockquote>
 <h2 id="1.1-왜-지금-에이전트-회사-인가-큰-그림">1.1 왜 지금 &quot;에이전트 회사&quot; 인가 — 큰 그림</h2>
 <p>2024년 말부터 2025년까지의 흐름은 <em>&quot;모델 한 개의 능력을 어디까지 끌어올릴 수 있나&quot;</em> 의 경쟁이었다. Claude 4 / GPT-5o / Gemini 2.5 세대를 지나면서 단일 호출의 reasoning · tool use 품질이 충분히 올라간 결과, 병목은 <strong>모델 한 개의 IQ가 아니라 &quot;여러 호출을 어떻게 조정하고, 어디까지 자율 실행을 맡길 것인가&quot; 의 코디네이션 비용</strong> 으로 이동했다.</p>
-<p>LangChain의 <em>State of Agent Engineering 2025/2026</em> 설문(1,340명, 2025-11~12 수집)에서 응답자의 <strong>57%가 에이전트를 production에 투입</strong> 했다고 답했고, 1만 명 이상 대기업으로 좁히면 <strong>67%가 production 단계</strong> 다.[^langchain]</p>
-<p>이 맥락에서 <strong>&quot;한 사람 + N개 에이전트로 운영되는 회사&quot;</strong> 담론이 단순 밈을 넘어 실제 도구 카테고리로 굳어졌다. 2026-03-04 공개된 오픈소스 <strong>Paperclip</strong> 은 6주 만에 GitHub 53,000+ stars를 모았는데, 핵심은 &quot;에이전트를 더 똑똑하게 만든다&quot; 가 아니라 <em>&quot;에이전트들에게 직책·예산·승인 라인을 부여하고 조직도(org chart) 위에서 운영한다&quot;</em> 는 발상이다.[^paperclip-gh][^jimmysong] Gartner는 multi-agent 시스템 관련 문의가 <strong>2024 Q1 → 2025 Q2 +1,445% 증가</strong> 했다고 보고했고[^mlmastery], SK AX도 <em>&quot;2026년부터 10개 이상 에이전트가 협업하는 시스템이 보편화&quot;</em> 라는 국내 전망을 내놓았다.[^skax-multi] Paperclip은 이 흐름의 가장 가시적인 산출물 중 하나로 보는 것이 적절하다.</p>
+<p>LangChain의 <em>State of Agent Engineering 2025/2026</em> 설문(1,340명, 2025-11~12 수집)에서 응답자의 <strong>57%가 에이전트를 production에 투입</strong> 했다고 답했고, 1만 명 이상 대기업으로 좁히면 <strong>67%가 production 단계</strong> 다.<sup class="ref-cite"><a href="https://www.langchain.com/state-of-agent-engineering" target="_blank" rel="noopener">[1]</a></sup></p>
+<p>이 맥락에서 <strong>&quot;한 사람 + N개 에이전트로 운영되는 회사&quot;</strong> 담론이 단순 밈을 넘어 실제 도구 카테고리로 굳어졌다. 2026-03-04 공개된 오픈소스 <strong>Paperclip</strong> 은 6주 만에 GitHub 53,000+ stars를 모았는데, 핵심은 &quot;에이전트를 더 똑똑하게 만든다&quot; 가 아니라 <em>&quot;에이전트들에게 직책·예산·승인 라인을 부여하고 조직도(org chart) 위에서 운영한다&quot;</em> 는 발상이다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">[2]</a></sup><sup class="ref-cite"><a href="https://jimmysong.io/ai/paperclip/" target="_blank" rel="noopener">[3]</a></sup> Gartner는 multi-agent 시스템 관련 문의가 <strong>2024 Q1 → 2025 Q2 +1,445% 증가</strong> 했다고 보고했고<sup class="ref-cite"><a href="https://machinelearningmastery.com/7-agentic-ai-trends-to-watch-in-2026/" target="_blank" rel="noopener">[4]</a></sup>, SK AX도 <em>&quot;2026년부터 10개 이상 에이전트가 협업하는 시스템이 보편화&quot;</em> 라는 국내 전망을 내놓았다.<sup class="ref-cite"><a href="https://www.skax.co.kr/insight/trend/3626" target="_blank" rel="noopener">[5]</a></sup> Paperclip은 이 흐름의 가장 가시적인 산출물 중 하나로 보는 것이 적절하다.</p>
 <h2 id="1.2-메타-트렌드-5개-깊이판">1.2 메타 트렌드 5개 — 깊이판</h2>
 <p>본 절은 사전 디지스트(<code>digest.html</code>)의 5 트렌드를 각각 한 단락 더 풀어서 정리한다. 디지스트가 30분 안에 훑는 사전 자료라면, 본 절은 세미나 후 다시 펴서 인용·근거를 확인하는 용도다.</p>
 <h3 id="1.2.1-멀티에이전트-프레임워크의-패러다임-분화">1.2.1 멀티에이전트 프레임워크의 패러다임 분화</h3>
-<p>2025년까지 &quot;에이전트 프레임워크&quot; 라는 한 덩어리로 묶여 있던 영역이 2026년에는 패러다임별로 분명히 갈렸다. <strong>LangGraph</strong> (상태 그래프 + HITL 체크포인트, v0.4) / <strong>CrewAI</strong> (역할·프로세스 기반 crew, 엔터프라이즈 관측성 추가) / <strong>AutoGen v2 / AG2</strong> (대화형 GroupChat, 1.0 GA) / <strong>OpenAI Agents SDK</strong> / <strong>Google ADK</strong> / <strong>Deep Agents</strong> (Anthropic 계열, skill 중심) 등이 각자 다른 멘탈 모델을 표방한다.[^pecollective][^turing]</p>
+<p>2025년까지 &quot;에이전트 프레임워크&quot; 라는 한 덩어리로 묶여 있던 영역이 2026년에는 패러다임별로 분명히 갈렸다. <strong>LangGraph</strong> (상태 그래프 + HITL 체크포인트, v0.4) / <strong>CrewAI</strong> (역할·프로세스 기반 crew, 엔터프라이즈 관측성 추가) / <strong>AutoGen v2 / AG2</strong> (대화형 GroupChat, 1.0 GA) / <strong>OpenAI Agents SDK</strong> / <strong>Google ADK</strong> / <strong>Deep Agents</strong> (Anthropic 계열, skill 중심) 등이 각자 다른 멘탈 모델을 표방한다.<sup class="ref-cite"><a href="https://pecollective.com/blog/ai-agent-frameworks-compared/" target="_blank" rel="noopener">[6]</a></sup><sup class="ref-cite"><a href="https://www.turing.com/resources/ai-agent-frameworks" target="_blank" rel="noopener">[7]</a></sup></p>
 <p><strong>왜 중요한가</strong> — &quot;어떤 프레임워크를 쓰지?&quot; 가 더 이상 취향 문제가 아니라 <em>&quot;우리 워크플로의 모양이 그래프냐, 역할극이냐, 대화냐, 회사냐&quot;</em> 라는 질문이 됐다. 본 리포트 2장에서 이 4분류를 본격적으로 다룬다.</p>
 <h3 id="1.2.2-mcpmodel-context-protocol의-사실상-표준화">1.2.2 MCP(Model Context Protocol)의 사실상 표준화</h3>
-<p>2024년 11월 Anthropic이 발표한 MCP가 18개월 만에 <strong>에이전트-도구 인터페이스의 사실상 표준</strong> 이 됐다. 공개 MCP 서버 레지스트리는 <strong>2025 Q1 1,200개 → 2026년 4월 9,400개+</strong> 로 늘었고 (월간 +18% 성장), Claude / ChatGPT / Gemini / Cursor / Windsurf / Zed / JetBrains AI / Vercel AI SDK / OpenAI Agents SDK가 모두 MCP를 네이티브로 채택했다.[^digitalapplied][^mcp-roadmap]</p>
-<p><strong>한 줄 정의 — USB-C 메타포 (Anthropic 공식)</strong>. 5개 1차 출처(NetworkChuck, Fireship, IBM Technology, KodeKloud, Greg Isenberg)가 일관되게 <em>&quot;AI를 위한 USB-C 포트&quot;</em> 표현을 쓴다.[^yt-mcp-5] 어떤 어시스턴트·어떤 모델 패밀리도 어떤 데이터 소스·도구에 호환되도록 <em>통합 어댑터 + 통합 프로토콜</em> 을 박은 것이 본질이다.</p>
+<p>2024년 11월 Anthropic이 발표한 MCP가 18개월 만에 <strong>에이전트-도구 인터페이스의 사실상 표준</strong> 이 됐다. 공개 MCP 서버 레지스트리는 <strong>2025 Q1 1,200개 → 2026년 4월 9,400개+</strong> 로 늘었고 (월간 +18% 성장), Claude / ChatGPT / Gemini / Cursor / Windsurf / Zed / JetBrains AI / Vercel AI SDK / OpenAI Agents SDK가 모두 MCP를 네이티브로 채택했다.<sup class="ref-cite"><a href="https://www.digitalapplied.com/blog/mcp-adoption-statistics-2026-model-context-protocol" target="_blank" rel="noopener">[8]</a></sup><sup class="ref-cite"><a href="https://blog.modelcontextprotocol.io/posts/2026-mcp-roadmap/" target="_blank" rel="noopener">[9]</a></sup></p>
+<p><strong>한 줄 정의 — USB-C 메타포 (Anthropic 공식)</strong>. 5개 1차 출처(NetworkChuck, Fireship, IBM Technology, KodeKloud, Greg Isenberg)가 일관되게 <em>&quot;AI를 위한 USB-C 포트&quot;</em> 표현을 쓴다.<sup class="ref-cite"><a href="#ref-10">[10]</a></sup> 어떤 어시스턴트·어떤 모델 패밀리도 어떤 데이터 소스·도구에 호환되도록 <em>통합 어댑터 + 통합 프로토콜</em> 을 박은 것이 본질이다.</p>
 <p><img src="figs/mcp-anthropic-diagram.png" alt="MCP 공식 아키텍처 다이어그램 (Anthropic)" />
 <small>Figure — Anthropic 공식 MCP 다이어그램. 클라이언트(Claude/Cursor/IDE)와 데이터/도구/워크플로 사이를 <em>표준 프로토콜</em> 한 층이 매개. 출처: modelcontextprotocol.io.</small></p>
-<p><strong>호스트 생태계 6개 (직접 확인)</strong> — Claude Desktop · Cursor · Windsurf · LM Studio(로컬 모델용) · ChatGPT(OpenAI 기반 클라이언트) · Google <strong>Anti-gravity</strong>(Gemini 기반). 이 중 Anti-gravity는 2026년 4월에 GA된 Google의 시각 워크플로 빌더로, MCP 호스트 진입의 직전 사례.[^yt-mcp-5]</p>
-<p><strong>MCP vs 전통 API의 차별점</strong> — IBM Technology의 표현으로는 <em>&quot;적이 아니라 layer다 — MCP는 API를 그 아래에서 호출하면서 LLM-friendly한 인터페이스를 위에 얹는다&quot;</em>.[^yt-mcp-5] 핵심 차이는 <strong>dynamic discovery</strong> — 에이전트가 런타임에 MCP 서버에 <em>&quot;너 뭐 할 수 있어?&quot;</em> 를 직접 묻고 그 자리에서 적응한다. 전통 REST는 새 endpoint 추가 시 클라이언트 재배포가 필요하지만, MCP는 capabilities list 갱신만으로 자동 인식된다.</p>
-<p><strong>Production 미해결 영역 4개</strong> — 본 1차 출처들이 공통으로 짚는 운영 위험:[^yt-mcp-5]</p>
+<p><strong>호스트 생태계 6개 (직접 확인)</strong> — Claude Desktop · Cursor · Windsurf · LM Studio(로컬 모델용) · ChatGPT(OpenAI 기반 클라이언트) · Google <strong>Anti-gravity</strong>(Gemini 기반). 이 중 Anti-gravity는 2026년 4월에 GA된 Google의 시각 워크플로 빌더로, MCP 호스트 진입의 직전 사례.<sup class="ref-cite"><a href="#ref-10">[10]</a></sup></p>
+<p><strong>MCP vs 전통 API의 차별점</strong> — IBM Technology의 표현으로는 <em>&quot;적이 아니라 layer다 — MCP는 API를 그 아래에서 호출하면서 LLM-friendly한 인터페이스를 위에 얹는다&quot;</em>.<sup class="ref-cite"><a href="#ref-10">[10]</a></sup> 핵심 차이는 <strong>dynamic discovery</strong> — 에이전트가 런타임에 MCP 서버에 <em>&quot;너 뭐 할 수 있어?&quot;</em> 를 직접 묻고 그 자리에서 적응한다. 전통 REST는 새 endpoint 추가 시 클라이언트 재배포가 필요하지만, MCP는 capabilities list 갱신만으로 자동 인식된다.</p>
+<p><strong>Production 미해결 영역 4개</strong> — 본 1차 출처들이 공통으로 짚는 운영 위험:<sup class="ref-cite"><a href="#ref-10">[10]</a></sup></p>
 <ol class="nums">
 <li><strong>컨텍스트 폭주(Context pollution)</strong> — Nick Saraev 직접 인용: <em>&quot;generalized MCP server는 모든 함수 정의를 컨텍스트에 로드 → 200K window가 빠르게 burn된다.&quot;</em> 호출 결과 전체도 그대로 컨텍스트로 복귀하므로, Google Drive 문서 1개 fetch 시 본문 전체가 들어간다.</li>
 <li><strong>Auth / Remote SSE 복잡성</strong> — 원격 MCP 서버는 HTTPS + Server-Side Events + 인증 셋업이 <em>&quot;a whole thing&quot;</em> (NetworkChuck). 로컬 stdio는 단순하지만 원격 production은 entry barrier가 크다.</li>
 <li><strong>품질 편차</strong> — <em>&quot;Not all MCP servers are created equal. A lot are rushed to market.&quot;</em> (Nick Saraev). 사용 전 검수가 필수.</li>
 <li><strong>Destructive action 위험</strong> — Fireship의 hypothetical로 인용된 <em>&quot;AI agent가 실수로 customer data를 삭제하는 시나리오&quot;</em> 가 실제로 일어남 (본 절 §1.2.7 참고).</li>
 </ol>
-<p><strong>Production 답 — Docker MCP Gateway</strong>. 2026년 1~3분기에 등장한 <em>&quot;중앙 집중화된 secret/auth 관리 + 단일 connection으로 N개 MCP 서버 접근&quot;</em> 패턴이 현 시점 production reference로 떠오르고 있다.[^yt-mcp-5] 엔터프라이즈가 SSO·감사 로그·gateway policy를 한 곳에서 강제하는 방식.</p>
+<p><strong>Production 답 — Docker MCP Gateway</strong>. 2026년 1~3분기에 등장한 <em>&quot;중앙 집중화된 secret/auth 관리 + 단일 connection으로 N개 MCP 서버 접근&quot;</em> 패턴이 현 시점 production reference로 떠오르고 있다.<sup class="ref-cite"><a href="#ref-10">[10]</a></sup> 엔터프라이즈가 SSO·감사 로그·gateway policy를 한 곳에서 강제하는 방식.</p>
 <p><img src="figs/mcp-architecture.svg" alt="MCP 생태계 — 호스트 6개 ↔ MCP 서버 (Docker Gateway) ↔ 데이터 소스" />
 <small>Figure — MCP 호스트(Claude Desktop/Cursor/Windsurf/LM Studio/ChatGPT/Anti-gravity) ↔ MCP 서버 (Docker MCP Gateway 중앙화) ↔ 데이터 소스 (Drive/DB/Slack/Shopify/네이버 등). production 위험 4 영역(컨텍스트 폭주·Auth/SSE·품질 편차·destructive action) 표기. 작성자 정리.</small></p>
 <p><strong>F&amp;B 자동화 관점</strong> — Shopify · Meta Ads · Instagram · GA4 · Slack 같은 외부 시스템을 MCP 서버 한 번 작성으로 모든 에이전트에 공유 가능. 단 <em>generalized</em> MCP를 무작정 붙이면 위 컨텍스트 폭주가 곧 비용 폭주로 이어지므로, <strong>자체 자산은 자체 MCP로 정밀히 빌드</strong> + 외부 SaaS는 Docker MCP Gateway 같은 통합 진입점을 거치는 패턴이 안전하다.</p>
 <h3 id="1.2.3-agent-skills-프롬프트-자산의-코드화">1.2.3 Agent Skills — 프롬프트 자산의 코드화</h3>
-<p>Anthropic이 2025-12-18 <strong>Agent Skills 오픈 스펙</strong> 을 공개했다.[^anthropic-skills] 폴더 하나에 <code>SKILL.md</code> (YAML frontmatter + Markdown 지시문) + 보조 스크립트/리소스를 담는 단순 포맷이고, 핵심은 <strong>staged loading</strong> — 메타데이터만 부팅 시 읽고, 실제 호출될 때만 본문이 컨텍스트에 들어가서 토큰 비용을 잡는 구조다. 2026년 3월 시점 <strong>32개 도구</strong> (Gemini CLI · JetBrains Junie · AWS Kiro · Block Goose · Cursor · OpenCode 등)가 동일한 SKILL.md를 읽는다.[^venturebeat]</p>
+<p>Anthropic이 2025-12-18 <strong>Agent Skills 오픈 스펙</strong> 을 공개했다.<sup class="ref-cite"><a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" target="_blank" rel="noopener">[11]</a></sup> 폴더 하나에 <code>SKILL.md</code> (YAML frontmatter + Markdown 지시문) + 보조 스크립트/리소스를 담는 단순 포맷이고, 핵심은 <strong>staged loading</strong> — 메타데이터만 부팅 시 읽고, 실제 호출될 때만 본문이 컨텍스트에 들어가서 토큰 비용을 잡는 구조다. 2026년 3월 시점 <strong>32개 도구</strong> (Gemini CLI · JetBrains Junie · AWS Kiro · Block Goose · Cursor · OpenCode 등)가 동일한 SKILL.md를 읽는다.<sup class="ref-cite"><a href="https://venturebeat.com/technology/anthropic-launches-enterprise-agent-skills-and-opens-the-standard" target="_blank" rel="noopener">[12]</a></sup></p>
 <p><strong>왜 중요한가</strong> — 그동안 사내에 흩어져 있던 <em>&quot;ChatGPT 프롬프트 모음.docx&quot;</em> , <em>&quot;노션 프롬프트 라이브러리&quot;</em> 같은 비공식 자산이 <strong>버전 관리 가능한 코드 디렉토리</strong> 가 된다. F&amp;B 마케팅이라면 <em>브랜드 톤 매뉴얼 / 신메뉴 출시 카피 SOP / Meta Ads 캠페인 셋업 절차</em> 를 각각 skill 폴더로 묶으면, 같은 자산을 Claude Code · Cursor · Paperclip의 모든 에이전트가 똑같이 호출 가능.</p>
 <h3 id="1.2.4-coding-agent의-성숙-sdk-가격-재편">1.2.4 Coding Agent의 성숙 + SDK 가격 재편</h3>
-<p>Claude Code SDK가 2026년 3월 <strong>Claude Agent SDK</strong> 로 개명되며 <em>&quot;코드 전용&quot;</em> 프레임이 떨어져 나갔다. 같은 SDK 위에서 PowerPoint · Excel · Word · PDF 용 pre-built skill이 함께 제공되고, Cursor · Aider · Goose · OpenCode 같은 third-party 코딩 에이전트들이 같은 SKILL.md 포맷을 공유한다.[^anthropic-sdk] 한편 <strong>2026년 6월 15일부터 Claude Agent SDK · <code>claude -p</code> · GitHub Actions의 subscription 토큰이 별도 $200/월 크레딧 버킷으로 분리</strong> 되어, 헤비 유저의 실효 비용이 12~175배까지 오르는 정책 변경이 진행 중이다.[^releasebot]</p>
+<p>Claude Code SDK가 2026년 3월 <strong>Claude Agent SDK</strong> 로 개명되며 <em>&quot;코드 전용&quot;</em> 프레임이 떨어져 나갔다. 같은 SDK 위에서 PowerPoint · Excel · Word · PDF 용 pre-built skill이 함께 제공되고, Cursor · Aider · Goose · OpenCode 같은 third-party 코딩 에이전트들이 같은 SKILL.md 포맷을 공유한다.<sup class="ref-cite"><a href="https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk" target="_blank" rel="noopener">[13]</a></sup> 한편 <strong>2026년 6월 15일부터 Claude Agent SDK · <code>claude -p</code> · GitHub Actions의 subscription 토큰이 별도 $200/월 크레딧 버킷으로 분리</strong> 되어, 헤비 유저의 실효 비용이 12~175배까지 오르는 정책 변경이 진행 중이다.<sup class="ref-cite"><a href="https://releasebot.io/updates/anthropic" target="_blank" rel="noopener">[14]</a></sup></p>
 <p><strong>왜 중요한가</strong> — <em>&quot;코딩 에이전트 = 개발자 전용&quot;</em> 의 구도가 깨지고 있다. Excel · PDF · PPT skill을 가진 동일 SDK가 마케팅 · 기획 · 운영 시나리오로 들어오는 중이고, 동시에 가격 모델이 <em>&quot;API 종량제&quot;</em> 로 회귀하면서 <strong>운영 비용을 처음부터 설계 변수로 두는 cost-aware 아키텍처</strong> 가 필수가 됐다.</p>
 <h3 id="1.2.5-관찰성평가의-표준화-otel-langsmith-라인">1.2.5 관찰성·평가의 표준화 — OTel + LangSmith 라인</h3>
-<p>2026년 3월 LangSmith가 OpenTelemetry full support를 추가하면서, <strong>Laminar · Langfuse · LangSmith · Phoenix가 모두 OTLP를 공통 수신 포맷</strong> 으로 받게 됐다. 즉 에이전트 trace가 벤더 종속 없이 이식 가능해진 첫 해다.[^braintrust][^agentmarketcap] LangChain 설문 기준 <strong>production 운영 팀의 89%가 observability를 도입</strong> 했고, 62%는 단계별 step · tool call 단위 trace를 본다.</p>
+<p>2026년 3월 LangSmith가 OpenTelemetry full support를 추가하면서, <strong>Laminar · Langfuse · LangSmith · Phoenix가 모두 OTLP를 공통 수신 포맷</strong> 으로 받게 됐다. 즉 에이전트 trace가 벤더 종속 없이 이식 가능해진 첫 해다.<sup class="ref-cite"><a href="https://www.braintrust.dev/articles/agent-observability-complete-guide-2026" target="_blank" rel="noopener">[15]</a></sup><sup class="ref-cite"><a href="https://agentmarketcap.ai/blog/2026/04/07/opentelemetry-ai-agents-observability-standard" target="_blank" rel="noopener">[16]</a></sup> LangChain 설문 기준 <strong>production 운영 팀의 89%가 observability를 도입</strong> 했고, 62%는 단계별 step · tool call 단위 trace를 본다.</p>
 <p><strong>왜 중요한가</strong> — 멀티 에이전트가 늘어날수록 <em>&quot;왜 이 캠페인 카피가 이렇게 나왔는지&quot;</em> 의 사후 추적성이 production의 사활을 가른다. LangChain 설문에서 production 진입을 가로막는 1위 이유가 <strong>&quot;quality&quot; (32%)</strong> 였는데, 관찰성 없는 품질 개선은 불가능하므로 OTel은 사실상 진입 요건이 되고 있다.</p>
 <h3 id="1.2.6-eval-benchmark-swe-bench-중심-복리-오류의-본질적-한계">1.2.6 Eval/Benchmark — SWE-bench 중심 + 복리 오류의 본질적 한계</h3>
-<p>에이전트 평가는 2026년 5월 현재 코딩 영역의 <strong>SWE-bench</strong>(Software Engineering Bench)가 가장 흔히 언급되는 척도다. 실제 SW 엔지니어링 문제 + 버그 수정 능력을 평가하며, 현 frontier 모델들이 <strong>약 80% 성공률</strong> 에 도달한 상태다.[^yt-eval-prod] 코딩 외 영역은 <strong>AgentBench / GAIA / TAU-bench / WebArena</strong> 가 각각 <em>generalist agent / browsing / customer service / web navigation</em> 을 다루지만, 본 1차 출처 29 영상에서는 SWE-bench 외엔 거의 언급되지 않는다 — 비코딩 도메인의 <em>합의된 벤치마크 부재</em> 가 production 평가의 빈자리로 남아 있다.[^yt-eval-prod]</p>
-<p><strong>복리 오류의 본질적 한계</strong> — Nick Saraev의 직접 계산:[^yt-eval-prod]</p>
+<p>에이전트 평가는 2026년 5월 현재 코딩 영역의 <strong>SWE-bench</strong>(Software Engineering Bench)가 가장 흔히 언급되는 척도다. 실제 SW 엔지니어링 문제 + 버그 수정 능력을 평가하며, 현 frontier 모델들이 <strong>약 80% 성공률</strong> 에 도달한 상태다.<sup class="ref-cite"><a href="#ref-17">[17]</a></sup> 코딩 외 영역은 <strong>AgentBench / GAIA / TAU-bench / WebArena</strong> 가 각각 <em>generalist agent / browsing / customer service / web navigation</em> 을 다루지만, 본 1차 출처 29 영상에서는 SWE-bench 외엔 거의 언급되지 않는다 — 비코딩 도메인의 <em>합의된 벤치마크 부재</em> 가 production 평가의 빈자리로 남아 있다.<sup class="ref-cite"><a href="#ref-17">[17]</a></sup></p>
+<p><strong>복리 오류의 본질적 한계</strong> — Nick Saraev의 직접 계산:<sup class="ref-cite"><a href="#ref-17">[17]</a></sup></p>
 <ul class="bullets">
 <li>단계당 90% × 5단계 = <strong>59%</strong></li>
 <li>단계당 95% × 10단계 = <strong>60%</strong></li>
 </ul>
 <p>다단계 자율 실행에서 단일 단계의 <em>정확도가 충분히 높아 보여도</em> 누적되면 production 신뢰성에 미달한다. F&amp;B 캠페인 발행처럼 <em>5~10 단계가 직렬로 도는</em> 워크플로에서는 단계별 95% 이상이거나 HITL 체크포인트가 반드시 끼어 있어야 한다는 뜻이다. 평가 영역의 의의는 &quot;벤치마크 1순위 모델 찾기&quot; 가 아니라 <em>&quot;자사 도메인에 단계별 정확도 임계를 측정·관리할 도구가 있는가&quot;</em> 다.</p>
 <h3 id="1.2.7-cost-aware-설계-60-30-10-라우팅-iceberg-sub-agent-isolation">1.2.7 Cost-aware 설계 — 60/30/10 라우팅 + Iceberg + Sub-agent isolation</h3>
-<p>§1.2.4의 <em>&quot;SDK 가격 재편으로 cost-aware 아키텍처 필수&quot;</em> 메시지를 실제 production 패턴 3개로 풀면 다음과 같다.[^yt-eval-prod]</p>
+<p>§1.2.4의 <em>&quot;SDK 가격 재편으로 cost-aware 아키텍처 필수&quot;</em> 메시지를 실제 production 패턴 3개로 풀면 다음과 같다.<sup class="ref-cite"><a href="#ref-17">[17]</a></sup></p>
 <p><strong>(a) 60/30/10 Model Routing</strong> — Nick Saraev (305K views) 권고:</p>
 <p><img src="figs/model-routing-60-30-10.svg" alt="60/30/10 Model Routing 피라미드" />
 <small>Figure — 모델 가격대를 작업 영향도와 매칭. 60% Haiku/Flash (대량 처리) + 30% Sonnet (일반 작업) + 10% Opus (핵심 의사결정). Nick Saraev claim: 60%+ 비용 절감. 작성자 시각화.</small></p>
@@ -3524,25 +3524,6 @@ body:has(> .continuous-mode) {
 <li><strong>MCP 서버 = 통합 ROI 최대 영역</strong> — Meta Ads · GA4 · 인스타 DM · Shopify · POS · 배달앱을 MCP 서버로 한 번 감싸면, 카피라이팅 · 캠페인 분석 · CS 에이전트가 모두 같은 도구를 쓸 수 있다.</li>
 <li><strong>Brand 톤 = SKILL.md 로 자산화</strong> — 브랜드 가이드라인 · 금지어 · 페르소나를 Agent Skill로 패키징하면 Claude · Cursor · Paperclip 어디서든 동일 톤이 강제된다 — 흩어진 프롬프트 사이로 새는 일관성 문제의 구조적 해법.</li>
 </ol>
-<hr />
-<h2 id="references">References</h2>
-<p>[^langchain]: LangChain. (2026). <em>State of Agent Engineering 2025/2026</em> (n=1,340). https://www.langchain.com/state-of-agent-engineering
-[^paperclip-gh]: Paperclip AI. (2026). <em>paperclipai/paperclip — GitHub</em>. https://github.com/paperclipai/paperclip
-[^jimmysong]: Jimmy Song. (2026). <em>Paperclip: Open-Source Orchestration for Zero-Human Companies</em>. https://jimmysong.io/ai/paperclip/
-[^mlmastery]: MachineLearningMastery. (2026). <em>7 Agentic AI Trends to Watch in 2026</em>. https://machinelearningmastery.com/7-agentic-ai-trends-to-watch-in-2026/
-[^skax-multi]: SK AX. (2026). <em>2026년 기업 AI 전환의 해답, 멀티에이전트 시스템</em>. https://www.skax.co.kr/insight/trend/3626
-[^pecollective]: pecollective. (2026). <em>AI Agent Frameworks Compared: LangGraph vs CrewAI vs AutoGen</em>. https://pecollective.com/blog/ai-agent-frameworks-compared/
-[^turing]: Turing. (2026). <em>A Detailed Comparison of Top 6 AI Agent Frameworks in 2026</em>. https://www.turing.com/resources/ai-agent-frameworks
-[^digitalapplied]: Digital Applied. (2026). <em>MCP Adoption Statistics 2026</em>. https://www.digitalapplied.com/blog/mcp-adoption-statistics-2026-model-context-protocol
-[^mcp-roadmap]: Model Context Protocol. (2026). <em>The 2026 MCP Roadmap</em>. https://blog.modelcontextprotocol.io/posts/2026-mcp-roadmap/
-[^yt-mcp-5]: NotebookLM 합성. (2026-05-25). <em>MCP 5 영상 트랜스크립트 합성</em>. 자세히는 본 디렉토리 <code>research/05_youtube_synthesis.md</code> §2. 1차 출처 — NetworkChuck &quot;you need to learn MCP&quot; (1.50M views), Fireship &quot;Claude's MCP is here&quot; (1.34M views), Greg Isenberg &quot;MCP clearly explained&quot; (1.30M views), IBM Technology &quot;MCP vs API&quot; (1.10M views), KodeKloud &quot;MCP for Beginners — Flight Booking Demo&quot; (1.08M views).
-[^anthropic-skills]: Anthropic. (2026). <em>Equipping agents for the real world with Agent Skills</em>. https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills
-[^venturebeat]: VentureBeat. (2026). <em>Anthropic launches enterprise Agent Skills and opens the standard</em>. https://venturebeat.com/technology/anthropic-launches-enterprise-agent-skills-and-opens-the-standard
-[^anthropic-sdk]: Anthropic. (2026). <em>Building agents with the Claude Agent SDK</em>. https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk
-[^releasebot]: Releasebot. (2026). <em>Anthropic Release Notes — May 2026</em>. https://releasebot.io/updates/anthropic
-[^braintrust]: Braintrust. (2026). <em>Agent Observability: The Complete Guide for 2026</em>. https://www.braintrust.dev/articles/agent-observability-complete-guide-2026
-[^agentmarketcap]: AgentMarketCap. (2026). <em>OpenTelemetry for AI Agents: The Missing Observability Standard</em>. https://agentmarketcap.ai/blog/2026/04/07/opentelemetry-ai-agents-observability-standard
-[^yt-eval-prod]: NotebookLM 합성. (2026-05-25). <em>Eval / Cost / Production failure 4 query 합성</em>. 자세히는 본 디렉토리 <code>research/05_youtube_synthesis.md</code> §4, §5. 1차 출처 — Nick Saraev &quot;AI Agents Full Course 2026&quot; (305K views), LangChain &quot;Conceptual Guide: Multi Agent Architectures&quot; (119K views), LangChain &quot;Building Effective Agents with LangGraph&quot; (226K views), Burke Holland &quot;Agent Orchestration&quot; (129K views).</p>
 
 </section>
 
@@ -3784,18 +3765,6 @@ triggers: [copy_review, draft_writing]
 </tr>
 </tbody>
 </table>
-<h2 id="references">References</h2>
-<ul class="bullets">
-<li>LangChain. (2026). <em>State of Agent Engineering 2025/2026</em> (n=1,340). https://www.langchain.com/state-of-agent-engineering</li>
-<li>Anthropic. (2026). <em>Equipping agents for the real world with Agent Skills</em>. https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills</li>
-<li>Anthropic. (2026). <em>Building agents with the Claude Agent SDK</em>. https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk</li>
-<li>Paperclip AI. (2026). <em>paperclipai/paperclip — GitHub</em>. https://github.com/paperclipai/paperclip</li>
-<li>Jimmy Song. (2026). <em>Paperclip: Open-Source Orchestration for Zero-Human Companies</em>. https://jimmysong.io/ai/paperclip/</li>
-<li>Turing. (2026). <em>A Detailed Comparison of Top 6 AI Agent Frameworks in 2026</em>. https://www.turing.com/resources/ai-agent-frameworks</li>
-<li>pecollective. (2026). <em>AI Agent Frameworks Compared: LangGraph vs CrewAI vs AutoGen</em>. https://pecollective.com/blog/ai-agent-frameworks-compared/</li>
-<li>Morphllm. (2026). <em>AI Agent Frameworks 2026 — 8 SDKs, ACP, Trade-offs</em>. https://www.morphllm.com/ai-agent-framework</li>
-<li>Andrew Ng. (2024). <em>Four design patterns for AI agentic workflows</em>. https://x.com/AndrewYNg/status/1773393357022298617</li>
-</ul>
 
 </section>
 
@@ -4181,15 +4150,6 @@ triggers: [copy_review, draft_writing]
 <blockquote>
 <p>다만 단정은 아니다. <em>&quot;런타임 강제&quot;</em> 의 이점은 운영자가 그 거버넌스를 진지하게 운용할 때만 살아난다 — &quot;통째 승인&quot; 패턴에 빠지면 형식만 남는다(research/02 §8 잔여 위험). Paperclip의 약속은 <em>&quot;강제할 수 있는 자리&quot;</em> 를 마련해 둔 것이지, <em>&quot;강제가 저절로 일어나는 것&quot;</em> 은 아니다.</p>
 </blockquote>
-<h2 id="references">References</h2>
-<ul class="bullets">
-<li>research/01 §1, §2, §3, §4, §6 — Paperclip 시스템 아키텍처, 데이터 모델, 하트비트 라이프사이클, 세션 영속성</li>
-<li>research/02 §1, §2, §3, §4, §6, §8 — 슬로건, org chart, 위임, 예산 거버넌스, HITL, 운영 위험</li>
-<li>research/05 §4, §5 — YouTube 29 영상 합성 (60/30/10 라우팅, Iceberg, 4 실패 패턴)</li>
-<li>docs/superpowers/specs/2026-05-24-session-01-topic-design.md §2.3 — T3 &quot;거버넌스가 런타임 강제여야 한다&quot;</li>
-<li>paperclipai/paperclip GitHub README (research/01 [^1], research/02 [^readme])</li>
-<li>Paperclip docs — Org Structure / Delegation / Approvals / Costs and Budgets / Execution Policy (research/02 각주 인용 출처)</li>
-</ul>
 
 </section>
 
@@ -4273,11 +4233,6 @@ Publisher → Postiz upload + 다채널 예약 (mock 처리)
 </ol>
 <p>전환 결정은 발표자 단독. 라이브 복구 시도는 최대 1분으로 제한하고 초과 시 무조건 fallback 1로 전환 — 청중 집중력 손실이 컨텐츠 손실보다 비용이 크다는 판단.</p>
 <hr />
-<h2 id="references">References</h2>
-<ul class="bullets">
-<li><code>docs/superpowers/specs/2026-05-24-session-01-topic-design.md</code> §4 (라이브 데모 시나리오), §3 (어젠다 20분 슬롯), §5.1 (슬라이드 15~22 fallback), §7 (위험 표)</li>
-<li><code>seminars/01_paperclip_deep_dive/research/03_case_nevo_marketing.md</code> §0 (정정 노트 — Nevo는 Paperclip 사용자가 아님), §3 (Nevo 5-skill 파이프라인 워크스루), §9 (F&amp;B 적용 시사점 — 한국 publish 채널 갭)</li>
-</ul>
 
 </section>
 
@@ -4475,14 +4430,6 @@ Publisher → Postiz upload + 다채널 예약 (mock 처리)
 <li><strong>(장기 전략)</strong> Paperclip이 6개월 후에도 살아남는가? 오픈소스 모멘텀(67k stars) + 거버넌스 깊이의 <em>해자</em> vs <em>단명 가능성</em> — 베팅 단위를 어디서 끊을 것인가? (Stage C 결정의 prerequisite)</li>
 <li><strong>(운영 패턴)</strong> 한국 실무자 패턴 (§5.5) — Auto-research / Cross-critique / 유지보수 routine / 인지 과부하 완화 중 자사 도메인에 <em>어느 것이 먼저 효과적</em> 인가? 6명 개발팀 + F&amp;B 신규 도메인이라는 자원 제약 하에서 우선순위는?</li>
 </ol>
-<h2 id="references">References</h2>
-<ul class="bullets">
-<li>research/01_paperclip_architecture.md §8 — 시사점 5개 (F&amp;B 도메인 1차 적용 시드).</li>
-<li>research/02_paperclip_operations.md §6 · §8 · §9 — execution policy / 잔여 위험 / 도입 의사결정 가이드.</li>
-<li>research/03_case_nevo_marketing.md §9 — Nevo 패턴 vs F&amp;B 적용 매핑 8영역.</li>
-<li>research/05_youtube_synthesis.md §7 — 한국 실무자 패턴 (장피엠 + 월텍남).</li>
-<li>docs/superpowers/specs/2026-05-24-session-01-topic-design.md §1.3 — 청중이 가져갈 3가지 변화 (인식/판단/실행). §7 — 위험 표 (한국 채널 갭 / 실촬+generative 하이브리드 2개를 토론 시작점으로 좁힌 결정).</li>
-</ul>
 
 </section>
 
@@ -4629,14 +4576,63 @@ Publisher → Postiz upload + 다채널 예약 (mock 처리)
 <li>Anthropic, <em>&quot;Building effective agents&quot;</em> (2024-12) — 단일 vs 멀티 에이전트 의사결정의 reference.</li>
 </ul>
 <p><strong>발표자(송태영)에게</strong>: D+1 회고 + Session 2 시드 작성 (<code>docs/superpowers/specs/2026-06-XX-session-02-topic-design.md</code>). 6.3 follow-up #1이 도착한 시점부터 본격 작성.</p>
-<h2 id="references">References</h2>
-<ul class="bullets">
-<li><code>PRD_connectbrick-agent-seminar.md</code> §4 — 커리큘럼 로드맵 (4세션)</li>
-<li><code>docs/superpowers/specs/2026-05-24-session-01-topic-design.md</code> §1.3, §8 — 청중이 가져갈 3가지 변화 / Q2 비교 축 추가 결정</li>
-<li>Andrew Ng. &quot;Four design patterns for AI agentic workflows.&quot; <em>DeepLearning.AI The Batch</em>, 2024.</li>
-<li>Anthropic. &quot;Building effective agents.&quot; 2024-12.</li>
-</ul>
 
+</section>
+<section class="s-refs">
+  <h3 id="부록-c.-참고문헌">부록 C. 참고문헌</h3>
+  <h4>1장 Weekly Digest</h4>
+  <ol class="references" style="list-style:none; padding:0;">
+    <li id="ref-1" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[1]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">LangChain. (2026). *State of Agent Engineering 2025/2026* (n=1,340). <a href="https://www.langchain.com/state-of-agent-engineering" target="_blank" rel="noopener">https://www.langchain.com/state-of-agent-engineering</a></span></li>
+    <li id="ref-2" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[2]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Paperclip AI. (2026). *paperclipai/paperclip — GitHub*. <a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">https://github.com/paperclipai/paperclip</a></span></li>
+    <li id="ref-3" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[3]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Jimmy Song. (2026). *Paperclip: Open-Source Orchestration for Zero-Human Companies*. <a href="https://jimmysong.io/ai/paperclip/" target="_blank" rel="noopener">https://jimmysong.io/ai/paperclip/</a></span></li>
+    <li id="ref-4" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[4]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">MachineLearningMastery. (2026). *7 Agentic AI Trends to Watch in 2026*. <a href="https://machinelearningmastery.com/7-agentic-ai-trends-to-watch-in-2026/" target="_blank" rel="noopener">https://machinelearningmastery.com/7-agentic-ai-trends-to-watch-in-2026/</a></span></li>
+    <li id="ref-5" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[5]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">SK AX. (2026). *2026년 기업 AI 전환의 해답, 멀티에이전트 시스템*. <a href="https://www.skax.co.kr/insight/trend/3626" target="_blank" rel="noopener">https://www.skax.co.kr/insight/trend/3626</a></span></li>
+    <li id="ref-6" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[6]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">pecollective. (2026). *AI Agent Frameworks Compared: LangGraph vs CrewAI vs AutoGen*. <a href="https://pecollective.com/blog/ai-agent-frameworks-compared/" target="_blank" rel="noopener">https://pecollective.com/blog/ai-agent-frameworks-compared/</a></span></li>
+    <li id="ref-7" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[7]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Turing. (2026). *A Detailed Comparison of Top 6 AI Agent Frameworks in 2026*. <a href="https://www.turing.com/resources/ai-agent-frameworks" target="_blank" rel="noopener">https://www.turing.com/resources/ai-agent-frameworks</a></span></li>
+    <li id="ref-8" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[8]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Digital Applied. (2026). *MCP Adoption Statistics 2026*. <a href="https://www.digitalapplied.com/blog/mcp-adoption-statistics-2026-model-context-protocol" target="_blank" rel="noopener">https://www.digitalapplied.com/blog/mcp-adoption-statistics-2026-model-context-protocol</a></span></li>
+    <li id="ref-9" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[9]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Model Context Protocol. (2026). *The 2026 MCP Roadmap*. <a href="https://blog.modelcontextprotocol.io/posts/2026-mcp-roadmap/" target="_blank" rel="noopener">https://blog.modelcontextprotocol.io/posts/2026-mcp-roadmap/</a></span></li>
+    <li id="ref-10" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[10]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">NotebookLM synthesis. (2026-05-25). *MCP 5 video transcript synthesis*. See <code>research/05_youtube_synthesis.md</code> §2. Primary sources: NetworkChuck "you need to learn MCP" (1.50M views), Fireship "Claude's MCP is here" (1.34M views), Greg Isenberg "MCP clearly explained" (1.30M views), IBM Technology "MCP vs API" (1.10M views), KodeKloud "MCP for Beginners — Flight Booking Demo" (1.08M views).</span></li>
+    <li id="ref-11" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[11]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Anthropic. (2026). *Equipping agents for the real world with Agent Skills*. <a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" target="_blank" rel="noopener">https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills</a></span></li>
+    <li id="ref-12" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[12]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">VentureBeat. (2026). *Anthropic launches enterprise Agent Skills and opens the standard*. <a href="https://venturebeat.com/technology/anthropic-launches-enterprise-agent-skills-and-opens-the-standard" target="_blank" rel="noopener">https://venturebeat.com/technology/anthropic-launches-enterprise-agent-skills-and-opens-the-standard</a></span></li>
+    <li id="ref-13" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[13]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Anthropic. (2026). *Building agents with the Claude Agent SDK*. <a href="https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk" target="_blank" rel="noopener">https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk</a></span></li>
+    <li id="ref-14" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[14]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Releasebot. (2026). *Anthropic Release Notes — May 2026*. <a href="https://releasebot.io/updates/anthropic" target="_blank" rel="noopener">https://releasebot.io/updates/anthropic</a></span></li>
+    <li id="ref-15" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[15]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Braintrust. (2026). *Agent Observability: The Complete Guide for 2026*. <a href="https://www.braintrust.dev/articles/agent-observability-complete-guide-2026" target="_blank" rel="noopener">https://www.braintrust.dev/articles/agent-observability-complete-guide-2026</a></span></li>
+    <li id="ref-16" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[16]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">AgentMarketCap. (2026). *OpenTelemetry for AI Agents: The Missing Observability Standard*. <a href="https://agentmarketcap.ai/blog/2026/04/07/opentelemetry-ai-agents-observability-standard" target="_blank" rel="noopener">https://agentmarketcap.ai/blog/2026/04/07/opentelemetry-ai-agents-observability-standard</a></span></li>
+    <li id="ref-17" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[17]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">NotebookLM synthesis. (2026-05-25). *Eval / Cost / Production failure 4-query synthesis*. See <code>research/05_youtube_synthesis.md</code> §4, §5. Primary sources: Nick Saraev "AI Agents Full Course 2026" (305K views), LangChain "Conceptual Guide: Multi Agent Architectures" (119K views), LangChain "Building Effective Agents with LangGraph" (226K views), Burke Holland "Agent Orchestration" (129K views).</span></li>
+  </ol>
+  <h4>2장 Agent 패러다임 비교</h4>
+  <ol class="references" style="list-style:none; padding:0;">
+    <li id="ref-18" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[18]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Morphllm. (2026). *AI Agent Frameworks 2026 — 8 SDKs, ACP, Trade-offs*. <a href="https://www.morphllm.com/ai-agent-framework" target="_blank" rel="noopener">https://www.morphllm.com/ai-agent-framework</a></span></li>
+    <li id="ref-19" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[19]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Andrew Ng. (2024). *Four design patterns for AI agentic workflows*. <a href="https://x.com/AndrewYNg/status/1773393357022298617" target="_blank" rel="noopener">https://x.com/AndrewYNg/status/1773393357022298617</a></span></li>
+  </ol>
+  <h4>3장 Paperclip 심층 분석</h4>
+  <ol class="references" style="list-style:none; padding:0;">
+    <li id="ref-20" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[20]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;"><code>research/01_paperclip_architecture.md</code> §1, §2, §3, §4, §6 — Paperclip system architecture, data model, heartbeat lifecycle, session persistence.</span></li>
+    <li id="ref-21" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[21]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;"><code>research/02_paperclip_operations.md</code> §1, §2, §3, §4, §6, §8 — slogan, org chart, delegation, budget governance, HITL, operational risk.</span></li>
+    <li id="ref-22" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[22]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;"><code>research/05_youtube_synthesis.md</code> §4, §5 — YouTube 29-video synthesis: 60/30/10 routing, Iceberg, four failure patterns.</span></li>
+    <li id="ref-23" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[23]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;"><code>docs/superpowers/specs/2026-05-24-session-01-topic-design.md</code> §2.3 — T3 "governance must be runtime-enforced."</span></li>
+    <li id="ref-24" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[24]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">paperclipai/paperclip GitHub README and Paperclip docs: Org Structure / Delegation / Approvals / Costs and Budgets / Execution Policy. <a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">https://github.com/paperclipai/paperclip</a></span></li>
+  </ol>
+  <h4>4장 Live Demo Walkthrough</h4>
+  <ol class="references" style="list-style:none; padding:0;">
+    <li id="ref-25" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[25]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;"><code>docs/superpowers/specs/2026-05-24-session-01-topic-design.md</code> §3, §4, §5.1, §7 — agenda slot, live demo scenario, fallback slides, risk table.</span></li>
+    <li id="ref-26" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[26]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;"><code>seminars/01_paperclip_deep_dive/research/03_case_nevo_marketing.md</code> §0, §3, §9 — correction note, Nevo 5-skill pipeline walkthrough, F&B implications.</span></li>
+  </ol>
+  <h4>5장 F&B 적용 시사점</h4>
+  <ol class="references" style="list-style:none; padding:0;">
+    <li id="ref-27" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[27]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;"><code>research/01_paperclip_architecture.md</code> §8 — five F&B domain implication seeds.</span></li>
+    <li id="ref-28" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[28]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;"><code>research/02_paperclip_operations.md</code> §6, §8, §9 — execution policy, residual risk, adoption decision guide.</span></li>
+    <li id="ref-29" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[29]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;"><code>research/03_case_nevo_marketing.md</code> §9 — mapping Nevo patterns to F&B.</span></li>
+    <li id="ref-30" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[30]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;"><code>research/05_youtube_synthesis.md</code> §7 — Korean practitioner patterns from 장피엠 and 월텍남.</span></li>
+    <li id="ref-31" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[31]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;"><code>docs/superpowers/specs/2026-05-24-session-01-topic-design.md</code> §1.3, §7 — audience takeaways and risk table.</span></li>
+  </ol>
+  <h4>6장 Next Step</h4>
+  <ol class="references" style="list-style:none; padding:0;">
+    <li id="ref-32" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[32]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;"><code>PRD_connectbrick-agent-seminar.md</code> §4 — curriculum roadmap.</span></li>
+    <li id="ref-33" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[33]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;"><code>docs/superpowers/specs/2026-05-24-session-01-topic-design.md</code> §1.3, §8 — audience takeaways and Q2 comparison-axis decision.</span></li>
+    <li id="ref-34" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[34]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Andrew Ng. *Four design patterns for AI agentic workflows*. *DeepLearning.AI The Batch*, 2024.</span></li>
+    <li id="ref-35" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[35]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Anthropic. *Building effective agents*. 2024-12.</span></li>
+  </ol>
 </section>
   </article>
   <script data-source="report.js">
