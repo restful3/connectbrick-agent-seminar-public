@@ -1,14 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 80 800 420" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
   <defs>
     <marker id="arrow-bd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#6B6B72"/>
     </marker>
   </defs>
 
-  <rect width="800" height="500" fill="#FAFAF9"/>
-
-  <text x="400" y="30" font-size="18" font-weight="600" text-anchor="middle" fill="#0F2C59">예산 거버넌스 — 8 차원 추적 + 80/100% 임계</text>
-  <text x="400" y="50" font-size="12" text-anchor="middle" fill="#6B6B72">매 heartbeat가 cost event 발행 → 8 차원에 동시 집계 → 임계 도달 시 자동 pause</text>
+  <rect x="0" y="80" width="800" height="420" fill="#FAFAF9"/>
 
   <!-- Center: cost event -->
   <g>
@@ -89,5 +86,4 @@
     <text x="650" y="465" font-size="11" font-style="italic" fill="#6B6B72">→ 큐 cancel</text>
   </g>
 
-  <text x="20" y="497" font-size="9" fill="#6B6B72">한계: 일/분 단위 budget 없음 → 단일 heartbeat 내 burst는 §3.6.2 adapter 사전 제한으로 보완</text>
 </svg>
