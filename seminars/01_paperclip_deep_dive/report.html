@@ -1301,6 +1301,7 @@ pre .err {
 
 .report-nav-toggle,
 .report-settings button,
+.report-settings a,
 .report-toc-drawer__head button {
   border: 1px solid var(--border);
   background: color-mix(in srgb, var(--surface) 92%, transparent);
@@ -1329,12 +1330,46 @@ pre .err {
   top: 22px;
   right: 22px;
   z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
 }
 .report-settings button {
   position: static;
 }
+.report-reader-controls,
+.report-quick-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+.report-reader-controls button,
+.report-settings a {
+  position: static;
+  width: auto;
+  height: 34px;
+  min-width: 34px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font: 800 12px/1 'Inter', 'Noto Sans KR', sans-serif;
+  text-decoration: none;
+}
+.report-reader-controls button.is-active {
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
+  color: #FFFFFF;
+}
+.report-quick-links a {
+  height: 32px;
+  min-width: 0;
+  font-size: 11px;
+  letter-spacing: 0;
+}
 .report-nav-toggle:hover,
 .report-settings button:hover,
+.report-settings a:hover,
 .report-toc-drawer__head button:hover {
   background: var(--surface-hover);
   color: var(--brand-primary);
@@ -2895,6 +2930,19 @@ body:has(> .continuous-mode) {
   padding: 0;
   background: transparent;
   box-shadow: none;
+  --reader-body-size: 17px;
+  --reader-line-height: 1.76;
+  --reader-column-width: 820px;
+}
+html.reader-size-compact .continuous-mode {
+  --reader-body-size: 16px;
+  --reader-line-height: 1.74;
+  --reader-column-width: 760px;
+}
+html.reader-size-large .continuous-mode {
+  --reader-body-size: 18.5px;
+  --reader-line-height: 1.78;
+  --reader-column-width: 860px;
 }
 
 /* ----- 1. Article header — A4 cover -> technical blog title block ----- */
@@ -2985,11 +3033,11 @@ body:has(> .continuous-mode) {
   color: var(--text-secondary);
 }
 
-/* ----- 2. Main container — 본문 max-width 760px ----- */
+/* ----- 2. Main container — reader-width article column ----- */
 .continuous-mode .report-toc,
 .continuous-mode .report-section,
 .continuous-mode .report-appendix {
-  max-width: 760px;
+  max-width: var(--reader-column-width);
   margin-left: auto;
   margin-right: auto;
   padding-left: clamp(20px, 5vw, 32px);
@@ -3092,15 +3140,15 @@ body:has(> .continuous-mode) {
   letter-spacing: 0.05em;
 }
 .continuous-mode .report-section p {
-  font-size: 15.5px;
-  line-height: 1.75;
+  font-size: var(--reader-body-size);
+  line-height: var(--reader-line-height);
   margin-bottom: 18px;
   color: var(--text);
 }
 .continuous-mode .report-section ul,
 .continuous-mode .report-section ol {
-  font-size: 15.5px;
-  line-height: 1.7;
+  font-size: var(--reader-body-size);
+  line-height: calc(var(--reader-line-height) - 0.04);
   margin: 12px 0 18px 0;
   padding-left: 24px;
 }
@@ -3314,8 +3362,17 @@ body:has(> .continuous-mode) {
   .continuous-mode .report-section table td { padding: 8px 10px; }
   .continuous-mode .report-section p,
   .continuous-mode .report-section li {
-    font-size: 16px;
+    font-size: max(16px, var(--reader-body-size));
     line-height: 1.72;
+  }
+  .report-reader-controls button,
+  .report-settings a {
+    height: 32px;
+    padding: 0 9px;
+    font-size: 11px;
+  }
+  .report-quick-links {
+    display: none;
   }
   .continuous-mode .report-section img,
   .continuous-mode .report-section svg {
@@ -3355,6 +3412,16 @@ body:has(> .continuous-mode) {
   </button>
   <div class="report-settings" aria-label="설정">
     <button id="themeToggle" type="button" onclick="cycleTheme()" aria-label="나이트 모드 전환" title="나이트 모드 전환">☀</button>
+    <div class="report-reader-controls" aria-label="글자 크기">
+      <button type="button" data-reader-size="compact" aria-label="글자 작게" title="글자 작게">A-</button>
+      <button type="button" data-reader-size="comfortable" aria-label="기본 글자 크기" title="기본 글자 크기">A</button>
+      <button type="button" data-reader-size="large" aria-label="글자 크게" title="글자 크게">A+</button>
+    </div>
+    <nav class="report-quick-links" aria-label="세미나 링크">
+      <a href="../../index.html" title="전체 세미나 목차" aria-label="전체 세미나 목차">전체</a>
+      <a href="digest.html" title="Weekly Digest" aria-label="Weekly Digest">Digest</a>
+      <a href="slides.html" title="발표 슬라이드" aria-label="발표 슬라이드">Slides</a>
+    </nav>
   </div>
   <div id="tocBackdrop" class="report-toc-backdrop" hidden></div>
   <nav id="tocDrawer" class="report-toc-drawer" aria-label="문서 목차" aria-hidden="true">
@@ -4667,8 +4734,9 @@ Publisher → Postiz upload + 다채널 예약 (mock 처리)</code></pre>
   <script data-source="report.js">
 // AI Odyssey Publisher — Report 런타임 (인터랙티브 HTML + 인쇄 프리프로세스)
 // 슬라이드 `deck.js` 에서 네비게이션·PNG 다운로드·뷰포트 스케일링을 제거하고,
-// 리포트에 필요한 (1) 테마 토글 (2) Chart.js 빌더 (3) IntersectionObserver
-// 기반 카운터/애니메이션 (4) TOC 자동 생성 (5) 각주 번호 자동 부여만 남겼다.
+// 리포트에 필요한 (1) 테마 토글 (2) 글자 크기 조절 (3) Chart.js 빌더
+// (4) IntersectionObserver 기반 카운터/애니메이션 (5) TOC 자동 생성
+// (6) 각주 번호 자동 부여만 남겼다.
 
 (function () {
   // ===== Theme toggle =====
@@ -4690,6 +4758,31 @@ Publisher → Postiz upload + 다채널 예약 (mock 처리)</code></pre>
   };
   window.cycleTheme = function () { window.applyTheme(current === 'dark' ? 'light' : 'dark'); };
   window.applyTheme(current);
+
+  // ===== Reader size =====
+  var READER_SIZE_KEY = 'aio-report-reader-size';
+  var READER_SIZES = ['compact', 'comfortable', 'large'];
+
+  window.applyReaderSize = function (size) {
+    if (READER_SIZES.indexOf(size) === -1) size = 'comfortable';
+    document.documentElement.classList.remove('reader-size-compact', 'reader-size-comfortable', 'reader-size-large');
+    document.documentElement.classList.add('reader-size-' + size);
+    document.querySelectorAll('[data-reader-size]').forEach(function (btn) {
+      var active = btn.getAttribute('data-reader-size') === size;
+      btn.classList.toggle('is-active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    localStorage.setItem(READER_SIZE_KEY, size);
+  };
+
+  function setupReaderControls() {
+    document.querySelectorAll('[data-reader-size]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        window.applyReaderSize(btn.getAttribute('data-reader-size'));
+      });
+    });
+    window.applyReaderSize(localStorage.getItem(READER_SIZE_KEY) || 'comfortable');
+  }
 
   // ===== Floating controls / drawer TOC =====
   function getHeadingLabel(h) {
@@ -4753,6 +4846,7 @@ Publisher → Postiz upload + 다채널 예약 (mock 처리)</code></pre>
     if (tocToggle) tocToggle.addEventListener('click', window.openTOCDrawer);
     if (tocClose) tocClose.addEventListener('click', window.closeTOCDrawer);
     if (backdrop) backdrop.addEventListener('click', window.closeTOCDrawer);
+    setupReaderControls();
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') window.closeTOCDrawer();
     });
