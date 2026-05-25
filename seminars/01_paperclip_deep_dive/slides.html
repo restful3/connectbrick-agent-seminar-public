@@ -670,10 +670,10 @@ Publisher (mock) → Postiz upload + 다채널 예약
   
   <div class="slide-body">
 <ol class="nums">
-<li><strong>가설 검증</strong> — F&amp;B에 정말 조직형이 그래프형보다 잘 맞나? 캠페인 1회의 분기 복잡도가 그래프 표현이 더 명확하지 않나?</li>
+<li><strong>가설 검증</strong> — 자사 업무에 정말 조직형이 그래프형보다 잘 맞나? 워크플로 1회의 분기 복잡도가 그래프 표현이 더 명확하지 않나?</li>
 <li><strong>현실 검증</strong> — Stage A (사내 도구) 운영 비용이 ROI 넘는가? 1인 운영 가능한가?</li>
 <li><strong>비교 검증</strong> — LangGraph로 이미 production이면 Paperclip 마이그레이션 비용 대비 거버넌스 이득?</li>
-<li><strong>한국 시장</strong> — Postiz 미지원 채널 publisher 빌드 vs 한국 SaaS (스푼·플레이콘 등) 활용 비용?</li>
+<li><strong>채널 전략</strong> — Postiz 미지원 채널 publisher 빌드 vs 기존 SaaS 활용 비용?</li>
 <li><strong>장기 전략</strong> — 6개월 후에도 Paperclip이 살아남을지? momentum vs 단명 가능성?</li>
 </ol>
 <!-- slide -->
@@ -683,12 +683,12 @@ Publisher (mock) → Postiz upload + 다채널 예약
     <span class="slide-footer__page"><span>23</span> / 29</span>
   </div>
 </section>
-<section class="slide" aria-label="F&B 적용 매핑 — 그대로 vs 바꿀 것">
+<section class="slide" aria-label="도메인 적용 전 검증 — 그대로 vs 바꿀 것">
   <div class="slide-header">
     <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
     
   </div>
-  <h1 class="slide-title animate-in">F&B 적용 매핑 — 그대로 vs 바꿀 것</h1>
+  <h1 class="slide-title animate-in">도메인 적용 전 검증 — 그대로 vs 바꿀 것</h1>
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
@@ -697,8 +697,8 @@ Publisher (mock) → Postiz upload + 다채널 예약
 <tr>
 <th>영역</th>
 <th>Nevo 패턴</th>
-<th>F&amp;B 그대로</th>
-<th>바꿀 것</th>
+<th>그대로 가능?</th>
+<th>검증할 것</th>
 </tr>
 </thead>
 <tbody>
@@ -706,37 +706,37 @@ Publisher (mock) → Postiz upload + 다채널 예약
 <td>콘텐츠 원천</td>
 <td>outlier transcript + KB</td>
 <td>△</td>
-<td>레시피·식재·플레이팅 KB로 재설계</td>
+<td>고객이 가진 신뢰 가능한 원천 자료</td>
 </tr>
 <tr>
 <td>채널</td>
 <td>Postiz 25+</td>
 <td>△</td>
-<td>카카오/네이버/배달앱 어댑터 신규</td>
+<td>실제 전환에 기여하는 채널 우선순위</td>
 </tr>
 <tr>
 <td>비주얼</td>
 <td>agent-media UGC</td>
 <td>△</td>
-<td>실촬 + generative 하이브리드</td>
+<td>생성형 허용 범위와 실촬영 필요 범위</td>
 </tr>
 <tr>
 <td>SEO</td>
 <td>yt-dlp + Deepgram</td>
-<td>×</td>
-<td>메뉴/위치/시즌 기반 재설계</td>
+<td>△</td>
+<td>검색/콘텐츠 전략이 실제로 필요한지</td>
 </tr>
 <tr>
 <td>휴먼 게이트</td>
 <td>idea/verifier/final</td>
 <td>✓</td>
-<td>식품표시광고법 게이트 추가</td>
+<td>사람이 반드시 봐야 하는 승인 지점</td>
 </tr>
 <tr>
 <td>slop 룰북</td>
 <td>54 패턴/3 severity</td>
 <td>✓</td>
-<td>F&amp;B 전용 패턴 신규</td>
+<td>고객 도메인 전용 금지 패턴</td>
 </tr>
 </tbody>
 </table>
@@ -747,25 +747,26 @@ Publisher (mock) → Postiz upload + 다채널 예약
     <span class="slide-footer__page"><span>24</span> / 29</span>
   </div>
 </section>
-<section class="slide" aria-label="한국 채널 갭 + 음식 비주얼 하이브리드">
+<section class="slide" aria-label="도메인 인터뷰 전에는 단정하지 않기">
   <div class="slide-header">
     <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
     
   </div>
-  <h1 class="slide-title animate-in">한국 채널 갭 + 음식 비주얼 하이브리드</h1>
+  <h1 class="slide-title animate-in">도메인 인터뷰 전에는 단정하지 않기</h1>
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
-<p><strong>한국 채널 갭</strong> (Postiz 미지원):</p>
+<p><strong>먼저 확인할 것</strong>:</p>
 <ul class="bullets">
-<li>카카오톡 채널 · 네이버 플레이스 · 네이버 블로그 · 배달앱(쿠팡이츠/배민/요기요) · 인스타 DM 응대</li>
-<li>→ 별도 publisher 에이전트 + 한국 채널 어댑터 직접 개발</li>
+<li>고객은 어떤 원천 자료를 이미 가지고 있는가?</li>
+<li>어떤 채널이 실제 전환·재방문·매출에 기여하는가?</li>
+<li>사람이 반드시 승인해야 하는 항목은 무엇인가?</li>
+<li>비개발 운영자가 이해하는 화면은 조직도인가, 시각 워크플로인가?</li>
 </ul>
-<p><strong>음식 비주얼 하이브리드</strong>:</p>
+<p><strong>오늘의 안전한 결론</strong>:</p>
 <ul class="bullets">
-<li>ASMR/현장 슬로모/플레이팅 클로즈업 → <strong>실촬 필수</strong></li>
-<li>셰프/사장님 talking head → <strong>agent-media generative 가능</strong></li>
-<li>→ 실촬 라이브러리 + generative talking head 조합</li>
+<li>Paperclip은 도메인 정답이 아니라 <strong>승인·예산·감사 구조</strong> 의 벤치마크</li>
+<li>적용 해법은 도메인 인터뷰 이후에 확정</li>
 </ul>
 <!-- slide -->
   </div>
@@ -792,7 +793,7 @@ Publisher (mock) → Postiz upload + 다채널 예약
 </ul>
 <p><strong>월텍남</strong> (206K views, &quot;Google 58&quot;)</p>
 <ul class="bullets">
-<li><strong>시각 워크플로 + 리믹스 버튼</strong> — 노코드 운영자(브랜드 매니저)에게 진입 장벽 최저</li>
+<li><strong>시각 워크플로 + 리믹스 버튼</strong> — 노코드 운영자에게 진입 장벽 최저</li>
 <li>→ 자사 제품: <em>조직형 백엔드 + 시각 워크플로 프론트엔드</em> 하이브리드 (가설)</li>
 </ul>
 <!-- slide -->
@@ -825,7 +826,7 @@ Publisher (mock) → Postiz upload + 다채널 예약
 </tr>
 <tr>
 <td><strong>판단</strong></td>
-<td>F&amp;B 마케팅에 어떤 패러다임이 mental model 측면에서 맞는지 판단 근거</td>
+<td>자사 업무에 어떤 패러다임이 mental model 측면에서 맞는지 판단 근거</td>
 </tr>
 <tr>
 <td><strong>실행</strong></td>
@@ -854,7 +855,7 @@ Publisher (mock) → Postiz upload + 다채널 예약
 <ul class="bullets">
 <li>단일 에이전트 vs 멀티 에이전트 설계 기준</li>
 <li>Agentic Design Pattern (Planning / Reflection / Tool Use / Multi-agent collab)</li>
-<li>젝터스튜디오 F&amp;B 워크플로우 초안 진단</li>
+<li>자사 업무 워크플로우 초안 진단</li>
 </ul>
 <p><strong>4세션 로드맵</strong>:</p>
 <ol class="nums">
@@ -900,13 +901,13 @@ Publisher (mock) → Postiz upload + 다채널 예약
 </tr>
 <tr>
 <td>(옵션)</td>
-<td>한국 채널 publisher 에이전트 spec 초안</td>
+<td>고객 접점 publisher 에이전트 spec 초안</td>
 <td>5.2 기반</td>
 </tr>
 <tr>
 <td>(옵션)</td>
-<td>F&amp;B slop 룰북 v0 + execution policy 매핑</td>
-<td>5.4 기반</td>
+<td>검수 룰북 v0 + execution policy 매핑</td>
+<td>5장 기반</td>
 </tr>
 </tbody>
 </table>

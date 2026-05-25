@@ -34,7 +34,7 @@
   <text x="400" y="320" font-size="11" font-style="italic" text-anchor="middle" fill="#FFFFFF" opacity="0.9">— 호출 시에만 컨텍스트로 로드 —</text>
 
   <text x="400" y="370" font-size="11" text-anchor="middle" fill="#FFFFFF">read("brand-tone-ch3.md")</text>
-  <text x="400" y="388" font-size="11" text-anchor="middle" fill="#FFFFFF">grep("원산지 표기", "*.md")</text>
+  <text x="400" y="388" font-size="11" text-anchor="middle" fill="#FFFFFF">grep("금지어", "*.md")</text>
   <text x="400" y="406" font-size="11" text-anchor="middle" fill="#FFFFFF">query("INSERT/UPDATE SQL")</text>
 
   <!-- Side note: AS-IS vs TO-BE -->

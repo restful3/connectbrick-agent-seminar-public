@@ -3645,7 +3645,7 @@ html.reader-size-large .continuous-mode {
 <h3 id="청중이-가져갈-3가지-변화">청중이 가져갈 3가지 변화</h3>
 <ol class="nums">
 <li><strong>(인식)</strong> 멀티에이전트 프레임워크는 4가지 패러다임으로 분류된다 — <strong>그래프 / 역할극 / 스킬 / 조직</strong> .</li>
-<li><strong>(판단)</strong> 자사 도메인(F&amp;B 마케팅 자동화)에 어떤 패러다임이 사고 모델(mental model) 측면에서 가장 잘 맞는지 판단 근거 확보.</li>
+<li><strong>(판단)</strong> 자사 업무에 어떤 패러다임이 사고 모델(mental model) 측면에서 가장 잘 맞는지 판단하는 기준 확보.</li>
 <li><strong>(실행)</strong> Paperclip을 사내 도구로 먼저 직접 사용(dogfood)하면서 자사 제품 거버넌스 벤치마크로 활용할지 결정.</li>
 </ol>
 <h3 id="핵심-메시지-3개">핵심 메시지 3개</h3>
@@ -3707,8 +3707,8 @@ html.reader-size-large .continuous-mode {
 </tr>
 <tr>
 <td>5</td>
-<td>F&amp;B 마케팅 자동화 관점 시사점 + Q&amp;A 토론 시드</td>
-<td>2~3 페이지</td>
+<td>도메인 적용 전 검증 질문 + Q&amp;A 토론 시드</td>
+<td>1~2 페이지</td>
 </tr>
 <tr>
 <td>6</td>
@@ -3823,7 +3823,7 @@ html.reader-size-large .continuous-mode {
 <h3 id="1.2.7-cost-aware-설계-60-30-10-라우팅-iceberg-sub-agent-isolation">1.2.7 Cost-aware 설계 — 60/30/10 라우팅 + Iceberg + Sub-agent isolation</h3>
 <p>§1.2.4의 <em>&quot;SDK 가격 재편으로 비용 인지형 아키텍처 필수&quot;</em> 메시지를 실제 상용 운영 패턴 3개로 풀면 다음과 같다.<sup class="ref-cite"><a href="https://www.youtube.com/watch?v=EsTrWCV0Ph4" target="_blank" rel="noopener">[17]</a></sup></p>
 <p><strong>(a) 60/30/10 모델 라우팅(Model Routing)</strong> — 비싼 모델과 싼 모델을 역할별로 나눠 쓰는 비용 절감 패턴이다.<sup class="ref-cite"><a href="https://www.youtube.com/watch?v=EsTrWCV0Ph4" target="_blank" rel="noopener">[17]</a></sup></p>
-<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 3</span><span class="asset-caption__title">60/30/10 Model Routing 피라미드</span></figcaption><img src="figs/model-routing-60-30-10.svg" alt="60/30/10 Model Routing 피라미드" /><small class="asset-note">모델 가격대를 작업 영향도와 매칭. 60% Haiku/Flash (대량 처리) + 30% Sonnet (일반 작업) + 10% Opus (핵심 의사결정). Nick Saraev claim: 60%+ 비용 절감. 작성자 시각화.</small></figure>
+<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 3</span><span class="asset-caption__title">60/30/10 Model Routing 피라미드</span></figcaption><img src="figs/model-routing-60-30-10.svg" alt="60/30/10 Model Routing 피라미드" /><small class="asset-note">모델 가격대를 작업 영향도와 매칭. 60% Haiku/Flash (대량 처리) + 30% Sonnet (일반 작업) + 10% Opus (핵심 의사결정). <strong>Nick Saraev claim</strong>: 60%+ 비용 절감 — <em>&quot;모든 작업에 Opus를 쓰지 마라. 작업 영향도와 모델 가격을 매칭하는 게 cost-aware 아키텍처의 시작&quot;</em>. 작성자 시각화.</small></figure>
 <ul class="bullets">
 <li><strong>60%</strong>: 저렴 모델 (Haiku · Gemini Flash) → 대량 스크래핑·전처리</li>
 <li><strong>30%</strong>: 중간 모델 (Sonnet) → 일반 작업</li>
@@ -3891,7 +3891,7 @@ html.reader-size-large .continuous-mode {
 <pre class="code-block code-block--yaml" data-lang="yaml"><code class="language-yaml"><span class="nt">crew</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">agents</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trend_researcher</span>
-<span class="w">      </span><span class="nt">goal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">한국 카페 신메뉴 트렌드 5건 발굴</span>
+<span class="w">      </span><span class="nt">goal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">캠페인 소재 트렌드 5건 발굴</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">copywriter</span>
 <span class="w">      </span><span class="nt">goal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">발굴 트렌드 기반 인스타 릴스 카피 3안 작성</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">brand_critic</span>
@@ -3986,7 +3986,7 @@ html.reader-size-large .continuous-mode {
 <td>결정적 분기 + HITL 파이프라인</td>
 <td>발산적 브레인스토밍, 다관점 검토</td>
 <td>코딩, 문서, RAG-heavy</td>
-<td>캠페인 단위 + 승인 + 예산 한도</td>
+<td>프로젝트 단위 + 승인 + 예산 한도</td>
 </tr>
 <tr>
 <td><strong>상태 영속성</strong></td>
@@ -3997,29 +3997,29 @@ html.reader-size-large .continuous-mode {
 </tr>
 </tbody>
 </table>
-<h3 id="fb-마케팅에-왜-조직형이-자연스러운가-가설">F&amp;B 마케팅에 왜 조직형이 자연스러운가 (가설)</h3>
-<p>F&amp;B 마케팅 자동화의 <strong>구조적 특징</strong> 을 단순화하면 다음 4가지다.</p>
+<h3 id="조직형이-자연스러운-업무-조건-가설">조직형이 자연스러운 업무 조건 (가설)</h3>
+<p>조직형 오케스트레이션이 자연스러워지는 <strong>구조적 특징</strong> 을 단순화하면 다음 4가지다.</p>
 <ol class="nums">
-<li><strong>캠페인 단위 산출물</strong> — <em>&quot;신메뉴 출시 캠페인 5월호&quot;</em> 처럼 결과물의 단위가 명확하다 (이슈에 가까움, 노드 시퀀스에 가깝지 않음).</li>
-<li><strong>브랜드 매니저 승인 라인</strong> — 카피·이미지가 외부 채널로 나가기 전 사람이 반드시 들여다본다 (단순 알림이 아닌 <strong>런타임 차단</strong> 이 필요).</li>
-<li><strong>채널·매체별 예산 한도</strong> — Meta Ads, 인플루언서, 시즌별 한도가 명확히 정해져 있고, 한도 초과는 <em>조직 정책 위반</em> 이다 (시스템이 강제해야 함).</li>
-<li><strong>여러 에이전트의 동시 진행</strong> — 카피라이팅 · 디자인 · 캠페인 분석 · CS가 병렬로 돌면서도 같은 브랜드 가이드 · 같은 예산 풀을 공유해야 한다.</li>
+<li><strong>프로젝트 단위 산출물</strong> — 결과물의 단위가 명확하다 (이슈에 가까움, 노드 시퀀스에 가깝지 않음).</li>
+<li><strong>사람 승인 라인</strong> — 외부 공개·고객 전달·비용 집행 전 사람이 반드시 들여다본다 (단순 알림이 아닌 <strong>런타임 차단</strong> 이 필요).</li>
+<li><strong>예산 한도</strong> — 모델 비용, 광고비, 외부 SaaS 비용처럼 한도 초과가 <em>조직 정책 위반</em> 이다 (시스템이 강제해야 함).</li>
+<li><strong>여러 에이전트의 동시 진행</strong> — 작성 · 리서치 · 검수 · 발행이 병렬로 돌면서도 같은 기준과 같은 예산 풀을 공유해야 한다.</li>
 </ol>
 <p>이 4가지를 <em>어떤 패러다임의 사고 모델이 1:1로 받아내는가</em> 를 물어보면, 그래프형은 1번에는 강하지만 2~4번이 외부 래퍼(wrapper)가 되고, 역할극형은 4번을 자연스럽게 받지만 2번·3번이 <em>대화 합의</em> 로 흐려진다. 스킬 중심은 1번 단일 산출물에는 강하지만 4번 병렬 협업이 단일 메인 루프 안에 갇힌다. 조직형은 4가지가 <strong>각각 — 이슈 / 승인 큐 / 예산 한도 / 조직도</strong> 로 1차 시민이다.</p>
-<p>이것이 본 세미나의 핵심 가설이다 — <strong>F&amp;B 마케팅의 도메인 구조와 조직형 사고 모델 사이의 형태 일치(shape match)</strong> 가 다른 3 패러다임 대비 자연스럽다. 단, 이는 작성자(송태영)의 가설이며 단정이 아니다. 본 세미나 Q&amp;A에서 청중(커넥트브릭 개발팀)이 가진 <em>실제 워크플로 모양</em> 을 들어 검증·반박하는 것이 목적이다.</p>
+<p>이것이 본 세미나의 핵심 가설이다 — <strong>프로젝트 산출물·승인·예산·병렬 협업</strong> 이 동시에 있는 업무는 조직형 사고 모델과 형태가 맞는다. 단, 이는 작성자(송태영)의 가설이며 단정이 아니다. 본 세미나 Q&amp;A에서 청중(커넥트브릭 개발팀)이 가진 <em>실제 워크플로 모양</em> 을 들어 검증·반박하는 것이 목적이다.</p>
 <h3 id="본-분류의-위상-작성자-정리-학술-분류-아님">본 분류의 위상 — 작성자 정리, 학술 분류 아님</h3>
 <p>본 4-way 분류는 발표용 사고 모델 프레임이며, 학술적 분류(taxonomy)가 아니다. Turing(2026)·pecollective(2026)·Morphllm(2026) 등은 6~8개 프레임워크를 <em>기능 매트릭스</em> 로 비교하고, Andrew Ng(2024)의 4 design patterns(reflection / tool use / planning / multi-agent)은 <em>흐름 패턴</em> 차원의 분류다. 본 4-way는 그중에서 <strong>&quot;우리 워크플로의 모양과 사고 모델의 형태 일치&quot;</strong> 라는 단일 축으로 단순화한 것이며, 다른 축(거버넌스 / 비용 / 관찰성)을 같이 보면 다른 그림이 나온다 — 본 리포트 3장과 5장에서 이 다른 축들을 보강한다.</p>
 <h2 id="2.6-4-분류-밖-실무에서-더-만나는-것들">2.6 4 분류 밖 — 실무에서 더 만나는 것들</h2>
 <p>본 절은 공개 영상·문서에서 반복적으로 등장하는 실무 보강점이다. 핵심은 단순하다. 4-way 분류는 사고 모델을 잡는 데 유용하지만, 실제 상용 운영에서는 시각 워크플로 도구와 도메인 맞춤형 커스텀 아키텍처가 함께 등장한다.</p>
 <h3 id="2.6.1-시각-워크플로-카테고리-n8n-make-zapier-google-anti-gravity">2.6.1 시각 워크플로 카테고리 (n8n / Make / Zapier / Google Anti-gravity)</h3>
-<p>본 4-way에 들어가지 않지만 F&amp;B 마케팅 자동화에서 <em>가장 자주 만나는 대안</em>은 <strong>드래그앤드롭 노드 기반의 시각 워크플로 도구</strong> 다. n8n · Make.com · Zapier · Google <strong>Anti-gravity</strong> 가 이 카테고리에 속한다. 본 4-way의 &quot;조직형&quot; 과는 다른 축인데, 위 도구들은 <em>&quot;노드 = 동작, 엣지 = 데이터 흐름&quot;</em> 의 시각형 메탈 모델이며 에이전트 자체보다는 <em>통합·자동화 파이프라인의 시각화</em> 가 핵심이다.</p>
-<p><strong>F&amp;B 자동화 관점에서 왜 중요한가</strong> — 카피라이팅 · SNS 포스팅 · 이메일 온보딩 · 리드 스크래핑처럼 <em>결정적·반복적</em> 워크플로는 시각 도구가 코드형보다 운영자 진입 장벽이 낮다. 본 세미나의 4분류와 비교하자면 <em>&quot;코드를 안 쓰고 그릴 수 있는 LangGraph 변종&quot;</em> 에 가까우며, 노코드 운영자(브랜드 매니저·마케터)에게는 자율 에이전트보다 신뢰성이 높다는 게 현 시점의 일반적 평가다.</p>
+<p>본 4-way에 들어가지 않지만 운영 자동화에서 <em>자주 만나는 대안</em>은 <strong>드래그앤드롭 노드 기반의 시각 워크플로 도구</strong> 다. n8n · Make.com · Zapier · Google <strong>Anti-gravity</strong> 가 이 카테고리에 속한다. 본 4-way의 &quot;조직형&quot; 과는 다른 축인데, 위 도구들은 <em>&quot;노드 = 동작, 엣지 = 데이터 흐름&quot;</em> 의 시각형 메탈 모델이며 에이전트 자체보다는 <em>통합·자동화 파이프라인의 시각화</em> 가 핵심이다.</p>
+<p><strong>운영 자동화 관점에서 왜 중요한가</strong> — 카피라이팅 · SNS 포스팅 · 이메일 온보딩 · 리드 스크래핑처럼 <em>결정적·반복적</em> 워크플로는 시각 도구가 코드형보다 운영자 진입 장벽이 낮다. 본 세미나의 4분류와 비교하자면 <em>&quot;코드를 안 쓰고 그릴 수 있는 LangGraph 변종&quot;</em> 에 가까우며, 노코드 운영자에게는 자율 에이전트보다 신뢰성이 높다는 게 현 시점의 일반적 평가다.</p>
 <h3 id="2.6.2-상용-운영-현실-커스텀-인지-아키텍처">2.6.2 상용 운영 현실 — 커스텀 인지 아키텍처</h3>
 <p>LangChain의 <em>Conceptual Guide: Multi Agent Architectures</em> 가 강조한 요지는 다음과 같다.<sup class="ref-cite"><a href="https://www.youtube.com/watch?v=EsTrWCV0Ph4" target="_blank" rel="noopener">[17]</a></sup></p>
 <blockquote>
 <p><em>&quot;실제 상용 운영에 들어가는 멀티에이전트 시스템에서 가장 흔한 형태는 supervisor도 hierarchical도 아닌 — <strong>완전 커스텀 인지 아키텍처(custom cognitive architecture)</strong> 다. 도메인에 맞춰 supervisor와 hierarchical의 일부 요소를 빌려오지만, 전반은 완전 커스텀이다. 이 정도의 customization과 control이 있어야 상용 운영에 도달한다.&quot;</em></p>
 </blockquote>
-<p>즉 본 4-way의 4 패러다임은 <strong>사고 모델의 출발점</strong> 이지, 상용 운영 시스템이 4개 중 하나로 깔끔히 분류되는 일은 드물다. 실제로는 4 패러다임의 요소를 도메인에 맞춰 조합하는 <em>5번째 칸(커스텀)</em> 이 가장 흔하다. <strong>F&amp;B 마케팅 자동화의 상용 운영 모습</strong> 도 — 조직형 backbone + 카피 단계에 역할극형 + 브랜드 톤에 스킬 자산 — 같은 <strong>하이브리드 형태가 자연스러운 종착점</strong> 이다(가설).</p>
+<p>즉 본 4-way의 4 패러다임은 <strong>사고 모델의 출발점</strong> 이지, 상용 운영 시스템이 4개 중 하나로 깔끔히 분류되는 일은 드물다. 실제로는 4 패러다임의 요소를 도메인에 맞춰 조합하는 <em>5번째 칸(커스텀)</em> 이 가장 흔하다. 예를 들어 조직형 backbone + 작성 단계에 역할극형 + 브랜드 톤에 스킬 자산을 섞는 <strong>하이브리드 형태</strong> 가 자연스러운 종착점일 수 있다(가설).</p>
 <h3 id="2.6.3-단일-멀티-전환-기준-510-도구가-sweet-spot">2.6.3 단일 → 멀티 전환 기준 (5~10 도구가 sweet spot)</h3>
 <p>LangChain 동일 영상 인용 — <em>&quot;단일 에이전트가 가진 도구가 5~10개를 넘어서면 잘못된 도구 선택이 시작된다.&quot;</em> 이 경험적 임계가 <strong>언제 단일에서 멀티로 갈 것인가</strong> 의 의사결정 출발점이다. 함께 들리는 3 신호는 다음과 같다.</p>
 <ul class="bullets">
@@ -4027,7 +4027,7 @@ html.reader-size-large .continuous-mode {
 <li><strong>신호 ②</strong> 컨텍스트 폭주 — 도구 호출 + human turn 누적으로 LLM context window 한계 도달</li>
 <li><strong>신호 ③</strong> 전문화 필요 — planner / researcher / writer / critic 같이 <em>역할 페르소나</em> 가 결과 품질을 좌우</li>
 </ul>
-<p>F&amp;B 적용 예시 — <em>&quot;카피 1건 작성&quot;</em> 만 하는 단일 에이전트라면 5개 도구(브랜드 톤 / 금지어 / 신메뉴 DB / 시즌 컨텍스트 / 채널 가이드) 안에 머물 수 있지만, <em>&quot;신메뉴 출시 캠페인 전체&quot;</em> 가 되면 카피 + 디자인 + 캠페인 설계 + 분석 + 게시가 동시에 필요하므로 멀티로 갈 시점이다.</p>
+<p>적용 예시 — <em>&quot;카피 1건 작성&quot;</em> 만 하는 단일 에이전트라면 5개 도구(브랜드 톤 / 금지어 / 제품 DB / 캠페인 컨텍스트 / 채널 가이드) 안에 머물 수 있지만, <em>&quot;캠페인 전체&quot;</em> 가 되면 카피 + 디자인 + 캠페인 설계 + 분석 + 게시가 동시에 필요하므로 멀티로 갈 시점이다.</p>
 <h3 id="2.6.4-워크플로-vs-자율-에이전트-2026년-상용-운영의-권고">2.6.4 워크플로 vs 자율 에이전트 — 2026년 상용 운영의 권고</h3>
 <p>같은 LangChain 영상의 결론은 발표 톤으로 한 줄 인용할 가치가 있다.</p>
 <blockquote>
@@ -4074,7 +4074,7 @@ html.reader-size-large .continuous-mode {
 <td><strong>시각 워크플로</strong></td>
 <td>n8n, Make, Google 58</td>
 <td>노드 (시각)</td>
-<td>★★★★ (반복적 통합·F&amp;B 운영자 진입 장벽 낮음)</td>
+<td>★★★★ (반복적 통합·비개발 운영자 진입 장벽 낮음)</td>
 </tr>
 <tr>
 <td><strong>Custom Cognitive</strong></td>
@@ -4204,7 +4204,7 @@ html.reader-size-large .continuous-mode {
 <pre class="code-block code-block--text" data-lang="text"><code class="language-text">Company Mission → Project Goal → Parent Issue → Sub-issue / Agent</code></pre>
 <p>셋째, <strong>세션 영속성(session persistence)</strong>. 하트비트 사이에 에이전트는 죽는 게 아니라 <em>&quot;잠든다&quot;</em> — 다음 하트비트에서 DB에 적재된 상태를 그대로 이어 받는다. Paperclip 문서는 에이전트가 매번 처음부터 시작하지 않고 같은 작업 맥락을 이어받는다고 설명한다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">[20]</a></sup> 큐 자체도 DB-backed라 서버 재시작 후 복원된다.</p>
 <h2 id="3.4-org-chart-위임-모델">3.4 Org Chart + 위임 모델</h2>
-<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 7</span><span class="asset-caption__title">Org Chart + 위임/승인 라인 (F&amp;B 마케팅 예시)</span></figcaption><img src="figs/org-chart.svg" alt="Org Chart + 위임/승인 라인 (F&amp;B 마케팅 예시)" /><small class="asset-note">엄격한 트리: Board(사람) → CEO Agent → Content/Brand/Publish Manager → Workers (Writer/Researcher/Brand Verifier/Postiz Pub/KR Channel Pub). 실선은 위임, 빨간 점선은 승인 라인(CEO → Board). 미승인 시 하위 task 진행 차단. 작성자 시각화.</small></figure>
+<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 7</span><span class="asset-caption__title">Org Chart + 위임/승인 라인 (콘텐츠 운영 예시)</span></figcaption><img src="figs/org-chart.svg" alt="Org Chart + 위임/승인 라인 (콘텐츠 운영 예시)" /><small class="asset-note">엄격한 트리: Board(사람) → CEO Agent → Content/Brand/Publish Manager → Workers (Writer/Researcher/Brand Verifier/Postiz Pub/Channel Pub). 실선은 위임, 빨간 점선은 승인 라인(CEO → Board). 미승인 시 하위 task 진행 차단. 작성자 시각화.</small></figure>
 <p>조직도는 <strong>엄격한 트리(strict hierarchy)</strong> 다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup></p>
 <ul class="bullets">
 <li>모든 에이전트는 <code>reportsTo</code> 필드를 갖고, <strong>정확히 한 명의 매니저</strong> 에게 보고한다. 사이클 금지(acyclic), 단일 부모.</li>
@@ -4428,7 +4428,7 @@ html.reader-size-large .continuous-mode {
 <tr>
 <td><strong>브랜드 / 평판 리스크</strong></td>
 <td>가시성·중단 권한만 제공</td>
-<td>F&amp;B처럼 톤이 결정적인 도메인은 reviewer-of-record 필수 (추정)</td>
+<td>외부 공개물처럼 톤이 결정적인 업무는 reviewer-of-record 필수 (추정)</td>
 </tr>
 <tr>
 <td><strong>외부 비용 (SaaS·인프라)</strong></td>
@@ -4447,9 +4447,9 @@ html.reader-size-large .continuous-mode {
 <figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 10</span><span class="asset-caption__title">Paperclip이 직접 못 막는 4 실패 패턴</span></figcaption><img src="figs/4-failure-patterns.svg" alt="Paperclip이 직접 못 막는 4 실패 패턴" /><small class="asset-note">① Context Anxiety (조기 종료 선언) · ② Poor Self-eval (자기 칭찬 통과) · ③ 복리 오류 (90%×5단계 = 59%) · ④ 위험한 자율성 (C/D 드라이브 삭제). 시스템 거버넌스(Paperclip) + 모델 행동 가드레일(adapter/skill)의 이중 구조 필요. 작성자 시각화.</small></figure>
 <p>위 표가 <em>시스템 차원의 안전망 vs 잔여 위험</em> 의 매핑이라면, 본 절은 <strong>에이전트 자체의 행동학적 실패 4 패턴</strong> 이다. 본 4 패턴은 시스템 거버넌스로 막기 어렵고 <em>에이전트 설계와 reviewer 룰북</em> 으로 막아야 한다.<sup class="ref-cite"><a href="https://www.youtube.com/watch?v=EsTrWCV0Ph4" target="_blank" rel="noopener">[22]</a></sup></p>
 <p><strong>(a) Context Anxiety — <em>&quot;다 끝났다&quot;고 조기 선언</em></strong> . 컨텍스트가 차오르면 에이전트가 작업이 덜 끝났음에도 <em>마무리 지으려는 행동 변화</em> 가 나타난다. 본 세션 Paperclip 데모의 Writer 에이전트가 <em>드래프트가 아직 부족한데도 stage 전환을 요청하는 시나리오</em> 가 이에 해당한다. Paperclip의 execution policy review stage는 <em>전환을 강제</em> 하지만 <em>완성도를 판정하지는 못한다</em>. 대응 — review stage에 <em>&quot;최소 길이/항목 충족 여부&quot;</em> 같은 정량 기준을 verifier 에이전트로 박는다.</p>
-<p><strong>(b) Poor Self-evaluation — <em>형편없는 결과를 칭찬하며 통과</em></strong> . 자기 결과물 검토를 시키면 LLM이 <em>자기 출력을 좋게 평가</em> 하는 편향이 강하게 나타난다. F&amp;B에서 <em>카피라이팅 → 카피라이터 자기 검수 → 통과</em> 가 위험한 이유다. 대응 — 평가자 에이전트는 <strong>냉소적/적대적 페르소나 + 분리된 컨텍스트</strong>, 가능하면 <strong>다른 모델 패밀리</strong> 로 둔다 (장피엠의 Claude vs Codex 교차 비판 패턴이 이 답 — §5.5 참고).</p>
-<p><strong>(c) 복리 오류 (Compounding Errors) — 단계당 90% × 5단계 = 59%</strong> . 다단계 자율 실행은 <em>각 단계의 정확도가 높아 보여도</em> 누적되면 상용 운영 신뢰성에 미달한다.<sup class="ref-cite"><a href="https://www.youtube.com/watch?v=EsTrWCV0Ph4" target="_blank" rel="noopener">[22]</a></sup> F&amp;B 캠페인 발행처럼 <em>5~10 단계가 직렬로 도는</em> 워크플로는 단계별 95% 이상이거나 HITL 체크포인트가 반드시 끼어 있어야 한다. Paperclip의 executionPolicy review/approval stage가 <em>바로 이 자리에</em> 끼어들 수 있는 자리다 — 비싼 액션(외부 publish, 결제) 직전마다 강제 게이트.</p>
-<p><strong>(d) 위험한 자율성 방치</strong> — 샌드박스 없이 파일 시스템·DB·외부 서비스 권한을 넓게 주면, 에이전트가 실수로 되돌리기 어려운 작업을 실행할 수 있다.<sup class="ref-cite"><a href="https://www.youtube.com/watch?v=EsTrWCV0Ph4" target="_blank" rel="noopener">[22]</a></sup> Paperclip의 atomic checkout이 <em>작업 격리</em> 는 보장하지만 <em>destructive action 권한 자체</em> 는 adapter에 위임된다. 대응 — adapter 단에 <strong>capability allowlist + destructive action 차단 (<code>rm -rf</code> 패턴, DB DELETE 명령 등)</strong> 을 박는다. F&amp;B 도메인에서는 <em>외부 publish · 광고비 집행 · 고객 DB 변경</em> 이 destructive action 후보다.</p>
+<p><strong>(b) Poor Self-evaluation — <em>형편없는 결과를 칭찬하며 통과</em></strong> . 자기 결과물 검토를 시키면 LLM이 <em>자기 출력을 좋게 평가</em> 하는 편향이 강하게 나타난다. <em>카피라이팅 → 카피라이터 자기 검수 → 통과</em> 같은 구조가 위험한 이유다. 대응 — 평가자 에이전트는 <strong>냉소적/적대적 페르소나 + 분리된 컨텍스트</strong>, 가능하면 <strong>다른 모델 패밀리</strong> 로 둔다 (장피엠의 Claude vs Codex 교차 비판 패턴이 이 답 — §5.3 참고).</p>
+<p><strong>(c) 복리 오류 (Compounding Errors) — 단계당 90% × 5단계 = 59%</strong> . 다단계 자율 실행은 <em>각 단계의 정확도가 높아 보여도</em> 누적되면 상용 운영 신뢰성에 미달한다.<sup class="ref-cite"><a href="https://www.youtube.com/watch?v=EsTrWCV0Ph4" target="_blank" rel="noopener">[22]</a></sup> 외부 발행처럼 <em>5~10 단계가 직렬로 도는</em> 워크플로는 단계별 95% 이상이거나 HITL 체크포인트가 반드시 끼어 있어야 한다. Paperclip의 executionPolicy review/approval stage가 <em>바로 이 자리에</em> 끼어들 수 있는 자리다 — 비싼 액션(외부 publish, 결제) 직전마다 강제 게이트.</p>
+<p><strong>(d) 위험한 자율성 방치</strong> — 샌드박스 없이 파일 시스템·DB·외부 서비스 권한을 넓게 주면, 에이전트가 실수로 되돌리기 어려운 작업을 실행할 수 있다.<sup class="ref-cite"><a href="https://www.youtube.com/watch?v=EsTrWCV0Ph4" target="_blank" rel="noopener">[22]</a></sup> Paperclip의 atomic checkout이 <em>작업 격리</em> 는 보장하지만 <em>destructive action 권한 자체</em> 는 adapter에 위임된다. 대응 — adapter 단에 <strong>capability allowlist + destructive action 차단 (<code>rm -rf</code> 패턴, DB DELETE 명령 등)</strong> 을 박는다. 외부 publish · 광고비 집행 · 고객 DB 변경 같은 행동이 destructive action 후보다.</p>
 <p>본 4 패턴은 §3.5의 <em>런타임 강제 거버넌스</em> 와 직교한다 — <em>&quot;승인 받았어도 모델이 거짓 보고하면 게이트가 의미 없다&quot;</em> 가 이 절의 메시지다. <em>시스템 거버넌스 + 모델 행동 가드레일</em> 의 이중 구조가 상용 운영 안전성의 필수 조건이다.</p>
 <h2 id="3.8-왜-조직형이-다른가-결론-t3-메시지">3.8 &quot;왜 조직형이 다른가&quot; 결론 (T3 메시지)</h2>
 <p>본 장의 결론을 본 세미나의 T3 메시지로 응축하면 한 줄이다 — <strong>거버넌스가 런타임 강제(runtime-enforced)여야 한다</strong>.</p>
@@ -4459,7 +4459,7 @@ html.reader-size-large .continuous-mode {
 <li><strong>품질 게이트는 이슈 수준에서 작동한다</strong>. <code>executionPolicy</code> 의 review/approval stage가 이슈 수준에서 작동하므로, <em>&quot;에이전트가 잊을&quot;</em> 가능성을 시스템이 차단한다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup> 코드형(skill-centric) 패러다임은 main loop 안의 tool call로 review를 흉내 낼 수 있지만, 그건 &quot;에이전트가 자발적으로 호출했을 때만&quot; 작동한다.</li>
 <li><strong>예산은 자동 pause를 동반한다</strong>. 80% soft / 100% hard-stop이 8개 차원으로 추적되어 자동 pause + 큐 cancel까지 간다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup> 다른 패러다임의 cost tracking은 <em>&quot;기록&quot;</em> 까지 가지만 <em>&quot;자동 중단&quot;</em> 까지 가는 경우는 드물다.</li>
 </ol>
-<p>곧 다른 세 패러다임이 <em>&quot;어떻게 일하느냐(workflow)&quot;</em> 의 메탈모델인 데 비해, 조직형(Paperclip)은 <em>&quot;어떻게 일하지 않게 하느냐(stop rules)&quot;</em> 의 메탈모델을 시스템에 박아 두었다. F&amp;B 마케팅처럼 <strong>브랜드 톤 · 법규 · 예산 한도</strong> 가 결정적인 도메인에서는 후자가 결정적 차별점이 된다. 이는 본 리포트의 가설이며, 실제 워크플로 진단을 통해 검증되어야 한다.</p>
+<p>곧 다른 세 패러다임이 <em>&quot;어떻게 일하느냐(workflow)&quot;</em> 의 메탈모델인 데 비해, 조직형(Paperclip)은 <em>&quot;어떻게 일하지 않게 하느냐(stop rules)&quot;</em> 의 메탈모델을 시스템에 박아 두었다. <strong>브랜드 톤 · 승인 책임 · 예산 한도</strong> 가 결정적인 업무에서는 후자가 차별점이 된다. 이는 본 리포트의 가설이며, 실제 워크플로 진단을 통해 검증되어야 한다.</p>
 <blockquote>
 <p>다만 단정은 아니다. <em>&quot;런타임 강제&quot;</em> 의 이점은 운영자가 그 거버넌스를 진지하게 운용할 때만 살아난다. &quot;통째 승인&quot; 패턴에 빠지면 형식만 남는다. Paperclip의 약속은 <em>&quot;강제할 수 있는 자리&quot;</em> 를 마련해 둔 것이지, <em>&quot;강제가 저절로 일어나는 것&quot;</em> 은 아니다.</p>
 </blockquote>
@@ -4515,7 +4515,7 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
 <p><strong>2. CEO Strategy 승인 → Subtask 자동 생성 (3~4분)</strong> — Goal 입력란에 <code>&quot;이번 주 인스타 릴스 3개 발행&quot;</code> 을 등록. CEO가 heartbeat 루프에서 Strategy proposal을 만들어 queue에 올리고, 발표자가 승인하면 Content Strategist / Writer / Editor / Publisher 4개 Subtask가 자동 생성·위임된다. 메시지 T3 &quot;거버넌스 런타임 강제&quot;의 첫 증거.</p>
 <p><strong>3. Writer 에이전트 실행 (heartbeat → execution lock) (3~4분)</strong> — Writer 상세 화면에서 heartbeat 카운터 증가와 execution lock 점유 모습을 노출한다. 동일 이슈에 다른 에이전트가 끼어들지 못하는 상호 배제(mutual exclusion)가 시각적으로 드러난다. Activity log에는 LLM 호출 + skill 호출이 실시간으로 추가된다.</p>
 <p><strong>4. Execution policy review stage 작동 (2~3분)</strong> — Writer draft 완료 시 이슈가 자동으로 <code>review</code> stage로 전환되고 Editor가 다음 heartbeat에서 픽업. 이 stage 전환은 prompt가 아닌 <strong>executionPolicy</strong> 설정으로 강제되어 에이전트가 &quot;잊을&quot; 가능성이 차단됨 — T3의 직접 증거.</p>
-<p><strong>5. Activity log 살펴보기 (2~3분)</strong> — 회사 단위 Activity log에서 1~4번 모든 이벤트(승인 / Subtask 생성 / heartbeat / LLM·skill 호출 / stage 전환)가 시간순으로 쌓인 모습을 보여준다. 감사 추적(audit trail)의 완결성. F&amp;B 도메인의 위생/원산지/광고법 검증 시 필수가 될 자산이라는 한 줄 코멘트.</p>
+<p><strong>5. Activity log 살펴보기 (2~3분)</strong> — 회사 단위 Activity log에서 1~4번 모든 이벤트(승인 / Subtask 생성 / heartbeat / LLM·skill 호출 / stage 전환)가 시간순으로 쌓인 모습을 보여준다. 감사 추적(audit trail)의 완결성. 고객에게 공개되는 결과물의 검수·승인 이력을 남기는 자산이라는 한 줄 코멘트.</p>
 <p><strong>6. Budget 알림 (80%/100% 시뮬레이션) (2~3분)</strong> — 사전 셋업이 80% 직전이었으므로 직전 LLM 비용이 누적되면 즉시 80% soft 알림 발생. 발표자가 한도를 더 낮춰 100% hard-stop을 트리거하면 진행 중 Subtask 자동 pause + 대기 큐 cancel. 8개 차원(company/agent/project/goal/issue/provider/model/UTC월) 추적의 의미 한 줄 정리.</p>
 <p><strong>합계</strong>: 약 14~20분. 시간 압박 시 6번 Budget 알림 시연을 짧게 처리하면 약 5분 절감 가능하다.</p>
 <hr />
@@ -4535,7 +4535,7 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
 <li>인증/계정 의존성이 발표 중 실패 위험을 추가</li>
 <li>메시지 전달(=거버넌스와 조직도 작동 시연)에는 모의 처리로 충분</li>
 </ul>
-<p><strong>실제 연결 시 추가 셋업</strong>: Postiz API key + 환경 변수 / agent-media 키 (UGC까지 확장 시) / Instagram·TikTok·YouTube 채널 OAuth / F&amp;B 한국 채널(카카오톡 채널·네이버 플레이스·배달앱)은 Postiz 범위 밖 — 별도 publisher 에이전트 필요.<sup class="ref-cite"><a href="https://postiz.com/blog/automate-social-media-claude-code-ai-agents" target="_blank" rel="noopener">[26]</a></sup></p>
+<p><strong>실제 연결 시 추가 셋업</strong>: Postiz API key + 환경 변수 / agent-media 키 (UGC까지 확장 시) / Instagram·TikTok·YouTube 채널 OAuth. Postiz가 지원하지 않는 사내/지역/전용 채널이 있다면 별도 publisher 에이전트가 필요하다.<sup class="ref-cite"><a href="https://postiz.com/blog/automate-social-media-claude-code-ai-agents" target="_blank" rel="noopener">[26]</a></sup></p>
 <p>이 경계는 발표 중 명시적으로 한 슬라이드로 짚는다 — &quot;왜 mock이냐&quot; 질문이 반드시 나오므로 선제 답변.</p>
 <hr />
 <h2 id="4.6-데모-백업-플랜-라이브-실패-시">4.6 데모 백업 플랜 (라이브 실패 시)</h2>
@@ -4551,195 +4551,90 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
 
     <aside class="section-divider" aria-hidden="true">
       <div class="section-divider__tag">섹션 05</div>
-      <h2 class="section-divider__title">5. F&B 마케팅 자동화 관점 시사점</h2>
-      <p class="section-divider__subtitle">Q&A 토론 시드</p>
+      <h2 class="section-divider__title">5. 도메인 적용 전 검증 질문</h2>
+      <p class="section-divider__subtitle">해법보다 인터뷰</p>
       <div class="section-divider__rule"></div>
       <div class="section-divider__num">05</div>
     </aside>
     
 <section class="report-section s5 page-break">
-<div class="report-section__kicker">Section 05 · 5. F&B 마케팅 자동화 관점 시사점</div>
-<h1 id="5.-fb-마케팅-자동화-관점-시사점-qa-토론-시드">5. F&amp;B 마케팅 자동화 관점 시사점 — Q&amp;A 토론 시드</h1>
+<div class="report-section__kicker">Section 05 · 5. 도메인 적용 전 검증 질문</div>
+<h1 id="5.-도메인-적용-전-검증-질문-해법보다-인터뷰">5. 도메인 적용 전 검증 질문 — 해법보다 인터뷰</h1>
 <blockquote>
-<p>본 장은 <strong>결론이 아니라 토론 시작점</strong> 이다. 본 세션의 Q&amp;A 40분에서 발전시킨다.</p>
+<p>본 장은 특정 업종 해법이 아니라, Paperclip·Nevo 패턴을 커넥트브릭(젝터스튜디오) 맥락에 가져오기 전 확인해야 할 <strong>질문 목록</strong> 이다. 아직 청중의 실제 고객·업무 맥락을 듣기 전이므로, 아래 내용은 단정이 아니라 Q&amp;A에서 검증할 가설로만 사용한다.</p>
 </blockquote>
-<p>앞선 4장까지가 Paperclip의 패러다임적 위치(2장) · 운영 메커니즘(3장) · Nevo David 패턴의 참조 아키텍처(4장)였다면, 본 장은 그것을 <strong>커넥트브릭(젝터스튜디오)이 만들고 있는 F&amp;B 마케팅 자동화 에이전트</strong> 컨텍스트로 끌고 와 <em>그대로 / 바꿔서 / 버리고</em> 의 세 갈래를 정리한다. 모든 항목은 작성자(송태영)의 가설이며, 청중의 실제 워크플로 모양 — 점주·셰프와의 거리, 다점포 여부, 한국 채널 비중, 위생법규 검수 부담 — 에 의해 검증·반박되어야 한다.</p>
-<h2 id="5.1-nevo-패턴-vs-fb-적용-매핑">5.1 Nevo 패턴 vs F&amp;B 적용 매핑</h2>
-<p>Nevo David의 콘텐츠 파이프라인(7-step) · UGC 비디오(agent-media) · 다채널 publisher(Postiz) · slop 룰북 · 휴먼 게이트 위치를, F&amp;B 도메인에서 <em>어떤 게 그대로 적용되고 어떤 게 재설계 필요한지</em> 8개 영역으로 압축하면 다음과 같다.<sup class="ref-cite"><a href="https://postiz.com/blog/automate-social-media-claude-code-ai-agents" target="_blank" rel="noopener">[26]</a></sup><sup class="ref-cite"><a href="https://postiz.com/blog/automate-social-media-claude-code-ai-agents" target="_blank" rel="noopener">[29]</a></sup></p>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 12</span><span class="asset-caption__title">5.1 Nevo 패턴 vs F&amp;B 적용 매핑</span></div></caption>
+<p>앞선 4장까지는 Paperclip의 패러다임적 위치(2장), 운영 메커니즘(3장), Nevo David 패턴의 참조 아키텍처(4장)를 다뤘다. 여기서 바로 &quot;이 도메인에는 이렇게 적용하면 된다&quot;로 가면 위험하다. 실제 고객 워크플로를 모르는 상태에서 채널·규정·운영 관행을 단정하면, 리포트의 강한 부분인 에이전트 운영 분석까지 같이 약해진다.</p>
+<p>따라서 본 장의 역할은 좁다. <strong>에이전트 운영 관점에서 어떤 질문을 던져야 하는지</strong> 만 정리한다.</p>
+<h2 id="5.1-nevo-패턴에서-가져올-수-있는-것과-검증할-것">5.1 Nevo 패턴에서 가져올 수 있는 것과 검증할 것</h2>
+<p>Nevo David의 콘텐츠 파이프라인, UGC 비디오, 다채널 publisher, slop 룰북, 휴먼 게이트는 참고할 만한 구조다.<sup class="ref-cite"><a href="https://postiz.com/blog/automate-social-media-claude-code-ai-agents" target="_blank" rel="noopener">[26]</a></sup><sup class="ref-cite"><a href="https://postiz.com/blog/automate-social-media-claude-code-ai-agents" target="_blank" rel="noopener">[29]</a></sup> 다만 그대로 이식할 수 있는지는 별도 검증이 필요하다.</p>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 12</span><span class="asset-caption__title">5.1 Nevo 패턴에서 가져올 수 있는 것과 검증할 것</span></div></caption>
 <thead>
 <tr>
-<th>영역</th>
-<th>Nevo의 패턴</th>
-<th>F&amp;B 그대로</th>
-<th>F&amp;B에서 바꿀 것</th>
+<th>Nevo / Paperclip 패턴</th>
+<th>가져올 수 있는 운영 원리</th>
+<th>도메인 인터뷰에서 확인할 질문</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>콘텐츠 원천</strong></td>
-<td>타 크리에이터 outlier 영상 transcript + 본인 knowledge base</td>
-<td>점주·셰프 인터뷰를 지식 베이스로</td>
-<td>음식은 <em>오디오 transcript</em> 가 아니라 <strong>레시피·식재·조리·플레이팅</strong> 이 1차 자료 — 재작성 에이전트의 지식 계층 자체를 재설계</td>
+<td>콘텐츠 파이프라인</td>
+<td>원천 자료 → 재구성 → 검수 → 발행의 단계 분리</td>
+<td>실제 고객은 어떤 원천 자료를 이미 가지고 있는가? 문서, 사진, 영상, 기존 콘텐츠, 고객 인터뷰 중 무엇이 가장 신뢰 가능한가?</td>
 </tr>
 <tr>
-<td><strong>viral spotter</strong></td>
-<td>Instagram outlier 비율</td>
-<td>같은 카테고리(라멘/카페/베이커리) outlier 적용</td>
-<td><strong>지역성·시즌성</strong> 이 가중치 (서울 라멘 vs 후쿠오카 라멘은 다른 시장)</td>
+<td>다채널 발행</td>
+<td>publisher 에이전트로 채널별 발행을 분리</td>
+<td>고객사의 매출에 실제로 기여하는 채널은 무엇인가? 글로벌 SNS, 검색/지도, 메시징, 예약/주문 채널 중 우선순위는?</td>
 </tr>
 <tr>
-<td><strong>UGC 비디오</strong></td>
-<td>agent-media talking head + B-roll</td>
-<td>셰프/사장님 talking head는 부분 적용 가능</td>
-<td><strong>음식 B-roll은 생성형 영상만으로 끝낼 수 없다</strong> — ASMR/현장 슬로모는 실촬 필수</td>
+<td>UGC / 영상 자동화</td>
+<td>영상 생성·편집을 별도 skill 또는 도구로 묶음</td>
+<td>생성형 영상이 허용되는 범위와 실촬영이 필요한 범위는 어디서 갈리는가?</td>
 </tr>
 <tr>
-<td><strong>Postiz publish</strong></td>
-<td>25+ 채널 동시 발행</td>
-<td>글로벌 채널은 그대로</td>
-<td><strong>카카오톡 채널 / 네이버 플레이스 / 배달앱 알림</strong> 은 Postiz에 없음 (5.2에서 별도 처리)</td>
+<td>검수 게이트</td>
+<td>review / approval stage를 런타임에서 강제</td>
+<td>사람 검수가 반드시 필요한 항목은 무엇인가? 브랜드 톤, 사실관계, 법무/표기, 최종 발행 승인 중 어디가 병목인가?</td>
 </tr>
 <tr>
-<td><strong>SEO skill</strong></td>
-<td>yt-dlp → Deepgram → ffmpeg → WordPress</td>
-<td>영상 자산 적은 외식업에선 무용</td>
-<td>&quot;리뷰/메뉴/계절 한정&quot; 키워드 기반으로 — <strong>메뉴 사진 + 위치 + 가격</strong> 으로 재설계</td>
-</tr>
-<tr>
-<td><strong>휴먼 게이트</strong></td>
-<td>아이디어 승인 + 검증자(verifier) + 최종 승인</td>
-<td>그대로 강하게 유지</td>
-<td><strong>위생/원산지/알러지</strong> 를 검증자 룰북에 <em>법적 필수 항목</em> 으로 격상</td>
-</tr>
-<tr>
-<td><strong>slop 룰북</strong></td>
-<td>54 패턴 / 3 severity</td>
-<td>같은 형식 채택</td>
-<td>F&amp;B 슬롭은 다름 — &quot;맛있어요/존맛탱&quot; 공허체, AI 합성 음식 사진의 부자연스러운 광택, 사철 적용된 계절 한정 문구 등 <strong>F&amp;B 전용 사전 구축</strong> 필요</td>
-</tr>
-<tr>
-<td><strong>조직도 깊이</strong></td>
-<td>1인 + 3~5 에이전트 + skill 군</td>
-<td>출발은 동일 (CEO=사람 / Content / SEO / UGC / Publisher)</td>
-<td><strong>다점포 운영 시 매장별 특화 에이전트</strong> 한 단계 추가 가능</td>
+<td>조직형 운영</td>
+<td>CEO/Manager/Worker 식 역할 분리</td>
+<td>고객사가 실제로 받아들일 운영 모델은 조직도형인가, 시각 워크플로형인가, 아니면 기존 SaaS 안의 자동화 기능인가?</td>
 </tr>
 </tbody>
 </table>
-<p><strong>핵심 두 변경점</strong> — (1) 음식 비주얼은 생성형 결과물만으로 안 되므로 <em>실촬 자산 파이프라인</em> 을 병행해야 하고, (2) 한국 F&amp;B 발행 채널이 Postiz 박스 밖이라 <em>별도 publisher 에이전트</em> 가 필요하다. 이 두 가지만 인정하면 나머지(스킬 도구화 / 휴먼 게이트 위치 / slop 룰북 / heartbeat 스케줄링)는 <em>거의 그대로 이식 가능</em> 하다는 게 본 장의 출발 가설이다.</p>
-<h2 id="5.2-한국-채널-갭-postiz가-못-다루는-영역">5.2 한국 채널 갭 — Postiz가 못 다루는 영역</h2>
-<p>Postiz의 25+ 채널 리스트(X, Instagram, TikTok, YouTube, Facebook, LinkedIn, Reddit, Threads, Bluesky, Pinterest, Discord, Telegram, Medium, Dev.to, WordPress, Mastodon 등)는 <strong>글로벌 SaaS 채널 중심</strong> 이다. F&amp;B 마케팅에서 한국 시장 매출에 직결되는 채널 중 다음은 박스 밖이다.</p>
+<p>핵심은 <strong>Paperclip을 특정 도메인의 정답으로 제시하지 않는 것</strong> 이다. Paperclip의 장점은 &quot;도메인을 안다&quot;가 아니라, 승인·예산·위임·감사를 시스템에 박아 넣는 방식이다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup> 이 장점이 실제 고객 업무에서도 돈이 되는지는 고객 워크플로를 봐야 알 수 있다.</p>
+<h2 id="5.2-먼저-확인해야-할-리스크-3개">5.2 먼저 확인해야 할 리스크 3개</h2>
+<p><strong>첫째, 채널 우선순위 리스크.</strong> 어떤 채널이 중요한지는 업종·지역·고객군·구매 흐름에 따라 달라질 수 있다. 따라서 특정 채널을 단정하기보다, 고객사 5~10곳의 실제 유입·전환·재방문 경로를 먼저 확인해야 한다.</p>
+<p><strong>둘째, 원천 자료 품질 리스크.</strong> Nevo 패턴은 &quot;쓸 만한 원천 자료&quot;가 있을 때 강하다. 제품 설명, 고객 인터뷰, 기존 콘텐츠, 성과 데이터가 빈약하면 자동화 파이프라인은 그럴듯한 빈 문장을 대량 생산할 수 있다. 이 경우 첫 투자는 에이전트가 아니라 <strong>자료 수집·정리 체계</strong> 일 가능성이 높다.</p>
+<p><strong>셋째, 검수 부담 리스크.</strong> 자동화가 많아질수록 사람이 봐야 할 결과물도 늘어난다. Paperclip의 approval queue는 통제를 제공하지만, 운영자가 모든 결과물을 봐야 한다면 병목은 사라지지 않는다. 그래서 자동 verifier, 샘플링 리뷰, high-risk 항목만 사람에게 올리는 정책을 어디까지 허용할지 정해야 한다.</p>
+<h2 id="5.3-한국-실무자-패턴-운영-방식의-참고-사례">5.3 한국 실무자 패턴 — 운영 방식의 참고 사례</h2>
+<p>본 절의 한국어 영상 2건은 특정 업종 사례라기보다, <strong>1인/소규모 팀이 에이전트 자동화를 운영할 때 생기는 패턴</strong> 을 보여주는 참고 자료다.<sup class="ref-cite"><a href="https://www.youtube.com/watch?v=c-a4GBOxhXQ" target="_blank" rel="noopener">[30]</a></sup></p>
+<h3 id="5.3.1-장피엠-ai-에이전트-전환기-조회수-159k">5.3.1 장피엠 — &quot;AI 에이전트 전환기&quot; (조회수 159K)</h3>
+<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 11</span><span class="asset-caption__title">장피엠 — &quot;나의 AI 에이전트 전환기&quot; (조회수 159K)</span></figcaption><a href="https://www.youtube.com/watch?v=c-a4GBOxhXQ" target="_blank" rel="noopener"><img src="figs/yt-jangpm-thumb.jpg" alt="장피엠 — &quot;나의 AI 에이전트 전환기&quot; (조회수 159K)" /></a><small class="asset-note">장피엠 YouTube 영상 썸네일. 28분 길이, Claude Code + OpenClau로 일상 업무를 에이전트 전환한 1인 운영 사례. 한국어 권 운영 사례 중 상위. 출처: <a href="https://www.youtube.com/watch?v=c-a4GBOxhXQ" target="_blank" rel="noopener">youtube.com/watch?v=c-a4GBOxhXQ</a>.</small></figure>
+<p><strong>Auto-research 패턴</strong> 은 업무와 평가 기준을 같이 주고, AI가 자기 결과물을 채점한 뒤 기준 미달이면 재제출하는 루프다. 이 패턴은 특정 도메인보다도 <strong>초안 품질을 일정 기준 이상으로 올리는 운영 방식</strong> 으로 볼 수 있다.</p>
+<p><strong>Cross-critique 패턴</strong> 은 한 모델의 결과물을 다른 모델에게 비판하게 하는 방식이다. 단일 self-evaluation은 자기 결과물을 좋게 평가하는 편향이 있으므로, 평가자 역할을 분리하는 것이 중요하다. 이는 본 리포트 §3.7.1의 Poor Self-evaluation 위험을 줄이는 실무 패턴이다.</p>
+<p><strong>유지보수 비용과 인지 과부하</strong> 도 핵심 메시지다. 자동화 파이프라인은 외부 도구·API·웹사이트 변경에 계속 영향을 받으며, 에이전트가 늘수록 사람이 검토해야 할 출력도 늘어난다. 즉 ROI 계산에는 &quot;만드는 시간&quot;뿐 아니라 &quot;계속 고치는 시간&quot;과 &quot;검토하는 시간&quot;이 포함되어야 한다.</p>
+<h3 id="5.3.2-월텍남-google-anti-gravity-조회수-206k">5.3.2 월텍남 — Google Anti-gravity (조회수 206K)</h3>
+<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 12</span><span class="asset-caption__title">월텍남 — &quot;업무 전부 자동화&quot; 구글 Anti-gravity (조회수 206K)</span></figcaption><a href="https://www.youtube.com/watch?v=GzGcQzMo_Rw" target="_blank" rel="noopener"><img src="figs/yt-woltechnam-thumb.jpg" alt="월텍남 — &quot;업무 전부 자동화&quot; 구글 Anti-gravity (조회수 206K)" /></a><small class="asset-note">월텍남(월스트리트 테크남) YouTube 영상 썸네일. 9분 30초 길이, Google이 2026년 출시한 시각 워크플로 빌더 Anti-gravity 소개. 노코드 운영자에게 진입 장벽 낮은 형태의 산 증인. 출처: <a href="https://www.youtube.com/watch?v=GzGcQzMo_Rw" target="_blank" rel="noopener">youtube.com/watch?v=GzGcQzMo_Rw</a>.</small></figure>
+<p>이 사례에서 가져올 메시지는 <strong>시각 워크플로 + 단계별 피드백</strong> 이다. 기술자가 아닌 운영자에게는 코드형 그래프나 조직도형 거버넌스보다, 각 단계 결과물을 보고 &quot;다시 생성 / 수정 / 승인&quot; 할 수 있는 UI가 더 자연스러울 수 있다.</p>
+<p>따라서 커넥트브릭 제품 관점의 질문은 하나다. 백엔드는 Paperclip처럼 조직형 거버넌스를 쓰더라도, 사용자가 보는 화면은 <strong>시각 워크플로형</strong> 이어야 하는가?</p>
+<h2 id="5.4-도입-순서-제품-적용-전에-사내-운영으로-먼저-검증">5.4 도입 순서 — 제품 적용 전에 사내 운영으로 먼저 검증</h2>
+<p>현재 기준의 안전한 권고는 <strong>Stage A: 사내 도구로 먼저 써보기</strong> 다. 본 세미나 리포트·슬라이드 제작처럼 리스크가 낮은 내부 워크플로에 Paperclip식 운영을 적용해 보고, 다음 항목을 측정한다.</p>
 <ul class="bullets">
-<li><strong>카카오톡 채널</strong> — 단골 리텐션·쿠폰·예약 알림. 비즈니스 메시지 API.</li>
-<li><strong>네이버 플레이스 / 네이버 블로그</strong> — 위치 기반 검색의 1차 진입점. F&amp;B에서 가장 중요한 <em>지역성</em> 채널.</li>
-<li><strong>배달앱 알림</strong> — 쿠팡이츠 / 배달의민족 / 요기요 의 매장 공지·할인 이벤트 등록.</li>
-<li><strong>인스타 DM 자동응답·예약 봇</strong> — 인스타는 Postiz에 있으나 <em>DM 응대</em> 는 별도 영역.</li>
+<li>위임·승인·검수 로그가 실제로 운영 품질을 올리는가?</li>
+<li>사람이 보는 승인 큐가 감당 가능한 크기인가?</li>
+<li>에이전트가 만든 결과물을 고치는 시간이 줄어드는가, 아니면 새 업무가 되는가?</li>
+<li>비개발 운영자가 이해할 수 있는 화면은 조직도인가, 워크플로인가?</li>
 </ul>
-<p>해결안은 두 갈래의 가설을 동시에 두는 게 안전하다.</p>
+<p>이 검증을 통과한 뒤에야 고객 도메인으로 확장하는 것이 안전하다. 실제 적용은 <strong>도메인 인터뷰 → 원천 자료 진단 → 채널 우선순위 확인 → 검수 정책 설계</strong> 이후의 일이다.</p>
+<h2 id="5.5-qa-토론-시드-5개">5.5 Q&amp;A 토론 시드 5개</h2>
 <ol class="nums">
-<li><strong>별도 발행(publisher) 에이전트 + 한국 채널 어댑터 직접 개발</strong> — Paperclip의 어댑터 추상(<code>http</code>, <code>process</code>, <code>claude_local</code> 등)으로 한국 채널마다 HTTP/CLI 래퍼를 만들어 <em>publisher 직원</em> 한 명에게 도구로 붙인다. Nevo의 Postiz 에이전트와 형태는 같지만 <em>어떤 SaaS·API 위에 올라가느냐</em> 만 다르다.</li>
-<li><strong>한국 SaaS 활용</strong> — 스푼/플레이콘/채널톡 등 한국 마케팅 SaaS가 이미 일부 채널 통합을 제공한다. 빌드 비용 vs 라이선스 비용의 트레이드오프를 정량화해야 한다.</li>
-</ol>
-<p>F&amp;B 특화 점은 <strong>위치 기반(네이버 플레이스가 핵심)</strong> + <strong>배달앱이 사실상 또 다른 매출 채널</strong> 이라는 점이다. 이 두 채널의 비중이 자사 고객사 분포에서 어느 정도인가 — 가 5.7의 토론 시드 4번으로 이어진다.</p>
-<h2 id="5.3-실촬-generative-하이브리드-음식-비주얼">5.3 실촬 + generative 하이브리드 — 음식 비주얼</h2>
-<p>agent-media의 talking head는 <strong>사진 없이 텍스트 설명(description)으로 말하는 캐릭터를 생성</strong> 하고 <code>char_xxxxxxxxxx</code> ID로 시리즈물 일관성을 유지한다.<sup class="ref-cite"><a href="https://postiz.com/blog/automate-social-media-claude-code-ai-agents" target="_blank" rel="noopener">[26]</a></sup> F&amp;B에서 이걸 <strong>셰프/사장님 이미지</strong> 로 활용하는 건 부분적으로 가능하다 — <em>공식 사장님 캐릭터</em> 를 한 번 만들어 두면 인사·신메뉴 소개·이벤트 공지 등을 시리즈물로 시작할 수 있다.</p>
-<p>하지만 <strong>음식 B-roll</strong> 은 문제가 다르다. B-roll은 주인공 인터뷰나 메인 장면 사이에 들어가는 보조 영상이다. 음식 비주얼의 핵심 매력은 다음 세 가지인데, 셋 다 생성형 결과물만으로 처리하기엔 위험하다.</p>
-<ul class="bullets">
-<li><strong>ASMR</strong> (라멘 면치기·치킨 튀김 소리·삼겹살 굽는 소리) — 오디오 자체가 콘텐츠인데 합성은 식별된다.</li>
-<li><strong>현장 슬로모</strong> — 김이 올라오는 순간, 치즈가 늘어나는 컷 — 실제 촬영의 <em>우연성</em> 이 핵심.</li>
-<li><strong>AI 합성 음식 사진 특유의 부자연스러운 광택</strong> — F&amp;B slop 룰북에 <em>반드시 차단할 패턴</em> 으로 포함되어야 함 (5.4 참조).</li>
-</ul>
-<p>권장 가설은 <strong>실촬 영상 라이브러리 + 생성형 talking head 하이브리드</strong> 다. 셰프 talking head는 생성형으로 일관성·확장성을 얻고, 음식 B-roll은 실촬 라이브러리에서 길이·각도·조명 태그로 검색해 합성한다. 이때 콘텐츠 에이전트의 도구 셋에 <em>실촬 라이브러리 검색 MCP</em> 가 추가되어야 한다는 게 자사 빌드 부담 추정이다.</p>
-<h2 id="5.4-위생-원산지-표기법-게이트-execution-policy-활용">5.4 위생/원산지/표기법 게이트 — execution policy 활용</h2>
-<p>Paperclip의 <code>executionPolicy</code>는 이슈마다 <strong>review stage / approval stage</strong> 를 <em>런타임 강제</em> 로 붙일 수 있다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup> 이걸 F&amp;B 콘텐츠 발행 게이트에 <strong>법규 검수 stage</strong> 로 강제 적용하는 것이 본 장의 핵심 활용 시나리오다.</p>
-<p><strong>F&amp;B slop 룰북 패턴</strong>:</p>
-<ul class="bullets">
-<li>공허한 후기체 — &quot;맛있어요 / 존맛탱 / 꼭 가보세요&quot; 같은 <em>증거 없는 형용사</em> 만 나열된 문장.</li>
-<li>AI 합성 음식 사진의 부자연스러운 광택·과채도·플라스틱 텍스처.</li>
-<li>계절 한정 문구를 사철 적용 — &quot;벚꽃 시즌 한정&quot; 이 7월에 그대로 살아 있는 경우 (Notion DB의 시즌 메타와 cross-check 필요).</li>
-</ul>
-<p><strong>법적 필수 항목</strong> (식품표시광고법 / 원산지 표시 / 알러지) 은 단순 가이드라인이 아니라 <strong>위반 시 행정처분 대상</strong> 이다. 따라서 검증자(verifier) 룰북에서 다음 항목들은 <em>심각도(severity) 최상위</em> 로 분류되어야 한다.</p>
-<ul class="bullets">
-<li><strong>원산지</strong> — 한우/한돈/국내산/수입산 표기 누락 또는 과장.</li>
-<li><strong>알러지</strong> — 식품등의 표시기준 고시 13개 의무 표기 항목(메밀·밀·대두·우유·계란·땅콩·복숭아·토마토·게·새우·고등어·돼지고기·아황산류) 누락.</li>
-<li><strong>표시광고법</strong> — &quot;100% / 최고 / 유일 / 의학적 효능&quot; 등 <em>입증 없는 절대 표현</em> / 과학적 근거 없는 효능 표현.</li>
-</ul>
-<p>이걸 검증자(verifier) 에이전트의 자동 룰북으로 1차 차단하고, <em>통과한 것만</em> 사람 reviewer 게이트로 올리는 2-stage가 운영 부담을 크게 낮춘다. 단, 자동 verifier도 환각 가능성이 있으므로 <strong>법규 검수만은 사람 sign-off 를 끝까지 유지</strong> 하는 것이 안전한 출발점이다. 에이전트 리뷰어가 또 다른 환각을 만들 수 있기 때문이다.</p>
-<h2 id="5.5-한국-실무자-패턴-장피엠-월텍남">5.5 한국 실무자 패턴 — 장피엠 + 월텍남</h2>
-<p>본 절은 한국어 실무 운영 사례 2건을 인용한다. 두 영상 모두 조회수 150K~200K로 한국어 권 평균 대비 상위에 속하며, <em>실제 운영 중인 1인의 시행착오</em> 를 직접 말한다는 점에서 본 세미나 요구인 <em>&quot;실 운영해본 사례&quot;</em> 에 정확히 들어맞는다.<sup class="ref-cite"><a href="https://www.youtube.com/watch?v=c-a4GBOxhXQ" target="_blank" rel="noopener">[30]</a></sup></p>
-<h3 id="5.5.1-장피엠-ai-에이전트-전환기-조회수-159k">5.5.1 장피엠 — &quot;AI 에이전트 전환기&quot; (조회수 159K)</h3>
-<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 11</span><span class="asset-caption__title">장피엠 — &quot;나의 AI 에이전트 전환기&quot; (조회수 159K)</span></figcaption><img src="figs/yt-jangpm-thumb.jpg" alt="장피엠 — &quot;나의 AI 에이전트 전환기&quot; (조회수 159K)" /><small class="asset-note">장피엠 YouTube 영상 썸네일. 28분 길이, Claude Code + OpenClau로 일상 업무를 에이전트 전환한 1인 운영 사례. 한국어 권 운영 사례 중 상위. 출처: youtube.com/watch?v=c-a4GBOxhXQ.</small></figure>
-<p><strong>(a) Auto-research 패턴</strong> — Andrej Karpathy의 <em>오토 리서치(Auto-research)</em> 개념을 PPT 생성 같은 업무에 적용. 핵심은 <strong>명확한 평가 기준을 사전 제시 → AI가 자기 결과물을 채점 → 점수 낮으면 스스로 이유 분석 + 재제출</strong> 의 self-evaluation loop를 에이전트 내부에 내장한다.</p>
-<blockquote>
-<p>F&amp;B 적용 — 카피라이팅 에이전트에 <em>&quot;브랜드 톤 8개 항목 + 금지어 0건 + 길이 80~120자&quot;</em> 같은 정량 평가 기준을 동시 제시하면 <em>통과 vs 재작성</em> 루프가 사람 reviewer를 거치지 않고 1차 자동화 가능. 본 리포트 §3.7.1(b) &quot;Poor Self-evaluation&quot; 의 부분 해법.</p>
-</blockquote>
-<p><strong>(b) Cross-critique 패턴 — Claude vs Codex 교차 비판</strong>. 두 에이전트(서로 다른 모델 패밀리)를 동시 운영하며 한쪽 결과를 다른 쪽에게 <em>&quot;이렇게 말하던데 너는 어떻게 생각해?&quot;</em> 로 물어 비판을 유도. 단일 self-eval의 함정(자기 칭찬 편향, §3.7.1(b))을 <em>다른 모델의 시선</em> 으로 회피.</p>
-<blockquote>
-<p>F&amp;B 적용 — Claude로 작성한 카피를 GPT-5o에게 <em>&quot;브랜드 톤 위반 가능성을 찾아라&quot;</em> 시키는 패턴. 평가자가 <em>적대적/다른 모델</em> 일수록 단계당 정확도가 올라 §3.7.1(c) 복리 오류를 완만하게 만든다.</p>
-</blockquote>
-<p><strong>(c) 상용 운영 장애물 — 유지보수의 늪</strong>. 파이프라인을 구축해도 <em>외부 API/사이트 구조가 바뀌면 즉시 고장</em> 난다. <strong>유지보수가 새 업무로 정착</strong> 한다는 뜻이다. 자동화 ROI 계산 시 반드시 <em>숨은 비용(hidden cost)</em> 으로 포함해야 한다. Paperclip의 atomic checkout이나 거버넌스로도 막을 수 없는 영역이다.</p>
-<blockquote>
-<p>F&amp;B 적용 — 카카오톡 채널 API, 네이버 플레이스 API, 배달앱 알림 API가 <em>연 수회 단위로 변경</em> 된다는 가정 하에 <em>어댑터 단의 통합 테스트 루틴(routine)</em> 을 시간 단위로 돌리는 운영 패턴이 권장된다 (Paperclip routine으로 cron 등록).</p>
-</blockquote>
-<p><strong>(d) 상용 운영 장애물 — 인지 과부하</strong>. 에이전트가 늘수록 <em>사람이 검토할 결과물도 폭증</em> 하고, 운영자 번아웃으로 이어진다. 본 리포트 §3.7 운영 위험표의 <em>&quot;통째 승인&quot; 잔여 위험</em> 의 1차적 원인이다.</p>
-<blockquote>
-<p>F&amp;B 적용 — Brand 매니저 1인이 N개 캠페인의 모든 카피 승인을 진다면 <em>결국 통째 승인 패턴</em> 으로 흐른다. 해법은 §5.4에서 다룬 <em>2-stage 자동 verifier 1차 차단 + 통과한 것만 사람에게</em> 가 운영자 인지 부하 완화의 정답.</p>
-</blockquote>
-<h3 id="5.5.2-월텍남-google-anti-gravity-조회수-206k">5.5.2 월텍남 — Google Anti-gravity (조회수 206K)</h3>
-<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 12</span><span class="asset-caption__title">월텍남 — &quot;업무 전부 자동화&quot; 구글 Anti-gravity (조회수 206K)</span></figcaption><img src="figs/yt-woltechnam-thumb.jpg" alt="월텍남 — &quot;업무 전부 자동화&quot; 구글 Anti-gravity (조회수 206K)" /><small class="asset-note">월텍남(월스트리트 테크남) YouTube 영상 썸네일. 9분 30초 길이, Google이 2026년 출시한 시각 워크플로 빌더 Anti-gravity 소개. 노코드 운영자(브랜드 매니저·점주)에게 진입 장벽 낮은 형태의 산 증인. 출처: youtube.com/watch?v=GzGcQzMo_Rw.</small></figure>
-<p><strong>시각 워크플로 + &quot;리믹스&quot; 버튼 패턴</strong>. 다이어그램 노드 흐름 안에서 각 단계 결과물을 사용자가 확인하고, &quot;리믹스&quot; 버튼으로 피드백을 반영해 다음 노드로 전달한다. <em>노코드 시각 워크플로 + HITL</em> 의 결합.</p>
-<blockquote>
-<p>F&amp;B 적용 — 본 리포트 §2.6.1에서 본 <em>시각 워크플로 카테고리</em> 의 산 증인. <strong>F&amp;B 마케팅의 비기술 운영자(브랜드 매니저·점주)</strong> 에게는 코드형 워크플로보다 <em>시각 노드 + 단계 리믹스</em> 가 진입 장벽이 훨씬 낮다. 자사 제품 UX 설계 시 <em>조직형 거버넌스 백엔드 + 시각 워크플로 프론트엔드</em> 의 하이브리드가 합리적 권장 (가설).</p>
-</blockquote>
-<h3 id="5.5.3-두-사례가-본-세미나에-주는-메시지">5.5.3 두 사례가 본 세미나에 주는 메시지</h3>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 13</span><span class="asset-caption__title">5.5.3 두 사례가 본 세미나에 주는 메시지</span></div></caption>
-<thead>
-<tr>
-<th>패턴</th>
-<th>본 리포트 어느 절에 매핑되나</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Auto-research self-eval</td>
-<td>§3.7.1(b) Poor Self-evaluation 해법</td>
-</tr>
-<tr>
-<td>Cross-critique (Claude vs Codex)</td>
-<td>§3.7.1(b)·§3.7.1(c) 복리 오류 완화</td>
-</tr>
-<tr>
-<td>유지보수 숨은 비용</td>
-<td>§3.7 운영 위험표 + Stage A 도입 비용 재산정 (§5.6)</td>
-</tr>
-<tr>
-<td>인지 과부하</td>
-<td>§3.5 보드 운영자 부담 + §3.7 통째 승인 잔여 위험</td>
-</tr>
-<tr>
-<td>시각 워크플로 + 리믹스</td>
-<td>§2.6.1 시각 워크플로 카테고리 + F&amp;B 운영자 UX 설계</td>
-</tr>
-</tbody>
-</table>
-<p><strong>한 줄 결론</strong> — Paperclip의 <em>시스템 거버넌스</em> 와 한국 실무자의 <em>모델 행동 가드레일 + 운영 부담 관리</em> 가 결합되어야 상용 자동화가 지속 가능하다. 본 세미나의 Paperclip 심층 (§3) 은 <em>어떻게 일하는가</em> 의 답이고, 본 절은 <em>어떻게 일하지 않게 만드는가 + 어떻게 사람이 번아웃되지 않는가</em> 의 답이다.</p>
-<h2 id="5.6-도입-의사결정-어느-단계에서">5.6 도입 의사결정 — 어느 단계에서?</h2>
-<p>커넥트브릭 컨텍스트에서 도입 단계를 세 단계로 나누면 다음과 같다.</p>
-<ul class="bullets">
-<li><strong>Stage A — 사내 도구로(dogfood)</strong>: 자사의 <em>콘텐츠 발행 / 리서치 / 리포트 자동화</em> 에 Paperclip을 먼저 도입. 위험이 적고, <em>자사 마케팅 에이전트의 미래 모습</em> 을 사내 운영으로 미리 경험할 수 있다. 본 세미나 시리즈(세미나·컨설팅 리포트 발행 워크플로) 자체가 stage A 후보다.</li>
-<li><strong>Stage B — 제품 비교 학습</strong>: Paperclip의 거버넌스 모델(승인 큐 / execution policy / 8차원 budget hard-stop / activity log) 을 <em>자사 제품 UX 벤치마크</em> 로 사용. &quot;엔터프라이즈 고객이 자사 마케팅 에이전트를 도입할 때 어떤 거버넌스 화면을 기대하는가&quot; 의 사실상 표준이 될 가능성이 있다(가설).</li>
-<li><strong>Stage C — 통합 옵션</strong>: 자사 마케팅 에이전트를 Paperclip의 <em>employee</em> 로 HTTP/webhook adapter를 통해 등록. 엔터프라이즈 고객이 자체 Paperclip 인스턴스에 <em>자사 에이전트를 고용</em> 하는 시나리오. 시장 확장 옵션이지만, Paperclip 자체의 6개월 생존 가능성에 베팅하는 결정이라 시장 모멘텀을 더 본 뒤 결정해도 늦지 않다.</li>
-</ul>
-<p>D-day 권고는 <strong>Stage A부터 — 그것도 본 세미나 운영 워크플로를 후보로</strong> — 라는 것이 작성자 가설이다. 5.7 토론 시드 2번에서 이를 청중의 1인 운영 가능성·ROI 관점으로 검증한다.</p>
-<h2 id="5.7-qa-토론-시드-5개">5.7 Q&amp;A 토론 시드 5개</h2>
-<p>본 장은 결론이 아니라 다음 5개의 질문으로 끝난다. Q&amp;A 40분에서 발전시킬 ice-breaker 다.</p>
-<ol class="nums">
-<li><strong>(가설 검증)</strong> F&amp;B 마케팅에 정말 <em>조직형</em> 이 <em>그래프형</em> 보다 잘 맞는가? 캠페인 1회의 분기 복잡도가 LangGraph로 표현하는 게 더 명확하지 않은가? (2장 2.5 비교표의 가설 시험)</li>
-<li><strong>(현실 검증)</strong> Stage A — 사내 도구로 시작할 때, Paperclip 인스턴스 운영 비용/시간이 ROI를 넘는가? <strong>1인 운영</strong> 이 가능한가? <em>유지보수 숨은 비용</em> 과 <em>인지 과부하</em> (§5.5.1 (c)(d))를 포함하면 손익분기점은? (3장의 보드 운영자 역할 부담 + 5.6 권고의 현실성)</li>
-<li><strong>(비교 검증)</strong> LangGraph로 자사 에이전트가 이미 상용 운영에 올라 있다면 Paperclip으로 갈 이유가 있는가? <em>마이그레이션 비용</em> 대비 <em>거버넌스 이득</em> 의 손익분기점은?</li>
-<li><strong>(한국 시장)</strong> Postiz가 없는 한국 채널 publisher를 직접 만드는 비용 vs 한국 SaaS(스푼/플레이콘/채널톡 등) 활용 비용은? 자사 고객사 분포에서 <em>네이버 플레이스·배달앱</em> 비중이 얼마나 결정적인가? (5.2의 두 갈래)</li>
-<li><strong>(장기 전략)</strong> Paperclip이 6개월 후에도 살아남는가? 오픈소스 모멘텀(67k stars) + 거버넌스 깊이의 <em>해자</em> vs <em>단명 가능성</em> — 베팅 단위를 어디서 끊을 것인가? (Stage C 결정의 prerequisite)</li>
-<li><strong>(운영 패턴)</strong> 한국 실무자 패턴 (§5.5) — Auto-research / Cross-critique / 유지보수 routine / 인지 과부하 완화 중 자사 도메인에 <em>어느 것이 먼저 효과적</em> 인가? 6명 개발팀 + F&amp;B 신규 도메인이라는 자원 제약 하에서 우선순위는?</li>
+<li><strong>고객 워크플로</strong> — 실제 고객은 콘텐츠를 어떤 순서로 만들고 승인하는가? 지금 가장 시간이 많이 드는 단계는 작성, 촬영, 검수, 발행, 성과 분석 중 무엇인가?</li>
+<li><strong>원천 자료</strong> — 고객사가 이미 가진 사진·영상·메뉴 설명·리뷰·인터뷰 자료는 어느 정도인가? 자동화 전에 자료 정리부터 해야 하는 고객군은 얼마나 되는가?</li>
+<li><strong>검수 정책</strong> — 사람이 반드시 봐야 하는 항목과 자동 verifier에 맡겨도 되는 항목은 어디서 갈리는가?</li>
+<li><strong>사용자 화면</strong> — 비개발 운영자는 Paperclip식 조직도/승인 큐를 이해할 수 있는가, 아니면 n8n/Make 같은 시각 워크플로가 더 자연스러운가?</li>
+<li><strong>도입 순서</strong> — 고객 제품에 바로 넣기 전에, 세미나·컨설팅·사내 마케팅 리포트 생산 같은 내부 워크플로로 dogfood할 수 있는가?</li>
 </ol>
 
 </section>
@@ -4760,7 +4655,7 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
 </blockquote>
 <h2 id="6.1-session-1-인사이트-1페이지-정리">6.1 Session 1 인사이트 1페이지 정리</h2>
 <p>오늘 청중이 가져갈 <strong>3가지 변화</strong> 를 다시 압축한다.</p>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 14</span><span class="asset-caption__title">6.1 Session 1 인사이트 1페이지 정리</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 13</span><span class="asset-caption__title">6.1 Session 1 인사이트 1페이지 정리</span></div></caption>
 <thead>
 <tr>
 <th>차원</th>
@@ -4776,7 +4671,7 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
 </tr>
 <tr>
 <td><strong>판단 (judgment)</strong></td>
-<td>자사의 F&amp;B 마케팅 자동화는 <em>캠페인 산출물 + 승인 라인 + 예산 한도</em> 구조이므로 사고 모델상 <strong>조직형</strong>에 가장 가깝다 (작성자 가설, 토론으로 검증)</td>
+<td>자사 업무가 <em>프로젝트 산출물 + 승인 라인 + 예산 한도</em> 구조라면 사고 모델상 <strong>조직형</strong>이 유력한 후보가 된다 (작성자 가설, 토론으로 검증)</td>
 <td>2.5, 5장</td>
 </tr>
 <tr>
@@ -4798,14 +4693,14 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
 <ul class="bullets">
 <li><strong>단일 에이전트 vs 멀티 에이전트 설계 기준</strong> — 어떤 작업을 한 에이전트가 도구 여러 개를 쓰는 형태로 둘지, 언제 역할을 쪼개 멀티 에이전트로 갈지의 판단 기준</li>
 <li><strong>Agentic Design Pattern</strong> — Planning / Reflection / Tool Use / Multi-agent Collaboration (Andrew Ng, 2024) 4종 패턴의 trade-off와 구현 난이도</li>
-<li><strong>젝터스튜디오 F&amp;B 마케팅 시나리오 기반 워크플로우 초안 진단</strong> — 6.3의 follow-up #1을 입력으로 받아 라이브로 진단</li>
+<li><strong>자사 업무 시나리오 기반 워크플로우 초안 진단</strong> — 6.3의 follow-up #1을 입력으로 받아 라이브로 진단</li>
 </ul>
 <blockquote>
 <p><strong>연결고리</strong>: Session 1의 4-way 패러다임 분류는 <em>프레임워크 선택</em> 의 기준이었다. Session 2의 4 design pattern은 <em>프레임워크 안에서의 구조</em> 다. 두 축은 직교한다.</p>
 </blockquote>
 <h2 id="6.3-컨설팅-follow-up-아이템">6.3 컨설팅 follow-up 아이템</h2>
 <p>청중(커넥트브릭)이 다음 2주에 가져갈 숙제다. 강제가 아니라 <em>권장</em> 이며, Session 2의 진단 자료로 쓰인다.</p>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 15</span><span class="asset-caption__title">6.3 컨설팅 follow-up 아이템</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 14</span><span class="asset-caption__title">6.3 컨설팅 follow-up 아이템</span></div></caption>
 <thead>
 <tr>
 <th>#</th>
@@ -4829,13 +4724,13 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
 </tr>
 <tr>
 <td>3</td>
-<td>한국 채널 publisher 에이전트 초안 (5.2 — Postiz 미지원 채널 대응)</td>
+<td>고객 접점 publisher 에이전트 초안 (5.2 — Postiz 미지원 채널 대응)</td>
 <td>옵션</td>
 <td>1~2페이지 설계 메모</td>
 </tr>
 <tr>
 <td>4</td>
-<td>F&amp;B slop 룰북 v0 작성 (5.4) — &quot;이런 표현은 절대 안 됨&quot; 룰 5~10개</td>
+<td>검수 룰북 v0 작성 — &quot;이런 표현/행동은 절대 안 됨&quot; 룰 5~10개</td>
 <td>옵션</td>
 <td>룰북 v0 + execution policy 매핑 메모</td>
 </tr>
@@ -4844,7 +4739,7 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
 <p>필수 #1만 가져오시면 Session 2에서 진단이 가능하다. 옵션 3개는 가져오는 만큼 Session 3~4의 입력이 풍부해진다.</p>
 <h2 id="6.4-4세션-시리즈-전체-로드맵">6.4 4세션 시리즈 전체 로드맵</h2>
 <p>4세션 시리즈는 다음 흐름으로 이어진다. Session 1에서 패러다임 비교와 Paperclip 심층 분석을 먼저 다뤘기 때문에, 이후 회차는 워크플로 설계·도구 사용·상용화 시행착오로 점점 내려간다.</p>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 16</span><span class="asset-caption__title">6.4 4세션 시리즈 전체 로드맵</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 15</span><span class="asset-caption__title">6.4 4세션 시리즈 전체 로드맵</span></div></caption>
 <thead>
 <tr>
 <th>세션</th>
@@ -4864,13 +4759,13 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
 <td>Session 2</td>
 <td>Agent 워크플로우와 Orchestration 구조</td>
 <td>2주 후 (~6/11)</td>
-<td>F&amp;B 워크플로 진단 라이브</td>
+<td>자사 워크플로 진단 라이브</td>
 </tr>
 <tr>
 <td>Session 3</td>
 <td>Tool Use &amp; Context 관리 (MCP)</td>
 <td>~6/25</td>
-<td>한국 채널 자동화 아키텍처</td>
+<td>도구·채널 연동 아키텍처</td>
 </tr>
 <tr>
 <td>Session 4</td>
@@ -4929,13 +4824,10 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
     <li id="ref-25" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[25]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Paperclip AI. (2026). *paperclipai/paperclip — GitHub README*. <a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">https://github.com/paperclipai/paperclip</a> ; Paperclip docs: *Approvals* and *Execution Policy*. <a href="https://github.com/paperclipai/paperclip/blob/master/docs/guides/board-operator/approvals.md" target="_blank" rel="noopener">https://github.com/paperclipai/paperclip/blob/master/docs/guides/board-operator/approvals.md</a></span></li>
     <li id="ref-26" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[26]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Nevo David / Postiz 공개 자료: *How to Automate 90% of Your Social Media Content with Claude Code and AI Agents*, <a href="https://postiz.com/blog/automate-social-media-claude-code-ai-agents" target="_blank" rel="noopener">https://postiz.com/blog/automate-social-media-claude-code-ai-agents</a> ; *How I Killed AI Slop and 10x'd My SEO Traffic with Claude Code Skills*, <a href="https://postiz.com/blog/claude-code-skills-ai-slop-seo" target="_blank" rel="noopener">https://postiz.com/blog/claude-code-skills-ai-slop-seo</a> ; Postiz Agent, <a href="https://postiz.com/agent" target="_blank" rel="noopener">https://postiz.com/agent</a> ; agent-media, <a href="https://agent-media.ai/" target="_blank" rel="noopener">https://agent-media.ai/</a> ; agent-media MCP, <a href="https://agent-media.ai/mcp" target="_blank" rel="noopener">https://agent-media.ai/mcp</a></span></li>
   </ol>
-  <h4>5장 F&B 적용 시사점</h4>
+  <h4>5장 도메인 적용 전 검증 질문</h4>
   <ol class="references" style="list-style:none; padding:0;">
-    <li id="ref-27" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[27]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Paperclip AI. (2026). *paperclipai/paperclip — GitHub README*. <a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">https://github.com/paperclipai/paperclip</a> ; Paperclip official site. <a href="https://paperclip.ing/" target="_blank" rel="noopener">https://paperclip.ing/</a></span></li>
-    <li id="ref-28" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[28]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Paperclip docs: *Execution Policy*, *Costs and Budgets*, and *Activity Log*. <a href="https://github.com/paperclipai/paperclip/blob/master/docs/guides/execution-policy.md" target="_blank" rel="noopener">https://github.com/paperclipai/paperclip/blob/master/docs/guides/execution-policy.md</a></span></li>
     <li id="ref-29" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[29]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Nevo David / Postiz 공개 자료: *How to Automate 90% of Your Social Media Content with Claude Code and AI Agents*, <a href="https://postiz.com/blog/automate-social-media-claude-code-ai-agents" target="_blank" rel="noopener">https://postiz.com/blog/automate-social-media-claude-code-ai-agents</a> ; *How I Killed AI Slop and 10x'd My SEO Traffic with Claude Code Skills*, <a href="https://postiz.com/blog/claude-code-skills-ai-slop-seo" target="_blank" rel="noopener">https://postiz.com/blog/claude-code-skills-ai-slop-seo</a> ; *How a Creator Built an AI Content System That Hit 5M Impressions in 2 Weeks*, <a href="https://postiz.com/blog/ai-content-system-5m-impressions" target="_blank" rel="noopener">https://postiz.com/blog/ai-content-system-5m-impressions</a></span></li>
     <li id="ref-30" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[30]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">일잘러 장피엠, *나의 AI 에이전트 전환기 (Claude Code, OpenClau)*, <a href="https://www.youtube.com/watch?v=c-a4GBOxhXQ" target="_blank" rel="noopener">https://www.youtube.com/watch?v=c-a4GBOxhXQ</a> ; 월스트리트 테크남, *업무 전부 자동화 — 구글 AI 에이전트*, <a href="https://www.youtube.com/watch?v=GzGcQzMo_Rw" target="_blank" rel="noopener">https://www.youtube.com/watch?v=GzGcQzMo_Rw</a></span></li>
-    <li id="ref-31" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[31]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Paperclip AI. (2026). *paperclipai/paperclip — GitHub README*. <a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">https://github.com/paperclipai/paperclip</a></span></li>
   </ol>
   <h4>6장 Next Step</h4>
   <ol class="references" style="list-style:none; padding:0;">

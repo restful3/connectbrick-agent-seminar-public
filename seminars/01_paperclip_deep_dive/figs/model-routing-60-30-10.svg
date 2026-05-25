@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 80 800 375" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
-  <rect x="0" y="80" width="800" height="375" fill="#FAFAF9"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 80 800 305" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
+  <rect x="0" y="80" width="800" height="305" fill="#FAFAF9"/>
 
   <!-- Pyramid: 10% / 30% / 60% from top -->
   <!-- Top: 10% Opus -->
@@ -30,10 +30,4 @@
     <text x="60" y="365" font-size="10" font-weight="600" fill="#6B6B72">$ 최저가</text>
   </g>
 
-  <!-- Bottom note: savings -->
-  <g>
-    <rect x="120" y="395" width="560" height="50" rx="6" fill="#D1FAE5" stroke="#059669" stroke-width="1.5"/>
-    <text x="400" y="416" font-size="12" font-weight="700" text-anchor="middle" fill="#065F46">결과 — 60% 비용 절감 (Nick Saraev claim)</text>
-    <text x="400" y="434" font-size="10" text-anchor="middle" fill="#065F46">"모든 작업에 Opus를 쓰지 마라. 작업 영향도와 모델 가격을 매칭하는 게 cost-aware 아키텍처의 시작"</text>
-  </g>
 </svg>

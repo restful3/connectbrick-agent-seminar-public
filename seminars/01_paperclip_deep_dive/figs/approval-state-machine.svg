@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 70 800 380" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 70 800 295" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
   <defs>
     <marker id="arrow-st" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#0F2C59"/>
@@ -11,7 +11,7 @@
     </marker>
   </defs>
 
-  <rect x="0" y="70" width="800" height="380" fill="#FAFAF9"/>
+  <rect x="0" y="70" width="800" height="295" fill="#FAFAF9"/>
 
   <!-- START: submitted -->
   <g>
@@ -73,11 +73,4 @@
   <line x1="600" y1="110" x2="678" y2="110" stroke="#0F2C59" stroke-width="2" marker-end="url(#arrow-st)"/>
   <text x="639" y="100" font-size="9" text-anchor="middle" fill="#6B6B72">unblock</text>
 
-  <!-- Legend / Note -->
-  <g>
-    <rect x="50" y="380" width="700" height="60" rx="5" fill="#FFFFFF" stroke="#6B6B72" stroke-width="1"/>
-    <text x="60" y="402" font-size="11" font-weight="600" fill="#0F2C59">핵심 차별점 — 알림이 아니라 차단</text>
-    <text x="60" y="420" font-size="10" fill="#0F0F10">미승인(pending/rejected) 시 CEO는 해당 strategy의 <tspan font-weight="600">하위 task를 in_progress로 옮길 수 없음</tspan>.</text>
-    <text x="60" y="434" font-size="10" fill="#0F0F10">→ 다른 패러다임의 "approve 함수 호출 안 하면 그냥 안 부르는" 자율 규율과 결정적으로 다름.</text>
-  </g>
 </svg>
