@@ -3363,8 +3363,16 @@ html.reader-size-large .continuous-mode {
     left: 18px;
   }
   .report-settings {
-    top: 18px;
+    top: auto;
     right: 18px;
+    bottom: 18px;
+  }
+  .report-settings-panel {
+    top: auto;
+    right: 0;
+    bottom: 50px;
+    transform: translateY(6px) scale(0.98);
+    transform-origin: bottom right;
   }
   .continuous-mode .report-cover {
     padding: 44px 18px 32px;
@@ -3406,7 +3414,13 @@ html.reader-size-large .continuous-mode {
   .continuous-mode .report-section h2 { font-size: 24px; }
   .continuous-mode .report-section h3 { font-size: 20px; }
   .continuous-mode .report-section h4 { font-size: 15px; }
-  .continuous-mode .report-section pre { font-size: 12px; padding: 14px 16px; }
+  .continuous-mode .report-section pre {
+    font-size: 12px;
+    padding: 38px 16px 14px;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .continuous-mode .report-section pre code { font-size: inherit; }
   .continuous-mode .report-section table {
     display: block;
     overflow-x: auto;
@@ -3419,6 +3433,11 @@ html.reader-size-large .continuous-mode {
   .continuous-mode .report-section li {
     font-size: max(16px, var(--reader-body-size));
     line-height: 1.72;
+    overflow-wrap: anywhere;
+  }
+  .continuous-mode .report-section small,
+  .continuous-mode .report-appendix li {
+    overflow-wrap: anywhere;
   }
   .report-reader-controls button,
   .report-settings a {
