@@ -386,7 +386,9 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--brand-primary);
   margin-bottom: 6px;
 }
-.report-section > h2 {
+.report-section > h1,
+.report-section > h2,
+.report-appendix > h1 {
   font-size: 22pt; font-weight: 900;
   color: var(--text);
   letter-spacing: -0.028em;
@@ -2501,7 +2503,9 @@ aside.reading-more p { margin: 2px 0; font-size: 9.5pt; }
 }
 
 /* ===== 고아 문단 방지 (v2 컴포넌트 포함) ===== */
+.report-section h1,
 .report-section h2,
+.report-appendix h1,
 .report-section h3,
 .slide-h3,
 .sub-h4 {
@@ -3159,7 +3163,8 @@ html.reader-size-large .continuous-mode {
 }
 
 /* ----- 6. Typography — heading rhythm ----- */
-.continuous-mode .report-section h1 {
+.continuous-mode .report-section h1,
+.continuous-mode .report-appendix h1 {
   font-size: 36px;
   line-height: 1.1;
   margin-top: 0;
@@ -3522,8 +3527,8 @@ html.reader-size-large .continuous-mode {
     </aside>
     
 <section class="report-section s0 page-break">
-<div class="report-section__kicker">Section 00 · 섹션 0. 핵심 요약</div>
-<h2>섹션 0. 핵심 요약</h2>
+<div class="report-section__kicker">Section 00 · 0. 핵심 요약</div>
+<h1>0. 핵심 요약</h1>
 <p class="report-section__lede">본 리포트는 커넥트브릭 개발팀 6명을 대상으로 한 <strong>1회차 세미나의 상세 자료</strong> 다. 청중이 가져갈 3가지 변화를 위해 5장의 본문으로 구성된다.</p>
 <h3 id="청중이-가져갈-3가지-변화">청중이 가져갈 3가지 변화</h3>
 <ol class="nums">
@@ -4780,7 +4785,7 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
 
 </section>
 <section class="report-appendix s-refs page-break">
-  <h2 id="참고문헌">참고문헌</h2>
+  <h1 id="참고문헌">참고문헌</h1>
   <h4>1장 Weekly Digest</h4>
   <ol class="references" style="list-style:none; padding:0;">
     <li id="ref-1" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[1]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">LangChain. (2026). *State of Agent Engineering 2025/2026* (n=1,340). <a href="https://www.langchain.com/state-of-agent-engineering" target="_blank" rel="noopener">https://www.langchain.com/state-of-agent-engineering</a></span></li>
@@ -4901,7 +4906,7 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
   window.buildDrawerTOC = function () {
     var list = document.getElementById('tocDrawerList');
     if (!list || list.children.length) return;
-    var headings = Array.from(document.querySelectorAll('.report-section h1, .report-section h2, .report-appendix h2'));
+    var headings = Array.from(document.querySelectorAll('.report-section h1, .report-section h2, .report-appendix h1, .report-appendix h2'));
     headings.forEach(function (h, idx) {
       var label = getHeadingLabel(h);
       if (!label || /^References$/i.test(label)) label = '참고문헌';
@@ -5020,12 +5025,12 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
     // 1) 일반 섹션 — 부록(Appendix) 이 아닌 .report-section
     document.querySelectorAll('.report-section').forEach(function (sec) {
       if (isAppendixSection(sec)) return;
-      var h2 = sec.querySelector(':scope > h2');
-      if (h2) {
+      var heading = sec.querySelector(':scope > h1, :scope > h2');
+      if (heading) {
         secCount += 1;
         subCount = 0;
         if (!sec.id) sec.id = 'section-' + secCount;
-        tocList.appendChild(makeItem(sec.id, String(secCount).padStart(2, '0'), h2.textContent, false));
+        tocList.appendChild(makeItem(sec.id, String(secCount).padStart(2, '0'), heading.textContent, false));
       }
       sec.querySelectorAll(':scope h3').forEach(function (h3) {
         subCount += 1;
@@ -5037,10 +5042,10 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
     // 2) 참고문헌 — report 말미의 독립 섹션
     var refs = document.querySelector('.report-appendix.s-refs');
     if (refs) {
-      var refsHeading = refs.querySelector(':scope > h2');
+      var refsHeading = refs.querySelector(':scope > h1, :scope > h2');
       secCount += 1;
       if (!refs.id) refs.id = 'section-' + secCount;
-      if (refsHeading && !refsHeading.id) refsHeading.id = refs.id + '-h2';
+      if (refsHeading && !refsHeading.id) refsHeading.id = refs.id + '-' + refsHeading.tagName.toLowerCase();
       tocList.appendChild(makeItem(refs.id, String(secCount).padStart(2, '0'), refsHeading ? refsHeading.textContent : '참고문헌', false));
     }
   };
