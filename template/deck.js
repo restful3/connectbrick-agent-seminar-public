@@ -57,7 +57,6 @@ function goTo(i, opts) {
   animateCountersOnSlide(slides[curIdx]);
   updateTocCurrent();
   if (!opts.skipHash) setSlideHash(curIdx);
-  showChrome();
 }
 function nextSlide() { goTo(curIdx + 1); }
 function prevSlide() { goTo(curIdx - 1); }
@@ -202,7 +201,6 @@ function showChrome() {
   chromeTimer = setTimeout(hideChrome, 3000);
 }
 document.addEventListener('mousemove', showChrome);
-document.addEventListener('touchstart', showChrome);
 
 // Touch swipe
 var touchStart = null;
@@ -353,7 +351,7 @@ window.addEventListener('load', function() {
   buildCharts();
   buildToc();
   goTo(parseSlideHash(), { skipHash: true });
-  showChrome();
+  document.body.classList.add('chrome-hidden');
 });
 
 // ===== Download PNG =====

@@ -1657,10 +1657,11 @@ code {
 .toc-row.current .toc-row__num { color: var(--brand-primary); }
 
 /* ===== Auto-hide chrome ===== */
-.slide-nav, .viz-menu, .toc-toggle { transition: opacity 0.3s ease; }
+.slide-nav, .viz-menu, .toc-toggle, .deck-progress { transition: opacity 0.3s ease; }
 body.chrome-hidden .slide-nav,
 body.chrome-hidden .viz-menu,
-body.chrome-hidden .toc-toggle {
+body.chrome-hidden .toc-toggle,
+body.chrome-hidden .deck-progress {
   opacity: 0;
   pointer-events: none;
 }
