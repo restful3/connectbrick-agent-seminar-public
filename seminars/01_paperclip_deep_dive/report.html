@@ -1315,7 +1315,7 @@ pre .err {
   transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
 }
 .report-nav-toggle,
-.report-settings button {
+.report-settings-toggle {
   position: fixed;
   top: 22px;
   width: 42px;
@@ -1330,13 +1330,54 @@ pre .err {
   top: 22px;
   right: 22px;
   z-index: 90;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 8px;
+  display: block;
 }
-.report-settings button {
+.report-settings-toggle {
   position: static;
+}
+.report-settings-panel {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 248px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--surface) 96%, transparent);
+  color: var(--text);
+  box-shadow: 0 18px 54px rgba(0,0,0,0.18);
+  backdrop-filter: blur(14px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px) scale(0.98);
+  transform-origin: top right;
+  transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s ease;
+}
+.report-settings-panel.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+.report-settings-panel__group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 72%, transparent);
+}
+.report-settings-panel__group:first-child { padding-top: 0; }
+.report-settings-panel__group:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.report-settings-panel__label {
+  flex: 0 0 auto;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
 }
 .report-reader-controls,
 .report-quick-links {
@@ -1345,6 +1386,7 @@ pre .err {
   justify-content: flex-end;
   gap: 6px;
 }
+.report-settings-panel #themeToggle,
 .report-reader-controls button,
 .report-settings a {
   position: static;
@@ -1355,6 +1397,14 @@ pre .err {
   border-radius: 999px;
   font: 800 12px/1 'Inter', 'Noto Sans KR', sans-serif;
   text-decoration: none;
+  box-shadow: none;
+}
+.report-settings-panel #themeToggle {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  padding: 0;
+  font-size: 16px;
 }
 .report-reader-controls button.is-active {
   background: var(--brand-primary);
@@ -3371,8 +3421,8 @@ html.reader-size-large .continuous-mode {
     padding: 0 9px;
     font-size: 11px;
   }
-  .report-quick-links {
-    display: none;
+  .report-settings-panel {
+    width: min(248px, calc(100vw - 36px));
   }
   .continuous-mode .report-section img,
   .continuous-mode .report-section svg {
@@ -3411,17 +3461,29 @@ html.reader-size-large .continuous-mode {
     <span aria-hidden="true">☰</span>
   </button>
   <div class="report-settings" aria-label="설정">
-    <button id="themeToggle" type="button" onclick="cycleTheme()" aria-label="나이트 모드 전환" title="나이트 모드 전환">☀</button>
-    <div class="report-reader-controls" aria-label="글자 크기">
-      <button type="button" data-reader-size="compact" aria-label="글자 작게" title="글자 작게">A-</button>
-      <button type="button" data-reader-size="comfortable" aria-label="기본 글자 크기" title="기본 글자 크기">A</button>
-      <button type="button" data-reader-size="large" aria-label="글자 크게" title="글자 크게">A+</button>
+    <button id="settingsToggle" class="report-settings-toggle" type="button" aria-label="설정 열기" aria-controls="settingsPanel" aria-expanded="false" title="설정">⚙</button>
+    <div id="settingsPanel" class="report-settings-panel" aria-hidden="true">
+      <div class="report-settings-panel__group">
+        <span class="report-settings-panel__label">화면</span>
+        <button id="themeToggle" type="button" onclick="cycleTheme()" aria-label="나이트 모드 전환" title="나이트 모드 전환">☀</button>
+      </div>
+      <div class="report-settings-panel__group">
+        <span class="report-settings-panel__label">글자 크기</span>
+        <div class="report-reader-controls" aria-label="글자 크기">
+          <button type="button" data-reader-size="compact" aria-label="글자 작게" title="글자 작게">A-</button>
+          <button type="button" data-reader-size="comfortable" aria-label="기본 글자 크기" title="기본 글자 크기">A</button>
+          <button type="button" data-reader-size="large" aria-label="글자 크게" title="글자 크게">A+</button>
+        </div>
+      </div>
+      <div class="report-settings-panel__group">
+        <span class="report-settings-panel__label">자료</span>
+        <nav class="report-quick-links" aria-label="세미나 링크">
+          <a href="../../index.html" title="전체 세미나 목차" aria-label="전체 세미나 목차">전체</a>
+          <a href="digest.html" title="Weekly Digest" aria-label="Weekly Digest">Digest</a>
+          <a href="slides.html" title="발표 슬라이드" aria-label="발표 슬라이드">Slides</a>
+        </nav>
+      </div>
     </div>
-    <nav class="report-quick-links" aria-label="세미나 링크">
-      <a href="../../index.html" title="전체 세미나 목차" aria-label="전체 세미나 목차">전체</a>
-      <a href="digest.html" title="Weekly Digest" aria-label="Weekly Digest">Digest</a>
-      <a href="slides.html" title="발표 슬라이드" aria-label="발표 슬라이드">Slides</a>
-    </nav>
   </div>
   <div id="tocBackdrop" class="report-toc-backdrop" hidden></div>
   <nav id="tocDrawer" class="report-toc-drawer" aria-label="문서 목차" aria-hidden="true">
@@ -4839,16 +4901,49 @@ Publisher → Postiz upload + 다채널 예약 (mock 처리)</code></pre>
     if (toggle) toggle.setAttribute('aria-expanded', 'false');
   };
 
+  window.openSettingsPanel = function () {
+    var panel = document.getElementById('settingsPanel');
+    var toggle = document.getElementById('settingsToggle');
+    if (!panel || !toggle) return;
+    panel.classList.add('is-open');
+    panel.setAttribute('aria-hidden', 'false');
+    toggle.setAttribute('aria-expanded', 'true');
+  };
+
+  window.closeSettingsPanel = function () {
+    var panel = document.getElementById('settingsPanel');
+    var toggle = document.getElementById('settingsToggle');
+    if (!panel || !toggle) return;
+    panel.classList.remove('is-open');
+    panel.setAttribute('aria-hidden', 'true');
+    toggle.setAttribute('aria-expanded', 'false');
+  };
+
+  window.toggleSettingsPanel = function () {
+    var panel = document.getElementById('settingsPanel');
+    if (panel && panel.classList.contains('is-open')) window.closeSettingsPanel();
+    else window.openSettingsPanel();
+  };
+
   function setupFloatingControls() {
     var tocToggle = document.getElementById('tocToggle');
     var tocClose = document.getElementById('tocClose');
     var backdrop = document.getElementById('tocBackdrop');
+    var settingsToggle = document.getElementById('settingsToggle');
     if (tocToggle) tocToggle.addEventListener('click', window.openTOCDrawer);
     if (tocClose) tocClose.addEventListener('click', window.closeTOCDrawer);
     if (backdrop) backdrop.addEventListener('click', window.closeTOCDrawer);
+    if (settingsToggle) settingsToggle.addEventListener('click', window.toggleSettingsPanel);
     setupReaderControls();
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') window.closeTOCDrawer();
+      if (e.key === 'Escape') {
+        window.closeTOCDrawer();
+        window.closeSettingsPanel();
+      }
+    });
+    document.addEventListener('click', function (e) {
+      var settings = document.querySelector('.report-settings');
+      if (settings && !settings.contains(e.target)) window.closeSettingsPanel();
     });
   }
 
