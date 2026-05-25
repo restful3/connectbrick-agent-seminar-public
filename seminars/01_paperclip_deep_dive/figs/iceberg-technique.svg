@@ -28,12 +28,7 @@
 
   <!-- Iceberg below water (hidden 80-90%) -->
   <polygon points="320,200 480,200 530,450 270,450" fill="url(#iceBot)" stroke="#0369A1" stroke-width="1.5" opacity="0.85"/>
-  <text x="400" y="270" font-size="22" font-weight="700" text-anchor="middle" fill="#FFFFFF">80~90%</text>
-  <text x="400" y="300" font-size="13" text-anchor="middle" fill="#FFFFFF">전체 자산 (소스 코드 / 문서 / DB)</text>
-  <text x="400" y="320" font-size="11" font-style="italic" text-anchor="middle" fill="#FFFFFF" opacity="0.9">— 호출 시에만 컨텍스트로 로드 —</text>
-
-  <text x="400" y="370" font-size="11" text-anchor="middle" fill="#FFFFFF">read("brand-tone-ch3.md")</text>
-  <text x="400" y="388" font-size="11" text-anchor="middle" fill="#FFFFFF">grep("금지어", "*.md")</text>
-  <text x="400" y="406" font-size="11" text-anchor="middle" fill="#FFFFFF">query("INSERT/UPDATE SQL")</text>
-
+  <text x="400" y="290" font-size="22" font-weight="700" text-anchor="middle" fill="#FFFFFF">80~90%</text>
+  <text x="400" y="320" font-size="13" text-anchor="middle" fill="#FFFFFF">전체 자산</text>
+  <text x="400" y="342" font-size="12" text-anchor="middle" fill="#FFFFFF" opacity="0.9">소스 코드 · 문서 · DB</text>
 </svg>
