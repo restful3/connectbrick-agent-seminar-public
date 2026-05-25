@@ -3882,10 +3882,11 @@ html.reader-size-large .continuous-mode {
 <blockquote>
 <p><strong>이 장의 한 줄</strong> — 2026년의 에이전트 프레임워크 선택은 &quot;어느 라이브러리가 좋은가&quot; 가 아니라 <strong>&quot;우리 워크플로의 모양이 무엇과 닮았는가&quot;</strong> 를 묻는 문제다.</p>
 </blockquote>
-<p>1장에서 본 것처럼 단일 모델 능력의 한계 효용이 떨어진 결과, 2025년 한 덩어리로 묶여 있던 &quot;에이전트 프레임워크&quot; 카테고리는 2026년에 분명한 4개 패러다임으로 갈렸다. 본 장은 이를 <strong>그래프형 / 역할극형 / 스킬 중심 / 조직형</strong> 의 네 가지로 정리한다. 본 4-way 는 Anthropic <em>Building Effective Agents</em>(2024)의 workflow 패턴<sup class="ref-cite"><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">[41]</a></sup>, LangGraph 공식 multi-agent architecture(supervisor / swarm / hierarchical)<sup class="ref-cite"><a href="https://reference.langchain.com/python/langgraph-supervisor" target="_blank" rel="noopener">[42]</a></sup><sup class="ref-cite"><a href="https://dev.to/sreeni5018/building-multi-agent-systems-with-langgraph-swarm-a-new-approach-to-agent-collaboration-15kj" target="_blank" rel="noopener">[43]</a></sup>, arXiv survey <em>Multi-Agent Collaboration Mechanisms</em>(2025)<sup class="ref-cite"><a href="https://arxiv.org/abs/2501.06322" target="_blank" rel="noopener">[44]</a></sup> 의 통용 분류를 <em>사고 방식 단위</em> 로 한 단계 추상화한 발표용 프레임이며, 각 패러다임은 본문에서 통용 분류와의 1:1 대응을 함께 표시한다. Turing(2026)<sup class="ref-cite"><a href="https://www.turing.com/resources/ai-agent-frameworks" target="_blank" rel="noopener">[7]</a></sup>·pecollective(2026)<sup class="ref-cite"><a href="https://pecollective.com/blog/ai-agent-frameworks-compared/" target="_blank" rel="noopener">[6]</a></sup>·Morphllm(2026)<sup class="ref-cite"><a href="https://www.morphllm.com/ai-agent-framework" target="_blank" rel="noopener">[18]</a></sup> 의 6~8개 프레임워크 매트릭스 비교는 <em>기능</em> 차원에서, Andrew Ng(2024)<sup class="ref-cite"><a href="https://x.com/AndrewYNg/status/1773393357022298617" target="_blank" rel="noopener">[19]</a></sup> 의 4 design patterns 는 <em>흐름 패턴</em> 차원에서 본 분류와 보완 관계다.</p>
+<p>1장에서 본 것처럼 단일 모델 능력만으로 차이를 만들던 시기는 지나가고 있다. 2026년의 선택지는 &quot;어떤 모델이 더 똑똑한가&quot;보다 <strong>여러 호출·도구·사람 승인을 어떤 모양으로 엮을 것인가</strong> 에 가까워졌다. 본 장은 이 선택지를 <strong>그래프형 / 역할극형 / 스킬 중심 / 조직형</strong> 네 가지 사고 방식으로 정리한다.</p>
+<p>이 4-way는 학술 분류를 그대로 옮긴 표가 아니다. Anthropic <em>Building Effective Agents</em>(2024)의 workflow 패턴<sup class="ref-cite"><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">[41]</a></sup>, LangChain/LangGraph의 multi-agent 패턴<sup class="ref-cite"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent/index" target="_blank" rel="noopener">[42]</a></sup><sup class="ref-cite"><a href="https://dev.to/sreeni5018/building-multi-agent-systems-with-langgraph-swarm-a-new-approach-to-agent-collaboration-15kj" target="_blank" rel="noopener">[43]</a></sup>, arXiv survey <em>Multi-Agent Collaboration Mechanisms</em>(2025)<sup class="ref-cite"><a href="https://arxiv.org/abs/2501.06322" target="_blank" rel="noopener">[44]</a></sup> 같은 통용 분류를 발표용 의사결정 언어로 단순화한 프레임이다. 출처와의 대응은 각 절에서 짧게 표시하되, 본문의 초점은 하나다. <strong>우리 업무의 흐름이 어느 사고 방식과 가장 닮았는가.</strong></p>
 <h2 id="2.1-그래프형-langgraph">2.1 그래프형 (LangGraph)</h2>
 <blockquote>
-<p><strong>통용 분류 대응</strong> — Anthropic <em>Building Effective Agents</em> 의 <strong>orchestrator-workers</strong> 패턴<sup class="ref-cite"><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">[41]</a></sup> 의 코드 명시형 구현. 중앙 LLM 이 동적으로 분해·위임·합성하는 워크플로를 <em>state graph + node + edge</em> 의 정적 코드로 외재화한 것이 LangGraph 다.</p>
+<p><strong>가까운 통용 분류</strong> — Anthropic의 prompt chaining / routing / orchestrator-workers 같은 workflow 패턴<sup class="ref-cite"><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">[41]</a></sup>을 코드로 명시하기 좋은 쪽이다. LangGraph는 이를 <em>state graph + node + edge</em> 로 표현해, 실행 경로와 중단 지점을 사람이 추적할 수 있게 만든다.</p>
 </blockquote>
 <h3 id="사고-방식">사고 방식</h3>
 <p><strong>그래프형(graph-based)</strong> 의 사고 방식은 <strong>상태 그래프(state graph) + 노드(node) + 엣지(edge) + 체크포인트(checkpoint)</strong> 다. 워크플로를 노드(에이전트 또는 도구 호출 한 단계)와 엣지(다음 노드로 가는 조건부 전이)로 명시적으로 그리고, 각 노드의 입출력은 공유 state 객체에 누적된다. LangGraph의 차별점은 노드 사이에 <strong>HITL(human-in-the-loop) 체크포인트</strong> 를 기본 기능으로 끼워 넣을 수 있다는 점이다. 특정 엣지에서 실행을 멈추고 사람 승인을 기다린 뒤 재개하는 패턴이 SDK 수준에서 지원된다.</p>
@@ -3910,7 +3911,7 @@ html.reader-size-large .continuous-mode {
 <p>분기가 <strong>결정적(deterministic)</strong> 이고 단계 수가 미리 알려진 워크플로 — 예: <em>리서치 → 초안 → 검수 → 발행</em> 처럼 노드 개수와 순서가 거의 고정된 파이프라인. 분기 조건을 코드로 명시할 수 있고, HITL 체크포인트가 자연스러운 자리에 들어가는 작업이라면 그래프형이 가장 추적성이 높다. 반대로, 단계 수 자체가 LLM의 판단에 따라 가변적이거나 발산적 토론이 필요한 작업에는 그래프가 폭발한다.</p>
 <h2 id="2.2-역할극형-crewai-autogen">2.2 역할극형 (CrewAI, AutoGen)</h2>
 <blockquote>
-<p><strong>통용 분류 대응</strong> — LangGraph 의 <strong>swarm</strong>(decentralized handoff)<sup class="ref-cite"><a href="https://dev.to/sreeni5018/building-multi-agent-systems-with-langgraph-swarm-a-new-approach-to-agent-collaboration-15kj" target="_blank" rel="noopener">[43]</a></sup> 과 CrewAI 의 role-based crew, AutoGen 의 GroupChat 같은 conversation-driven 접근에 대응한다. Anthropic 분류로는 <em>routing + parallelization</em> 의 발산적 조합 + <em>agents</em> 의 dynamic 축<sup class="ref-cite"><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">[41]</a></sup> 이 섞인 형태다.</p>
+<p><strong>가까운 통용 분류</strong> — LangChain/LangGraph의 handoff 또는 swarm 계열<sup class="ref-cite"><a href="https://dev.to/sreeni5018/building-multi-agent-systems-with-langgraph-swarm-a-new-approach-to-agent-collaboration-15kj" target="_blank" rel="noopener">[43]</a></sup>, CrewAI의 role-based crew, AutoGen의 GroupChat처럼 <strong>누가 다음 발언권을 가져갈지 실행 중 정해지는</strong> 접근에 가깝다.</p>
 </blockquote>
 <h3 id="사고-방식-1">사고 방식</h3>
 <p><strong>역할극형(role-playing)</strong> 의 사고 방식은 <strong>역할(role) + 대화(conversation) + 협상(negotiation)</strong> 이다. 각 에이전트는 직책(researcher / writer / critic 등)과 페르소나를 받고, 작업은 <em>그들끼리 대화하는 과정</em> 에서 산출된다. CrewAI는 이를 &quot;process 기반 crew&quot; 로 정형화하고, AutoGen / AG2는 <strong>GroupChat</strong> 추상으로 다자 대화를 핵심 기능으로 만든다. 흐름이 코드로 미리 그려지지 않고, 누가 언제 발언하는지는 매니저 또는 종료 조건이 실행 중 결정한다.</p>
@@ -3934,10 +3935,10 @@ html.reader-size-large .continuous-mode {
 <p><strong>발산적 브레인스토밍, 다관점 검토, 합의 형성</strong> 이 본질인 작업 — 예: 캠페인 컨셉 발굴, 카피 A/B 후보 생성, 다관점 리뷰. 단계가 미리 정해져 있지 않고 <em>&quot;누가 무엇을 말하는가&quot;</em> 의 페르소나가 산출물 품질을 좌우하는 영역. 반대로, 산출물의 형태와 승인 라인이 명확히 고정된 운영 워크플로에는 대화형 구조가 과해질 수 있다. 수렴이 느리거나 무한 핑퐁이 발생하기 쉽다.</p>
 <h2 id="2.3-skill-중심-deep-agents-claude-agent-sdk">2.3 Skill 중심 (Deep Agents, Claude Agent SDK)</h2>
 <blockquote>
-<p><strong>통용 분류 대응</strong> — Anthropic 이 2025-10 <strong>Agent Skills</strong><sup class="ref-cite"><a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" target="_blank" rel="noopener">[11]</a></sup> 와 후속 open standard<sup class="ref-cite"><a href="https://agentskills.io/home" target="_blank" rel="noopener">[40]</a></sup> 로 공식화한 카테고리 자체다 (1장 §1.2.4 참조). Anthropic <em>Building Effective Agents</em> 분류의 <em>agents</em> 축 — open-ended 문제에서 LLM 이 동적으로 도구·스킬을 선택하는 형태<sup class="ref-cite"><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">[41]</a></sup> — 가 자산 패키지(SKILL.md)로 모듈화된 변형이다.</p>
+<p><strong>가까운 통용 분류</strong> — Anthropic Agent Skills<sup class="ref-cite"><a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" target="_blank" rel="noopener">[11]</a></sup>와 Agent Skills open standard<sup class="ref-cite"><a href="https://agentskills.io/home" target="_blank" rel="noopener">[40]</a></sup>가 이 흐름을 가장 선명하게 보여 준다. LangChain의 Skills 패턴처럼, 단일 에이전트가 통제권을 유지하면서 필요한 지식·절차·도구 설명을 필요할 때만 불러오는 방식이다.</p>
 </blockquote>
 <h3 id="사고-방식-2">사고 방식</h3>
-<p><strong>스킬 중심(skill-based)</strong> 의 사고 방식은 <strong>도구 라이브러리(tool library) + 메인 루프(main loop) + 단계적 로딩(staged loading)</strong> 이다. 에이전트 1대가 큰 메인 루프를 돌리고, 작업에 필요한 능력은 사전에 작성된 <strong><code>SKILL.md</code></strong> 폴더(YAML frontmatter + 절차 지시문 + 보조 스크립트)에서 동적으로 꺼내 쓴다. 핵심은 단계적 로딩이다. 메타데이터만 부팅 시 로드되고, 본문은 실제 호출 시점에만 컨텍스트에 올라가서 토큰 비용을 잡는다 (1장 §1.2.3). 그래프나 대화가 <em>흐름의 표현</em> 이라면, 스킬 중심은 <em>능력의 모듈화</em> 다.</p>
+<p><strong>스킬 중심(skill-based)</strong> 의 사고 방식은 <strong>도구 라이브러리(tool library) + 메인 루프(main loop) + 단계적 로딩(staged loading)</strong> 이다. 에이전트 1대가 큰 메인 루프를 돌리고, 작업에 필요한 능력은 사전에 작성된 <strong><code>SKILL.md</code></strong> 폴더(YAML frontmatter + 절차 지시문 + 보조 스크립트)에서 동적으로 꺼내 쓴다. 핵심은 단계적 로딩이다. 메타데이터만 부팅 시 로드되고, 본문은 실제 호출 시점에만 컨텍스트에 올라가서 토큰 비용을 줄인다 (1장 §1.2.3). 그래프나 대화가 <em>흐름의 표현</em> 이라면, 스킬 중심은 <em>능력의 모듈화</em> 다.</p>
 <h3 id="구조-예시-디렉토리">구조 예시 (디렉토리)</h3>
 <div class="asset-caption asset-caption--code"><span class="asset-caption__chip">코드 3</span><span class="asset-caption__title">구조 예시 (디렉토리)</span></div>
 <pre class="code-block code-block--text" data-lang="text"><code class="language-text">.claude/skills/
@@ -3961,7 +3962,7 @@ html.reader-size-large .continuous-mode {
 <p><strong>코딩, 문서 작성, RAG 중심 작업</strong> — 단일 에이전트가 광범위한 도구·자산을 활용해 산출물을 만들지만, 호출되는 능력의 집합은 작업마다 달라지는 영역. 사내 자산(브랜드 톤, 카피 SOP, 캠페인 셋업 절차)이 <em>코드 리포지토리에 버전 관리되어야 할</em> 만큼 누적되어 있다면 강력하다. 반대로, <strong>여러 에이전트가 병렬로 협업하면서 승인·예산을 공유해야 하는 운영 워크플로</strong> 에는 단일 메인 루프가 병목이 된다.</p>
 <h2 id="2.4-조직형-paperclip">2.4 조직형 (Paperclip)</h2>
 <blockquote>
-<p><strong>통용 분류 대응</strong> — LangGraph 의 <strong>hierarchical multi-level supervisor</strong><sup class="ref-cite"><a href="https://reference.langchain.com/python/langgraph-supervisor" target="_blank" rel="noopener">[42]</a></sup> 에 <em>예산·승인 거버넌스</em> 를 시스템 레벨로 강제한 확장형이다. LangGraph supervisor 가 <em>task routing</em> 까지를 책임진다면, 조직형은 routing + governance(예산 한도, 승인 큐, 감사 로그)를 한 런타임 안에 묶는다. arXiv survey<sup class="ref-cite"><a href="https://arxiv.org/abs/2501.06322" target="_blank" rel="noopener">[44]</a></sup> 5축으로 보면 <em>structure: hierarchical centralized + strategy: role-based + coordination: governance-enforced</em> 의 결합이다.</p>
+<p><strong>가까운 통용 분류</strong> — LangChain/LangGraph의 supervisor 또는 hierarchical multi-agent 구조<sup class="ref-cite"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent/index" target="_blank" rel="noopener">[42]</a></sup>와 닮았지만, 차이는 거버넌스다. supervisor가 주로 <em>누구에게 일을 보낼지</em>를 정한다면, 조직형은 예산 한도·승인 큐·감사 로그까지 런타임의 핵심 규칙으로 다룬다.</p>
 </blockquote>
 <h3 id="사고-방식-3">사고 방식</h3>
 <p><strong>조직형(organization-based)</strong> 의 사고 방식은 <strong>회사(company) — 조직도(org chart) + 목표(goal) + 예산(budget) + 거버넌스(governance)</strong> 다. 에이전트는 &quot;역할&quot; 이 아니라 <strong>직책(role) + 보고 라인(reporting line) + 예산 한도(budget cap) + 승인 권한(approval scope)</strong> 을 가진 <em>직원</em> 으로 모델링되고, 일감은 회의·메시지가 아니라 <strong>이슈(issue) / 태스크(task) / 목표(goal)</strong> 라는 산출물 단위로 흘러간다. 결정적 차별점은 거버넌스를 <strong>실행 중 시스템이 강제한다</strong>는 점이다. 승인 큐에 걸린 전략은 단순 알림이 아니라, 미승인 시 하위 태스크 진행 자체를 시스템이 막는다. 예산도 80% 사전 경고 / 100% 강제 중단으로 추적되어 자동 일시정지를 건다.</p>
@@ -4041,91 +4042,29 @@ html.reader-size-large .continuous-mode {
 </ol>
 <p>이 4가지를 <em>어떤 패러다임의 사고 방식이 1:1로 받아내는가</em> 를 물어보면, 그래프형은 1번에는 강하지만 2~4번이 외부 래퍼(wrapper)에 맡겨지고, 역할극형은 4번을 자연스럽게 받지만 2번·3번이 <em>대화 합의</em> 로 흐려진다. 스킬 중심은 1번 단일 산출물에는 강하지만 4번 병렬 협업이 단일 메인 루프 안에 갇힌다. 조직형은 4가지가 <strong>각각 이슈 / 승인 큐 / 예산 한도 / 조직도</strong> 로 시스템의 핵심 요소가 된다.</p>
 <p>이것이 본 세미나의 핵심 가설이다. <strong>프로젝트 산출물·승인·예산·병렬 협업</strong> 이 동시에 있는 업무는 조직형 사고 방식과 형태가 맞는다. 단, 이는 작성자(송태영)의 가설이며 단정이 아니다. 본 세미나 Q&amp;A에서 청중(커넥트브릭 개발팀)이 가진 <em>실제 워크플로 모양</em> 을 들어 검증·반박하는 것이 목적이다.</p>
-<h3 id="본-분류의-위상-통용-분류-위-발표용-단축형">본 분류의 위상 — 통용 분류 위 발표용 단축형</h3>
-<p>본 4-way 분류는 발표용 <em>사고 방식</em> 축으로 한 단계 추상화한 프레임이다. 같은 영역을 다른 축으로 자르는 통용 분류 4종은 다음과 같다 — 각각 본 4-way 와 직교하거나 일부 중첩한다.</p>
+<h3 id="본-분류의-위상-발표용-판단-프레임">본 분류의 위상 — 발표용 판단 프레임</h3>
+<p>본 4-way 분류는 &quot;정답 분류표&quot; 가 아니라 발표용 <em>사고 방식</em> 프레임이다. 같은 영역을 다른 축으로 자르는 통용 분류는 다음과 같다. 각각 본 4-way와 직교하거나 일부만 겹친다.</p>
 <ul class="bullets">
 <li><strong>Andrew Ng(2024)</strong> 의 4 design patterns<sup class="ref-cite"><a href="https://x.com/AndrewYNg/status/1773393357022298617" target="_blank" rel="noopener">[19]</a></sup> — reflection / tool use / planning / multi-agent. <strong>흐름 패턴</strong> 차원.</li>
 <li><strong>Anthropic(2024-12) — <em>Building Effective Agents</em></strong> <sup class="ref-cite"><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">[41]</a></sup> — prompt chaining / routing / parallelization / orchestrator-workers / evaluator-optimizer + workflows vs agents. <strong>코드 구조</strong> 차원.</li>
-<li><strong>LangGraph 공식 architecture</strong><sup class="ref-cite"><a href="https://reference.langchain.com/python/langgraph-supervisor" target="_blank" rel="noopener">[42]</a></sup><sup class="ref-cite"><a href="https://dev.to/sreeni5018/building-multi-agent-systems-with-langgraph-swarm-a-new-approach-to-agent-collaboration-15kj" target="_blank" rel="noopener">[43]</a></sup> — network / supervisor / hierarchical multi-level / swarm. <strong>제어 위상</strong> 차원.</li>
+<li><strong>LangGraph 공식 architecture</strong><sup class="ref-cite"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent/index" target="_blank" rel="noopener">[42]</a></sup><sup class="ref-cite"><a href="https://dev.to/sreeni5018/building-multi-agent-systems-with-langgraph-swarm-a-new-approach-to-agent-collaboration-15kj" target="_blank" rel="noopener">[43]</a></sup> — network / supervisor / hierarchical multi-level / swarm. <strong>제어 위상</strong> 차원.</li>
 <li><strong>arXiv 2501.06322 survey</strong><sup class="ref-cite"><a href="https://arxiv.org/abs/2501.06322" target="_blank" rel="noopener">[44]</a></sup> — actors / types / structures / strategies / coordination protocols. <strong>학술 5축</strong> 분류.</li>
 <li><strong>Turing</strong><sup class="ref-cite"><a href="https://www.turing.com/resources/ai-agent-frameworks" target="_blank" rel="noopener">[7]</a></sup>·<strong>pecollective</strong><sup class="ref-cite"><a href="https://pecollective.com/blog/ai-agent-frameworks-compared/" target="_blank" rel="noopener">[6]</a></sup>·<strong>Morphllm</strong><sup class="ref-cite"><a href="https://www.morphllm.com/ai-agent-framework" target="_blank" rel="noopener">[18]</a></sup> — 6~8개 프레임워크 매트릭스. <strong>기능 비교</strong> 차원.</li>
 </ul>
-<p>본 4-way 는 그중 <strong>&quot;우리 워크플로의 모양과 사고 방식의 형태가 맞는가&quot;</strong> 라는 단일 축으로 단순화한 것이며, 다른 축(거버넌스 / 비용 / 관찰성)을 같이 보면 다른 그림이 나온다. 본 리포트 3장과 5장에서 이 다른 축들을 보강한다.</p>
-<h2 id="2.6-4-분류-밖-실무에서-더-만나는-것들">2.6 4 분류 밖 — 실무에서 더 만나는 것들</h2>
-<p>본 절은 공개 영상·문서에서 반복적으로 등장하는 실무 보강점이다. 핵심은 단순하다. 4-way 분류는 사고 방식을 잡는 데 유용하지만, 실제 상용 운영에서는 시각 워크플로 도구와 도메인 맞춤형 아키텍처가 함께 등장한다.</p>
-<h3 id="2.6.1-시각-워크플로-카테고리-n8n-make-zapier-google-anti-gravity">2.6.1 시각 워크플로 카테고리 (n8n / Make / Zapier / Google Anti-gravity)</h3>
-<p>본 4-way에 들어가지 않지만 운영 자동화에서 <em>자주 만나는 대안</em>은 <strong>드래그앤드롭 노드 기반의 시각 워크플로 도구</strong> 다. n8n · Make.com · Zapier · Google <strong>Anti-gravity</strong> 가 이 카테고리에 속한다. 본 4-way의 &quot;조직형&quot; 과는 다른 축인데, 위 도구들은 <em>&quot;노드 = 동작, 엣지 = 데이터 흐름&quot;</em> 의 시각적 사고 방식이며 에이전트 자체보다는 <em>통합·자동화 파이프라인의 시각화</em> 가 핵심이다.</p>
-<p><strong>운영 자동화 관점에서 왜 중요한가</strong> — 카피라이팅 · SNS 포스팅 · 이메일 온보딩 · 리드 스크래핑처럼 <em>결정적·반복적</em> 워크플로는 시각 도구가 코드형보다 운영자 진입 장벽이 낮다. 본 세미나의 4분류와 비교하자면 <em>&quot;코드를 안 쓰고 그릴 수 있는 LangGraph 변종&quot;</em> 에 가까우며, 노코드 운영자에게는 자율 에이전트보다 신뢰성이 높다는 게 현 시점의 일반적 평가다.</p>
-<h3 id="2.6.2-상용-운영-현실-도메인-맞춤형-인지-구조">2.6.2 상용 운영 현실 — 도메인 맞춤형 인지 구조</h3>
-<p>LangChain의 <em>Conceptual Guide: Multi Agent Architectures</em> 가 강조한 요지는 다음과 같다.<sup class="ref-cite"><a href="https://www.youtube.com/watch?v=EsTrWCV0Ph4" target="_blank" rel="noopener">[17]</a></sup></p>
+<p>본 4-way는 그중 <strong>&quot;우리 워크플로의 모양과 사고 방식의 형태가 맞는가&quot;</strong> 라는 단일 축으로 단순화한 것이다. 다른 축, 예를 들어 거버넌스 / 비용 / 관찰성 / UX까지 같이 보면 다른 그림이 나온다. 본 리포트 3장과 5장에서 이 축들을 보강한다.</p>
+<h2 id="2.6-실무-보정-실제-운영은-하이브리드다">2.6 실무 보정 — 실제 운영은 하이브리드다</h2>
+<p>마지막으로 한 가지를 분명히 해야 한다. 실제 상용 운영 시스템이 위 네 칸 중 하나에 깔끔히 들어가는 경우는 드물다. 4-way는 <strong>처음 설계를 어디서 시작할지</strong> 를 정하는 프레임이지, 최종 아키텍처의 이름표가 아니다.</p>
+<p>실무에서는 보통 다음 보정이 들어간다.</p>
+<ol class="nums">
+<li><strong>시각 워크플로 도구</strong> — n8n, Make, Zapier 같은 도구는 개발자가 아닌 운영자에게 강하다. 카피 발행, 이메일 온보딩, 리드 수집처럼 결정적이고 반복적인 파이프라인은 코드형 그래프보다 시각 도구가 더 빨리 정착할 수 있다.</li>
+<li><strong>개발자용 에이전트 플랫폼</strong> — Google Antigravity 같은 도구는 노코드 자동화보다는 개발자 워크스페이스에서 여러 에이전트를 실행·검증·관찰하는 쪽에 가깝다. n8n류와 같은 칸에 넣기보다, 에이전트 실행 하네스와 오케스트레이션 UI의 결합으로 보는 편이 정확하다.</li>
+<li><strong>도메인 맞춤형 구조</strong> — LangChain의 multi-agent 가이드가 강조하듯, 실전에서는 subagents / handoffs / skills / router / custom workflow를 섞는다.<sup class="ref-cite"><a href="https://www.youtube.com/watch?v=EsTrWCV0Ph4" target="_blank" rel="noopener">[17]</a></sup> 예를 들어 조직형 뼈대 위에 작성 단계는 역할극형으로, 브랜드 톤은 스킬 중심으로, 승인 라인은 그래프형 체크포인트로 붙일 수 있다.</li>
+</ol>
+<p>따라서 Session 2의 질문은 &quot;네 패러다임 중 하나를 고르자&quot; 가 아니다. 더 정확한 질문은 다음이다.</p>
 <blockquote>
-<p><em>&quot;실제 상용 운영에 들어가는 멀티에이전트 시스템에서 가장 흔한 형태는 supervisor도 hierarchical도 아닌 — <strong>완전한 도메인 맞춤형 인지 구조(custom cognitive architecture)</strong> 다. 도메인에 맞춰 supervisor와 hierarchical의 일부 요소를 빌려오지만, 전반은 맞춤형으로 설계된다. 이 정도의 커스터마이징과 통제력이 있어야 상용 운영에 도달한다.&quot;</em></p>
+<p><strong>우리의 기본 뼈대는 무엇이고, 어느 단계에 다른 패턴을 섞어야 하는가?</strong></p>
 </blockquote>
-<p>즉 본 4-way의 4 패러다임은 <strong>사고 방식의 출발점</strong> 이지, 상용 운영 시스템이 4개 중 하나로 깔끔히 분류되는 일은 드물다. 실제로는 4 패러다임의 요소를 도메인에 맞춰 조합하는 <em>5번째 칸(커스텀)</em> 이 가장 흔하다. 예를 들어 조직형 뼈대 + 작성 단계의 역할극형 + 브랜드 톤 스킬 자산을 섞는 <strong>하이브리드 형태</strong> 가 자연스러운 종착점일 수 있다(가설).</p>
-<h3 id="2.6.3-단일-멀티-전환-기준-도구-510개가-전환-기준">2.6.3 단일 → 멀티 전환 기준 (도구 5~10개가 전환 기준)</h3>
-<p>LangChain 동일 영상 인용 — <em>&quot;단일 에이전트가 가진 도구가 5~10개를 넘어서면 잘못된 도구 선택이 시작된다.&quot;</em> 이 경험적 임계가 <strong>언제 단일에서 멀티로 갈 것인가</strong> 의 의사결정 출발점이다. 함께 볼 신호는 다음 3가지다.</p>
-<ul class="bullets">
-<li><strong>신호 ①</strong> 도구 개수 ≥ 10 — 선택 정확도 하락</li>
-<li><strong>신호 ②</strong> 컨텍스트 폭주 — 도구 호출 + human turn 누적으로 LLM context window 한계 도달</li>
-<li><strong>신호 ③</strong> 전문화 필요 — planner / researcher / writer / critic 같이 <em>역할 페르소나</em> 가 결과 품질을 좌우</li>
-</ul>
-<p>적용 예시 — <em>&quot;카피 1건 작성&quot;</em> 만 하는 단일 에이전트라면 5개 도구(브랜드 톤 / 금지어 / 제품 DB / 캠페인 컨텍스트 / 채널 가이드) 안에 머물 수 있지만, <em>&quot;캠페인 전체&quot;</em> 가 되면 카피 + 디자인 + 캠페인 설계 + 분석 + 게시가 동시에 필요하므로 멀티로 갈 시점이다.</p>
-<h3 id="2.6.4-워크플로-vs-자율-에이전트-2026년-상용-운영의-권고">2.6.4 워크플로 vs 자율 에이전트 — 2026년 상용 운영의 권고</h3>
-<p>같은 LangChain 영상의 결론은 발표 톤으로 한 줄 인용할 가치가 있다.</p>
-<blockquote>
-<p><em>&quot;많은 문제는 워크플로로 풀린다. 자율 에이전트는 아직 신뢰성이 부족하다. 상용 운영에서는 워크플로를 더 신뢰하고 선호하는 경향이 있으며, 모델이 더 똑똑해지면 자율로 이동한다.&quot;</em></p>
-</blockquote>
-<p>곧 2026년 5월 현 시점의 <em>상용 운영 권고</em>는 <strong>명시적인 뼈대(scaffolding)를 가진 워크플로 안에 LLM 호출을 배치하는 형태</strong> 가 안전하고, <em>완전 자율 멀티 에이전트</em> 는 일부 신뢰성 검증된 영역에서만 채택된다. 본 4-way 중 그래프형(LangGraph)이 이 권고와 가장 잘 맞고, 조직형(Paperclip)은 워크플로를 <em>전사 거버넌스로 감싼</em> 변종이다.</p>
-<h3 id="2.6.5-본-5분류표">2.6.5 본 5분류표</h3>
-<p>본 §2.5 4-way 표에 본 절의 보강 카테고리를 한 줄씩 덧붙이면 다음과 같다. 본 표는 토론을 위한 판단 도구이며, 본 리포트 후속 장에서는 다시 4-way로 돌아가 Paperclip(조직형) 심층으로 들어간다.</p>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 6</span><span class="asset-caption__title">2.6.5 본 5분류표</span></div></caption>
-<thead>
-<tr>
-<th>분류</th>
-<th>대표</th>
-<th>핵심 단위</th>
-<th>상용 운영 적합도</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>그래프형</td>
-<td>LangGraph</td>
-<td>노드 + 엣지</td>
-<td>★★★★★ (워크플로 권고와 잘 맞음)</td>
-</tr>
-<tr>
-<td>역할극형</td>
-<td>CrewAI, AutoGen, Swarm</td>
-<td>발언</td>
-<td>★★ (Swarm은 LangChain이 상용 운영 비추천)</td>
-</tr>
-<tr>
-<td>스킬 중심</td>
-<td>Deep Agents, Claude Agent SDK</td>
-<td>skill 호출</td>
-<td>★★★★ (코딩·문서 영역에 강함)</td>
-</tr>
-<tr>
-<td>조직형</td>
-<td>Paperclip</td>
-<td>이슈 / 태스크</td>
-<td>★★★ (오픈소스 거버넌스 깊이)</td>
-</tr>
-<tr>
-<td><strong>시각 워크플로</strong></td>
-<td>n8n, Make, Google 58</td>
-<td>노드 (시각)</td>
-<td>★★★★ (반복적 통합·비개발 운영자 진입 장벽 낮음)</td>
-</tr>
-<tr>
-<td><strong>도메인 맞춤형 구조</strong></td>
-<td>(도메인 커스텀)</td>
-<td>(혼합)</td>
-<td>★★★★★ (실제 상용 운영에 가장 흔함)</td>
-</tr>
-</tbody>
-</table>
+<p>본 세미나는 이 질문에 대한 가설로 <strong>조직형 뼈대 + 스킬 자산 + 명시적 승인 게이트</strong> 를 제안한다. 다만 이는 정답이 아니라 출발점이다. 실제 판단은 커넥트브릭의 업무 시나리오, 승인 책임, 채널 운영 방식, 비용 한도를 놓고 Session 2에서 다시 검증해야 한다.</p>
 
 </section>
 
@@ -4155,7 +4094,7 @@ html.reader-size-large .continuous-mode {
 <p>Paperclip의 시스템 다이어그램은 React UI ↔ Node.js API 서버를 중심으로 8개 서브시스템이 PostgreSQL과 외부 어댑터를 함께 사용하는 구조다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">[20]</a></sup><sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup></p>
 <figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 12</span><span class="asset-caption__title">Paperclip 아키텍처 — React UI ↔ Node.js API 서버 (8 서브시스템) ↔ Postgres·Adapters·Plugins</span></figcaption><img src="figs/paperclip-architecture.svg" alt="Paperclip 아키텍처 — React UI ↔ Node.js API 서버 (8 서브시스템) ↔ Postgres·Adapters·Plugins" /><small class="asset-note">React UI 가 REST/WS 로 Node.js API 서버와 통신, 서버 내부에 8개 서브시스템 (④ Heartbeat 가 핵심 루프) 이 동거. 서버는 PostgreSQL (issues/activity/cost/secrets), 외부 에이전트 어댑터 (Claude Code/Codex/CLI/HTTP/Plugin), Plugins (out-of-process workers) 와 연결. 작성자 시각화.</small></figure>
 <p>8개 서브시스템은 다음과 같다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">[20]</a></sup></p>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 7</span><span class="asset-caption__title">3.2 8 서브시스템 아키텍처</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 6</span><span class="asset-caption__title">3.2 8 서브시스템 아키텍처</span></div></caption>
 <thead>
 <tr>
 <th>#</th>
@@ -4248,7 +4187,7 @@ html.reader-size-large .continuous-mode {
 <li>교차팀 작업(cross-team work)은 허용되지만, 보고 라인 밖의 태스크를 받은 에이전트는 그것을 <strong>취소할 수 없고 자기 매니저에게 재배정해야 한다</strong>.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup></li>
 </ul>
 <p>에이전트 한 명의 정의는 6개 필드로 압축된다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup></p>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 8</span><span class="asset-caption__title">3.4 Org Chart + 위임 모델</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 7</span><span class="asset-caption__title">3.4 Org Chart + 위임 모델</span></div></caption>
 <thead>
 <tr>
 <th>필드</th>
@@ -4309,7 +4248,7 @@ html.reader-size-large .continuous-mode {
 <p>운영자는 Approvals 페이지에서 (1) 요청자 / 사유, (2) 연관 이슈, (3) 전체 요청 내용(예: 신규 에이전트 설정 전체)을 보고 결정한다. <strong>승인 전엔 CEO가 태스크를 <code>in_progress</code>로 못 옮긴다</strong>. 곧 미승인은 단순 알림이 아니라 진행 자체의 차단이다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup></p>
 <h3 id="3.5.2-b-execution-policy-태스크-레벨">3.5.2 (B) Execution Policy — 태스크 레벨</h3>
 <p>이슈마다 선택적으로 붙는 <code>executionPolicy</code> 객체로, 세 계층을 조합한다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup></p>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 9</span><span class="asset-caption__title">3.5.2 (B) Execution Policy — 태스크 레벨</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 8</span><span class="asset-caption__title">3.5.2 (B) Execution Policy — 태스크 레벨</span></div></caption>
 <thead>
 <tr>
 <th>Layer</th>
@@ -4349,7 +4288,7 @@ html.reader-size-large .continuous-mode {
 <figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 16</span><span class="asset-caption__title">예산 거버넌스 — 8 차원 추적 + 80/100% 임계</span></figcaption><img src="figs/budget-8d.svg" alt="예산 거버넌스 — 8 차원 추적 + 80/100% 임계" /><small class="asset-note">매 heartbeat가 cost event 발행 → 8 차원(company/agent/project/goal/issue/provider/model/month)에 동시 집계 → 80% 사전 경고 / 100% 강제 중단(auto-pause + 큐 cancel). 한계: 일/분 단위 budget 없음 → adapter 사전 제한 필요. 작성자 시각화.</small></figure>
 <p>비용은 <strong>8개 차원</strong> 으로 추적된다 — company · agent · project · goal · issue · provider · model · 월별 UTC 집계. 각 하트비트가 cost event를 보고하며, 필드는 <code>provider / model / inputTokens / outputTokens / costInCents</code> 다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup></p>
 <p>정책은 단순 명료한 두 임계다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[21]</a></sup></p>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 10</span><span class="asset-caption__title">3.6 예산 거버넌스</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 9</span><span class="asset-caption__title">3.6 예산 거버넌스</span></div></caption>
 <thead>
 <tr>
 <th>임계값</th>
@@ -4382,7 +4321,7 @@ html.reader-size-large .continuous-mode {
 </ul>
 <h3 id="3.6.2-어댑터-단계의-비용-패턴-paperclip-거버넌스-위에-더할-3가지">3.6.2 어댑터 단계의 비용 패턴 — Paperclip 거버넌스 위에 더할 3가지</h3>
 <p>§1.2.7에서 풀었던 3가지 패턴이 그대로 Paperclip의 adapter 레이어에 들어간다. Paperclip의 hard-stop이 <em>&quot;한도 도달 후 차단&quot;</em> 이라면, 다음은 <em>&quot;한도에 가까이 가지 않게 만드는&quot;</em> 사전 설계다.</p>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 11</span><span class="asset-caption__title">3.6.2 어댑터 단계의 비용 패턴 — Paperclip 거버넌스 위에 더할 3가지</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 10</span><span class="asset-caption__title">3.6.2 어댑터 단계의 비용 패턴 — Paperclip 거버넌스 위에 더할 3가지</span></div></caption>
 <thead>
 <tr>
 <th>패턴</th>
@@ -4411,7 +4350,7 @@ html.reader-size-large .continuous-mode {
 <p>세 패턴이 모두 적용된 상태에서 <em>그래도</em> 사용량 급증이 일어나면 §3.6의 8차원 추적 + 100% hard-stop이 마지막 안전망이 된다. 이런 <em>이중 구조</em> 가 안전한 상용 운영 형태다.</p>
 <h2 id="3.7-운영-위험-vs-paperclip-안전망">3.7 운영 위험 vs Paperclip 안전망</h2>
 <p>운영 의사결정 관점에서 보면, <strong>Paperclip이 직접 막아 주는 것</strong> 과 <strong>여전히 사람이 책임져야 하는 것</strong> 을 분리하는 표가 가장 유용하다.</p>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 12</span><span class="asset-caption__title">3.7 운영 위험 vs Paperclip 안전망</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 11</span><span class="asset-caption__title">3.7 운영 위험 vs Paperclip 안전망</span></div></caption>
 <thead>
 <tr>
 <th>위험</th>
@@ -4602,7 +4541,7 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
 <p>따라서 본 장의 역할은 좁다. <strong>에이전트 운영 관점에서 어떤 질문을 던져야 하는지</strong> 만 정리한다.</p>
 <h2 id="5.1-nevo-패턴에서-가져올-수-있는-것과-검증할-것">5.1 Nevo 패턴에서 가져올 수 있는 것과 검증할 것</h2>
 <p>Nevo David의 콘텐츠 파이프라인, UGC 비디오, 다채널 publisher, slop 룰북, 휴먼 게이트는 참고할 만한 구조다.<sup class="ref-cite"><a href="https://postiz.com/blog/automate-social-media-claude-code-ai-agents" target="_blank" rel="noopener">[26]</a></sup><sup class="ref-cite"><a href="https://postiz.com/blog/automate-social-media-claude-code-ai-agents" target="_blank" rel="noopener">[29]</a></sup> 다만 그대로 이식할 수 있는지는 별도 검증이 필요하다.</p>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 13</span><span class="asset-caption__title">5.1 Nevo 패턴에서 가져올 수 있는 것과 검증할 것</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 12</span><span class="asset-caption__title">5.1 Nevo 패턴에서 가져올 수 있는 것과 검증할 것</span></div></caption>
 <thead>
 <tr>
 <th>Nevo / Paperclip 패턴</th>
@@ -4690,7 +4629,7 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
 </blockquote>
 <h2 id="6.1-session-1-인사이트-1페이지-정리">6.1 Session 1 인사이트 1페이지 정리</h2>
 <p>오늘 청중이 가져갈 <strong>3가지 변화</strong> 를 다시 압축한다.</p>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 14</span><span class="asset-caption__title">6.1 Session 1 인사이트 1페이지 정리</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 13</span><span class="asset-caption__title">6.1 Session 1 인사이트 1페이지 정리</span></div></caption>
 <thead>
 <tr>
 <th>차원</th>
@@ -4735,7 +4674,7 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
 </blockquote>
 <h2 id="6.3-컨설팅-follow-up-아이템">6.3 컨설팅 follow-up 아이템</h2>
 <p>청중(커넥트브릭)이 다음 2주에 가져갈 숙제다. 강제가 아니라 <em>권장</em> 이며, Session 2의 진단 자료로 쓰인다.</p>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 15</span><span class="asset-caption__title">6.3 컨설팅 follow-up 아이템</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 14</span><span class="asset-caption__title">6.3 컨설팅 follow-up 아이템</span></div></caption>
 <thead>
 <tr>
 <th>#</th>
@@ -4774,7 +4713,7 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
 <p>필수 #1만 가져오시면 Session 2에서 진단이 가능하다. 옵션 3개는 가져오는 만큼 Session 3~4의 입력이 풍부해진다.</p>
 <h2 id="6.4-4세션-시리즈-전체-로드맵">6.4 4세션 시리즈 전체 로드맵</h2>
 <p>4세션 시리즈는 다음 흐름으로 이어진다. Session 1에서 패러다임 비교와 Paperclip 심층 분석을 먼저 다뤘기 때문에, 이후 회차는 워크플로 설계·도구 사용·상용화 시행착오로 점점 내려간다.</p>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 16</span><span class="asset-caption__title">6.4 4세션 시리즈 전체 로드맵</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 15</span><span class="asset-caption__title">6.4 4세션 시리즈 전체 로드맵</span></div></caption>
 <thead>
 <tr>
 <th>세션</th>
@@ -4850,7 +4789,7 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
     <li id="ref-18" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[18]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Morphllm. (2026). *AI Agent Frameworks 2026 — 8 SDKs, ACP, Trade-offs*. <a href="https://www.morphllm.com/ai-agent-framework" target="_blank" rel="noopener">https://www.morphllm.com/ai-agent-framework</a></span></li>
     <li id="ref-19" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[19]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Andrew Ng. (2024). *Four design patterns for AI agentic workflows*. <a href="https://x.com/AndrewYNg/status/1773393357022298617" target="_blank" rel="noopener">https://x.com/AndrewYNg/status/1773393357022298617</a></span></li>
     <li id="ref-41" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[41]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Anthropic. (2024-12). *Building Effective Agents*. <a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">https://www.anthropic.com/engineering/building-effective-agents</a></span></li>
-    <li id="ref-42" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[42]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">LangChain. (2026). *LangGraph Multi-Agent Supervisor* — Python reference + 가이드: <a href="https://reference.langchain.com/python/langgraph-supervisor" target="_blank" rel="noopener">https://reference.langchain.com/python/langgraph-supervisor</a> ; <a href="https://dev.to/sreeni5018/building-multi-agent-systems-with-langgraph-supervisor-138i" target="_blank" rel="noopener">https://dev.to/sreeni5018/building-multi-agent-systems-with-langgraph-supervisor-138i</a></span></li>
+    <li id="ref-42" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[42]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">LangChain. (2026). *Multi-agent systems* and *LangGraph Multi-Agent Supervisor* — <a href="https://docs.langchain.com/oss/python/langchain/multi-agent/index" target="_blank" rel="noopener">https://docs.langchain.com/oss/python/langchain/multi-agent/index</a> ; <a href="https://reference.langchain.com/python/langgraph-supervisor" target="_blank" rel="noopener">https://reference.langchain.com/python/langgraph-supervisor</a></span></li>
     <li id="ref-43" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[43]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">LangChain. (2026). *LangGraph Swarm — Decentralized Multi-Agent Collaboration*. <a href="https://dev.to/sreeni5018/building-multi-agent-systems-with-langgraph-swarm-a-new-approach-to-agent-collaboration-15kj" target="_blank" rel="noopener">https://dev.to/sreeni5018/building-multi-agent-systems-with-langgraph-swarm-a-new-approach-to-agent-collaboration-15kj</a></span></li>
     <li id="ref-44" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[44]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Tran, K.-T., Dao, D., Nguyen, M.-D., Pham, Q.-V., O'Sullivan, B., Nguyen, H. D. (2025-01-10). *Multi-Agent Collaboration Mechanisms: A Survey of LLMs*. arXiv:2501.06322. <a href="https://arxiv.org/abs/2501.06322" target="_blank" rel="noopener">https://arxiv.org/abs/2501.06322</a></span></li>
   </ol>
