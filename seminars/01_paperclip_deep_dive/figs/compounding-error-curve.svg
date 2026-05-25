@@ -1,76 +1,56 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 460" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 30 760 330" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
   <defs>
     <style>
       .small { font-size: 12px; fill: #6B6B72; }
       .axis { font-size: 13px; fill: #3F3F46; font-weight: 700; }
-      .grid { stroke: #E5E7EB; stroke-width: 1; }
-      .label-stroke { paint-order: stroke fill; stroke: #FAFAF9; stroke-width: 4px; stroke-linejoin: round; }
+      .line-label { paint-order: stroke fill; stroke: #FAFAF9; stroke-width: 4px; stroke-linejoin: round; }
     </style>
   </defs>
 
-  <rect width="860" height="460" fill="#FAFAF9"/>
+  <rect x="20" y="30" width="760" height="330" fill="#FAFAF9"/>
+  <rect x="92" y="50" width="600" height="250" rx="8" fill="#FFFFFF" stroke="#E5E7EB"/>
 
-  <text x="56" y="42" font-size="22" font-weight="900" fill="#0F2C59">복리 오류: 단계가 늘수록 최종 성공률이 급락</text>
-  <text x="56" y="68" class="small">각 단계가 꽤 정확해 보여도, 여러 단계를 직렬로 통과하면 전체 워크플로의 성공률은 빠르게 낮아진다.</text>
+  <!-- grid -->
+  <line x1="92" y1="50" x2="692" y2="50" stroke="#E5E7EB"/>
+  <line x1="92" y1="112.5" x2="692" y2="112.5" stroke="#E5E7EB"/>
+  <line x1="92" y1="175" x2="692" y2="175" stroke="#E5E7EB"/>
+  <line x1="92" y1="237.5" x2="692" y2="237.5" stroke="#E5E7EB"/>
+  <line x1="92" y1="300" x2="692" y2="300" stroke="#71717A" stroke-width="1.3"/>
 
-  <!-- Plot area: x 110..710, y 110..360 -->
-  <rect x="110" y="110" width="600" height="250" rx="8" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <!-- y labels -->
+  <text x="78" y="54" text-anchor="end" class="small">100%</text>
+  <text x="78" y="116.5" text-anchor="end" class="small">75%</text>
+  <text x="78" y="179" text-anchor="end" class="small">50%</text>
+  <text x="78" y="241.5" text-anchor="end" class="small">25%</text>
+  <text x="78" y="304" text-anchor="end" class="small">0%</text>
 
-  <!-- Horizontal grid and y labels -->
-  <line class="grid" x1="110" y1="110" x2="710" y2="110"/>
-  <line class="grid" x1="110" y1="172.5" x2="710" y2="172.5"/>
-  <line class="grid" x1="110" y1="235" x2="710" y2="235"/>
-  <line class="grid" x1="110" y1="297.5" x2="710" y2="297.5"/>
-  <line x1="110" y1="360" x2="710" y2="360" stroke="#71717A" stroke-width="1.3"/>
+  <!-- x labels -->
+  <line x1="92" y1="300" x2="92" y2="306" stroke="#71717A"/>
+  <line x1="358.7" y1="300" x2="358.7" y2="306" stroke="#71717A"/>
+  <line x1="692" y1="300" x2="692" y2="306" stroke="#71717A"/>
+  <text x="92" y="326" text-anchor="middle" class="small">1</text>
+  <text x="358.7" y="326" text-anchor="middle" class="small">5</text>
+  <text x="692" y="326" text-anchor="middle" class="small">10</text>
+  <text x="392" y="352" text-anchor="middle" class="axis">단계 수</text>
+  <text x="34" y="175" text-anchor="middle" class="axis" transform="rotate(-90 34 175)">최종 성공률</text>
 
-  <text x="96" y="114" text-anchor="end" class="small">100%</text>
-  <text x="96" y="176.5" text-anchor="end" class="small">75%</text>
-  <text x="96" y="239" text-anchor="end" class="small">50%</text>
-  <text x="96" y="301.5" text-anchor="end" class="small">25%</text>
-  <text x="96" y="364" text-anchor="end" class="small">0%</text>
-
-  <!-- X ticks -->
-  <line x1="110" y1="360" x2="110" y2="366" stroke="#71717A"/>
-  <line x1="376.7" y1="360" x2="376.7" y2="366" stroke="#71717A"/>
-  <line x1="710" y1="360" x2="710" y2="366" stroke="#71717A"/>
-  <text x="110" y="386" text-anchor="middle" class="small">1</text>
-  <text x="376.7" y="386" text-anchor="middle" class="small">5</text>
-  <text x="710" y="386" text-anchor="middle" class="small">10</text>
-
-  <text x="410" y="420" text-anchor="middle" class="axis">단계 수</text>
-  <text x="42" y="235" text-anchor="middle" class="axis" transform="rotate(-90 42 235)">최종 성공률</text>
-
-  <!-- Curves -->
-  <polyline points="110,160 176.7,200 243.3,232 310,257.6 376.7,278.1 443.3,294.5 510,307.6 576.7,318.1 643.3,326.4 710,333.2"
+  <!-- curves: final success = per-step success ^ number of steps -->
+  <polyline points="92,100 158.7,140 225.3,172 292,197.6 358.7,218.1 425.3,234.5 492,247.6 558.7,258.1 625.3,266.4 692,273.2"
     fill="none" stroke="#71717A" stroke-width="2.5" stroke-dasharray="7 6" stroke-linecap="round" stroke-linejoin="round"/>
-
-  <polyline points="110,135 176.7,157.5 243.3,177.8 310,196 376.7,212.4 443.3,227.1 510,240.4 576.7,252.4 643.3,263.1 710,272.8"
+  <polyline points="92,75 158.7,97.5 225.3,117.8 292,136 358.7,152.4 425.3,167.1 492,180.4 558.7,192.4 625.3,203.1 692,212.8"
     fill="none" stroke="#2563EB" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-
-  <polyline points="110,122.5 176.7,134.4 243.3,145.6 310,156.4 376.7,166.6 443.3,176.2 510,185.4 576.7,194.1 643.3,202.4 710,210.3"
+  <polyline points="92,62.5 158.7,74.4 225.3,85.6 292,96.4 358.7,106.6 425.3,116.2 492,125.4 558.7,134.1 625.3,142.4 692,150.3"
     fill="none" stroke="#0F2C59" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 
-  <!-- End labels -->
-  <text x="724" y="215" font-size="13" font-weight="800" fill="#0F2C59">단계당 95%</text>
-  <text x="724" y="277" font-size="13" font-weight="800" fill="#2563EB">단계당 90%</text>
-  <text x="724" y="337" font-size="13" font-weight="800" fill="#71717A">단계당 80%</text>
+  <!-- direct labels -->
+  <text class="line-label" x="708" y="155" font-size="13" font-weight="800" fill="#0F2C59">단계당 95%</text>
+  <text class="line-label" x="708" y="217" font-size="13" font-weight="800" fill="#2563EB">단계당 90%</text>
+  <text class="line-label" x="708" y="277" font-size="13" font-weight="800" fill="#71717A">단계당 80%</text>
 
-  <!-- Callout: 90% x 5 -->
-  <circle cx="376.7" cy="212.4" r="7" fill="#E11D48" stroke="#FFFFFF" stroke-width="3"/>
-  <line x1="383" y1="218" x2="424" y2="246" stroke="#E11D48" stroke-width="1.8"/>
-  <rect x="424" y="232" width="162" height="64" rx="8" fill="#FFFFFF" stroke="#E11D48" stroke-width="1.5"/>
-  <text x="443" y="258" font-size="13" font-weight="800" fill="#E11D48">90% × 5단계</text>
-  <text x="443" y="282" font-size="21" font-weight="900" fill="#E11D48">최종 59%</text>
+  <!-- key points -->
+  <circle cx="358.7" cy="152.4" r="7" fill="#E11D48" stroke="#FFFFFF" stroke-width="3"/>
+  <text class="line-label" x="345" y="142" text-anchor="end" font-size="13" font-weight="900" fill="#E11D48">90% × 5 = 59%</text>
 
-  <!-- Callout: 95% x 10 -->
-  <circle cx="710" cy="210.3" r="7" fill="#E11D48" stroke="#FFFFFF" stroke-width="3"/>
-  <line x1="708" y1="201" x2="646" y2="140" stroke="#E11D48" stroke-width="1.8"/>
-  <rect x="486" y="82" width="162" height="64" rx="8" fill="#FFFFFF" stroke="#E11D48" stroke-width="1.5"/>
-  <text x="505" y="108" font-size="13" font-weight="800" fill="#E11D48">95% × 10단계</text>
-  <text x="505" y="132" font-size="21" font-weight="900" fill="#E11D48">최종 60%</text>
-
-  <!-- Interpretation band -->
-  <rect x="110" y="398" width="600" height="34" rx="8" fill="#E9F2FB" stroke="#A7C7E7"/>
-  <text x="128" y="420" font-size="13" font-weight="700" fill="#0F2C59">운영 함의</text>
-  <text x="208" y="420" font-size="12" fill="#0F2C59">5~10단계 직렬 워크플로는 단계별 정확도만 보지 말고, 외부 발행·결제 직전 HITL 게이트를 둬야 한다.</text>
+  <circle cx="692" cy="150.3" r="7" fill="#E11D48" stroke="#FFFFFF" stroke-width="3"/>
+  <text class="line-label" x="680" y="133" text-anchor="end" font-size="13" font-weight="900" fill="#E11D48">95% × 10 = 60%</text>
 </svg>
