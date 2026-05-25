@@ -1,12 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 70 800 415" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
-  <rect x="0" y="70" width="800" height="415" fill="#FAFAF9"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 80 800 380" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
+  <rect x="0" y="80" width="800" height="380" fill="#FAFAF9"/>
 
   <!-- Quadrant grid (2x2) -->
   <line x1="400" y1="80" x2="400" y2="460" stroke="#D1D5DB" stroke-width="1"/>
   <line x1="50" y1="270" x2="750" y2="270" stroke="#D1D5DB" stroke-width="1"/>
-
-  <!-- Quadrant labels axis -->
-  <text x="400" y="475" font-size="9" text-anchor="middle" fill="#6B6B72">← 컨텍스트/평가 (모델 인지) · 권한/규모 (시스템 권한) →</text>
 
   <!-- Q1: Context Anxiety (top-left) -->
   <g>

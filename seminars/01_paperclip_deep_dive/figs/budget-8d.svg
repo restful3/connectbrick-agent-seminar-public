@@ -83,7 +83,6 @@
     <line x1="620" y1="446" x2="620" y2="476" stroke="#E11D48" stroke-width="2"/>
     <text x="620" y="442" font-size="10" font-weight="700" text-anchor="middle" fill="#E11D48">100%</text>
     <text x="620" y="487" font-size="9" text-anchor="middle" fill="#E11D48">hard stop · auto-pause</text>
-    <text x="650" y="465" font-size="11" font-style="italic" fill="#6B6B72">→ 큐 cancel</text>
   </g>
 
 </svg>
