@@ -1265,6 +1265,119 @@ pre code {
 }
 .report-controls button:hover { background: var(--surface-hover); color: var(--brand-primary); }
 
+.report-nav-toggle,
+.report-settings button,
+.report-toc-drawer__head button {
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  color: var(--text);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+.report-nav-toggle,
+.report-settings button {
+  position: fixed;
+  top: 22px;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  z-index: 90;
+  font: 800 18px/1 'Inter', 'Noto Sans KR', sans-serif;
+}
+.report-nav-toggle { left: 22px; }
+.report-settings {
+  position: fixed;
+  top: 22px;
+  right: 22px;
+  z-index: 90;
+}
+.report-settings button {
+  position: static;
+}
+.report-nav-toggle:hover,
+.report-settings button:hover,
+.report-toc-drawer__head button:hover {
+  background: var(--surface-hover);
+  color: var(--brand-primary);
+  transform: translateY(-1px);
+}
+.report-toc-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: rgba(10,10,10,0.28);
+  backdrop-filter: blur(2px);
+}
+.report-toc-backdrop[hidden] { display: none; }
+.report-toc-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: min(360px, calc(100vw - 44px));
+  z-index: 100;
+  background: var(--surface);
+  color: var(--text);
+  border-right: 1px solid var(--border);
+  box-shadow: 20px 0 48px rgba(0,0,0,0.18);
+  transform: translateX(-102%);
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  flex-direction: column;
+}
+.report-toc-drawer.is-open { transform: translateX(0); }
+.report-toc-drawer__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 22px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--brand-primary);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.report-toc-drawer__head button {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  box-shadow: none;
+  font-size: 20px;
+  line-height: 1;
+}
+.report-toc-drawer__list {
+  list-style: none;
+  overflow-y: auto;
+  padding: 12px 16px 28px;
+}
+.report-toc-drawer__item a {
+  display: block;
+  padding: 9px 8px;
+  border-radius: 6px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.report-toc-drawer__item--h2 a {
+  padding-left: 22px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+}
+.report-toc-drawer__item a:hover {
+  background: var(--surface-hover);
+  color: var(--brand-primary);
+}
+
 /* ===== ENTRANCE ANIMATIONS (IntersectionObserver 트리거) ===== */
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 .animate-in { opacity: 0; }
@@ -1307,7 +1420,11 @@ pre code {
     border-radius: 0;
     box-sizing: border-box;
   }
-  .report-controls { display: none !important; }
+  .report-controls,
+  .report-nav-toggle,
+  .report-settings,
+  .report-toc-backdrop,
+  .report-toc-drawer { display: none !important; }
   .animate-in { opacity: 1 !important; animation: none !important; transform: none !important; }
   a { color: var(--brand-primary) !important; border-bottom: none !important; }
   * { print-color-adjust: exact !important; -webkit-print-color-adjust: exact !important; }
@@ -3098,6 +3215,15 @@ body:has(> .continuous-mode) {
 
 /* ----- 14. Responsive — narrow viewports ----- */
 @media (max-width: 720px) {
+  .report-nav-toggle {
+    top: auto;
+    bottom: 18px;
+    left: 18px;
+  }
+  .report-settings {
+    top: 18px;
+    right: 18px;
+  }
   .continuous-mode .report-cover {
     padding: 44px 18px 32px;
   }
@@ -3184,6 +3310,20 @@ body:has(> .continuous-mode) {
   </style>
 </head>
 <body>
+  <button id="tocToggle" class="report-nav-toggle" type="button" aria-label="목차 열기" aria-controls="tocDrawer" aria-expanded="false" title="목차">
+    <span aria-hidden="true">☰</span>
+  </button>
+  <div class="report-settings" aria-label="설정">
+    <button id="themeToggle" type="button" onclick="cycleTheme()" aria-label="나이트 모드 전환" title="나이트 모드 전환">☀</button>
+  </div>
+  <div id="tocBackdrop" class="report-toc-backdrop" hidden></div>
+  <nav id="tocDrawer" class="report-toc-drawer" aria-label="문서 목차" aria-hidden="true">
+    <div class="report-toc-drawer__head">
+      <span>목차</span>
+      <button id="tocClose" type="button" aria-label="목차 닫기">×</button>
+    </div>
+    <ol id="tocDrawerList" class="report-toc-drawer__list"></ol>
+  </nav>
   <article class="report continuous-mode">
 
     <aside class="section-divider" aria-hidden="true">
@@ -3254,13 +3394,84 @@ date: 2026-05-28</h2>
   window.applyTheme = function (t) {
     document.documentElement.className = 'theme-' + t;
     var btn = document.getElementById('themeToggle');
-    if (btn) btn.textContent = t === 'dark' ? '🌙' : '☀️';
+    if (btn) {
+      btn.textContent = t === 'dark' ? '☾' : '☀';
+      btn.setAttribute('aria-pressed', t === 'dark' ? 'true' : 'false');
+      btn.setAttribute('title', t === 'dark' ? '라이트 모드로 전환' : '나이트 모드로 전환');
+    }
     localStorage.setItem(THEME_KEY, t);
     current = t;
     if (typeof onThemeChange === 'function') onThemeChange();
   };
   window.cycleTheme = function () { window.applyTheme(current === 'dark' ? 'light' : 'dark'); };
   window.applyTheme(current);
+
+  // ===== Floating controls / drawer TOC =====
+  function getHeadingLabel(h) {
+    return (h.textContent || '').replace(/\s+/g, ' ').trim();
+  }
+
+  function ensureHeadingId(h, idx) {
+    if (h.id) return h.id;
+    h.id = 'toc-heading-' + idx;
+    return h.id;
+  }
+
+  window.buildDrawerTOC = function () {
+    var list = document.getElementById('tocDrawerList');
+    if (!list || list.children.length) return;
+    var headings = Array.from(document.querySelectorAll('.report-section h1, .report-section h2'));
+    headings.forEach(function (h, idx) {
+      var label = getHeadingLabel(h);
+      if (!label || /^References$/i.test(label)) return;
+      var id = ensureHeadingId(h, idx + 1);
+      var li = document.createElement('li');
+      li.className = 'report-toc-drawer__item report-toc-drawer__item--' + h.tagName.toLowerCase();
+      var a = document.createElement('a');
+      a.href = '#' + id;
+      a.textContent = label;
+      a.addEventListener('click', function () { window.closeTOCDrawer(); });
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+  };
+
+  window.openTOCDrawer = function () {
+    window.buildDrawerTOC();
+    var drawer = document.getElementById('tocDrawer');
+    var backdrop = document.getElementById('tocBackdrop');
+    var toggle = document.getElementById('tocToggle');
+    if (!drawer || !backdrop) return;
+    drawer.classList.add('is-open');
+    drawer.setAttribute('aria-hidden', 'false');
+    backdrop.hidden = false;
+    backdrop.classList.add('is-open');
+    if (toggle) toggle.setAttribute('aria-expanded', 'true');
+  };
+
+  window.closeTOCDrawer = function () {
+    var drawer = document.getElementById('tocDrawer');
+    var backdrop = document.getElementById('tocBackdrop');
+    var toggle = document.getElementById('tocToggle');
+    if (!drawer || !backdrop) return;
+    drawer.classList.remove('is-open');
+    drawer.setAttribute('aria-hidden', 'true');
+    backdrop.classList.remove('is-open');
+    backdrop.hidden = true;
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+  };
+
+  function setupFloatingControls() {
+    var tocToggle = document.getElementById('tocToggle');
+    var tocClose = document.getElementById('tocClose');
+    var backdrop = document.getElementById('tocBackdrop');
+    if (tocToggle) tocToggle.addEventListener('click', window.openTOCDrawer);
+    if (tocClose) tocClose.addEventListener('click', window.closeTOCDrawer);
+    if (backdrop) backdrop.addEventListener('click', window.closeTOCDrawer);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') window.closeTOCDrawer();
+    });
+  }
 
   // ===== TOC auto-generation =====
   window.buildTOC = function () {
@@ -3606,7 +3817,9 @@ date: 2026-05-28</h2>
   // ===== Init =====
   window.addEventListener('load', function () {
     window.buildTOC();
+    window.buildDrawerTOC();
     window.numberFootnotes();
+    setupFloatingControls();
     setupObserver();
     window.buildCharts();
   });
