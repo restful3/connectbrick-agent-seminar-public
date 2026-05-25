@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <script>Chart.defaults.animation = false;</script>
-  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
   <link rel="stylesheet" href="../../template/theme_slides.css">
   <style id="brand-vars">:root{
   --running-header-left: "송태영 · Independent Research";
@@ -36,9 +35,22 @@
       </svg>
     </button>
     <div class="viz-menu-dropdown" id="vizMenuDropdown">
-      <button onclick="cycleTheme()"><span id="themeIcon">☀️</span><span id="themeLabel">Light</span></button>
-      <button onclick="downloadImage()"><span>📥</span><span>Download PNG</span></button>
-      <button onclick="window.print()"><span>🖨️</span><span>Print / PDF</span></button>
+      <div class="viz-menu-group">
+        <span class="viz-menu-label">화면</span>
+        <button class="viz-menu-icon-action" onclick="cycleTheme()" aria-label="나이트 모드 전환" title="나이트 모드 전환"><span id="themeIcon">☀️</span><span id="themeLabel" class="viz-menu-theme-label">Light</span></button>
+      </div>
+      <div class="viz-menu-group">
+        <span class="viz-menu-label">출력</span>
+        <button class="viz-menu-action" onclick="window.print()" aria-label="PDF 또는 인쇄" title="PDF 또는 인쇄">Print / PDF</button>
+      </div>
+      <div class="viz-menu-group">
+        <span class="viz-menu-label">이동</span>
+        <nav class="viz-menu-links" aria-label="세미나 링크">
+          <a href="../../index.html" title="전체 세미나 목차" aria-label="전체 세미나 목차">Index</a>
+          <a href="report.html" title="리포트" aria-label="리포트">Report</a>
+          <a href="slides.html" title="발표 슬라이드" aria-label="발표 슬라이드">Slides</a>
+        </nav>
+      </div>
     </div>
   </div>
   <div class="deck-progress"><div class="deck-progress__fill" id="progressFill"></div></div>

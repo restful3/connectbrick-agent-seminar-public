@@ -1678,22 +1678,75 @@ body.chrome-hidden .deck-progress {
 }
 .viz-menu-toggle:hover { color: var(--brand-primary); }
 .viz-menu-dropdown {
-  position: absolute; top: 48px; right: 0; min-width: 200px;
+  position: absolute; top: 48px; right: 0; width: 248px;
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: 12px; padding: 8px;
+  border-radius: 14px; padding: 14px;
   opacity: 0; visibility: hidden; transform: translateY(-8px);
   transition: all 0.2s; backdrop-filter: blur(16px);
   box-shadow: 0 14px 36px rgba(0,0,0,0.12);
 }
 .viz-menu-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0); }
-.viz-menu-dropdown button {
-  width: 100%; padding: 10px 14px; border: none; border-radius: 8px;
-  background: transparent; color: var(--text); font-size: 13px;
-  font-family: inherit; cursor: pointer; text-align: left;
-  display: flex; align-items: center; gap: 10px;
-  transition: background 0.15s;
+.viz-menu-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 72%, transparent);
 }
-.viz-menu-dropdown button:hover { background: var(--surface-hover); }
+.viz-menu-group:first-child { padding-top: 0; }
+.viz-menu-group:last-child { padding-bottom: 0; border-bottom: none; }
+.viz-menu-label {
+  flex: 0 0 auto;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.viz-menu-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+.viz-menu-dropdown button,
+.viz-menu-dropdown a {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font: 800 12px/1 'Inter', 'Noto Sans KR', sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.viz-menu-icon-action {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  padding: 0;
+  font-size: 16px;
+}
+.viz-menu-action {
+  width: auto;
+  height: 34px;
+  min-width: 34px;
+  padding: 0 10px;
+}
+.viz-menu-links a {
+  height: 32px;
+  min-width: 0;
+  padding: 0 10px;
+  font-size: 11px;
+}
+.viz-menu-dropdown button:hover,
+.viz-menu-dropdown a:hover { background: var(--surface-hover); }
+.viz-menu-theme-label { display: none; }
 
 /* ===== ENTRANCE ANIMATIONS ===== */
 @keyframes fadeInUp {

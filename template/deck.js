@@ -353,26 +353,3 @@ window.addEventListener('load', function() {
   goTo(parseSlideHash(), { skipHash: true });
   document.body.classList.add('chrome-hidden');
 });
-
-// ===== Download PNG =====
-async function downloadImage() {
-  var menu = document.querySelector('.viz-menu');
-  var nav = document.querySelector('.slide-nav');
-  var prog = document.querySelector('.deck-progress');
-  var toc = document.querySelector('.toc-toggle');
-  if (menu) menu.style.display = 'none';
-  if (nav) nav.style.display = 'none';
-  if (prog) prog.style.display = 'none';
-  if (toc) toc.style.display = 'none';
-  try {
-    var url = await htmlToImage.toPng(document.body, { quality: 1, pixelRatio: 2 });
-    var a = document.createElement('a');
-    a.href = url;
-    a.download = 'ai-odyssey-slide-' + (curIdx + 1) + '.png';
-    a.click();
-  } catch (e) { console.error('Download failed:', e); }
-  if (menu) menu.style.display = '';
-  if (nav) nav.style.display = '';
-  if (prog) prog.style.display = '';
-  if (toc) toc.style.display = '';
-}

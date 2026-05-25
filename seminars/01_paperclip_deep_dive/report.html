@@ -1381,7 +1381,6 @@ pre .err {
   text-transform: uppercase;
   color: var(--text-secondary);
 }
-.report-reader-controls,
 .report-quick-links {
   display: flex;
   align-items: center;
@@ -1389,7 +1388,7 @@ pre .err {
   gap: 6px;
 }
 .report-settings-panel #themeToggle,
-.report-reader-controls button,
+.report-settings-action,
 .report-settings a {
   position: static;
   width: auto;
@@ -1408,16 +1407,18 @@ pre .err {
   padding: 0;
   font-size: 16px;
 }
-.report-reader-controls button.is-active {
-  background: var(--brand-primary);
-  border-color: var(--brand-primary);
-  color: #FFFFFF;
-}
 .report-quick-links a {
   height: 32px;
   min-width: 0;
   font-size: 11px;
   letter-spacing: 0;
+}
+.report-settings-action {
+  height: 34px;
+}
+.report-settings-toggle svg {
+  width: 18px;
+  height: 18px;
 }
 .report-nav-toggle:hover,
 .report-settings button:hover,
@@ -3533,7 +3534,7 @@ html.reader-size-large .continuous-mode {
   .continuous-mode .report-appendix li {
     overflow-wrap: anywhere;
   }
-  .report-reader-controls button,
+  .report-settings-action,
   .report-settings a {
     height: 32px;
     padding: 0 9px;
@@ -3579,24 +3580,26 @@ html.reader-size-large .continuous-mode {
     <span aria-hidden="true">☰</span>
   </button>
   <div class="report-settings" aria-label="설정">
-    <button id="settingsToggle" class="report-settings-toggle" type="button" aria-label="설정 열기" aria-controls="settingsPanel" aria-expanded="false" title="설정">⚙</button>
+    <button id="settingsToggle" class="report-settings-toggle" type="button" aria-label="설정 열기" aria-controls="settingsPanel" aria-expanded="false" title="설정">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M9.67 4.14a2.34 2.34 0 0 1 4.66 0 2.34 2.34 0 0 0 3.32 1.91 2.34 2.34 0 0 1 2.33 4.04 2.34 2.34 0 0 0 0 3.82 2.34 2.34 0 0 1-2.33 4.04 2.34 2.34 0 0 0-3.32 1.91 2.34 2.34 0 0 1-4.66 0 2.34 2.34 0 0 0-3.32-1.91 2.34 2.34 0 0 1-2.33-4.04 2.34 2.34 0 0 0 0-3.82 2.34 2.34 0 0 1 2.33-4.04 2.34 2.34 0 0 0 3.32-1.91"/>
+      </svg>
+    </button>
     <div id="settingsPanel" class="report-settings-panel" aria-hidden="true">
       <div class="report-settings-panel__group">
         <span class="report-settings-panel__label">화면</span>
         <button id="themeToggle" type="button" onclick="cycleTheme()" aria-label="나이트 모드 전환" title="나이트 모드 전환">☀</button>
       </div>
       <div class="report-settings-panel__group">
-        <span class="report-settings-panel__label">글자 크기</span>
-        <div class="report-reader-controls" aria-label="글자 크기">
-          <button type="button" data-reader-size="compact" aria-label="글자 작게" title="글자 작게">A-</button>
-          <button type="button" data-reader-size="comfortable" aria-label="기본 글자 크기" title="기본 글자 크기">A</button>
-          <button type="button" data-reader-size="large" aria-label="글자 크게" title="글자 크게">A+</button>
-        </div>
+        <span class="report-settings-panel__label">출력</span>
+        <button class="report-settings-action" type="button" onclick="window.print()" aria-label="PDF 또는 인쇄" title="PDF 또는 인쇄">Print / PDF</button>
       </div>
       <div class="report-settings-panel__group">
-        <span class="report-settings-panel__label">자료</span>
+        <span class="report-settings-panel__label">이동</span>
         <nav class="report-quick-links" aria-label="세미나 링크">
-          <a href="../../index.html" title="전체 세미나 목차" aria-label="전체 세미나 목차">전체</a>
+          <a href="../../index.html" title="전체 세미나 목차" aria-label="전체 세미나 목차">Index</a>
+          <a href="report.html" title="리포트" aria-label="리포트">Report</a>
           <a href="slides.html" title="발표 슬라이드" aria-label="발표 슬라이드">Slides</a>
         </nav>
       </div>
@@ -4820,8 +4823,8 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
   </article>
   <script data-source="report.js">
 // AI Odyssey Publisher — Report 런타임 (인터랙티브 HTML + 인쇄 프리프로세스)
-// 슬라이드 `deck.js` 에서 네비게이션·PNG 다운로드·뷰포트 스케일링을 제거하고,
-// 리포트에 필요한 (1) 테마 토글 (2) 글자 크기 조절 (3) Chart.js 빌더
+// 슬라이드 `deck.js` 에서 네비게이션·뷰포트 스케일링을 제거하고,
+// 리포트에 필요한 (1) 테마 토글 (2) Chart.js 빌더
 // (4) IntersectionObserver 기반 카운터/애니메이션 (5) TOC 자동 생성
 // (6) 각주 번호 자동 부여만 남겼다.
 
@@ -4845,31 +4848,6 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
   };
   window.cycleTheme = function () { window.applyTheme(current === 'dark' ? 'light' : 'dark'); };
   window.applyTheme(current);
-
-  // ===== Reader size =====
-  var READER_SIZE_KEY = 'aio-report-reader-size';
-  var READER_SIZES = ['compact', 'comfortable', 'large'];
-
-  window.applyReaderSize = function (size) {
-    if (READER_SIZES.indexOf(size) === -1) size = 'comfortable';
-    document.documentElement.classList.remove('reader-size-compact', 'reader-size-comfortable', 'reader-size-large');
-    document.documentElement.classList.add('reader-size-' + size);
-    document.querySelectorAll('[data-reader-size]').forEach(function (btn) {
-      var active = btn.getAttribute('data-reader-size') === size;
-      btn.classList.toggle('is-active', active);
-      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-    });
-    localStorage.setItem(READER_SIZE_KEY, size);
-  };
-
-  function setupReaderControls() {
-    document.querySelectorAll('[data-reader-size]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        window.applyReaderSize(btn.getAttribute('data-reader-size'));
-      });
-    });
-    window.applyReaderSize(localStorage.getItem(READER_SIZE_KEY) || 'comfortable');
-  }
 
   // ===== Floating controls / drawer TOC =====
   function getHeadingLabel(h) {
@@ -4959,7 +4937,6 @@ Publisher → Postiz 업로드 + 다채널 예약 (모의 처리)</code></pre>
     if (tocClose) tocClose.addEventListener('click', window.closeTOCDrawer);
     if (backdrop) backdrop.addEventListener('click', window.closeTOCDrawer);
     if (settingsToggle) settingsToggle.addEventListener('click', window.toggleSettingsPanel);
-    setupReaderControls();
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
         window.closeTOCDrawer();
