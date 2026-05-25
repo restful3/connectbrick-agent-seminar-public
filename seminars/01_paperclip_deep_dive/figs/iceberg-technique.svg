@@ -61,5 +61,5 @@
     <text x="660" y="192" font-size="10" font-style="italic" text-anchor="middle" fill="#065F46">+ LLM 성능 유지</text>
   </g>
 
-  <text x="400" y="487" font-size="10" font-style="italic" text-anchor="middle" fill="#6B6B72">F&B 적용 — 전체 브랜드 가이드 30 페이지를 매 호출에 넣지 말고, "주제별 인덱스 + 검색 도구"만 노출</text>
+  <text x="400" y="487" font-size="10" font-style="italic" text-anchor="middle" fill="#6B6B72">F&amp;B 적용 — 전체 브랜드 가이드 30 페이지를 매 호출에 넣지 말고, "주제별 인덱스 + 검색 도구"만 노출</text>
 </svg>
