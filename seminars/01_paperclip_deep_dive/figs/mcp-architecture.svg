@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 75 800 400" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 75 800 285" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
   <defs>
     <marker id="arrow-mcp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#0F2C59"/>
@@ -8,7 +8,7 @@
     </marker>
   </defs>
 
-  <rect x="0" y="75" width="800" height="400" fill="#FAFAF9"/>
+  <rect x="0" y="75" width="800" height="285" fill="#FAFAF9"/>
 
   <!-- HOSTS (left column) -->
   <text x="120" y="85" font-size="13" font-weight="700" text-anchor="middle" fill="#0F2C59">MCP Hosts</text>
@@ -84,7 +84,7 @@
   </g>
   <g>
     <rect x="600" y="315" width="160" height="34" rx="5" fill="#FFFFFF" stroke="#059669" stroke-width="1.5" stroke-dasharray="4 2"/>
-    <text x="680" y="335" font-size="11" font-weight="500" text-anchor="middle" fill="#0F0F10">네이버/카카오 (KR)</text>
+    <text x="680" y="335" font-size="11" font-weight="500" text-anchor="middle" fill="#0F0F10">자체 SaaS / API</text>
   </g>
 
   <!-- Arrows MCP → data -->
@@ -95,12 +95,4 @@
   <line x1="512" y1="258" x2="598" y2="292" stroke="#0F2C59" stroke-width="1" marker-end="url(#arrow-mcp)" opacity="0.45"/>
   <line x1="512" y1="271" x2="598" y2="332" stroke="#0F2C59" stroke-width="1" marker-end="url(#arrow-mcp)" opacity="0.45"/>
 
-  <!-- Risk box -->
-  <g>
-    <rect x="200" y="395" width="400" height="70" rx="5" fill="#FEF3C7" stroke="#D97706" stroke-width="1"/>
-    <text x="400" y="415" font-size="11" font-weight="600" text-anchor="middle" fill="#92400E">Production 위험 4 영역 (research/05 §2.4)</text>
-    <text x="400" y="432" font-size="9" text-anchor="middle" fill="#0F0F10">① 컨텍스트 폭주(generalized MCP) · ② Auth/Remote SSE 복잡성</text>
-    <text x="400" y="446" font-size="9" text-anchor="middle" fill="#0F0F10">③ 서버 품질 편차 · ④ Destructive action (DB DELETE / rm -rf)</text>
-    <text x="400" y="460" font-size="9" font-style="italic" text-anchor="middle" fill="#92400E">→ Docker MCP Gateway가 ②를 부분 해결</text>
-  </g>
 </svg>
