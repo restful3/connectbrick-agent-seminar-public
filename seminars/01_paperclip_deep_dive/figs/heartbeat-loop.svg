@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
+  <defs>
+    <marker id="arrow-hb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0F2C59"/>
+    </marker>
+    <radialGradient id="centerGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2563EB" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#2563EB" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="#FAFAF9"/>
+
+  <!-- Title -->
+  <text x="400" y="32" font-size="18" font-weight="600" text-anchor="middle" fill="#0F2C59">Heartbeat 한 박자 — 6 단계 라이프사이클</text>
+  <text x="400" y="52" font-size="12" text-anchor="middle" fill="#6B6B72">Issue 생성 → 큐잉 → wake → atomic checkout → 실행 → sleep (DB 영속)</text>
+
+  <!-- center pulse -->
+  <circle cx="400" cy="265" r="120" fill="url(#centerGrad)"/>
+  <text x="400" y="255" font-size="16" font-weight="600" text-anchor="middle" fill="#0F2C59">DB-backed</text>
+  <text x="400" y="276" font-size="16" font-weight="600" text-anchor="middle" fill="#0F2C59">Wakeup Queue</text>
+  <text x="400" y="298" font-size="11" text-anchor="middle" fill="#6B6B72">(coalescing + atomic lock)</text>
+
+  <!-- 6 nodes around the circle -->
+  <!-- Node 1: top -->
+  <g>
+    <circle cx="400" cy="100" r="40" fill="#FFFFFF" stroke="#0F2C59" stroke-width="2"/>
+    <text x="400" y="92" font-size="14" font-weight="700" text-anchor="middle" fill="#2563EB">①</text>
+    <text x="400" y="110" font-size="11" text-anchor="middle" fill="#0F0F10">Issue 생성</text>
+    <text x="400" y="124" font-size="9" text-anchor="middle" fill="#6B6B72">cron/webhook/위임</text>
+  </g>
+
+  <!-- Node 2: upper right -->
+  <g>
+    <circle cx="608" cy="170" r="40" fill="#FFFFFF" stroke="#0F2C59" stroke-width="2"/>
+    <text x="608" y="162" font-size="14" font-weight="700" text-anchor="middle" fill="#2563EB">②</text>
+    <text x="608" y="180" font-size="11" text-anchor="middle" fill="#0F0F10">enqueue</text>
+    <text x="608" y="194" font-size="9" text-anchor="middle" fill="#6B6B72">coalescing</text>
+  </g>
+
+  <!-- Node 3: lower right -->
+  <g>
+    <circle cx="608" cy="360" r="40" fill="#FFFFFF" stroke="#0F2C59" stroke-width="2"/>
+    <text x="608" y="352" font-size="14" font-weight="700" text-anchor="middle" fill="#2563EB">③</text>
+    <text x="608" y="370" font-size="11" text-anchor="middle" fill="#0F0F10">wake</text>
+    <text x="608" y="384" font-size="9" text-anchor="middle" fill="#6B6B72">budget/workspace 체크</text>
+  </g>
+
+  <!-- Node 4: bottom -->
+  <g>
+    <circle cx="400" cy="430" r="40" fill="#FFFFFF" stroke="#D97706" stroke-width="2.5"/>
+    <text x="400" y="422" font-size="14" font-weight="700" text-anchor="middle" fill="#D97706">④</text>
+    <text x="400" y="440" font-size="11" font-weight="600" text-anchor="middle" fill="#D97706">atomic checkout</text>
+    <text x="400" y="454" font-size="9" text-anchor="middle" fill="#6B6B72">execution lock</text>
+  </g>
+
+  <!-- Node 5: lower left -->
+  <g>
+    <circle cx="192" cy="360" r="40" fill="#FFFFFF" stroke="#0F2C59" stroke-width="2"/>
+    <text x="192" y="352" font-size="14" font-weight="700" text-anchor="middle" fill="#2563EB">⑤</text>
+    <text x="192" y="370" font-size="11" text-anchor="middle" fill="#0F0F10">adapter 실행</text>
+    <text x="192" y="384" font-size="9" text-anchor="middle" fill="#6B6B72">LLM call + skill</text>
+  </g>
+
+  <!-- Node 6: upper left -->
+  <g>
+    <circle cx="192" cy="170" r="40" fill="#FFFFFF" stroke="#059669" stroke-width="2.5"/>
+    <text x="192" y="162" font-size="14" font-weight="700" text-anchor="middle" fill="#059669">⑥</text>
+    <text x="192" y="180" font-size="11" font-weight="600" text-anchor="middle" fill="#059669">sleep (DB 영속)</text>
+    <text x="192" y="194" font-size="9" text-anchor="middle" fill="#6B6B72">세션 상태 저장</text>
+  </g>
+
+  <!-- Arrows around the cycle -->
+  <path d="M 440 110 Q 525 130 575 150" fill="none" stroke="#0F2C59" stroke-width="1.5" marker-end="url(#arrow-hb)"/>
+  <path d="M 608 210 Q 625 285 608 320" fill="none" stroke="#0F2C59" stroke-width="1.5" marker-end="url(#arrow-hb)"/>
+  <path d="M 575 388 Q 510 415 440 425" fill="none" stroke="#0F2C59" stroke-width="1.5" marker-end="url(#arrow-hb)"/>
+  <path d="M 360 425 Q 280 415 225 388" fill="none" stroke="#0F2C59" stroke-width="1.5" marker-end="url(#arrow-hb)"/>
+  <path d="M 192 320 Q 175 285 192 210" fill="none" stroke="#0F2C59" stroke-width="1.5" marker-end="url(#arrow-hb)"/>
+  <path d="M 225 150 Q 275 130 360 110" fill="none" stroke="#0F2C59" stroke-width="1.5" marker-end="url(#arrow-hb)"/>
+
+  <!-- callouts -->
+  <text x="20" y="487" font-size="10" fill="#6B6B72">⑥ → ① 다음 박자: 잠든 에이전트가 동일 task context로 깨어남 ("persistent agent state")</text>
+</svg>

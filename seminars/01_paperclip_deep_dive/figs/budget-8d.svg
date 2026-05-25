@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
+  <defs>
+    <marker id="arrow-bd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6B6B72"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="500" fill="#FAFAF9"/>
+
+  <text x="400" y="30" font-size="18" font-weight="600" text-anchor="middle" fill="#0F2C59">예산 거버넌스 — 8 차원 추적 + 80/100% 임계</text>
+  <text x="400" y="50" font-size="12" text-anchor="middle" fill="#6B6B72">매 heartbeat가 cost event 발행 → 8 차원에 동시 집계 → 임계 도달 시 자동 pause</text>
+
+  <!-- Center: cost event -->
+  <g>
+    <rect x="320" y="220" width="160" height="60" rx="8" fill="#0F2C59"/>
+    <text x="400" y="244" font-size="13" font-weight="700" text-anchor="middle" fill="#FFFFFF">cost event</text>
+    <text x="400" y="262" font-size="9" text-anchor="middle" fill="#FFFFFF" opacity="0.8">provider/model</text>
+    <text x="400" y="274" font-size="9" text-anchor="middle" fill="#FFFFFF" opacity="0.8">input+output tokens</text>
+  </g>
+
+  <!-- 8 dimensions around the center -->
+  <!-- top row (4) -->
+  <g>
+    <rect x="40" y="100" width="130" height="44" rx="6" fill="#FFFFFF" stroke="#2563EB" stroke-width="1.5"/>
+    <text x="105" y="120" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">① company</text>
+    <text x="105" y="134" font-size="9" text-anchor="middle" fill="#6B6B72">회사 단위 월간 한도</text>
+  </g>
+  <g>
+    <rect x="210" y="100" width="130" height="44" rx="6" fill="#FFFFFF" stroke="#2563EB" stroke-width="1.5"/>
+    <text x="275" y="120" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">② agent</text>
+    <text x="275" y="134" font-size="9" text-anchor="middle" fill="#6B6B72">에이전트별 한도</text>
+  </g>
+  <g>
+    <rect x="460" y="100" width="130" height="44" rx="6" fill="#FFFFFF" stroke="#2563EB" stroke-width="1.5"/>
+    <text x="525" y="120" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">③ project</text>
+    <text x="525" y="134" font-size="9" text-anchor="middle" fill="#6B6B72">프로젝트 단위</text>
+  </g>
+  <g>
+    <rect x="630" y="100" width="130" height="44" rx="6" fill="#FFFFFF" stroke="#2563EB" stroke-width="1.5"/>
+    <text x="695" y="120" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">④ goal</text>
+    <text x="695" y="134" font-size="9" text-anchor="middle" fill="#6B6B72">목표 단위</text>
+  </g>
+
+  <!-- bottom row (4) -->
+  <g>
+    <rect x="40" y="360" width="130" height="44" rx="6" fill="#FFFFFF" stroke="#2563EB" stroke-width="1.5"/>
+    <text x="105" y="380" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">⑤ issue</text>
+    <text x="105" y="394" font-size="9" text-anchor="middle" fill="#6B6B72">티켓 단위</text>
+  </g>
+  <g>
+    <rect x="210" y="360" width="130" height="44" rx="6" fill="#FFFFFF" stroke="#2563EB" stroke-width="1.5"/>
+    <text x="275" y="380" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">⑥ provider</text>
+    <text x="275" y="394" font-size="9" text-anchor="middle" fill="#6B6B72">Anthropic/OpenAI/…</text>
+  </g>
+  <g>
+    <rect x="460" y="360" width="130" height="44" rx="6" fill="#FFFFFF" stroke="#2563EB" stroke-width="1.5"/>
+    <text x="525" y="380" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">⑦ model</text>
+    <text x="525" y="394" font-size="9" text-anchor="middle" fill="#6B6B72">Opus/Sonnet/Haiku</text>
+  </g>
+  <g>
+    <rect x="630" y="360" width="130" height="44" rx="6" fill="#FFFFFF" stroke="#2563EB" stroke-width="1.5"/>
+    <text x="695" y="380" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">⑧ month (UTC)</text>
+    <text x="695" y="394" font-size="9" text-anchor="middle" fill="#6B6B72">월간 리셋</text>
+  </g>
+
+  <!-- Lines from center to each dimension -->
+  <line x1="340" y1="225" x2="170" y2="135" stroke="#6B6B72" stroke-width="1" opacity="0.5" marker-end="url(#arrow-bd)"/>
+  <line x1="350" y1="220" x2="290" y2="148" stroke="#6B6B72" stroke-width="1" opacity="0.5" marker-end="url(#arrow-bd)"/>
+  <line x1="450" y1="220" x2="510" y2="148" stroke="#6B6B72" stroke-width="1" opacity="0.5" marker-end="url(#arrow-bd)"/>
+  <line x1="460" y1="225" x2="630" y2="135" stroke="#6B6B72" stroke-width="1" opacity="0.5" marker-end="url(#arrow-bd)"/>
+
+  <line x1="340" y1="275" x2="170" y2="365" stroke="#6B6B72" stroke-width="1" opacity="0.5" marker-end="url(#arrow-bd)"/>
+  <line x1="350" y1="280" x2="290" y2="356" stroke="#6B6B72" stroke-width="1" opacity="0.5" marker-end="url(#arrow-bd)"/>
+  <line x1="450" y1="280" x2="510" y2="356" stroke="#6B6B72" stroke-width="1" opacity="0.5" marker-end="url(#arrow-bd)"/>
+  <line x1="460" y1="275" x2="630" y2="365" stroke="#6B6B72" stroke-width="1" opacity="0.5" marker-end="url(#arrow-bd)"/>
+
+  <!-- Threshold bar -->
+  <g>
+    <text x="180" y="465" font-size="11" font-weight="600" fill="#0F2C59">임계</text>
+    <rect x="220" y="450" width="400" height="22" rx="4" fill="#E5E7EB"/>
+    <rect x="220" y="450" width="320" height="22" rx="4" fill="#FBBF24"/>
+    <rect x="220" y="450" width="400" height="22" rx="4" fill="none"/>
+    <line x1="540" y1="446" x2="540" y2="476" stroke="#D97706" stroke-width="2"/>
+    <text x="540" y="442" font-size="10" font-weight="700" text-anchor="middle" fill="#D97706">80%</text>
+    <text x="540" y="487" font-size="9" text-anchor="middle" fill="#D97706">soft alert</text>
+    <line x1="620" y1="446" x2="620" y2="476" stroke="#E11D48" stroke-width="2"/>
+    <text x="620" y="442" font-size="10" font-weight="700" text-anchor="middle" fill="#E11D48">100%</text>
+    <text x="620" y="487" font-size="9" text-anchor="middle" fill="#E11D48">hard stop · auto-pause</text>
+    <text x="650" y="465" font-size="11" font-style="italic" fill="#6B6B72">→ 큐 cancel</text>
+  </g>
+
+  <text x="20" y="497" font-size="9" fill="#6B6B72">한계: 일/분 단위 budget 없음 → 단일 heartbeat 내 burst는 §3.6.2 adapter 사전 제한으로 보완</text>
+</svg>

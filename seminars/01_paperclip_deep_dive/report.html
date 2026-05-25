@@ -186,7 +186,22 @@
 <p><strong>왜 중요한가</strong> — &quot;어떤 프레임워크를 쓰지?&quot; 가 더 이상 취향 문제가 아니라 <em>&quot;우리 워크플로의 모양이 그래프냐, 역할극이냐, 대화냐, 회사냐&quot;</em> 라는 질문이 됐다. 본 리포트 2장에서 이 4분류를 본격적으로 다룬다.</p>
 <h3 id="1.2.2-mcpmodel-context-protocol의-사실상-표준화">1.2.2 MCP(Model Context Protocol)의 사실상 표준화</h3>
 <p>2024년 11월 Anthropic이 발표한 MCP가 18개월 만에 <strong>에이전트-도구 인터페이스의 사실상 표준</strong> 이 됐다. 공개 MCP 서버 레지스트리는 <strong>2025 Q1 1,200개 → 2026년 4월 9,400개+</strong> 로 늘었고 (월간 +18% 성장), Claude / ChatGPT / Gemini / Cursor / Windsurf / Zed / JetBrains AI / Vercel AI SDK / OpenAI Agents SDK가 모두 MCP를 네이티브로 채택했다.[^digitalapplied][^mcp-roadmap]</p>
-<p><strong>왜 중요한가</strong> — 2025년까지의 통합은 <em>&quot;벤더별 plugin / function calling 스펙을 일일이 맞춰 짜기&quot;</em> 였는데, MCP 이후로는 <strong>&quot;한 번 MCP 서버를 만들면 어떤 호스트에서든 붙는다&quot;</strong> 가 됐다. F&amp;B 마케팅 자동화 관점에서도 Shopify · Meta Ads · Instagram · GA4 · Slack 같은 외부 시스템을 MCP 서버 한 번 작성으로 모든 에이전트에 공유 가능. 단 2026년 현재 미해결 영역은 <strong>SSO 통합 auth · 감사 로그 · 게이트웨이 정책</strong> 으로, 엔터프라이즈 채택의 핵심 과제로 남아 있다.[^thenewstack]</p>
+<p><strong>한 줄 정의 — USB-C 메타포 (Anthropic 공식)</strong>. 5개 1차 출처(NetworkChuck, Fireship, IBM Technology, KodeKloud, Greg Isenberg)가 일관되게 <em>&quot;AI를 위한 USB-C 포트&quot;</em> 표현을 쓴다.[^yt-mcp-5] 어떤 어시스턴트·어떤 모델 패밀리도 어떤 데이터 소스·도구에 호환되도록 <em>통합 어댑터 + 통합 프로토콜</em> 을 박은 것이 본질이다.</p>
+<p><img src="figs/mcp-anthropic-diagram.png" alt="MCP 공식 아키텍처 다이어그램 (Anthropic)" />
+<small>Figure — Anthropic 공식 MCP 다이어그램. 클라이언트(Claude/Cursor/IDE)와 데이터/도구/워크플로 사이를 <em>표준 프로토콜</em> 한 층이 매개. 출처: modelcontextprotocol.io.</small></p>
+<p><strong>호스트 생태계 6개 (직접 확인)</strong> — Claude Desktop · Cursor · Windsurf · LM Studio(로컬 모델용) · ChatGPT(OpenAI 기반 클라이언트) · Google <strong>Anti-gravity</strong>(Gemini 기반). 이 중 Anti-gravity는 2026년 4월에 GA된 Google의 시각 워크플로 빌더로, MCP 호스트 진입의 직전 사례.[^yt-mcp-5]</p>
+<p><strong>MCP vs 전통 API의 차별점</strong> — IBM Technology의 표현으로는 <em>&quot;적이 아니라 layer다 — MCP는 API를 그 아래에서 호출하면서 LLM-friendly한 인터페이스를 위에 얹는다&quot;</em>.[^yt-mcp-5] 핵심 차이는 <strong>dynamic discovery</strong> — 에이전트가 런타임에 MCP 서버에 <em>&quot;너 뭐 할 수 있어?&quot;</em> 를 직접 묻고 그 자리에서 적응한다. 전통 REST는 새 endpoint 추가 시 클라이언트 재배포가 필요하지만, MCP는 capabilities list 갱신만으로 자동 인식된다.</p>
+<p><strong>Production 미해결 영역 4개</strong> — 본 1차 출처들이 공통으로 짚는 운영 위험:[^yt-mcp-5]</p>
+<ol class="nums">
+<li><strong>컨텍스트 폭주(Context pollution)</strong> — Nick Saraev 직접 인용: <em>&quot;generalized MCP server는 모든 함수 정의를 컨텍스트에 로드 → 200K window가 빠르게 burn된다.&quot;</em> 호출 결과 전체도 그대로 컨텍스트로 복귀하므로, Google Drive 문서 1개 fetch 시 본문 전체가 들어간다.</li>
+<li><strong>Auth / Remote SSE 복잡성</strong> — 원격 MCP 서버는 HTTPS + Server-Side Events + 인증 셋업이 <em>&quot;a whole thing&quot;</em> (NetworkChuck). 로컬 stdio는 단순하지만 원격 production은 entry barrier가 크다.</li>
+<li><strong>품질 편차</strong> — <em>&quot;Not all MCP servers are created equal. A lot are rushed to market.&quot;</em> (Nick Saraev). 사용 전 검수가 필수.</li>
+<li><strong>Destructive action 위험</strong> — Fireship의 hypothetical로 인용된 <em>&quot;AI agent가 실수로 customer data를 삭제하는 시나리오&quot;</em> 가 실제로 일어남 (본 절 §1.2.7 참고).</li>
+</ol>
+<p><strong>Production 답 — Docker MCP Gateway</strong>. 2026년 1~3분기에 등장한 <em>&quot;중앙 집중화된 secret/auth 관리 + 단일 connection으로 N개 MCP 서버 접근&quot;</em> 패턴이 현 시점 production reference로 떠오르고 있다.[^yt-mcp-5] 엔터프라이즈가 SSO·감사 로그·gateway policy를 한 곳에서 강제하는 방식.</p>
+<p><img src="figs/mcp-architecture.svg" alt="MCP 생태계 — 호스트 6개 ↔ MCP 서버 (Docker Gateway) ↔ 데이터 소스" />
+<small>Figure — MCP 호스트(Claude Desktop/Cursor/Windsurf/LM Studio/ChatGPT/Anti-gravity) ↔ MCP 서버 (Docker MCP Gateway 중앙화) ↔ 데이터 소스 (Drive/DB/Slack/Shopify/네이버 등). production 위험 4 영역(컨텍스트 폭주·Auth/SSE·품질 편차·destructive action) 표기. 작성자 정리.</small></p>
+<p><strong>F&amp;B 자동화 관점</strong> — Shopify · Meta Ads · Instagram · GA4 · Slack 같은 외부 시스템을 MCP 서버 한 번 작성으로 모든 에이전트에 공유 가능. 단 <em>generalized</em> MCP를 무작정 붙이면 위 컨텍스트 폭주가 곧 비용 폭주로 이어지므로, <strong>자체 자산은 자체 MCP로 정밀히 빌드</strong> + 외부 SaaS는 Docker MCP Gateway 같은 통합 진입점을 거치는 패턴이 안전하다.</p>
 <h3 id="1.2.3-agent-skills-프롬프트-자산의-코드화">1.2.3 Agent Skills — 프롬프트 자산의 코드화</h3>
 <p>Anthropic이 2025-12-18 <strong>Agent Skills 오픈 스펙</strong> 을 공개했다.[^anthropic-skills] 폴더 하나에 <code>SKILL.md</code> (YAML frontmatter + Markdown 지시문) + 보조 스크립트/리소스를 담는 단순 포맷이고, 핵심은 <strong>staged loading</strong> — 메타데이터만 부팅 시 읽고, 실제 호출될 때만 본문이 컨텍스트에 들어가서 토큰 비용을 잡는 구조다. 2026년 3월 시점 <strong>32개 도구</strong> (Gemini CLI · JetBrains Junie · AWS Kiro · Block Goose · Cursor · OpenCode 등)가 동일한 SKILL.md를 읽는다.[^venturebeat]</p>
 <p><strong>왜 중요한가</strong> — 그동안 사내에 흩어져 있던 <em>&quot;ChatGPT 프롬프트 모음.docx&quot;</em> , <em>&quot;노션 프롬프트 라이브러리&quot;</em> 같은 비공식 자산이 <strong>버전 관리 가능한 코드 디렉토리</strong> 가 된다. F&amp;B 마케팅이라면 <em>브랜드 톤 매뉴얼 / 신메뉴 출시 카피 SOP / Meta Ads 캠페인 셋업 절차</em> 를 각각 skill 폴더로 묶으면, 같은 자산을 Claude Code · Cursor · Paperclip의 모든 에이전트가 똑같이 호출 가능.</p>
@@ -196,6 +211,30 @@
 <h3 id="1.2.5-관찰성평가의-표준화-otel-langsmith-라인">1.2.5 관찰성·평가의 표준화 — OTel + LangSmith 라인</h3>
 <p>2026년 3월 LangSmith가 OpenTelemetry full support를 추가하면서, <strong>Laminar · Langfuse · LangSmith · Phoenix가 모두 OTLP를 공통 수신 포맷</strong> 으로 받게 됐다. 즉 에이전트 trace가 벤더 종속 없이 이식 가능해진 첫 해다.[^braintrust][^agentmarketcap] LangChain 설문 기준 <strong>production 운영 팀의 89%가 observability를 도입</strong> 했고, 62%는 단계별 step · tool call 단위 trace를 본다.</p>
 <p><strong>왜 중요한가</strong> — 멀티 에이전트가 늘어날수록 <em>&quot;왜 이 캠페인 카피가 이렇게 나왔는지&quot;</em> 의 사후 추적성이 production의 사활을 가른다. LangChain 설문에서 production 진입을 가로막는 1위 이유가 <strong>&quot;quality&quot; (32%)</strong> 였는데, 관찰성 없는 품질 개선은 불가능하므로 OTel은 사실상 진입 요건이 되고 있다.</p>
+<h3 id="1.2.6-eval-benchmark-swe-bench-중심-복리-오류의-본질적-한계">1.2.6 Eval/Benchmark — SWE-bench 중심 + 복리 오류의 본질적 한계</h3>
+<p>에이전트 평가는 2026년 5월 현재 코딩 영역의 <strong>SWE-bench</strong>(Software Engineering Bench)가 가장 흔히 언급되는 척도다. 실제 SW 엔지니어링 문제 + 버그 수정 능력을 평가하며, 현 frontier 모델들이 <strong>약 80% 성공률</strong> 에 도달한 상태다.[^yt-eval-prod] 코딩 외 영역은 <strong>AgentBench / GAIA / TAU-bench / WebArena</strong> 가 각각 <em>generalist agent / browsing / customer service / web navigation</em> 을 다루지만, 본 1차 출처 29 영상에서는 SWE-bench 외엔 거의 언급되지 않는다 — 비코딩 도메인의 <em>합의된 벤치마크 부재</em> 가 production 평가의 빈자리로 남아 있다.[^yt-eval-prod]</p>
+<p><strong>복리 오류의 본질적 한계</strong> — Nick Saraev의 직접 계산:[^yt-eval-prod]</p>
+<ul class="bullets">
+<li>단계당 90% × 5단계 = <strong>59%</strong></li>
+<li>단계당 95% × 10단계 = <strong>60%</strong></li>
+</ul>
+<p>다단계 자율 실행에서 단일 단계의 <em>정확도가 충분히 높아 보여도</em> 누적되면 production 신뢰성에 미달한다. F&amp;B 캠페인 발행처럼 <em>5~10 단계가 직렬로 도는</em> 워크플로에서는 단계별 95% 이상이거나 HITL 체크포인트가 반드시 끼어 있어야 한다는 뜻이다. 평가 영역의 의의는 &quot;벤치마크 1순위 모델 찾기&quot; 가 아니라 <em>&quot;자사 도메인에 단계별 정확도 임계를 측정·관리할 도구가 있는가&quot;</em> 다.</p>
+<h3 id="1.2.7-cost-aware-설계-60-30-10-라우팅-iceberg-sub-agent-isolation">1.2.7 Cost-aware 설계 — 60/30/10 라우팅 + Iceberg + Sub-agent isolation</h3>
+<p>§1.2.4의 <em>&quot;SDK 가격 재편으로 cost-aware 아키텍처 필수&quot;</em> 메시지를 실제 production 패턴 3개로 풀면 다음과 같다.[^yt-eval-prod]</p>
+<p><strong>(a) 60/30/10 Model Routing</strong> — Nick Saraev (305K views) 권고:</p>
+<p><img src="figs/model-routing-60-30-10.svg" alt="60/30/10 Model Routing 피라미드" />
+<small>Figure — 모델 가격대를 작업 영향도와 매칭. 60% Haiku/Flash (대량 처리) + 30% Sonnet (일반 작업) + 10% Opus (핵심 의사결정). Nick Saraev claim: 60%+ 비용 절감. 작성자 시각화.</small></p>
+<ul class="bullets">
+<li><strong>60%</strong>: 저렴 모델 (Haiku · Gemini Flash) → 대량 스크래핑·전처리</li>
+<li><strong>30%</strong>: 중간 모델 (Sonnet) → 일반 작업</li>
+<li><strong>10%</strong>: 최강 모델 (Opus) → 라우팅·핵심 의사결정</li>
+<li>효과: <strong>60%+ 비용 절감</strong> 클레임. 모델 capability에 <em>작업당 적정 가격</em> 을 매칭하는 패턴.</li>
+</ul>
+<p><strong>(b) Iceberg Technique</strong> — Nick Saraev: 전체 코드베이스나 DB를 컨텍스트에 밀어 넣는 대신 <em>&quot;파일 제목만 노출 + read/grep 도구 부여&quot;</em> 로 에이전트가 필요한 부분(전체의 10~20%)만 동적으로 읽어 오게 한다. F&amp;B 컨텍스트라면 <em>전체 브랜드 가이드 30 페이지를 매 호출 컨텍스트에 넣지 말고, &quot;주제별 인덱스 + 검색 도구&quot; 만 노출</em> 하는 형태다.</p>
+<p><img src="figs/iceberg-technique.svg" alt="Iceberg Technique — 컨텍스트에 10~20%만 노출" />
+<small>Figure — 수면 위 10~20% (파일 제목 + read/grep 인덱스)만 매 prompt에 노출, 수면 아래 80~90% (전체 자산)는 도구 호출 시에만 lazy-load. AS-IS(전체 dump → 컨텍스트 폭주)와 TO-BE(Iceberg) 대비. 작성자 시각화.</small></p>
+<p><strong>(c) Sub-agent Context Isolation</strong> — LangChain · Nick Saraev 공통 권고: 메인 에이전트가 sub-agent에게 작업 위임 → sub-agent는 <strong>격리된 fresh context</strong> 에서 작업 → 메인 에이전트에는 <em>summary + relevant findings만</em> 반환. 메인 컨텍스트를 1/5~1/10로 유지. 본 리포트 3장의 Paperclip atomic checkout 모델과 발상이 같다 (각 issue가 격리된 워크스페이스).</p>
+<p><strong>왜 중요한가</strong> — <em>&quot;비용은 budget 한도가 막아 준다&quot;</em> 가 §3.6 Paperclip 거버넌스의 답이지만, <strong>단일 하트비트 내 토큰 폭주는 사전 설계가 막아야</strong> 한다. 60/30/10 + Iceberg + Sub-agent isolation 3개를 <em>adapter 단의 기본 패턴</em> 으로 박아 두면 budget hard-stop이 트리거되기 전에 비용 곡선이 더 완만해진다 — 본 리포트 §3.6.1의 &quot;일/분 단위 budget 부재&quot; 한계에 대한 사전 설계 대응.</p>
 <h2 id="1.3-fb-마케팅-자동화-관점-시드-3개">1.3 F&amp;B 마케팅 자동화 관점 — 시드 3개</h2>
 <blockquote>
 <p>본격 적용 논의는 5장 — 여기선 시드만 던진다.</p>
@@ -216,13 +255,14 @@
 [^turing]: Turing. (2026). <em>A Detailed Comparison of Top 6 AI Agent Frameworks in 2026</em>. https://www.turing.com/resources/ai-agent-frameworks
 [^digitalapplied]: Digital Applied. (2026). <em>MCP Adoption Statistics 2026</em>. https://www.digitalapplied.com/blog/mcp-adoption-statistics-2026-model-context-protocol
 [^mcp-roadmap]: Model Context Protocol. (2026). <em>The 2026 MCP Roadmap</em>. https://blog.modelcontextprotocol.io/posts/2026-mcp-roadmap/
-[^thenewstack]: The New Stack. (2026). <em>MCP's biggest growing pains for production use will soon be solved</em>. https://thenewstack.io/model-context-protocol-roadmap-2026/
+[^yt-mcp-5]: NotebookLM 합성. (2026-05-25). <em>MCP 5 영상 트랜스크립트 합성</em>. 자세히는 본 디렉토리 <code>research/05_youtube_synthesis.md</code> §2. 1차 출처 — NetworkChuck &quot;you need to learn MCP&quot; (1.50M views), Fireship &quot;Claude's MCP is here&quot; (1.34M views), Greg Isenberg &quot;MCP clearly explained&quot; (1.30M views), IBM Technology &quot;MCP vs API&quot; (1.10M views), KodeKloud &quot;MCP for Beginners — Flight Booking Demo&quot; (1.08M views).
 [^anthropic-skills]: Anthropic. (2026). <em>Equipping agents for the real world with Agent Skills</em>. https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills
 [^venturebeat]: VentureBeat. (2026). <em>Anthropic launches enterprise Agent Skills and opens the standard</em>. https://venturebeat.com/technology/anthropic-launches-enterprise-agent-skills-and-opens-the-standard
 [^anthropic-sdk]: Anthropic. (2026). <em>Building agents with the Claude Agent SDK</em>. https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk
 [^releasebot]: Releasebot. (2026). <em>Anthropic Release Notes — May 2026</em>. https://releasebot.io/updates/anthropic
 [^braintrust]: Braintrust. (2026). <em>Agent Observability: The Complete Guide for 2026</em>. https://www.braintrust.dev/articles/agent-observability-complete-guide-2026
-[^agentmarketcap]: AgentMarketCap. (2026). <em>OpenTelemetry for AI Agents: The Missing Observability Standard</em>. https://agentmarketcap.ai/blog/2026/04/07/opentelemetry-ai-agents-observability-standard</p>
+[^agentmarketcap]: AgentMarketCap. (2026). <em>OpenTelemetry for AI Agents: The Missing Observability Standard</em>. https://agentmarketcap.ai/blog/2026/04/07/opentelemetry-ai-agents-observability-standard
+[^yt-eval-prod]: NotebookLM 합성. (2026-05-25). <em>Eval / Cost / Production failure 4 query 합성</em>. 자세히는 본 디렉토리 <code>research/05_youtube_synthesis.md</code> §4, §5. 1차 출처 — Nick Saraev &quot;AI Agents Full Course 2026&quot; (305K views), LangChain &quot;Conceptual Guide: Multi Agent Architectures&quot; (119K views), LangChain &quot;Building Effective Agents with LangGraph&quot; (226K views), Burke Holland &quot;Agent Orchestration&quot; (129K views).</p>
 
 </section>
 
@@ -389,6 +429,81 @@ triggers: [copy_review, draft_writing]
 <p>이것이 본 세미나의 핵심 가설이다 — <strong>F&amp;B 마케팅의 도메인 구조와 조직형 mental model 사이의 형태 일치(shape match)</strong> 가 다른 3 패러다임 대비 자연스럽다. 단, 이는 작성자(송태영)의 가설이며 단정이 아니다. 본 세미나 Q&amp;A에서 청중(커넥트브릭 개발팀)이 가진 <em>실제 워크플로 모양</em> 을 들어 검증·반박하는 것이 목적이다.</p>
 <h3 id="본-분류의-위상-작성자-정리-학술-분류-아님">본 분류의 위상 — 작성자 정리, 학술 분류 아님</h3>
 <p>본 4-way 분류는 발표용 mental model 프레임이며, 학술적 taxonomy가 아니다. Turing(2026)·pecollective(2026)·Morphllm(2026) 등은 6~8개 프레임워크를 <em>기능 매트릭스</em> 로 비교하고, Andrew Ng(2024)의 4 design patterns(reflection / tool use / planning / multi-agent)은 <em>흐름 패턴</em> 차원의 분류다. 본 4-way는 그중에서 <strong>&quot;우리 워크플로의 모양과 mental model의 형태 일치&quot;</strong> 라는 단일 축으로 단순화한 것이며, 다른 축(governance / 비용 / 관찰성)을 같이 보면 다른 그림이 나온다 — 본 리포트 3장과 5장에서 이 다른 축들을 보강한다.</p>
+<h2 id="2.6-4-분류-밖-실무에서-더-만나는-것들">2.6 4 분류 밖 — 실무에서 더 만나는 것들</h2>
+<p>본 절은 YouTube 29개 영상(조회수 11.1M의 OpenAI Multi-Agent Hide and Seek부터 LangChain Conceptual Guide까지)의 트랜스크립트 합성에서 나온 <em>production reality</em> 보강이다 (<code>research/05_youtube_synthesis.md</code>).</p>
+<h3 id="2.6.1-시각-워크플로-카테고리-n8n-make-zapier-google-anti-gravity">2.6.1 시각 워크플로 카테고리 (n8n / Make / Zapier / Google Anti-gravity)</h3>
+<p>본 4-way에 들어가지 않지만 F&amp;B 마케팅 자동화에서 <em>가장 자주 만나는 대안</em>은 <strong>드래그앤드롭 노드 기반의 시각 워크플로 도구</strong> 다. n8n · Make.com · Zapier · 2026년 출시된 Google <strong>Anti-gravity(58)</strong> 가 이 카테고리에 속한다. 본 4-way의 &quot;조직형&quot; 과는 다른 축인데, 위 도구들은 <em>&quot;노드 = 동작, 엣지 = 데이터 흐름&quot;</em> 의 시각형 메탈 모델이며 에이전트 자체보다는 <em>통합·자동화 파이프라인의 시각화</em> 가 핵심이다.</p>
+<p><strong>F&amp;B 자동화 관점에서 왜 중요한가</strong> — 카피라이팅 · SNS 포스팅 · 이메일 온보딩 · 리드 스크래핑처럼 <em>결정적·반복적</em> 워크플로는 시각 도구가 코드형보다 운영자 진입 장벽이 낮다. 본 세미나의 4분류와 비교하자면 <em>&quot;코드를 안 쓰고 그릴 수 있는 LangGraph 변종&quot;</em> 에 가까우며, 노코드 운영자(브랜드 매니저·마케터)에게는 자율 에이전트보다 신뢰성이 높다는 게 현 시점의 일반적 평가다.</p>
+<h3 id="2.6.2-production-현실-custom-cognitive-architecture">2.6.2 Production 현실 — Custom Cognitive Architecture</h3>
+<p>LangChain의 <em>Conceptual Guide: Multi Agent Architectures</em> (119K 조회) 직접 인용:</p>
+<blockquote>
+<p><em>&quot;실제 production에 들어가는 멀티에이전트 시스템에서 가장 흔한 형태는 supervisor도 hierarchical도 아닌 — <strong>완전 커스텀 인지 아키텍처(custom cognitive architecture)</strong> 다. 도메인에 맞춰 supervisor와 hierarchical의 일부 요소를 빌려오지만, 전반은 완전 커스텀이다. 이 정도의 customization과 control이 있어야 production에 도달한다.&quot;</em></p>
+</blockquote>
+<p>즉 본 4-way의 4 패러다임은 <strong>mental model의 출발점</strong> 이지, production 시스템이 4개 중 하나로 깔끔히 분류되는 일은 드물다. 실제로는 4 패러다임의 요소를 도메인에 맞춰 조합하는 <em>5번째 칸 (custom)</em> 이 가장 흔하다. <strong>F&amp;B 마케팅 자동화의 production 모습</strong> 도 — 조직형 backbone + 카피 단계에 역할극형 + Brand 톤에 skill 자산 — 같은 <strong>하이브리드 형태가 자연스러운 종착점</strong> 이다(가설).</p>
+<h3 id="2.6.3-단일-멀티-전환-기준-510-도구가-sweet-spot">2.6.3 단일 → 멀티 전환 기준 (5~10 도구가 sweet spot)</h3>
+<p>LangChain 동일 영상 인용 — <em>&quot;단일 에이전트가 가진 도구가 5~10개를 넘어서면 잘못된 도구 선택이 시작된다.&quot;</em> 이 경험적 임계가 <strong>언제 단일에서 멀티로 갈 것인가</strong> 의 의사결정 출발점이다. 함께 들리는 3 신호는 다음과 같다.</p>
+<ul class="bullets">
+<li><strong>신호 ①</strong> 도구 개수 ≥ 10 — 선택 정확도 하락</li>
+<li><strong>신호 ②</strong> 컨텍스트 폭주 — 도구 호출 + human turn 누적으로 LLM context window 한계 도달</li>
+<li><strong>신호 ③</strong> 전문화 필요 — planner / researcher / writer / critic 같이 <em>역할 페르소나</em> 가 결과 품질을 좌우</li>
+</ul>
+<p>F&amp;B 적용 예시 — <em>&quot;카피 1건 작성&quot;</em> 만 하는 단일 에이전트라면 5개 도구(브랜드 톤 / 금지어 / 신메뉴 DB / 시즌 컨텍스트 / 채널 가이드) 안에 머물 수 있지만, <em>&quot;신메뉴 출시 캠페인 전체&quot;</em> 가 되면 카피 + 디자인 + 캠페인 설계 + 분석 + 게시가 동시에 필요하므로 멀티로 갈 시점이다.</p>
+<h3 id="2.6.4-workflows-vs-autonomous-agents-2026-production의-권고">2.6.4 Workflows vs Autonomous Agents — 2026 production의 권고</h3>
+<p>같은 LangChain 영상의 결론은 발표 톤으로 한 줄 인용할 가치가 있다.</p>
+<blockquote>
+<p><em>&quot;많은 문제는 workflows로 풀린다. autonomous agent는 아직 신뢰성 부족 — production에서는 workflows를 더 신뢰하고 선호하는 경향. 모델이 더 똑똑해지면 자율로 이동.&quot;</em></p>
+</blockquote>
+<p>곧 2026년 5월 현 시점의 <em>production 권고</em>는 <strong>scaffolding을 명시한 workflow 안에 LLM 호출을 박는 형태</strong> 가 안전하고, <em>완전 자율 멀티 에이전트</em> 는 일부 신뢰성 검증된 영역에서만 채택된다. 본 4-way 중 그래프형(LangGraph)이 이 권고와 가장 정합적이고, 조직형(Paperclip)은 workflows를 <em>전사 거버넌스로 감싼</em> 변종이다.</p>
+<h3 id="2.6.5-본-5분류표">2.6.5 본 5분류표</h3>
+<p>본 §2.5 4-way 표에 본 절의 보강 카테고리를 한 줄씩 덧붙이면 다음과 같다. 본 표는 <em>발표 시 청중과의 토론용</em> 이며, 본 리포트 후속 장에서는 다시 4-way로 돌아가 Paperclip(조직형) 심층으로 들어간다.</p>
+<table class="cmp-table">
+<thead>
+<tr>
+<th>분류</th>
+<th>대표</th>
+<th>핵심 unit</th>
+<th>Production 적합도</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>그래프형</td>
+<td>LangGraph</td>
+<td>노드 + 엣지</td>
+<td>★★★★★ (workflows 권고에 정합)</td>
+</tr>
+<tr>
+<td>역할극형</td>
+<td>CrewAI, AutoGen, Swarm</td>
+<td>발언</td>
+<td>★★ (Swarm은 LangChain이 production 비추천)</td>
+</tr>
+<tr>
+<td>Skill 중심</td>
+<td>Deep Agents, Claude Agent SDK</td>
+<td>skill 호출</td>
+<td>★★★★ (코딩·문서 영역 강)</td>
+</tr>
+<tr>
+<td>조직형</td>
+<td>Paperclip</td>
+<td>이슈 / 태스크</td>
+<td>★★★ (오픈소스 거버넌스 깊이)</td>
+</tr>
+<tr>
+<td><strong>시각 워크플로</strong></td>
+<td>n8n, Make, Google 58</td>
+<td>노드 (시각)</td>
+<td>★★★★ (반복적 통합·F&amp;B 운영자 진입 장벽 낮음)</td>
+</tr>
+<tr>
+<td><strong>Custom Cognitive</strong></td>
+<td>(도메인 커스텀)</td>
+<td>(혼합)</td>
+<td>★★★★★ (실제 production에 가장 흔함)</td>
+</tr>
+</tbody>
+</table>
 <h2 id="references">References</h2>
 <ul class="bullets">
 <li>LangChain. (2026). <em>State of Agent Engineering 2025/2026</em> (n=1,340). https://www.langchain.com/state-of-agent-engineering</li>
@@ -419,6 +534,8 @@ triggers: [copy_review, draft_writing]
 <p>2장에서 본 4 패러다임 중, &quot;조직형(organizational)&quot; 의 대표 케이스 Paperclip을 한 층 더 들어간다. 본 장의 목적은 두 가지다 — (1) 8개 서브시스템 위에서 <strong>하트비트 루프(heartbeat loop)</strong> 가 어떻게 일을 도는지를 코드 레벨 직전까지 그려보고, (2) 거버넌스(governance)가 단순 알림이 아니라 <strong>런타임이 강제하는 차단(runtime-enforced gating)</strong> 으로 동작한다는 점을 보인다.</p>
 </blockquote>
 <h2 id="3.1-한-줄-정의-슬로건">3.1 한 줄 정의 + 슬로건</h2>
+<p><img src="figs/paperclip-github-header.png" alt="Paperclip 공식 GitHub 헤더 — &quot;runs your business&quot;" />
+<small>Figure — paperclipai/paperclip GitHub README 헤더. 회사·에이전트·운영 메타포가 시각 identity의 핵심. 출처: github.com/paperclipai/paperclip.</small></p>
 <p><strong>Paperclip</strong>은 &quot;AI 에이전트 팀을 회사처럼 운영하는&quot; 오픈소스 <strong>오케스트레이션 플랫폼(orchestration platform)</strong> 이다. Node.js 서버 + React UI + PostgreSQL 위에 <strong>하트비트(heartbeat) 기반 작업 큐</strong>와 8개 서브시스템을 얹어 외부 에이전트 런타임(Claude Code, Codex, CLI, HTTP, Plugin)을 통합 관제한다(research/01 §1).</p>
 <p>제작자의 공식 표현이 본 장의 한 줄 메시지를 가장 잘 요약한다(research/02 §1).</p>
 <blockquote>
@@ -502,6 +619,8 @@ triggers: [copy_review, draft_writing]
 </code></pre>
 <p>여기서 핵심 원칙은 모델/에이전트 <strong>불가지론(model-agnostic)</strong> 이다 — <em>&quot;If it can receive a heartbeat, it's hired&quot;</em> (research/01 §2 인용).</p>
 <h2 id="3.3-heartbeat-루프-핵심-실행-모델">3.3 Heartbeat 루프 — 핵심 실행 모델</h2>
+<p><img src="figs/heartbeat-loop.svg" alt="Heartbeat 한 박자 — 6 단계 라이프사이클" />
+<small>Figure — Issue 생성 → enqueue → wake → atomic checkout(execution lock) → adapter 실행 → sleep (DB 영속). 한 issue는 한 번에 한 에이전트만 잡음 (&quot;no double-work, no runaway spend&quot;). 다음 박자에서 잠든 에이전트가 동일 task context로 깨어남 (persistent agent state). 작성자 시각화 (research/01 §4 기반).</small></p>
 <p>Paperclip의 모든 일은 <strong>하트비트 한 박자(one heartbeat)</strong> 위에서 도는데, 이는 다른 패러다임의 <em>&quot;continuous agent loop&quot;</em> 와 결정적으로 다르다. 한 박자의 라이프사이클은 다음과 같다(research/01 §4).</p>
 <pre><code class="language-text">1. Issue 생성 (수동 / Routine cron·webhook·API / 다른 에이전트 위임)
    → company / project / goal / parent 링크 부여 (goal ancestry 결정)
@@ -519,6 +638,8 @@ triggers: [copy_review, draft_writing]
 </code></pre>
 <p>셋째, <strong>세션 영속성(session persistence)</strong>. 하트비트 사이에 에이전트는 죽는 게 아니라 <em>&quot;잠든다&quot;</em> — 다음 하트비트에서 DB에 적재된 상태를 그대로 이어 받는다(<em>&quot;Persistent agent state. Agents resume the same task context across heartbeats instead of restarting from scratch.&quot;</em> research/01 §6 인용). 큐 자체도 DB-backed라 서버 재시작 후 복원된다.</p>
 <h2 id="3.4-org-chart-위임-모델">3.4 Org Chart + 위임 모델</h2>
+<p><img src="figs/org-chart.svg" alt="Org Chart + 위임/승인 라인 (F&amp;B 마케팅 예시)" />
+<small>Figure — 엄격한 트리: Board(사람) → CEO Agent → Content/Brand/Publish Manager → Workers (Writer/Researcher/Brand Verifier/Postiz Pub/KR Channel Pub). 실선은 위임, 빨간 점선은 승인 라인(CEO → Board). 미승인 시 하위 task 진행 차단. 작성자 시각화 (research/02 §2.1, §3.1 기반).</small></p>
 <p>조직도는 <strong>엄격한 트리(strict hierarchy)</strong> 다(research/02 §2.1).</p>
 <ul class="bullets">
 <li>모든 에이전트는 <code>reportsTo</code> 필드를 갖고, <strong>정확히 한 명의 매니저</strong> 에게 보고한다. 사이클 금지(acyclic), 단일 부모.</li>
@@ -579,6 +700,8 @@ triggers: [copy_review, draft_writing]
 <h2 id="3.5-거버넌스-런타임-강제">3.5 거버넌스 — 런타임 강제</h2>
 <p>본 장의 메시지 중 가장 결정적인 부분이다. Paperclip의 거버넌스는 <strong>두 축이 런타임에서 작동</strong> 한다 — (A) 회사 레벨의 <strong>Approval Queue</strong>, (B) 태스크 레벨의 <strong>Execution Policy</strong> (research/02 §6).</p>
 <h3 id="3.5.1-a-approval-queue-회사-레벨">3.5.1 (A) Approval Queue — 회사 레벨</h3>
+<p><img src="figs/approval-state-machine.svg" alt="Approval Queue — 상태 머신" />
+<small>Figure — submitted → pending → approved/rejected/revision_requested → resubmitted → pending. 미승인 시 CEO는 하위 task를 in_progress로 <em>못 옮김</em> (단순 알림이 아닌 차단). 작성자 시각화 (research/02 §6.1 기반).</small></p>
 <p><code>hire_agent</code> 와 <code>ceo_strategy</code> 두 가지가 명시적 승인 타입이다(research/02 §6.1).</p>
 <pre><code class="language-text">pending → approved
        → rejected
@@ -624,6 +747,8 @@ triggers: [copy_review, draft_writing]
 </ul>
 <p>곧 자율 실행 위에 <strong>사람이 언제든 잡아끄는 비대칭 권한</strong>이 존재한다. 거버넌스의 안전망이 <em>&quot;논리적 강제 + 인간 비대칭 오버라이드&quot;</em> 의 이중 구조다.</p>
 <h2 id="3.6-예산-거버넌스">3.6 예산 거버넌스</h2>
+<p><img src="figs/budget-8d.svg" alt="예산 거버넌스 — 8 차원 추적 + 80/100% 임계" />
+<small>Figure — 매 heartbeat가 cost event 발행 → 8 차원(company/agent/project/goal/issue/provider/model/month)에 동시 집계 → 80% soft alert / 100% hard stop(auto-pause + 큐 cancel). 한계: 일/분 단위 budget 없음 → adapter 사전 제한 필요. 작성자 시각화 (research/02 §4 기반).</small></p>
 <p>비용은 <strong>8개 차원</strong> 으로 추적된다 — company · agent · project · goal · issue · provider · model · (월별 UTC 집계)(research/02 §4.1). 각 하트비트가 cost event를 보고하며, 필드는 <code>provider / model / inputTokens / outputTokens / costInCents</code> 다.</p>
 <p>정책은 단순 명료한 두 임계다(research/02 §4.2).</p>
 <table class="cmp-table">
@@ -657,6 +782,35 @@ triggers: [copy_review, draft_writing]
 <li>자체 사전 제한(adapter 단에서 per-call max_tokens 등) 병행</li>
 <li>일간 alert를 routine으로 합성(예: 매일 09:00 회사 spend 점검 routine)</li>
 </ul>
+<h3 id="3.6.2-adapter-단-cost-패턴-paperclip-거버넌스-위에-박을-3-패턴">3.6.2 Adapter 단 cost 패턴 — Paperclip 거버넌스 <em>위에</em> 박을 3 패턴</h3>
+<p>§1.2.7에서 풀었던 3 패턴이 그대로 Paperclip의 adapter 레이어에 들어간다. Paperclip의 hard-stop이 <em>&quot;한도 도달 후 차단&quot;</em> 이라면, 다음은 <em>&quot;한도에 가까이 가지 않게 만드는&quot;</em> 사전 설계다.</p>
+<table class="cmp-table">
+<thead>
+<tr>
+<th>패턴</th>
+<th>Paperclip 위에서의 위치</th>
+<th>효과</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>60/30/10 model routing</strong></td>
+<td>adapter config의 <code>model</code> 필드를 <em>역할별 분기</em> — CEO/리뷰어는 Opus, 일반 작업자는 Sonnet, 데이터 수집·전처리는 Haiku</td>
+<td>회사 단위 spend 곡선을 ~60% 완만하게</td>
+</tr>
+<tr>
+<td><strong>Iceberg Technique</strong></td>
+<td>skill 폴더 안에 <em>전체 자산이 아닌 인덱스 + read/grep</em> — 본 디렉토리도 <code>research/05_youtube_synthesis.md</code> 인덱스만 메인 context에 노출</td>
+<td>매 heartbeat의 prompt 길이를 1/5~1/10로</td>
+</tr>
+<tr>
+<td><strong>Sub-agent context isolation</strong></td>
+<td>Paperclip atomic checkout이 이미 <em>issue 단위 isolated workspace</em> 를 강제 — 패턴 자체는 시스템에 내장, <em>명시적 활용</em> 만 운영자가 챙기면 됨</td>
+<td>메인 컨텍스트 오염 방지</td>
+</tr>
+</tbody>
+</table>
+<p>세 패턴이 모두 박힌 상태에서 <em>그래도</em> burst가 일어나면 §3.6의 8차원 추적 + 100% hard-stop이 마지막 안전망이 되는 <em>이중 구조</em> 가 안전한 production 형태다.</p>
 <h2 id="3.7-운영-위험-vs-paperclip-안전망">3.7 운영 위험 vs Paperclip 안전망</h2>
 <p>운영 의사결정 관점에서 보면, <strong>Paperclip이 직접 막아 주는 것</strong> 과 <strong>여전히 사람이 책임져야 하는 것</strong> 을 분리하는 표가 가장 유용하다(research/02 §8 압축).</p>
 <table class="cmp-table">
@@ -726,6 +880,15 @@ triggers: [copy_review, draft_writing]
 </tbody>
 </table>
 <p>표의 메시지를 한 줄로 압축하면 — <strong>Paperclip은 &quot;조직 운영의 구조적 안전망&quot; 을 제공하지만, &quot;모델 출력의 진실성&quot; 은 보장하지 않는다</strong>. 후자는 reviewer-of-record(사람 또는 검증 에이전트)를 execution policy로 강제하는 책임이 운영자에게 남아 있다.</p>
+<h3 id="3.7.1-4-실패-패턴-paperclip이-직접-못-막는-것">3.7.1 4 실패 패턴 — Paperclip이 <em>직접</em> 못 막는 것</h3>
+<p><img src="figs/4-failure-patterns.svg" alt="Paperclip이 직접 못 막는 4 실패 패턴" />
+<small>Figure — ① Context Anxiety (조기 종료 선언) · ② Poor Self-eval (자기 칭찬 통과) · ③ 복리 오류 (90%×5단계 = 59%) · ④ 위험한 자율성 (C/D 드라이브 삭제). 시스템 거버넌스(Paperclip) + 모델 행동 가드레일(adapter/skill)의 이중 구조 필요. 작성자 시각화 (research/05 §5 기반).</small></p>
+<p>위 표가 <em>시스템 차원의 안전망 vs 잔여 위험</em> 의 매핑이라면, 본 절은 <strong>에이전트 자체의 행동학적 실패 4 패턴</strong> 이다. 본 4 패턴은 시스템 거버넌스로 막기 어렵고 <em>에이전트 설계와 reviewer 룰북</em> 으로 막아야 한다 (research/05 §5, YouTube 29 영상 합성).</p>
+<p><strong>(a) Context Anxiety — <em>&quot;다 끝났다&quot;고 조기 선언</em></strong> . 컨텍스트가 차오르면 에이전트가 작업이 덜 끝났음에도 <em>마무리 지으려는 행동 변화</em> 가 나타난다. 본 세션 Paperclip 데모의 Writer 에이전트가 <em>드래프트가 아직 부족한데도 stage 전환을 요청하는 시나리오</em> 가 이에 해당한다. Paperclip의 execution policy review stage는 <em>전환을 강제</em> 하지만 <em>완성도를 판정하지는 못한다</em>. 대응 — review stage에 <em>&quot;최소 길이/항목 충족 여부&quot;</em> 같은 정량 기준을 verifier 에이전트로 박는다.</p>
+<p><strong>(b) Poor Self-evaluation — <em>형편없는 결과를 칭찬하며 통과</em></strong> . 자기 결과물 검토를 시키면 LLM이 <em>자기 출력을 좋게 평가</em> 하는 편향이 강하게 나타난다. F&amp;B에서 <em>카피라이팅 → 카피라이터 자기 검수 → 통과</em> 가 위험한 이유다. 대응 — 평가자 에이전트는 <strong>냉소적/적대적 페르소나 + 분리된 컨텍스트</strong>, 가능하면 <strong>다른 모델 패밀리</strong> 로 둔다 (장피엠의 Claude vs Codex 교차 비판 패턴이 이 답 — §5.5 참고).</p>
+<p><strong>(c) 복리 오류 (Compounding Errors) — 단계당 90% × 5단계 = 59%</strong> . 다단계 자율 실행은 <em>각 단계의 정확도가 높아 보여도</em> 누적되면 production 신뢰성에 미달한다 (research/05 §5.3). F&amp;B 캠페인 발행처럼 <em>5~10 단계가 직렬로 도는</em> 워크플로는 단계별 95% 이상이거나 HITL 체크포인트가 반드시 끼어 있어야 한다. Paperclip의 executionPolicy review/approval stage가 <em>바로 이 자리에</em> 끼어들 수 있는 자리다 — 비싼 액션(외부 publish, 결제) 직전마다 강제 게이트.</p>
+<p><strong>(d) 위험한 자율성 방치</strong> — <em>샌드박스 없이 파일 시스템 권한 부여 → C드라이브/D드라이브 삭제 사례가 실제로 일어난다</em> (research/05 §5.4). Paperclip의 atomic checkout이 <em>작업 격리</em> 는 보장하지만 <em>destructive action 권한 자체</em> 는 adapter에 위임된다. 대응 — adapter 단에 <strong>capability allowlist + destructive action 차단 (<code>rm -rf</code> 패턴, DB DELETE 명령 등)</strong> 을 박는다. F&amp;B 도메인에서는 <em>외부 publish · 광고비 집행 · 고객 DB 변경</em> 이 destructive action 후보다.</p>
+<p>본 4 패턴은 §3.5의 <em>런타임 강제 거버넌스</em> 와 직교한다 — <em>&quot;승인 받았어도 모델이 거짓 보고하면 게이트가 의미 없다&quot;</em> 가 이 절의 메시지다. <em>시스템 거버넌스 + 모델 행동 가드레일</em> 의 이중 구조가 production 안전성의 필수 조건이다.</p>
 <h2 id="3.8-왜-조직형이-다른가-결론-t3-메시지">3.8 &quot;왜 조직형이 다른가&quot; 결론 (T3 메시지)</h2>
 <p>본 장의 결론을 본 세미나의 T3 메시지로 응축하면 한 줄이다 — <strong>거버넌스가 런타임 강제(runtime-enforced)여야 한다</strong> (spec §2.3).</p>
 <p>이 명제가 다른 패러다임과 결정적으로 갈리는 지점은 다음 셋이다(research/02 §6, §8, spec §2.3 종합).</p>
@@ -742,6 +905,7 @@ triggers: [copy_review, draft_writing]
 <ul class="bullets">
 <li>research/01 §1, §2, §3, §4, §6 — Paperclip 시스템 아키텍처, 데이터 모델, 하트비트 라이프사이클, 세션 영속성</li>
 <li>research/02 §1, §2, §3, §4, §6, §8 — 슬로건, org chart, 위임, 예산 거버넌스, HITL, 운영 위험</li>
+<li>research/05 §4, §5 — YouTube 29 영상 합성 (60/30/10 라우팅, Iceberg, 4 실패 패턴)</li>
 <li>docs/superpowers/specs/2026-05-24-session-01-topic-design.md §2.3 — T3 &quot;거버넌스가 런타임 강제여야 한다&quot;</li>
 <li>paperclipai/paperclip GitHub README (research/01 [^1], research/02 [^readme])</li>
 <li>Paperclip docs — Org Structure / Delegation / Approvals / Costs and Budgets / Execution Policy (research/02 각주 인용 출처)</li>
@@ -928,7 +1092,7 @@ Publisher → Postiz upload + 다채널 예약 (mock 처리)
 <li><strong>별도 publisher 에이전트 + 한국 채널 어댑터 직접 개발</strong> — Paperclip의 어댑터 추상(<code>http</code>, <code>process</code>, <code>claude_local</code> 등)으로 한국 채널마다 HTTP/CLI 래퍼를 만들어 <em>publisher 직원</em> 한 명에게 도구로 붙인다. Nevo의 Postiz 에이전트와 형태는 같지만 <em>어떤 SaaS·API 위에 올라가느냐</em> 만 다르다.</li>
 <li><strong>한국 SaaS 활용</strong> — 스푼/플레이콘/채널톡 등 한국 마케팅 SaaS가 이미 일부 채널 통합을 제공한다. 빌드 비용 vs 라이선스 비용의 트레이드오프를 정량화해야 한다.</li>
 </ol>
-<p>F&amp;B 특화 점은 <strong>위치 기반(네이버 플레이스가 핵심)</strong> + <strong>배달앱이 사실상 또 다른 매출 채널</strong> 이라는 점이다. 이 두 채널의 비중이 자사 고객사 분포에서 어느 정도인가 — 가 5.6의 토론 시드 4번으로 이어진다.</p>
+<p>F&amp;B 특화 점은 <strong>위치 기반(네이버 플레이스가 핵심)</strong> + <strong>배달앱이 사실상 또 다른 매출 채널</strong> 이라는 점이다. 이 두 채널의 비중이 자사 고객사 분포에서 어느 정도인가 — 가 5.7의 토론 시드 4번으로 이어진다.</p>
 <h2 id="5.3-실촬-generative-하이브리드-음식-비주얼">5.3 실촬 + generative 하이브리드 — 음식 비주얼</h2>
 <p>agent-media의 talking head는 <strong>사진 없이 description으로 캐릭터를 생성</strong> 하고 <code>char_xxxxxxxxxx</code> ID로 시리즈물 일관성을 유지한다 (research/03 §4). F&amp;B에서 이걸 <strong>셰프/사장님 이미지</strong> 로 활용하는 건 부분적으로 가능하다 — <em>공식 사장님 캐릭터</em> 를 한 번 만들어 두면 인사·신메뉴 소개·이벤트 공지 등을 시리즈물로 시작할 수 있다.</p>
 <p>하지만 <strong>음식 B-roll</strong> 은 문제가 다르다. 음식 비주얼의 핵심 매력은 다음 세 가지인데, 셋 다 generative-only는 위험하다.</p>
@@ -953,28 +1117,90 @@ Publisher → Postiz upload + 다채널 예약 (mock 처리)
 <li><strong>표시광고법</strong> — &quot;100% / 최고 / 유일 / 의학적 효능&quot; 등 <em>입증 없는 절대 표현</em> / 과학적 근거 없는 효능 표현.</li>
 </ul>
 <p>이걸 verifier 에이전트의 자동 룰북으로 1차 차단하고, <em>통과한 것만</em> 사람 reviewer 게이트로 올리는 2-stage가 운영 부담을 크게 낮춘다. 단, 자동 verifier도 환각 가능성이 있으므로 <strong>법규 검수만은 사람 sign-off 를 끝까지 유지</strong> 하는 것이 안전한 출발점이다 (research/02 §8 의 &quot;리뷰어가 또 다른 에이전트면 환각이 단계적으로 전파될 수 있음&quot; 잔여 위험과 일치).</p>
-<h2 id="5.5-도입-의사결정-어느-단계에서">5.5 도입 의사결정 — 어느 단계에서?</h2>
+<h2 id="5.5-한국-실무자-패턴-장피엠-월텍남">5.5 한국 실무자 패턴 — 장피엠 + 월텍남</h2>
+<p>본 절은 한국어 실무 운영 사례 2건을 인용한다. 두 영상 모두 조회수 150K~200K로 한국어 권 평균 대비 상위에 속하며, <em>실제 운영 중인 1인의 시행착오</em> 를 직접 말한다는 점에서 본 세미나 메일 요구(<em>&quot;실 운영해본 사례&quot;</em>)에 정확히 들어맞는다 (research/05 §7).</p>
+<h3 id="5.5.1-장피엠-ai-에이전트-전환기-조회수-159k">5.5.1 장피엠 — &quot;AI 에이전트 전환기&quot; (조회수 159K)</h3>
+<p><img src="figs/yt-jangpm-thumb.jpg" alt="장피엠 — &quot;나의 AI 에이전트 전환기&quot; (조회수 159K)" />
+<small>Figure — 장피엠 YouTube 영상 썸네일. 28분 길이, Claude Code + OpenClau로 일상 업무를 에이전트 전환한 1인 운영 사례. 한국어 권 운영 사례 중 상위. 출처: youtube.com/watch?v=c-a4GBOxhXQ.</small></p>
+<p><strong>(a) Auto-research 패턴</strong> — Andrej Karpathy의 <em>오토 리서치(Auto-research)</em> 개념을 PPT 생성 같은 업무에 적용. 핵심은 <strong>명확한 평가 기준을 사전 제시 → AI가 자기 결과물을 채점 → 점수 낮으면 스스로 이유 분석 + 재제출</strong> 의 self-evaluation loop를 에이전트 내부에 내장한다.</p>
+<blockquote>
+<p>F&amp;B 적용 — 카피라이팅 에이전트에 <em>&quot;브랜드 톤 8개 항목 + 금지어 0건 + 길이 80~120자&quot;</em> 같은 정량 평가 기준을 동시 제시하면 <em>통과 vs 재작성</em> 루프가 사람 reviewer를 거치지 않고 1차 자동화 가능. 본 리포트 §3.7.1(b) &quot;Poor Self-evaluation&quot; 의 부분 해법.</p>
+</blockquote>
+<p><strong>(b) Cross-critique 패턴 — Claude vs Codex 교차 비판</strong>. 두 에이전트(서로 다른 모델 패밀리)를 동시 운영하며 한쪽 결과를 다른 쪽에게 <em>&quot;이렇게 말하던데 너는 어떻게 생각해?&quot;</em> 로 물어 비판을 유도. 단일 self-eval의 함정(자기 칭찬 편향, §3.7.1(b))을 <em>다른 모델의 시선</em> 으로 회피.</p>
+<blockquote>
+<p>F&amp;B 적용 — Claude로 작성한 카피를 GPT-5o에게 <em>&quot;브랜드 톤 위반 가능성을 찾아라&quot;</em> 시키는 패턴. 평가자가 <em>적대적/다른 모델</em> 일수록 단계당 정확도가 올라 §3.7.1(c) 복리 오류를 완만하게 만든다.</p>
+</blockquote>
+<p><strong>(c) Production 장애물 — 유지보수의 늪</strong>. 파이프라인 구축해도 <em>외부 API/사이트 구조가 바뀌면 즉시 고장</em>. <strong>유지보수가 새 업무로 정착</strong> — 자동화 ROI 계산 시 반드시 <em>hidden cost</em> 로 포함해야 한다. Paperclip의 atomic checkout이나 거버넌스로도 막을 수 없는 영역.</p>
+<blockquote>
+<p>F&amp;B 적용 — 카카오톡 채널 API, 네이버 플레이스 API, 배달앱 알림 API가 <em>연 수회 단위로 변경</em> 된다는 가정 하에 <em>adapter 단의 통합 테스트 routine</em> 을 시간 단위로 돌리는 운영 패턴이 권장된다 (Paperclip routine으로 cron 등록).</p>
+</blockquote>
+<p><strong>(d) Production 장애물 — 인지 과부하</strong>. 에이전트가 늘수록 <em>사람이 검토할 결과물도 폭증</em> → 운영자 burnout. 본 리포트 §3.7 운영 위험표의 <em>&quot;통째 승인&quot; 잔여 위험</em> 의 1차적 원인이다.</p>
+<blockquote>
+<p>F&amp;B 적용 — Brand 매니저 1인이 N개 캠페인의 모든 카피 승인을 진다면 <em>결국 통째 승인 패턴</em> 으로 흐른다. 해법은 §5.4에서 다룬 <em>2-stage 자동 verifier 1차 차단 + 통과한 것만 사람에게</em> 가 운영자 인지 부하 완화의 정답.</p>
+</blockquote>
+<h3 id="5.5.2-월텍남-google-anti-gravity-조회수-206k">5.5.2 월텍남 — Google Anti-gravity (조회수 206K)</h3>
+<p><img src="figs/yt-woltechnam-thumb.jpg" alt="월텍남 — &quot;업무 전부 자동화&quot; 구글 Anti-gravity (조회수 206K)" />
+<small>Figure — 월텍남(월스트리트 테크남) YouTube 영상 썸네일. 9분 30초 길이, Google이 2026년 출시한 시각 워크플로 빌더 Anti-gravity 소개. 노코드 운영자(브랜드 매니저·점주)에게 진입 장벽 낮은 형태의 산 증인. 출처: youtube.com/watch?v=GzGcQzMo_Rw.</small></p>
+<p><strong>시각 워크플로 + &quot;리믹스&quot; 버튼 패턴</strong>. 다이어그램 노드 흐름 안에서 각 단계 결과물을 사용자가 확인하고, &quot;리믹스&quot; 버튼으로 피드백을 반영해 다음 노드로 전달한다. <em>노코드 시각 워크플로 + HITL</em> 의 결합.</p>
+<blockquote>
+<p>F&amp;B 적용 — 본 리포트 §2.6.1에서 본 <em>시각 워크플로 카테고리</em> 의 산 증인. <strong>F&amp;B 마케팅의 비기술 운영자(브랜드 매니저·점주)</strong> 에게는 코드형 워크플로보다 <em>시각 노드 + 단계 리믹스</em> 가 진입 장벽이 훨씬 낮다. 자사 제품 UX 설계 시 <em>조직형 거버넌스 백엔드 + 시각 워크플로 프론트엔드</em> 의 하이브리드가 합리적 권장 (가설).</p>
+</blockquote>
+<h3 id="5.5.3-두-사례가-본-세미나에-주는-메시지">5.5.3 두 사례가 본 세미나에 주는 메시지</h3>
+<table class="cmp-table">
+<thead>
+<tr>
+<th>패턴</th>
+<th>본 리포트 어느 절에 매핑되나</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Auto-research self-eval</td>
+<td>§3.7.1(b) Poor Self-evaluation 해법</td>
+</tr>
+<tr>
+<td>Cross-critique (Claude vs Codex)</td>
+<td>§3.7.1(b)·§3.7.1(c) 복리 오류 완화</td>
+</tr>
+<tr>
+<td>유지보수 hidden cost</td>
+<td>§3.7 운영 위험표 + Stage A 도입 비용 재산정 (§5.6)</td>
+</tr>
+<tr>
+<td>인지 과부하</td>
+<td>§3.5 보드 운영자 부담 + §3.7 통째 승인 잔여 위험</td>
+</tr>
+<tr>
+<td>시각 워크플로 + 리믹스</td>
+<td>§2.6.1 시각 워크플로 카테고리 + F&amp;B 운영자 UX 설계</td>
+</tr>
+</tbody>
+</table>
+<p><strong>한 줄 결론</strong> — Paperclip의 <em>시스템 거버넌스</em> 와 한국 실무자의 <em>모델 행동 가드레일 + 운영 부담 관리</em> 가 결합되어야 production 자동화가 지속 가능하다. 본 세미나의 Paperclip 심층 (§3) 은 <em>어떻게 일하는가</em> 의 답이고, 본 절은 <em>어떻게 일하지 않게 만드는가 + 어떻게 사람이 burnout되지 않는가</em> 의 답이다.</p>
+<h2 id="5.6-도입-의사결정-어느-단계에서">5.6 도입 의사결정 — 어느 단계에서?</h2>
 <p>research/02 §9.2의 stage A/B/C를 커넥트브릭 컨텍스트로 다시 쓰면 다음과 같다.</p>
 <ul class="bullets">
 <li><strong>Stage A — 사내 도구로(dogfood)</strong>: 자사의 <em>콘텐츠 발행 / 리서치 / 리포트 자동화</em> 에 Paperclip을 먼저 도입. 위험이 적고, <em>자사 마케팅 에이전트의 미래 모습</em> 을 사내 운영으로 미리 경험할 수 있다. 본 세미나 시리즈(세미나·컨설팅 리포트 발행 워크플로) 자체가 stage A 후보다.</li>
 <li><strong>Stage B — 제품 비교 학습</strong>: Paperclip의 거버넌스 모델(승인 큐 / execution policy / 8차원 budget hard-stop / activity log) 을 <em>자사 제품 UX 벤치마크</em> 로 사용. &quot;엔터프라이즈 고객이 자사 마케팅 에이전트를 도입할 때 어떤 거버넌스 화면을 기대하는가&quot; 의 사실상 표준이 될 가능성이 있다(가설).</li>
 <li><strong>Stage C — 통합 옵션</strong>: 자사 마케팅 에이전트를 Paperclip의 <em>employee</em> 로 HTTP/webhook adapter를 통해 등록. 엔터프라이즈 고객이 자체 Paperclip 인스턴스에 <em>자사 에이전트를 고용</em> 하는 시나리오. 시장 확장 옵션이지만, Paperclip 자체의 6개월 생존 가능성에 베팅하는 결정이라 시장 모멘텀을 더 본 뒤 결정해도 늦지 않다.</li>
 </ul>
-<p>D-day 권고는 <strong>Stage A부터 — 그것도 본 세미나 운영 워크플로를 후보로</strong> — 라는 것이 작성자 가설이다. 5.6 토론 시드 2번에서 이를 청중의 1인 운영 가능성·ROI 관점으로 검증한다.</p>
-<h2 id="5.6-qa-토론-시드-5개">5.6 Q&amp;A 토론 시드 5개</h2>
+<p>D-day 권고는 <strong>Stage A부터 — 그것도 본 세미나 운영 워크플로를 후보로</strong> — 라는 것이 작성자 가설이다. 5.7 토론 시드 2번에서 이를 청중의 1인 운영 가능성·ROI 관점으로 검증한다.</p>
+<h2 id="5.7-qa-토론-시드-5개">5.7 Q&amp;A 토론 시드 5개</h2>
 <p>본 장은 결론이 아니라 다음 5개의 질문으로 끝난다. Q&amp;A 40분에서 발전시킬 ice-breaker 다.</p>
 <ol class="nums">
 <li><strong>(가설 검증)</strong> F&amp;B 마케팅에 정말 <em>조직형</em> 이 <em>그래프형</em> 보다 잘 맞는가? 캠페인 1회의 분기 복잡도가 LangGraph로 표현하는 게 더 명확하지 않은가? (2장 2.5 비교표의 가설 시험)</li>
-<li><strong>(현실 검증)</strong> Stage A — 사내 도구로 시작할 때, Paperclip 인스턴스 운영 비용/시간이 ROI를 넘는가? <strong>1인 운영</strong> 이 가능한가? (3장의 보드 운영자 역할 부담 + 5.5 권고의 현실성)</li>
+<li><strong>(현실 검증)</strong> Stage A — 사내 도구로 시작할 때, Paperclip 인스턴스 운영 비용/시간이 ROI를 넘는가? <strong>1인 운영</strong> 이 가능한가? <em>유지보수 hidden cost</em> 와 <em>인지 과부하</em> (§5.5.1 (c)(d))를 포함하면 손익분기점은? (3장의 보드 운영자 역할 부담 + 5.6 권고의 현실성)</li>
 <li><strong>(비교 검증)</strong> LangGraph로 자사 에이전트가 이미 production에 올라 있다면 Paperclip으로 갈 이유가 있는가? <em>마이그레이션 비용</em> 대비 <em>거버넌스 이득</em> 의 손익분기점은? (research/01 §8 의 어댑터 통합 옵션과 함께)</li>
 <li><strong>(한국 시장)</strong> Postiz가 없는 한국 채널 publisher를 직접 만드는 비용 vs 한국 SaaS(스푼/플레이콘/채널톡 등) 활용 비용은? 자사 고객사 분포에서 <em>네이버 플레이스·배달앱</em> 비중이 얼마나 결정적인가? (5.2의 두 갈래)</li>
 <li><strong>(장기 전략)</strong> Paperclip이 6개월 후에도 살아남는가? 오픈소스 모멘텀(67k stars) + 거버넌스 깊이의 <em>해자</em> vs <em>단명 가능성</em> — 베팅 단위를 어디서 끊을 것인가? (Stage C 결정의 prerequisite)</li>
+<li><strong>(운영 패턴)</strong> 한국 실무자 패턴 (§5.5) — Auto-research / Cross-critique / 유지보수 routine / 인지 과부하 완화 중 자사 도메인에 <em>어느 것이 먼저 효과적</em> 인가? 6명 개발팀 + F&amp;B 신규 도메인이라는 자원 제약 하에서 우선순위는?</li>
 </ol>
 <h2 id="references">References</h2>
 <ul class="bullets">
 <li>research/01_paperclip_architecture.md §8 — 시사점 5개 (F&amp;B 도메인 1차 적용 시드).</li>
 <li>research/02_paperclip_operations.md §6 · §8 · §9 — execution policy / 잔여 위험 / 도입 의사결정 가이드.</li>
 <li>research/03_case_nevo_marketing.md §9 — Nevo 패턴 vs F&amp;B 적용 매핑 8영역.</li>
+<li>research/05_youtube_synthesis.md §7 — 한국 실무자 패턴 (장피엠 + 월텍남).</li>
 <li>docs/superpowers/specs/2026-05-24-session-01-topic-design.md §1.3 — 청중이 가져갈 3가지 변화 (인식/판단/실행). §7 — 위험 표 (한국 채널 갭 / 실촬+generative 하이브리드 2개를 토론 시작점으로 좁힌 결정).</li>
 </ul>
 

@@ -72,7 +72,7 @@
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>01</span> / 27</span>
+    <span class="slide-footer__page"><span>01</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="5 메타 트렌드 (2026 5월)">
@@ -124,7 +124,7 @@
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>02</span> / 27</span>
+    <span class="slide-footer__page"><span>02</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="왜 지금 "에이전트 회사" 인가">
@@ -145,7 +145,7 @@
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>03</span> / 27</span>
+    <span class="slide-footer__page"><span>03</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="4-Way 패러다임 분류">
@@ -175,7 +175,7 @@
 </tr>
 <tr>
 <td>역할극형</td>
-<td>CrewAI / AutoGen</td>
+<td>CrewAI / AutoGen / Swarm</td>
 <td>발언(turn)</td>
 <td>critic 역할</td>
 </tr>
@@ -191,16 +191,28 @@
 <td><strong>이슈·태스크</strong></td>
 <td><strong>런타임 강제</strong></td>
 </tr>
+<tr>
+<td>(보강) 시각 워크플로</td>
+<td>n8n / Make / Google 58</td>
+<td>노드(시각)</td>
+<td>사용자 코드 가드</td>
+</tr>
+<tr>
+<td>(보강) <strong>Custom Cognitive</strong></td>
+<td>(도메인 커스텀)</td>
+<td>(혼합)</td>
+<td>(혼합)</td>
+</tr>
 </tbody>
 </table>
 <blockquote>
-<p>본 4분류는 작성자(송태영) 정리 — 학술 분류 아님. <strong>mental model</strong> 축으로 보면 워크플로 모양과의 fit이 갈린다.</p>
+<p>본 4분류는 작성자(송태영) 정리 — 학술 분류 아님. LangChain 직접 인용 — <em>&quot;production에서 가장 흔한 멀티에이전트는 supervisor도 hierarchical도 아닌 <strong>완전 커스텀 인지 아키텍처</strong>&quot;</em>. 본 4-way는 mental model 출발점.</p>
 </blockquote>
 <!-- slide -->
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>04</span> / 27</span>
+    <span class="slide-footer__page"><span>04</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="그래프형 + 역할극형">
@@ -218,7 +230,7 @@
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>05</span> / 27</span>
+    <span class="slide-footer__page"><span>05</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="skill 중심 + 조직형">
@@ -236,7 +248,7 @@
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>06</span> / 27</span>
+    <span class="slide-footer__page"><span>06</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="Paperclip — 한 줄 정의">
@@ -254,7 +266,7 @@
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>07</span> / 27</span>
+    <span class="slide-footer__page"><span>07</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="8 서브시스템 아키텍처">
@@ -279,7 +291,7 @@
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>08</span> / 27</span>
+    <span class="slide-footer__page"><span>08</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="Heartbeat 루프 — 핵심 실행 모델">
@@ -291,14 +303,7 @@
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
-<pre><code class="language-text">1. Issue 생성 → company/project/goal/parent 링크 부여
-2. DB-backed wakeup queue에 enqueue (coalescing)
-3. 하트비트 도착 → Budget check → Workspace resolve
-   → Secret injection → Skill loading → Adapter 호출
-4. Atomic checkout (execution lock — no double-work)
-5. 에이전트 실행 → 구조화 로그 / cost / 세션 상태
-6. (옵션) Governance 승인 게이트
-</code></pre>
+<p><img src="figs/heartbeat-loop.svg" alt="Heartbeat 6 단계 라이프사이클" /></p>
 <blockquote>
 <p><em>&quot;Agents resume the same task context across heartbeats instead of restarting from scratch.&quot;</em></p>
 </blockquote>
@@ -306,7 +311,7 @@
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>09</span> / 27</span>
+    <span class="slide-footer__page"><span>09</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="Org Chart + 위임 모델">
@@ -328,7 +333,7 @@
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>10</span> / 27</span>
+    <span class="slide-footer__page"><span>10</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="거버넌스 — 런타임 강제 (T3)">
@@ -382,6 +387,7 @@
 </tr>
 </tbody>
 </table>
+<p><img src="figs/approval-state-machine.svg" alt="Approval 상태 머신 — 알림이 아니라 차단" /></p>
 <blockquote>
 <p>핵심 — &quot;에이전트가 잊을&quot; 가능성을 <strong>시스템이 차단</strong></p>
 </blockquote>
@@ -389,7 +395,7 @@
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>11</span> / 27</span>
+    <span class="slide-footer__page"><span>11</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="예산 거버넌스 — 8 차원 추적">
@@ -401,27 +407,9 @@
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
-<p>추적: company / agent / project / goal / issue / provider / model / (UTC 월)</p>
-<table class="cmp-table">
-<thead>
-<tr>
-<th>Threshold</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>80%</td>
-<td>Soft alert</td>
-</tr>
-<tr>
-<td>100%</td>
-<td><strong>Hard stop — auto-paused + 큐 cancel</strong></td>
-</tr>
-</tbody>
-</table>
+<p><img src="figs/budget-8d.svg" alt="예산 거버넌스 8 차원 + 80/100% 임계" /></p>
 <ul class="bullets">
-<li>단위: <strong>cent USD</strong></li>
+<li>단위: <strong>cent USD</strong> · 80% soft / 100% hard stop (auto-pause + 큐 cancel)</li>
 <li>단점: <strong>일/분 단위 budget 없음</strong> → 단기 burst 컨트롤 약함</li>
 <li>외부 비용(SaaS·인프라)은 추적 대상 외</li>
 </ul>
@@ -429,7 +417,7 @@
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>12</span> / 27</span>
+    <span class="slide-footer__page"><span>12</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="운영 위험 vs Paperclip 안전망">
@@ -491,7 +479,27 @@
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>13</span> / 27</span>
+    <span class="slide-footer__page"><span>13</span> / 29</span>
+  </div>
+</section>
+<section class="slide" aria-label="4 실패 패턴 — Paperclip이 *직접* 못 막는 것">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">4 실패 패턴 — Paperclip이 *직접* 못 막는 것</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<p><img src="figs/4-failure-patterns.svg" alt="4 실패 패턴 — Context Anxiety / Self-eval / 복리 오류 / 위험한 자율성" /></p>
+<blockquote>
+<p><em>시스템 거버넌스 (Paperclip) + 모델 행동 가드레일 (adapter/skill) = 이중 구조</em></p>
+</blockquote>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>14</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label=""왜 조직형이 다른가" 결론">
@@ -510,7 +518,7 @@
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>14</span> / 27</span>
+    <span class="slide-footer__page"><span>15</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="라이브 데모 — 시나리오">
@@ -541,7 +549,7 @@ Publisher (mock) → Postiz upload + 다채널 예약
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>15</span> / 27</span>
+    <span class="slide-footer__page"><span>16</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="데모 1/6 — Approval Queue UI">
@@ -559,7 +567,7 @@ Publisher (mock) → Postiz upload + 다채널 예약
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>16</span> / 27</span>
+    <span class="slide-footer__page"><span>17</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="데모 2/6 — Strategy 승인 → Subtask">
@@ -577,7 +585,7 @@ Publisher (mock) → Postiz upload + 다채널 예약
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>17</span> / 27</span>
+    <span class="slide-footer__page"><span>18</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="데모 3/6 — Writer Heartbeat">
@@ -595,7 +603,7 @@ Publisher (mock) → Postiz upload + 다채널 예약
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>18</span> / 27</span>
+    <span class="slide-footer__page"><span>19</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="데모 4/6 — Execution Policy">
@@ -613,7 +621,7 @@ Publisher (mock) → Postiz upload + 다채널 예약
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>19</span> / 27</span>
+    <span class="slide-footer__page"><span>20</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="데모 5/6 — Activity Log">
@@ -631,7 +639,7 @@ Publisher (mock) → Postiz upload + 다채널 예약
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>20</span> / 27</span>
+    <span class="slide-footer__page"><span>21</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="데모 6/6 — Budget 알림">
@@ -649,7 +657,7 @@ Publisher (mock) → Postiz upload + 다채널 예약
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>21</span> / 27</span>
+    <span class="slide-footer__page"><span>22</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="Q&A 토론 시드">
@@ -672,7 +680,7 @@ Publisher (mock) → Postiz upload + 다채널 예약
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>22</span> / 27</span>
+    <span class="slide-footer__page"><span>23</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="F&B 적용 매핑 — 그대로 vs 바꿀 것">
@@ -736,7 +744,7 @@ Publisher (mock) → Postiz upload + 다채널 예약
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>23</span> / 27</span>
+    <span class="slide-footer__page"><span>24</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="한국 채널 갭 + 음식 비주얼 하이브리드">
@@ -763,7 +771,35 @@ Publisher (mock) → Postiz upload + 다채널 예약
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>24</span> / 27</span>
+    <span class="slide-footer__page"><span>25</span> / 29</span>
+  </div>
+</section>
+<section class="slide" aria-label="한국 실무자 패턴 — 장피엠 + 월텍남">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    
+  </div>
+  <h1 class="slide-title animate-in">한국 실무자 패턴 — 장피엠 + 월텍남</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<p><strong>장피엠</strong> (159K views, &quot;AI 에이전트 전환기&quot;)</p>
+<ul class="bullets">
+<li><strong>Auto-research</strong> — 평가 기준 사전 제시 → AI 자기 채점 → 재제출 루프</li>
+<li><strong>Cross-critique</strong> — Claude vs Codex 교차 비판 (단일 self-eval 함정 회피)</li>
+<li>시행착오 ① <strong>유지보수의 늪</strong> — 외부 API 변경 시 즉시 고장 → routine으로 통합 테스트</li>
+<li>시행착오 ② <strong>인지 과부하</strong> — 에이전트 늘수록 운영자 burnout → 2-stage verifier로 완화</li>
+</ul>
+<p><strong>월텍남</strong> (206K views, &quot;Google 58&quot;)</p>
+<ul class="bullets">
+<li><strong>시각 워크플로 + 리믹스 버튼</strong> — 노코드 운영자(브랜드 매니저)에게 진입 장벽 최저</li>
+<li>→ 자사 제품: <em>조직형 백엔드 + 시각 워크플로 프론트엔드</em> 하이브리드 (가설)</li>
+</ul>
+<!-- slide -->
+  </div>
+  <div class="slide-footer">
+    <span>송태영</span>
+    <span class="slide-footer__page"><span>26</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="Session 1 — 청중이 가져갈 3가지 변화">
@@ -802,7 +838,7 @@ Publisher (mock) → Postiz upload + 다채널 예약
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>25</span> / 27</span>
+    <span class="slide-footer__page"><span>27</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="Session 2 예고 — Orchestration 구조">
@@ -831,7 +867,7 @@ Publisher (mock) → Postiz upload + 다채널 예약
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>26</span> / 27</span>
+    <span class="slide-footer__page"><span>28</span> / 29</span>
   </div>
 </section>
 <section class="slide" aria-label="컨설팅 follow-up — 가져갈 숙제">
@@ -878,7 +914,7 @@ Publisher (mock) → Postiz upload + 다채널 예약
   </div>
   <div class="slide-footer">
     <span>송태영</span>
-    <span class="slide-footer__page"><span>27</span> / 27</span>
+    <span class="slide-footer__page"><span>29</span> / 29</span>
   </div>
 </section>
 <section class="slide slide--closing" aria-label="감사합니다">
@@ -900,7 +936,7 @@ Publisher (mock) → Postiz upload + 다채널 예약
       <button onclick="prevSlide()" aria-label="Previous slide">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
-      <span class="slide-counter"><span id="slideCur">1</span> / <span id="slideTotal">29</span></span>
+      <span class="slide-counter"><span id="slideCur">1</span> / <span id="slideTotal">31</span></span>
       <button onclick="nextSlide()" aria-label="Next slide">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
       </button>

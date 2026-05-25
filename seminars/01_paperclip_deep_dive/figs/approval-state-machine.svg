@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
+  <defs>
+    <marker id="arrow-st" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0F2C59"/>
+    </marker>
+    <marker id="arrow-st-pos" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#059669"/>
+    </marker>
+    <marker id="arrow-st-neg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#E11D48"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="460" fill="#FAFAF9"/>
+
+  <text x="400" y="30" font-size="18" font-weight="600" text-anchor="middle" fill="#0F2C59">Approval Queue — 상태 머신</text>
+  <text x="400" y="50" font-size="12" text-anchor="middle" fill="#6B6B72">hire_agent / ceo_strategy 두 타입 · 미승인 시 task 진행 자체 차단 (런타임 강제)</text>
+
+  <!-- START: submitted -->
+  <g>
+    <rect x="50" y="180" width="130" height="60" rx="30" fill="#FFFFFF" stroke="#0F2C59" stroke-width="2"/>
+    <text x="115" y="208" font-size="12" font-weight="700" text-anchor="middle" fill="#0F2C59">submitted</text>
+    <text x="115" y="225" font-size="9" text-anchor="middle" fill="#6B6B72">에이전트가 제출</text>
+  </g>
+
+  <!-- PENDING -->
+  <g>
+    <rect x="260" y="180" width="130" height="60" rx="6" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
+    <text x="325" y="208" font-size="12" font-weight="700" text-anchor="middle" fill="#92400E">pending</text>
+    <text x="325" y="225" font-size="9" text-anchor="middle" fill="#6B6B72">Board(사람) 검토 대기</text>
+  </g>
+
+  <!-- APPROVED -->
+  <g>
+    <rect x="470" y="80" width="130" height="60" rx="6" fill="#D1FAE5" stroke="#059669" stroke-width="2"/>
+    <text x="535" y="108" font-size="12" font-weight="700" text-anchor="middle" fill="#065F46">approved</text>
+    <text x="535" y="125" font-size="9" text-anchor="middle" fill="#065F46">task in_progress 허용</text>
+  </g>
+
+  <!-- REJECTED -->
+  <g>
+    <rect x="470" y="180" width="130" height="60" rx="6" fill="#FEE2E2" stroke="#E11D48" stroke-width="2"/>
+    <text x="535" y="208" font-size="12" font-weight="700" text-anchor="middle" fill="#991B1B">rejected</text>
+    <text x="535" y="225" font-size="9" text-anchor="middle" fill="#991B1B">task cancel</text>
+  </g>
+
+  <!-- REVISION REQUESTED -->
+  <g>
+    <rect x="470" y="280" width="160" height="60" rx="6" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+    <text x="550" y="308" font-size="12" font-weight="700" text-anchor="middle" fill="#92400E">revision_requested</text>
+    <text x="550" y="325" font-size="9" text-anchor="middle" fill="#6B6B72">에이전트가 재제출</text>
+  </g>
+
+  <!-- Final state -->
+  <g>
+    <rect x="680" y="80" width="80" height="60" rx="30" fill="#0F2C59"/>
+    <text x="720" y="115" font-size="11" font-weight="700" text-anchor="middle" fill="#FFFFFF">EXEC</text>
+  </g>
+
+  <!-- Edges -->
+  <line x1="180" y1="210" x2="258" y2="210" stroke="#0F2C59" stroke-width="2" marker-end="url(#arrow-st)"/>
+  <text x="220" y="200" font-size="10" text-anchor="middle" fill="#6B6B72">enqueue</text>
+
+  <path d="M 390 195 Q 430 165 470 130" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#arrow-st-pos)"/>
+  <text x="430" y="158" font-size="10" font-weight="500" fill="#059669">approve ✓</text>
+
+  <line x1="390" y1="220" x2="468" y2="220" stroke="#E11D48" stroke-width="2" marker-end="url(#arrow-st-neg)"/>
+  <text x="430" y="212" font-size="10" font-weight="500" fill="#E11D48">reject ✗</text>
+
+  <path d="M 390 240 Q 430 270 470 295" fill="none" stroke="#D97706" stroke-width="2" marker-end="url(#arrow-st)"/>
+  <text x="425" y="285" font-size="10" font-weight="500" fill="#D97706">revise ↺</text>
+
+  <path d="M 530 295 Q 360 350 320 248" fill="none" stroke="#0F2C59" stroke-width="1.5" marker-end="url(#arrow-st)" stroke-dasharray="4 3"/>
+  <text x="380" y="355" font-size="10" fill="#6B6B72">resubmit → pending</text>
+
+  <line x1="600" y1="110" x2="678" y2="110" stroke="#0F2C59" stroke-width="2" marker-end="url(#arrow-st)"/>
+  <text x="639" y="100" font-size="9" text-anchor="middle" fill="#6B6B72">unblock</text>
+
+  <!-- Legend / Note -->
+  <g>
+    <rect x="50" y="380" width="700" height="60" rx="5" fill="#FFFFFF" stroke="#6B6B72" stroke-width="1"/>
+    <text x="60" y="402" font-size="11" font-weight="600" fill="#0F2C59">핵심 차별점 — 알림이 아니라 차단</text>
+    <text x="60" y="420" font-size="10" fill="#0F0F10">미승인(pending/rejected) 시 CEO는 해당 strategy의 <tspan font-weight="600">하위 task를 in_progress로 옮길 수 없음</tspan>.</text>
+    <text x="60" y="434" font-size="10" fill="#0F0F10">→ 다른 패러다임의 "approve 함수 호출 안 하면 그냥 안 부르는" 자율 규율과 결정적으로 다름.</text>
+  </g>
+</svg>
