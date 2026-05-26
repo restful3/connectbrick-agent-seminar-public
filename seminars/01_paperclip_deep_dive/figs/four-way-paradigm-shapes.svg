@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 500" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
+  <defs>
+    <marker id="arrow-4way-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2563EB"/>
+    </marker>
+    <marker id="arrow-4way-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#059669"/>
+    </marker>
+    <marker id="arrow-4way-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#E11D48"/>
+    </marker>
+    <marker id="arrow-4way-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0F2C59"/>
+    </marker>
+    <style>
+      .panel { fill: #FFFFFF; stroke: #D6D3D1; stroke-width: 1.5; }
+      .label { fill: #0F2C59; font-size: 16px; font-weight: 800; }
+      .sub { fill: #57534E; font-size: 12px; font-weight: 650; }
+      .tiny { fill: #57534E; font-size: 10px; font-weight: 650; }
+      .node { fill: #E9F2FB; stroke: #2563EB; stroke-width: 1.6; }
+      .turn { fill: #ECFDF5; stroke: #059669; stroke-width: 1.6; }
+      .skill { fill: #FFF7ED; stroke: #D97706; stroke-width: 1.6; }
+      .issue { fill: #FEE2E2; stroke: #E11D48; stroke-width: 1.6; }
+      .edge-label { paint-order: stroke fill; stroke: #FAFAF9; stroke-width: 3px; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="500" fill="#FAFAF9"/>
+
+  <g transform="translate(24 24)">
+    <rect class="panel" x="0" y="0" width="410" height="210" rx="8"/>
+    <text class="label" x="24" y="34">Graph</text>
+    <text class="sub" x="24" y="56">step · state · edge</text>
+    <rect class="node" x="42" y="118" width="82" height="48" rx="8"/>
+    <text class="tiny" x="83" y="146" text-anchor="middle">research</text>
+    <rect class="node" x="164" y="118" width="82" height="48" rx="8"/>
+    <text class="tiny" x="205" y="146" text-anchor="middle">draft</text>
+    <rect class="node" x="286" y="92" width="82" height="48" rx="8"/>
+    <text class="tiny" x="327" y="120" text-anchor="middle">approve</text>
+    <rect class="node" x="286" y="158" width="82" height="48" rx="8"/>
+    <text class="tiny" x="327" y="186" text-anchor="middle">revise</text>
+    <line x1="124" y1="142" x2="160" y2="142" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow-4way-blue)"/>
+    <path d="M246 142 C260 142 266 116 282 116" fill="none" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow-4way-blue)"/>
+    <path d="M246 142 C260 142 266 182 282 182" fill="none" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow-4way-blue)"/>
+    <text class="tiny edge-label" x="258" y="105">if</text>
+  </g>
+
+  <g transform="translate(486 24)">
+    <rect class="panel" x="0" y="0" width="410" height="210" rx="8"/>
+    <text class="label" x="24" y="34">Role-play</text>
+    <text class="sub" x="24" y="56">role · turn · handoff</text>
+    <circle class="turn" cx="205" cy="122" r="42"/>
+    <text class="tiny" x="205" y="126" text-anchor="middle">manager</text>
+    <circle class="turn" cx="105" cy="72" r="34"/>
+    <text class="tiny" x="105" y="76" text-anchor="middle">researcher</text>
+    <circle class="turn" cx="305" cy="72" r="34"/>
+    <text class="tiny" x="305" y="76" text-anchor="middle">writer</text>
+    <circle class="turn" cx="105" cy="172" r="34"/>
+    <text class="tiny" x="105" y="176" text-anchor="middle">critic</text>
+    <circle class="turn" cx="305" cy="172" r="34"/>
+    <text class="tiny" x="305" y="176" text-anchor="middle">user</text>
+    <path d="M132 91 C152 98 170 108 178 116" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#arrow-4way-green)"/>
+    <path d="M278 91 C258 98 240 108 232 116" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#arrow-4way-green)"/>
+    <path d="M132 153 C152 146 170 136 178 128" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#arrow-4way-green)"/>
+    <path d="M278 153 C258 146 240 136 232 128" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#arrow-4way-green)"/>
+  </g>
+
+  <g transform="translate(24 266)">
+    <rect class="panel" x="0" y="0" width="410" height="210" rx="8"/>
+    <text class="label" x="24" y="34">Skill</text>
+    <text class="sub" x="24" y="56">main loop · staged load</text>
+    <circle cx="126" cy="132" r="44" fill="#0F2C59"/>
+    <text x="126" y="127" text-anchor="middle" font-size="12" font-weight="800" fill="#FFFFFF">agent</text>
+    <text x="126" y="144" text-anchor="middle" font-size="10" font-weight="650" fill="#FFFFFF">loop</text>
+    <rect class="skill" x="236" y="54" width="110" height="38" rx="6"/>
+    <text class="tiny" x="291" y="78" text-anchor="middle">SKILL.md</text>
+    <rect class="skill" x="236" y="114" width="110" height="38" rx="6"/>
+    <text class="tiny" x="291" y="138" text-anchor="middle">script</text>
+    <rect class="skill" x="236" y="174" width="110" height="38" rx="6"/>
+    <text class="tiny" x="291" y="198" text-anchor="middle">resource</text>
+    <line x1="170" y1="115" x2="232" y2="78" stroke="#D97706" stroke-width="2" marker-end="url(#arrow-4way-ink)"/>
+    <line x1="174" y1="132" x2="232" y2="132" stroke="#D97706" stroke-width="2" marker-end="url(#arrow-4way-ink)"/>
+    <line x1="170" y1="149" x2="232" y2="188" stroke="#D97706" stroke-width="2" marker-end="url(#arrow-4way-ink)"/>
+    <text class="tiny edge-label" x="206" y="105">load</text>
+  </g>
+
+  <g transform="translate(486 266)">
+    <rect class="panel" x="0" y="0" width="410" height="210" rx="8"/>
+    <text class="label" x="24" y="34">Organization</text>
+    <text class="sub" x="24" y="56">issue · org chart · budget</text>
+    <rect class="issue" x="168" y="54" width="74" height="38" rx="8"/>
+    <text class="tiny" x="205" y="78" text-anchor="middle">CEO</text>
+    <rect class="issue" x="70" y="124" width="84" height="38" rx="8"/>
+    <text class="tiny" x="112" y="148" text-anchor="middle">Director</text>
+    <rect class="issue" x="256" y="124" width="84" height="38" rx="8"/>
+    <text class="tiny" x="298" y="148" text-anchor="middle">Worker</text>
+    <line x1="205" y1="92" x2="113" y2="120" stroke="#E11D48" stroke-width="2" marker-end="url(#arrow-4way-red)"/>
+    <line x1="205" y1="92" x2="297" y2="120" stroke="#E11D48" stroke-width="2" marker-end="url(#arrow-4way-red)"/>
+    <rect x="146" y="180" width="118" height="26" rx="13" fill="#0F2C59"/>
+    <text x="205" y="198" text-anchor="middle" font-size="10" font-weight="800" fill="#FFFFFF">approval / budget</text>
+    <path d="M112 162 C122 182 138 192 144 193" fill="none" stroke="#0F2C59" stroke-width="2" marker-end="url(#arrow-4way-ink)"/>
+    <path d="M298 162 C288 182 272 192 266 193" fill="none" stroke="#0F2C59" stroke-width="2" marker-end="url(#arrow-4way-ink)"/>
+  </g>
+</svg>
