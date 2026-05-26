@@ -3876,10 +3876,10 @@ html.reader-size-large .continuous-mode {
 <p><strong>이 장의 한 줄</strong> — 2026년의 에이전트 프레임워크 선택은 &quot;어느 라이브러리가 좋은가&quot; 가 아니라 <strong>&quot;우리 워크플로의 모양이 무엇과 닮았는가&quot;</strong> 를 묻는 문제다.</p>
 </blockquote>
 <p>1장에서 본 것처럼 단일 모델 능력만으로 차이를 만들던 시기는 지나가고 있다. 2026년의 선택지는 &quot;어떤 모델의 성능이 더 높은가&quot;보다 <strong>여러 호출·도구·사람 승인을 어떤 구조로 엮을 것인가</strong> 에 가까워졌다. 본 장은 이 선택지를 <strong>그래프형 / 역할극형 / 스킬 중심 / 조직형</strong> 네 가지 사고 방식으로 정리한다.</p>
-<p>이 4-way는 새로운 학술 분류가 아니다. Anthropic <em>Building Effective Agents</em>(2024)의 workflows/agents 구분<sup class="ref-cite"><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">[41]</a></sup>, LangChain/LangGraph의 multi-agent 패턴<sup class="ref-cite"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent" target="_blank" rel="noopener">[42]</a></sup>, arXiv survey <em>Multi-Agent Collaboration Mechanisms</em>(2025)<sup class="ref-cite"><a href="https://arxiv.org/abs/2501.06322" target="_blank" rel="noopener">[44]</a></sup> 같은 기존 분류를 가져와 <strong>네 가지 사고 방식</strong> 으로 다시 묶은 발표용 프레임이다. 각 절에서 기존 분류와의 대응을 짚되, 판단 기준은 단순하다. <strong>우리 업무 흐름은 어떤 구조에 가장 가까운가.</strong></p>
+<p>이 4-Way는 새로운 학술 분류가 아니다. Anthropic <em>Building Effective Agents</em>(2024)의 workflows/agents 구분<sup class="ref-cite"><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">[41]</a></sup>, LangChain/LangGraph의 multi-agent 패턴<sup class="ref-cite"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent" target="_blank" rel="noopener">[42]</a></sup>, arXiv survey <em>Multi-Agent Collaboration Mechanisms</em>(2025)<sup class="ref-cite"><a href="https://arxiv.org/abs/2501.06322" target="_blank" rel="noopener">[44]</a></sup> 같은 기존 분류를 가져와 <strong>네 가지 사고 방식</strong> 으로 다시 묶은 발표용 프레임이다. 각 절에서 기존 분류와의 대응을 짚되, 판단 기준은 단순하다. <strong>우리 업무 흐름은 어떤 구조에 가장 가까운가.</strong></p>
 <h2 id="2.1-그래프형-langgraph">2.1 그래프형 (LangGraph)</h2>
 <blockquote>
-<p><strong>가까운 통용 분류</strong> — Anthropic의 prompt chaining / routing / orchestrator-workers 같은 workflow 패턴<sup class="ref-cite"><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">[41]</a></sup>을 코드로 명시하기 좋은 쪽이다. LangChain의 custom workflow 패턴<sup class="ref-cite"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent" target="_blank" rel="noopener">[42]</a></sup>처럼, LangGraph는 이를 <em>state graph + node + edge</em> 로 표현해 실행 경로와 중단 지점을 사람이 추적할 수 있게 만든다.</p>
+<p><strong>가까운 통용 분류</strong> — Anthropic의 prompt chaining / routing 같은 predefined workflow 패턴<sup class="ref-cite"><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">[41]</a></sup>과 LangChain의 custom workflow 패턴<sup class="ref-cite"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent" target="_blank" rel="noopener">[42]</a></sup>을 코드로 명시하기 좋은 쪽이다. LangGraph는 이를 <em>state graph + node + edge</em> 로 표현해 실행 경로와 중단 지점을 사람이 추적할 수 있게 만든다. 단, Anthropic의 orchestrator-workers처럼 중앙 LLM이 실행 중 하위 작업을 나누는 패턴은 그래프형과 조직형 사이에 걸치므로, 여기서는 결정적 경로와 승인 지점이 비교적 분명한 workflow에 초점을 둔다.</p>
 </blockquote>
 <h3 id="사고-방식">사고 방식</h3>
 <p><strong>그래프형(graph-based)</strong> 의 사고 방식은 <strong>상태 그래프(state graph) + 노드(node) + 엣지(edge) + 체크포인트(checkpoint)</strong> 다. 워크플로를 노드(에이전트 또는 도구 호출 한 단계)와 엣지(다음 노드로 가는 조건부 전이)로 명시적으로 그리고, 각 노드의 입출력은 공유 state 객체에 누적된다. LangGraph의 차별점은 노드 사이에 <strong>HITL(human-in-the-loop) 체크포인트</strong> 를 기본 기능으로 삽입할 수 있다는 점이다. 특정 엣지에서 실행을 멈추고 사람 승인을 기다린 뒤 재개하는 패턴이 SDK 수준에서 지원된다.</p>
@@ -3928,9 +3928,9 @@ html.reader-size-large .continuous-mode {
 <span class="w">      </span><span class="nt">agents</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">writer</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">critic</span><span class="p p-Indicator">]</span></code></pre>
 <h3 id="잘-맞는-워크플로-1">잘 맞는 워크플로</h3>
 <p><strong>발산적 브레인스토밍, 다관점 검토, 합의 형성</strong> 이 본질인 작업 — 예: 문제 정의, 대안 발굴, 초안 후보 생성, 다관점 리뷰. 단계가 미리 정해져 있지 않고 <em>&quot;누가 무엇을 말하는가&quot;</em> 의 페르소나가 산출물 품질을 좌우하는 영역. 반대로, 산출물의 형태와 승인 라인이 명확히 고정된 운영 워크플로에는 대화형 구조가 과해질 수 있다. 수렴이 느리거나 무한 핑퐁이 발생하기 쉽다.</p>
-<h2 id="2.3-skill-중심-deep-agents-claude-agent-sdk">2.3 Skill 중심 (Deep Agents, Claude Agent SDK)</h2>
+<h2 id="2.3-스킬-중심-deep-agents-claude-agent-sdk">2.3 스킬 중심 (Deep Agents, Claude Agent SDK)</h2>
 <blockquote>
-<p><strong>가까운 통용 분류</strong> — Anthropic Agent Skills<sup class="ref-cite"><a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" target="_blank" rel="noopener">[11]</a></sup>와 Agent Skills open standard<sup class="ref-cite"><a href="https://agentskills.io/home" target="_blank" rel="noopener">[40]</a></sup>가 이 흐름을 가장 선명하게 보여 준다. LangChain의 Skills 패턴<sup class="ref-cite"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent" target="_blank" rel="noopener">[42]</a></sup>처럼, 단일 에이전트가 통제권을 유지하면서 필요한 지식·절차·도구 설명을 필요할 때만 불러오는 방식이다.</p>
+<p><strong>가까운 통용 분류</strong> — Anthropic Agent Skills<sup class="ref-cite"><a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" target="_blank" rel="noopener">[11]</a></sup>와 Agent Skills open standard<sup class="ref-cite"><a href="https://agentskills.io/home" target="_blank" rel="noopener">[40]</a></sup>가 이 흐름을 가장 선명하게 보여 준다. LangChain의 스킬(Skills) 패턴<sup class="ref-cite"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent" target="_blank" rel="noopener">[42]</a></sup>처럼, 단일 에이전트가 통제권을 유지하면서 필요한 지식·절차·도구 설명을 필요할 때만 불러오는 방식이다.</p>
 </blockquote>
 <h3 id="사고-방식-2">사고 방식</h3>
 <p><strong>스킬 중심(skill-based)</strong> 의 사고 방식은 <strong>도구 라이브러리(tool library) + 메인 루프(main loop) + 단계적 로딩(staged loading)</strong> 이다. 에이전트 1대가 큰 메인 루프를 실행하고, 작업에 필요한 능력은 사전에 작성된 <strong><code>SKILL.md</code></strong> 폴더(YAML frontmatter + 절차 지시문 + 보조 스크립트)에서 동적으로 불러온다. 핵심은 단계적 로딩이다. 메타데이터만 부팅 시 로드되고, 본문은 실제 호출 시점에만 컨텍스트에 올라가서 토큰 비용을 줄인다 (1장 §1.2.3). 그래프나 대화가 <em>흐름의 표현</em> 이라면, 스킬 중심은 <em>능력의 모듈화</em> 다.</p>
@@ -3973,7 +3973,7 @@ html.reader-size-large .continuous-mode {
 <th>차원</th>
 <th>그래프형</th>
 <th>역할극형</th>
-<th>Skill 중심</th>
+<th>스킬 중심</th>
 <th>조직형</th>
 </tr>
 </thead>
@@ -3996,14 +3996,14 @@ html.reader-size-large .continuous-mode {
 <td><strong>핵심 단위</strong></td>
 <td>노드(step)</td>
 <td>발언(turn)</td>
-<td>skill 호출</td>
+<td>스킬 호출(skill call)</td>
 <td>이슈 / 태스크</td>
 </tr>
 <tr>
 <td><strong>흐름 표현</strong></td>
 <td>코드로 명시</td>
 <td>실행 중 합의</td>
-<td>메인 루프 + 동적 skill load</td>
+<td>메인 루프 + 동적 스킬 로드</td>
 <td>보고 라인 + 위임</td>
 </tr>
 <tr>
@@ -4038,10 +4038,10 @@ html.reader-size-large .continuous-mode {
 <li><strong>예산 한도</strong> — 모델 비용, 광고비, 외부 SaaS 비용처럼 한도 초과가 <em>조직 정책 위반</em> 이다 (시스템이 강제해야 함).</li>
 <li><strong>여러 에이전트의 동시 진행</strong> — 작성 · 리서치 · 검수 · 발행이 병렬로 돌면서도 같은 기준과 같은 예산 풀을 공유해야 한다.</li>
 </ol>
-<p>이 4가지를 <em>어떤 패러다임의 사고 방식이 1:1로 수용하는가</em> 를 물어보면, 그래프형은 1번에는 강하지만 2~4번이 외부 래퍼(wrapper)에 맡겨지고, 역할극형은 4번을 자연스럽게 수용하지만 2번·3번이 <em>대화 합의</em> 로 약해진다. 스킬 중심은 1번 단일 산출물에는 강하지만 4번 병렬 협업이 단일 메인 루프의 한계 안에 머문다. 조직형은 4가지가 <strong>각각 이슈 / 승인 큐 / 예산 한도 / 조직도</strong> 로 시스템의 핵심 요소가 된다.</p>
+<p>이 4가지를 <em>어떤 패러다임의 사고 방식이 가장 자연스럽게 표현하는가</em> 로 보면, 그래프형은 1번에는 강하지만 2~4번이 외부 래퍼(wrapper)에 맡겨지고, 역할극형은 4번을 자연스럽게 수용하지만 2번·3번이 <em>대화 합의</em> 로 약해진다. 스킬 중심은 1번 단일 산출물에는 강하지만 4번 병렬 협업이 단일 메인 루프의 한계 안에 머문다. 조직형은 4가지가 <strong>각각 이슈 / 승인 큐 / 예산 한도 / 조직도</strong> 로 시스템의 핵심 요소가 된다.</p>
 <p>이것이 본 세미나의 핵심 가설이다. <strong>프로젝트 산출물·승인·예산·병렬 협업</strong> 이 동시에 있는 업무는 조직형 사고 방식과 잘 부합한다. 단, 이는 작성자(송태영)의 가설이며 단정이 아니다. 본 세미나 Q&amp;A에서 청중(커넥트브릭 개발팀)이 가진 <em>실제 워크플로 모양</em> 을 들어 검증·반박하는 것이 목적이다.</p>
 <h3 id="본-분류의-위상-발표용-판단-프레임">본 분류의 위상 — 발표용 판단 프레임</h3>
-<p>본 4-way 분류는 &quot;정답 분류표&quot; 가 아니라 발표용 <em>사고 방식</em> 프레임이다. 같은 영역을 다른 축으로 자르는 통용 분류는 다음과 같다. 각각 본 4-way와 직교하거나 일부만 겹친다.</p>
+<p>본 4-Way 분류는 &quot;정답 분류표&quot; 가 아니라 발표용 <em>사고 방식</em> 프레임이다. 같은 영역을 다른 축으로 자르는 통용 분류는 다음과 같다. 각각 본 4-Way와 직교하거나 일부만 겹친다.</p>
 <ul class="bullets">
 <li><strong>Andrew Ng(2024)</strong> 의 4 design patterns<sup class="ref-cite"><a href="https://x.com/AndrewYNg/status/1773393357022298617" target="_blank" rel="noopener">[19]</a></sup> — reflection / tool use / planning / multi-agent. <strong>흐름 패턴</strong> 차원.</li>
 <li><strong>Anthropic(2024-12) — <em>Building Effective Agents</em></strong> <sup class="ref-cite"><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">[41]</a></sup> — prompt chaining / routing / parallelization / orchestrator-workers / evaluator-optimizer + workflows vs agents. <strong>코드 구조</strong> 차원.</li>
@@ -4049,9 +4049,9 @@ html.reader-size-large .continuous-mode {
 <li><strong>arXiv 2501.06322 survey</strong><sup class="ref-cite"><a href="https://arxiv.org/abs/2501.06322" target="_blank" rel="noopener">[44]</a></sup> — actors / types / structures / strategies / coordination protocols. <strong>학술 5축</strong> 분류.</li>
 <li><strong>Turing</strong><sup class="ref-cite"><a href="https://www.turing.com/resources/ai-agent-frameworks" target="_blank" rel="noopener">[7]</a></sup>·<strong>pecollective</strong><sup class="ref-cite"><a href="https://pecollective.com/blog/ai-agent-frameworks-compared/" target="_blank" rel="noopener">[6]</a></sup>·<strong>Morphllm</strong><sup class="ref-cite"><a href="https://www.morphllm.com/ai-agent-framework" target="_blank" rel="noopener">[18]</a></sup> — 6~8개 프레임워크 매트릭스. <strong>기능 비교</strong> 차원.</li>
 </ul>
-<p>본 4-way는 그중 <strong>&quot;우리 워크플로의 모양과 사고 방식의 형태가 맞는가&quot;</strong> 라는 단일 축으로 단순화한 것이다. 다른 축, 예를 들어 거버넌스 / 비용 / 관찰성 / UX까지 같이 보면 다른 그림이 나온다. 본 리포트 3장과 4장에서 이 축들을 보강한다.</p>
+<p>본 4-Way는 그중 <strong>&quot;우리 워크플로의 모양과 사고 방식의 형태가 맞는가&quot;</strong> 라는 단일 축으로 단순화한 것이다. 다른 축, 예를 들어 거버넌스 / 비용 / 관찰성 / UX까지 같이 보면 다른 그림이 나온다. 본 리포트 3장과 4장에서 이 축들을 보강한다.</p>
 <h2 id="2.6-실무-보정-실제-운영은-하이브리드다">2.6 실무 보정 — 실제 운영은 하이브리드다</h2>
-<p>마지막으로 한 가지를 분명히 해야 한다. 실제 상용 운영 시스템이 위 네 칸 중 하나에 정확히 들어맞는 경우는 드물다. 4-way는 <strong>처음 설계를 어디서 시작할지</strong> 를 정하는 프레임이지, 최종 아키텍처의 이름표가 아니다.</p>
+<p>마지막으로 한 가지를 분명히 해야 한다. 실제 상용 운영 시스템이 위 네 칸 중 하나에 정확히 들어맞는 경우는 드물다. 4-Way는 <strong>처음 설계를 어디서 시작할지</strong> 를 정하는 프레임이지, 최종 아키텍처의 이름표가 아니다.</p>
 <figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 16</span><span class="asset-caption__title">하이브리드 에이전트 운영 구조</span></figcaption><img src="figs/hybrid-agent-operating-model.svg" alt="하이브리드 에이전트 운영 구조" /><small class="asset-note">실제 운영에서는 조직형 뼈대를 기본으로 두고, 초안 생성에는 역할극형, 검수 지점에는 그래프형 체크포인트, 반복 기준에는 스킬 자산을 섞는 식의 하이브리드 구조가 더 현실적이다.</small></figure>
 <p>실무에서는 보통 다음 보정이 들어간다.</p>
 <ol class="nums">
