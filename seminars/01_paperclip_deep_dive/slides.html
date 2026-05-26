@@ -93,8 +93,8 @@
   <div class="flow__arrow">→</div>
   <div class="flow__step flow__step--active">
     <div class="flow__num">2</div>
-    <div class="flow__title">4-Way 패러다임</div>
-    <div class="flow__desc">30분 · 그래프 · 역할극 · 스킬 · 조직형 사고 방식 비교</div>
+    <div class="flow__title">오케스트레이션 유형</div>
+    <div class="flow__desc">30분 · 그래프 · 역할/핸드오프 · 조직형 구조 비교</div>
   </div>
   <div class="flow__arrow">→</div>
   <div class="flow__step flow__step--active">
@@ -338,28 +338,28 @@ campaign-setup/
 </section>
 <section class="slide slide--section" aria-label="Section 02 divider">
   <div class="section-tag">Section</div>
-  <h1>4-Way 패러다임</h1>
-  <p class="section-subtitle">프레임워크 선택은 “라이브러리”가 아니라 “워크플로의 모양”을 고르는 문제</p>
+  <h1>오케스트레이션 유형</h1>
+  <p class="section-subtitle">프레임워크 선택은 “라이브러리”가 아니라 “일을 어떻게 나누고 멈출지”를 고르는 문제</p>
   <div class="section-rule"></div>
   <div class="section-num">02</div>
 </section>
-<section class="slide" aria-label="프레임워크는 패러다임이다">
+<section class="slide" aria-label="에이전트 오케스트레이션의 유형">
   <div class="slide-header">
     <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
     <div class="slide-section-tag">Section 02 · Frame</div>
   </div>
-  <h1 class="slide-title animate-in">프레임워크는 패러다임이다</h1>
+  <h1 class="slide-title animate-in">에이전트 오케스트레이션의 유형</h1>
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
-<p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">프레임워크 이름보다 먼저 봐야 할 것은 작업의 기본 단위가 단계(step), 발언(turn), 스킬(skill), 이슈(issue) 중 어디에 가까운지입니다.</p>
+<p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">프레임워크 이름보다 먼저 봐야 할 것은 작업의 기본 단위가 단계(step), 담당자 전환(handoff), 이슈(issue) 중 어디에 가까운지입니다.</p>
 <table class="cmp-table">
 <thead>
 <tr>
-<th>패러다임</th>
+<th>유형</th>
 <th>대표</th>
+<th>핵심 질문</th>
 <th>핵심 단위</th>
-<th>흐름 표현</th>
 <th>거버넌스</th>
 </tr>
 </thead>
@@ -367,35 +367,28 @@ campaign-setup/
 <tr>
 <td>그래프형</td>
 <td>LangGraph</td>
-<td>노드(step)</td>
-<td>상태 그래프 + 엣지</td>
+<td>다음 단계는 무엇인가</td>
+<td>노드 / 엣지</td>
 <td>엣지에 HITL</td>
 </tr>
 <tr>
-<td>역할극형</td>
-<td>CrewAI / AutoGen</td>
-<td>발언(turn)</td>
-<td>역할 + 대화</td>
+<td>역할/핸드오프형</td>
+<td>CrewAI / AutoGen / handoffs</td>
+<td>누가 이어받는가</td>
+<td>발언 / 인계</td>
 <td>critic 또는 외부 래퍼</td>
-</tr>
-<tr>
-<td>스킬 중심</td>
-<td>Deep Agents / Claude Agent SDK</td>
-<td>스킬 호출</td>
-<td>메인 루프 + 단계적 로딩</td>
-<td>사용자 코드 가드</td>
 </tr>
 <tr>
 <td><strong>조직형</strong></td>
 <td><strong>Paperclip</strong></td>
+<td><strong>누가 책임지고 어디서 멈추는가</strong></td>
 <td><strong>이슈 / 태스크</strong></td>
-<td><strong>조직도 + 위임</strong></td>
 <td><strong>런타임 강제</strong></td>
 </tr>
 </tbody>
 </table>
 <blockquote>
-<p>이 4-Way는 정답 분류표가 아니라, 커넥트브릭 업무를 어느 사고 방식으로 먼저 그릴지 정하는 발표용 판단 프레임입니다.</p>
+<p>감독자/라우터는 다음 작업자를 고르는 제어 패턴이고, Skills는 반복 기준을 공유하는 능력 자산 계층입니다.</p>
 </blockquote>
 
   </div>
@@ -425,19 +418,19 @@ campaign-setup/
     <span class="slide-footer__page"><span>10</span> / 21</span>
   </div>
 </section>
-<section class="slide" aria-label="역할극형 — 발산과 다관점 검토">
+<section class="slide" aria-label="역할/핸드오프형 — 발산과 다관점 검토">
   <div class="slide-header">
     <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
     <div class="slide-section-tag">Section 02 · Roleplay</div>
   </div>
-  <h1 class="slide-title animate-in">역할극형 — 발산과 다관점 검토</h1>
+  <h1 class="slide-title animate-in">역할/핸드오프형 — 발산과 다관점 검토</h1>
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
 <p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">발산과 비판이 품질을 좌우하는 작업은 고정 플로우보다 역할 간 대화 구조가 자연스럽습니다.</p>
-<img src="figs/paradigm-roleplay.svg?v=frameless" alt="역할극형 패러다임 — 역할 간 발언권 이동" style="max-height: 430px;">
+<img src="figs/paradigm-roleplay.svg?v=frameless" alt="역할/핸드오프형 — 역할 간 발언권 이동" style="max-height: 430px;">
 <blockquote>
-<p>역할극형은 “누가 무엇을 말하는가”가 품질을 좌우하는 영역에 강하지만, 승인·예산 같은 운영 규칙은 별도 장치가 필요합니다.</p>
+<p>역할/핸드오프형은 “누가 무엇을 말하고 누구에게 넘기는가”가 품질을 좌우하는 영역에 강하지만, 승인·예산 같은 운영 규칙은 별도 장치가 필요합니다.</p>
 </blockquote>
 
   </div>
@@ -446,19 +439,19 @@ campaign-setup/
     <span class="slide-footer__page"><span>11</span> / 21</span>
   </div>
 </section>
-<section class="slide" aria-label="스킬 중심 — 프롬프트 자산의 코드화">
+<section class="slide" aria-label="Skills — 프롬프트 자산의 코드화">
   <div class="slide-header">
     <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
     <div class="slide-section-tag">Section 02 · Skill</div>
   </div>
-  <h1 class="slide-title animate-in">스킬 중심 — 프롬프트 자산의 코드화</h1>
+  <h1 class="slide-title animate-in">Skills — 프롬프트 자산의 코드화</h1>
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
-<p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">브랜드 톤·금지어·캠페인 SOP처럼 반복되는 지식은 필요할 때만 로드되는 능력 패키지로 관리합니다.</p>
-<img src="figs/paradigm-skill.svg?v=frameless" alt="스킬 중심 패러다임 — 메인 루프와 단계적 로딩" style="max-height: 430px;">
+<p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">Skills는 오케스트레이션 유형이 아니라, 브랜드 톤·금지어·캠페인 SOP처럼 반복되는 기준을 필요할 때만 로드하는 능력 자산 계층입니다.</p>
+<img src="figs/paradigm-skill.svg?v=frameless" alt="Skills — 메인 루프와 단계적 로딩" style="max-height: 430px;">
 <blockquote>
-<p>브랜드 톤, 금지어, 캠페인 SOP처럼 반복되는 지식은 프롬프트 문서가 아니라 버전 관리 가능한 스킬 패키지가 됩니다.</p>
+<p>Skills는 그래프형·역할/핸드오프형·조직형 어디에서나 에이전트가 공통으로 호출하는 자산입니다.</p>
 </blockquote>
 
   </div>
@@ -498,9 +491,34 @@ campaign-setup/
   
   <div class="slide-body">
 <p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">네 조건이 겹칠수록 이슈·승인 큐·예산 한도·조직도가 별도 래퍼가 아니라 시스템의 기본 모델이어야 합니다.</p>
-<img src="figs/paradigm-fit-map.svg?v=clean" alt="업무 조건별 패러다임 위치" style="max-height: 405px;">
+<table class="cmp-table">
+<thead>
+<tr>
+<th>조건</th>
+<th>왜 조직형에 가까워지는가</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>프로젝트 단위 산출물</td>
+<td>결과를 이슈와 목표로 추적해야 함</td>
+</tr>
+<tr>
+<td>사람 승인 라인</td>
+<td>승인 전 실행을 실제로 멈춰야 함</td>
+</tr>
+<tr>
+<td>예산 한도</td>
+<td>비용 초과가 조직 정책 위반이 됨</td>
+</tr>
+<tr>
+<td>여러 에이전트 병렬 진행</td>
+<td>같은 기준과 같은 예산 풀을 공유해야 함</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
-<p>이 네 가지가 동시에 있으면, 조직형 사고 방식이 그래프·역할극·스킬 중심보다 운영 구조를 더 직접적으로 받아냅니다.</p>
+<p>이 네 가지가 동시에 있으면, 조직형 사고 방식이 그래프형이나 역할/핸드오프형보다 운영 구조를 더 직접적으로 받아냅니다.</p>
 </blockquote>
 
   </div>
@@ -519,7 +537,7 @@ campaign-setup/
   
   <div class="slide-body">
 <div class="callout">
-  <strong>기본 뼈대는 조직형</strong>으로 두고, 작성 단계는 역할극형, 브랜드 톤은 스킬 중심, 승인 라인은 그래프형 체크포인트로 섞을 수 있습니다.
+  <strong>기본 뼈대는 조직형</strong>으로 두고, 작업 배분은 감독자/라우터, 작성 단계는 역할/핸드오프형, 반복 기준은 Skills, 승인 라인은 그래프형 체크포인트로 섞을 수 있습니다.
 </div>
 <img src="figs/hybrid-agent-operating-model.svg" alt="하이브리드 에이전트 운영 구조" style="max-height: 390px;">
 
