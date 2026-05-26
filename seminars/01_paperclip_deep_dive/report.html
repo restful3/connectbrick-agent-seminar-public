@@ -3903,6 +3903,8 @@ html.reader-size-large .continuous-mode {
 <span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;publish&quot;</span><span class="p">,</span> <span class="n">END</span><span class="p">)</span></code></pre>
 <h3 id="잘-맞는-워크플로">잘 맞는 워크플로</h3>
 <p>분기가 <strong>결정적(deterministic)</strong> 이고 단계 수가 미리 알려진 워크플로 — 예: <em>리서치 → 초안 → 검수 → 발행</em> 처럼 노드 개수와 순서가 거의 고정된 파이프라인. 분기 조건을 코드로 명시할 수 있고, HITL 체크포인트가 자연스러운 자리에 들어가는 작업이라면 그래프형이 가장 추적성이 높다. 반대로, 단계 수 자체가 LLM의 판단에 따라 가변적이거나 발산적 토론이 필요한 작업에는 그래프가 지나치게 복잡해진다.</p>
+<h3 id="의사결정-포인트">의사결정 포인트</h3>
+<p>그래프형의 장점은 <strong>흐름을 눈에 보이게 고정한다</strong> 는 데 있다. 어느 단계에서 멈췄는지, 승인 후 어디로 갔는지, 반려되면 어느 노드로 돌아가는지를 코드와 체크포인트로 남기기 쉽다. 그래서 승인 지점이 정해진 업무에는 강하지만, 승인·예산·담당자 배정이 여러 프로젝트 전체에 걸쳐 움직이는 경우에는 별도 운영 규칙을 덧붙여야 한다. 즉 그래프형은 <em>절차가 또렷한 파이프라인</em> 에 적합하고, 조직 전체의 위임·예산 운영까지 표현하려면 다른 구조와 결합하는 편이 자연스럽다.</p>
 <h2 id="2.2-역할극형-crewai-autogen">2.2 역할극형 (CrewAI, AutoGen)</h2>
 <blockquote>
 <p><strong>기존 패턴으로 보면</strong> — 역할극형은 한 에이전트가 끝까지 끌고 가는 구조가 아니라, 상황에 따라 다음 담당자에게 대화의 주도권이 넘어가는 방식이다. 리서처가 자료를 찾고, 작성자가 초안을 만들고, 비평가가 반려하거나 통과시키는 식이다. LangChain/OpenAI의 handoff, CrewAI의 crew, AutoGen의 GroupChat이 이 흐름과 닿아 있다.<sup class="ref-cite"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent" target="_blank" rel="noopener">[42]</a></sup><sup class="ref-cite"><a href="https://openai.github.io/openai-agents-python/handoffs/" target="_blank" rel="noopener">[43]</a></sup><sup class="ref-cite"><a href="https://docs.crewai.com/en/concepts/crews" target="_blank" rel="noopener">[46]</a></sup><sup class="ref-cite"><a href="https://microsoft.github.io/autogen/0.2/docs/reference/agentchat/groupchat" target="_blank" rel="noopener">[47]</a></sup></p>
@@ -3928,6 +3930,8 @@ html.reader-size-large .continuous-mode {
 <span class="w">      </span><span class="nt">agents</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">writer</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">critic</span><span class="p p-Indicator">]</span></code></pre>
 <h3 id="잘-맞는-워크플로-1">잘 맞는 워크플로</h3>
 <p><strong>발산적 브레인스토밍, 다관점 검토, 합의 형성</strong> 이 본질인 작업 — 예: 문제 정의, 대안 발굴, 초안 후보 생성, 다관점 리뷰. 단계가 미리 정해져 있지 않고 <em>&quot;누가 무엇을 말하는가&quot;</em> 의 페르소나가 산출물 품질을 좌우하는 영역. 반대로, 산출물의 형태와 승인 라인이 명확히 고정된 운영 워크플로에는 대화형 구조가 과해질 수 있다. 수렴이 느리거나 무한 핑퐁이 발생하기 쉽다.</p>
+<h3 id="의사결정-포인트-1">의사결정 포인트</h3>
+<p>역할극형에서 중요한 단위는 노드가 아니라 <strong>발언(turn)</strong> 이다. 리서처, 작성자, 비평가가 서로 다른 관점으로 말하면서 초안의 폭을 넓히고 허점을 찾는 데 강하다. 다만 승인이나 예산처럼 반드시 지켜야 하는 규칙은 대화 참여자 중 누군가가 계속 기억하고 적용해야 하므로, 시스템이 강제로 멈춰 세우는 구조보다 약하다. 그래서 역할극형은 최종 운영 통제 장치라기보다, 아이디어를 만들고 여러 관점으로 검토하는 <strong>발산·비평 단계</strong> 에 특히 잘 맞는다.</p>
 <h2 id="2.3-스킬-중심-deep-agents-claude-agent-sdk">2.3 스킬 중심 (Deep Agents, Claude Agent SDK)</h2>
 <blockquote>
 <p><strong>기존 패턴으로 보면</strong> — 스킬 중심은 여러 에이전트를 늘리는 대신, 한 에이전트가 필요한 지식 묶음을 그때만 꺼내 쓰는 방식이다. 브랜드 톤, 검수 체크리스트, 반복 실행 스크립트처럼 자주 쓰는 절차를 스킬로 만들어 두고 필요할 때 로드한다. Anthropic Agent Skills와 LangChain의 Skills 패턴이 이 관점에 가깝다.<sup class="ref-cite"><a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" target="_blank" rel="noopener">[11]</a></sup><sup class="ref-cite"><a href="https://agentskills.io/home" target="_blank" rel="noopener">[40]</a></sup><sup class="ref-cite"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent" target="_blank" rel="noopener">[42]</a></sup></p>
@@ -3956,6 +3960,8 @@ html.reader-size-large .continuous-mode {
 <span class="nn">---</span></code></pre>
 <h3 id="잘-맞는-워크플로-2">잘 맞는 워크플로</h3>
 <p><strong>코딩, 문서 작성, RAG 중심 작업</strong> — 단일 에이전트가 광범위한 도구·자산을 활용해 산출물을 만들지만, 호출되는 능력의 집합은 작업마다 달라지는 영역. 사내 자산(작성 기준, 검수 체크리스트, 반복 실행 스크립트)이 <em>코드 리포지토리에 버전 관리되어야 할</em> 만큼 누적되어 있다면 효과적이다. 반대로, <strong>여러 에이전트가 병렬로 협업하면서 승인·예산을 공유해야 하는 운영 워크플로</strong> 에는 단일 메인 루프가 병목이 된다.</p>
+<h3 id="의사결정-포인트-2">의사결정 포인트</h3>
+<p>스킬 중심은 &quot;에이전트를 더 많이 세운다&quot;보다 <strong>반복되는 기준을 자산으로 만든다</strong> 에 가깝다. 보고서 작성 기준, 데이터 검수 체크리스트, 브랜드 톤, 반복 실행 스크립트처럼 자주 쓰는 절차를 스킬로 묶으면 작업 품질과 표현 기준을 일관되게 유지할 수 있다. 다만 스킬 자체가 승인·예산을 강제하는 것은 아니다. 어떤 스킬을 언제 부르고, 어떤 행동을 막을지는 메인 루프나 사용자 코드가 정해야 한다. 따라서 스킬 중심은 단독 패러다임이기도 하지만, 조직형이나 그래프형 안에 들어가 반복 기준을 제공하는 <strong>능력 패키지</strong> 로도 잘 쓰인다.</p>
 <h2 id="2.4-조직형-paperclip">2.4 조직형 (Paperclip)</h2>
 <blockquote>
 <p><strong>기존 패턴으로 보면</strong> — 조직형은 supervisor나 hierarchical multi-agent 구조처럼 여러 담당자에게 일을 나누는 방식과 닮았다.<sup class="ref-cite"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent" target="_blank" rel="noopener">[42]</a></sup> 차이는 &quot;누구에게 맡길지&quot;에서 끝나지 않는다는 점이다. 조직형은 승인 대기, 예산 한도, 감사 로그처럼 일이 멈춰야 하는 조건까지 시스템의 기본 규칙으로 둔다.</p>
@@ -3963,6 +3969,8 @@ html.reader-size-large .continuous-mode {
 <h3 id="사고-방식-3">사고 방식</h3>
 <p><strong>조직형(organization-based)</strong> 의 사고 방식은 <strong>회사(company) — 조직도(org chart) + 목표(goal) + 예산(budget) + 거버넌스(governance)</strong> 다. 에이전트는 &quot;역할&quot; 이 아니라 <strong>직책(role) + 보고 라인(reporting line) + 예산 한도(budget cap) + 승인 권한(approval scope)</strong> 을 가진 <em>직원</em> 으로 모델링되고, 일감은 회의·메시지가 아니라 <strong>이슈(issue) / 태스크(task) / 목표(goal)</strong> 라는 산출물 단위로 흘러간다. 결정적 차별점은 거버넌스를 <strong>실행 중 시스템이 강제한다</strong>는 점이다. 승인 큐에 걸린 전략은 단순 알림이 아니라, 미승인 시 하위 태스크 진행 자체를 시스템이 차단한다. 예산도 80% 사전 경고 / 100% 강제 중단으로 추적되어 자동 일시정지를 수행한다.</p>
 <figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 14</span><span class="asset-caption__title">조직형 패러다임 — 이슈 위임과 런타임 거버넌스</span></figcaption><img src="figs/paradigm-organization.svg?v=frameless" alt="조직형 패러다임 — 이슈 위임과 런타임 거버넌스" /><small class="asset-note">조직형은 대화나 노드보다 이슈, 보고 라인, 승인 큐, 예산 한도가 중심이다. 작업은 조직도를 따라 위임되고, 승인·예산 규칙은 실행 중 실제 차단 조건으로 작동한다.</small></figure>
+<h3 id="의사결정-포인트-3">의사결정 포인트</h3>
+<p>조직형은 단순히 &quot;여러 에이전트가 있다&quot;는 뜻이 아니다. 누가 맡는지, 어떤 목표의 일부인지, 어디서 사람 승인이 필요한지, 어느 예산 한도 안에서 움직이는지가 같은 시스템 안에 묶여야 조직형에 가깝다. 그래서 핵심 단위도 대화나 노드가 아니라 <strong>이슈 / 태스크</strong> 다. 승인 큐와 예산 한도는 권고 사항이 아니라 실행을 멈추는 조건이 되며, 이 점이 일반적인 supervisor 구조와 가장 크게 다르다. 프로젝트 단위 산출물, 사람 승인, 비용 한도, 병렬 위임이 동시에 있는 업무라면 조직형 사고 방식이 자연스러운 출발점이 된다.</p>
 <h3 id="3장에서-확인할-사례">3장에서 확인할 사례</h3>
 <p>본 리포트 3장에서는 Paperclip을 조직형 패러다임의 사례로 본다. 핵심은 8개 서브시스템 전체를 외우는 것이 아니라, <strong>목표가 이슈로 쪼개지고, 조직도 위에서 위임되며, 승인·예산이 실행 중 차단 규칙으로 작동한다</strong> 는 점을 확인하는 것이다.</p>
 <h2 id="2.5-비교표-의사결정-가이드">2.5 비교표 + 의사결정 가이드</h2>
@@ -4009,8 +4017,8 @@ html.reader-size-large .continuous-mode {
 <tr>
 <td><strong>거버넌스 방식</strong></td>
 <td>엣지에 HITL 체크포인트 삽입</td>
-<td>외부 래퍼 또는 critic 역할</td>
-<td>사용자 코드에서 가드</td>
+<td>외부 가드레일 또는 critic 역할</td>
+<td>메인 루프 / 사용자 코드의 제한 규칙</td>
 <td><strong>실행 중 강제</strong> (approval / budget hard-stop)</td>
 </tr>
 <tr>
@@ -4021,11 +4029,11 @@ html.reader-size-large .continuous-mode {
 <td>프로젝트 단위 + 승인 + 예산 한도</td>
 </tr>
 <tr>
-<td><strong>상태 영속성</strong></td>
-<td>체크포인트 저장소 (Redis/PG)</td>
+<td><strong>기록되는 것</strong></td>
+<td>단계별 상태 / 체크포인트</td>
 <td>대화 로그</td>
-<td>메인 루프 메모리 + 외부 저장소</td>
-<td>DB 기반 (조직 / 이슈 / 트랜잭션)</td>
+<td>호출된 스킬과 작업 메모리</td>
+<td>이슈 / 승인 / 예산 / 실행 로그</td>
 </tr>
 </tbody>
 </table>
@@ -4038,7 +4046,7 @@ html.reader-size-large .continuous-mode {
 <li><strong>예산 한도</strong> — 모델 비용, 광고비, 외부 SaaS 비용처럼 한도 초과가 <em>조직 정책 위반</em> 이다 (시스템이 강제해야 함).</li>
 <li><strong>여러 에이전트의 동시 진행</strong> — 작성 · 리서치 · 검수 · 발행이 병렬로 돌면서도 같은 기준과 같은 예산 풀을 공유해야 한다.</li>
 </ol>
-<p>이 4가지를 <em>어떤 패러다임의 사고 방식이 가장 자연스럽게 표현하는가</em> 로 보면, 그래프형은 1번에는 강하지만 2~4번이 외부 래퍼(wrapper)에 맡겨지고, 역할극형은 4번을 자연스럽게 수용하지만 2번·3번이 <em>대화 합의</em> 로 약해진다. 스킬 중심은 1번 단일 산출물에는 강하지만 4번 병렬 협업이 단일 메인 루프의 한계 안에 머문다. 조직형은 4가지가 <strong>각각 이슈 / 승인 큐 / 예산 한도 / 조직도</strong> 로 시스템의 핵심 요소가 된다.</p>
+<p>이 4가지를 <em>어떤 패러다임의 사고 방식이 가장 자연스럽게 표현하는가</em> 로 보면, 그래프형은 1번과 2번의 체크포인트에는 강하지만 3번·4번은 별도 운영 규칙에 맡겨지는 경우가 많다. 역할극형은 4번처럼 여러 관점이 동시에 움직이는 상황을 자연스럽게 수용하지만, 2번·3번은 <em>대화 합의</em> 만으로는 약해진다. 스킬 중심은 1번 단일 산출물의 품질과 일관성에는 강하지만, 4번 병렬 협업은 단일 메인 루프의 한계 안에 머문다. 조직형은 4가지가 <strong>각각 이슈 / 승인 큐 / 예산 한도 / 조직도</strong> 로 시스템의 핵심 요소가 된다.</p>
 <p>이것이 본 세미나의 핵심 가설이다. <strong>프로젝트 산출물·승인·예산·병렬 협업</strong> 이 동시에 있는 업무는 조직형 사고 방식과 잘 부합한다. 단, 이는 작성자(송태영)의 가설이며 단정이 아니다. 본 세미나 Q&amp;A에서 청중(커넥트브릭 개발팀)이 가진 <em>실제 워크플로 모양</em> 을 들어 검증·반박하는 것이 목적이다.</p>
 <h3 id="본-분류의-위상-발표용-판단-프레임">본 분류의 위상 — 발표용 판단 프레임</h3>
 <p>본 4-Way 분류는 &quot;정답 분류표&quot; 가 아니라 발표용 <em>사고 방식</em> 프레임이다. 같은 영역을 다른 축으로 자르는 기존 분류는 다음과 같다. 각각 본 4-Way와 직교하거나 일부만 겹친다.</p>
