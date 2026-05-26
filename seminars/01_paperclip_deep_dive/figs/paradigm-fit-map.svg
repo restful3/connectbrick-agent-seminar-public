@@ -24,8 +24,6 @@
   <text class="label" x="98" y="28">강한 차단 거버넌스</text>
   <text class="label" x="98" y="372">낮은 거버넌스</text>
 
-  <rect x="455" y="70" width="205" height="96" rx="8" fill="#FEE2E2" opacity="0.55"/>
-
   <circle cx="250" cy="170" r="38" fill="#2563EB"/>
   <text class="bubble-text" x="250" y="174" text-anchor="middle">Graph</text>
   <text class="muted halo" x="250" y="226" text-anchor="middle">명시적 단계</text>
