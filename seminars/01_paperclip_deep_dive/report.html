@@ -3876,7 +3876,7 @@ html.reader-size-large .continuous-mode {
 <p><strong>이 장의 한 줄</strong> — 에이전트 오케스트레이션은 &quot;어느 라이브러리가 좋은가&quot;가 아니라 <strong>일을 어떤 단위로 나누고, 누가 다음 행동을 정하며, 어디서 멈출 것인가</strong> 를 설계하는 문제다.</p>
 </blockquote>
 <p>1장에서 본 것처럼 단일 모델 능력만으로 차이를 만들던 시기는 지나가고 있다. 2026년의 선택지는 &quot;어떤 모델의 성능이 더 높은가&quot;보다 <strong>여러 호출·도구·사람 승인을 어떤 구조로 엮을 것인가</strong> 에 가까워졌다. 본 장은 이 선택지를 <strong>그래프형 / 역할·핸드오프형 / 조직형</strong> 세 가지 오케스트레이션 유형으로 정리하고, 그 위에 얹히는 <strong>감독자·라우터</strong> 와 <strong>Skills</strong> 를 보조 패턴으로 분리한다.</p>
-<p>이 분류는 새로운 학술 분류가 아니다. Anthropic <em>Building Effective Agents</em>(2024)의 workflows/agents 구분<sup class="ref-cite"><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">[41]</a></sup>, LangChain/LangGraph의 multi-agent 패턴<sup class="ref-cite"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent" target="_blank" rel="noopener">[42]</a></sup>, arXiv survey <em>Multi-Agent Collaboration Mechanisms</em>(2025)<sup class="ref-cite"><a href="https://arxiv.org/abs/2501.06322" target="_blank" rel="noopener">[44]</a></sup> 같은 기존 분류를 가져와 발표용 판단 프레임으로 다시 묶은 것이다. 판단 기준은 단순하다. <strong>우리 업무는 흐름으로 제어해야 하는가, 역할 인계로 풀어야 하는가, 조직 운영 모델로 관리해야 하는가.</strong></p>
+<p>이 분류는 새로운 학술 분류가 아니라, Anthropic의 workflows/agents 구분<sup class="ref-cite"><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">[41]</a></sup>, LangChain/LangGraph의 multi-agent 패턴<sup class="ref-cite"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent" target="_blank" rel="noopener">[42]</a></sup>, multi-agent 협업 연구<sup class="ref-cite"><a href="https://arxiv.org/abs/2501.06322" target="_blank" rel="noopener">[44]</a></sup>를 발표 흐름에 맞게 단순화한 것이다. 판단 기준은 단순하다. <strong>우리 업무는 흐름으로 제어해야 하는가, 역할 인계로 풀어야 하는가, 조직 운영 모델로 관리해야 하는가.</strong></p>
 <h2 id="2.1-그래프형-langgraph">2.1 그래프형 (LangGraph)</h2>
 <blockquote>
 <p><strong>기존 패턴으로 보면</strong> — 그래프형은 &quot;정해진 절차 안에서 LLM과 도구를 호출하는&quot; 방식에 가깝다. 리서치 → 초안 → 검수 → 발행처럼 단계와 분기, 승인 지점을 코드로 그릴 수 있을 때 잘 맞는다. Anthropic의 workflow 구분과 LangChain의 custom workflow가 이 관점을 뒷받침한다.<sup class="ref-cite"><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">[41]</a></sup><sup class="ref-cite"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent" target="_blank" rel="noopener">[42]</a></sup></p>
@@ -4089,26 +4089,15 @@ html.reader-size-large .continuous-mode {
 </tr>
 </tbody>
 </table>
-<h3 id="조직형이-자연스러운-업무-조건-가설">조직형이 자연스러운 업무 조건 (가설)</h3>
-<p>조직형 오케스트레이션이 자연스러워지는 <strong>구조적 특징</strong> 을 단순화하면 다음 4가지다.</p>
+<h3 id="선택-기준">선택 기준</h3>
+<p>이 분류는 학술적 정답표가 아니라, 커넥트브릭 업무를 어떤 구조로 먼저 그릴지 정하기 위한 발표용 판단 프레임이다. 실무 판단은 다음 정도로 단순화할 수 있다.</p>
 <ol class="nums">
-<li><strong>프로젝트 단위 산출물</strong> — 결과물의 단위가 명확하다 (이슈에 가까움, 노드 시퀀스에 가깝지 않음).</li>
-<li><strong>사람 승인 라인</strong> — 외부 공개·고객 전달·비용 집행 전 사람이 반드시 검토한다 (단순 알림이 아닌 <strong>런타임 차단</strong> 이 필요).</li>
-<li><strong>예산 한도</strong> — 모델 비용, 광고비, 외부 SaaS 비용처럼 한도 초과가 <em>조직 정책 위반</em> 이다 (시스템이 강제해야 함).</li>
-<li><strong>여러 에이전트의 동시 진행</strong> — 작성 · 리서치 · 검수 · 발행이 병렬로 돌면서도 같은 기준과 같은 예산 풀을 공유해야 한다.</li>
+<li><strong>단계와 승인 지점이 고정되어 있으면</strong> 그래프형을 먼저 본다.</li>
+<li><strong>관점 전환과 비평이 품질을 좌우하면</strong> 역할·핸드오프형을 먼저 본다.</li>
+<li><strong>책임·승인·예산·감사 로그가 중요하면</strong> 조직형을 먼저 본다.</li>
+<li><strong>요청마다 담당자 선택이 달라지면</strong> 감독자·라우터를 보조 패턴으로 추가한다.</li>
+<li><strong>반복 기준을 일관되게 적용해야 하면</strong> Skills를 공통 자산으로 추가한다.</li>
 </ol>
-<p>이 4가지를 <em>어떤 유형의 사고 방식이 가장 자연스럽게 표현하는가</em> 로 보면, 그래프형은 1번과 2번의 체크포인트에는 강하지만 3번·4번은 별도 운영 규칙에 맡겨지는 경우가 많다. 역할·핸드오프형은 4번처럼 여러 관점이 동시에 움직이는 상황을 자연스럽게 수용하지만, 2번·3번은 <em>대화 합의</em> 만으로는 약해진다. 조직형은 4가지가 <strong>각각 이슈 / 승인 큐 / 예산 한도 / 조직도</strong> 로 시스템의 핵심 요소가 된다.</p>
-<p>따라서 <strong>프로젝트 산출물·승인·예산·병렬 협업</strong> 이 동시에 있는 업무라면, 조직형을 우선 후보로 놓고 검토할 수 있다. 다만 이것은 최종 결론이 아니라 1차 판단 기준이다. 실제 설계에서는 다음 절처럼 각 유형과 보조 패턴을 섞어 쓰는 하이브리드 구성이 더 현실적이다.</p>
-<h3 id="본-분류의-위상-발표용-판단-프레임">본 분류의 위상 — 발표용 판단 프레임</h3>
-<p>본 분류는 &quot;정답 분류표&quot; 가 아니라 발표용 <em>사고 방식</em> 프레임이다. 같은 영역을 다른 축으로 자르는 기존 분류는 다음과 같다. 각각 본 분류와 직교하거나 일부만 겹친다.</p>
-<ul class="bullets">
-<li><strong>Andrew Ng(2024)</strong> 의 4 design patterns<sup class="ref-cite"><a href="https://x.com/AndrewYNg/status/1773393357022298617" target="_blank" rel="noopener">[19]</a></sup> — reflection / tool use / planning / multi-agent. <strong>흐름 패턴</strong> 차원.</li>
-<li><strong>Anthropic(2024-12) — <em>Building Effective Agents</em></strong> <sup class="ref-cite"><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">[41]</a></sup> — prompt chaining / routing / parallelization / orchestrator-workers / evaluator-optimizer + workflows vs agents. <strong>코드 구조</strong> 차원.</li>
-<li><strong>LangChain/LangGraph multi-agent guide</strong><sup class="ref-cite"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent" target="_blank" rel="noopener">[42]</a></sup> — subagents / handoffs / skills / router / custom workflow. <strong>구현 패턴과 제어 위상</strong> 차원.</li>
-<li><strong>arXiv 2501.06322 survey</strong><sup class="ref-cite"><a href="https://arxiv.org/abs/2501.06322" target="_blank" rel="noopener">[44]</a></sup> — actors / types / structures / strategies / coordination protocols. <strong>학술 5축</strong> 분류.</li>
-<li><strong>Turing</strong><sup class="ref-cite"><a href="https://www.turing.com/resources/ai-agent-frameworks" target="_blank" rel="noopener">[7]</a></sup>·<strong>pecollective</strong><sup class="ref-cite"><a href="https://pecollective.com/blog/ai-agent-frameworks-compared/" target="_blank" rel="noopener">[6]</a></sup>·<strong>Morphllm</strong><sup class="ref-cite"><a href="https://www.morphllm.com/ai-agent-framework" target="_blank" rel="noopener">[18]</a></sup> — 6~8개 프레임워크 매트릭스. <strong>기능 비교</strong> 차원.</li>
-</ul>
-<p>본 장은 그중 <strong>&quot;우리 워크플로의 모양과 사고 방식의 형태가 맞는가&quot;</strong> 라는 단일 축으로 단순화한 것이다. 다른 축, 예를 들어 거버넌스 / 비용 / 관찰성 / UX까지 같이 보면 다른 그림이 나온다. 본 리포트 3장과 4장에서 이 축들을 보강한다.</p>
 <h2 id="2.7-실무-보정-실제-운영은-하이브리드다">2.7 실무 보정 — 실제 운영은 하이브리드다</h2>
 <p>마지막으로 한 가지를 분명히 해야 한다. 실제 상용 운영 시스템이 위 세 유형 중 하나에 정확히 들어맞는 경우는 드물다. 이 분류는 <strong>처음 설계를 어디서 시작할지</strong> 를 정하는 프레임이지, 최종 아키텍처의 이름표가 아니다.</p>
 <figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 15</span><span class="asset-caption__title">하이브리드 에이전트 운영 구조</span></figcaption><img src="figs/hybrid-agent-operating-model.svg" alt="하이브리드 에이전트 운영 구조" /><small class="asset-note">실제 운영에서는 조직형 뼈대를 기본으로 두고, 초안 생성에는 역할·핸드오프형, 검수 지점에는 그래프형 체크포인트, 반복 기준에는 Skills를 섞는 식의 하이브리드 구조가 더 현실적이다.</small></figure>
