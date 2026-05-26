@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 350" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
+  <defs>
+    <marker id="arrow-org" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#E11D48"/>
+    </marker>
+    <marker id="arrow-org-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0F2C59"/>
+    </marker>
+    <style>
+      .bg { fill: #FAFAF9; }
+      .role { fill: #FEE2E2; stroke: #E11D48; stroke-width: 2; }
+      .issue { fill: #FFFFFF; stroke: #D6D3D1; stroke-width: 1.7; }
+      .gate { fill: #0F2C59; }
+      .label { fill: #0F2C59; font-size: 15px; font-weight: 800; }
+      .small { fill: #57534E; font-size: 11px; font-weight: 650; }
+      .white { fill: #FFFFFF; font-size: 13px; font-weight: 800; }
+      .edge { stroke: #E11D48; stroke-width: 2.5; fill: none; marker-end: url(#arrow-org); }
+      .edge-ink { stroke: #0F2C59; stroke-width: 2.2; fill: none; marker-end: url(#arrow-org-ink); }
+      .halo { paint-order: stroke fill; stroke: #FAFAF9; stroke-width: 4px; stroke-linejoin: round; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="860" height="350"/>
+  <rect x="30" y="34" width="800" height="268" rx="12" fill="#FFFFFF" stroke="#D6D3D1" stroke-width="1.5"/>
+  <text x="58" y="72" class="label">Organization control plane</text>
+
+  <rect class="role" x="360" y="72" width="140" height="54" rx="10"/>
+  <text x="430" y="95" text-anchor="middle" class="label">CEO</text>
+  <text x="430" y="114" text-anchor="middle" class="small">goal owner</text>
+
+  <rect class="role" x="196" y="166" width="150" height="54" rx="10"/>
+  <text x="271" y="189" text-anchor="middle" class="label">Director</text>
+  <text x="271" y="208" text-anchor="middle" class="small">delegates tasks</text>
+
+  <rect class="role" x="514" y="166" width="150" height="54" rx="10"/>
+  <text x="589" y="189" text-anchor="middle" class="label">Worker</text>
+  <text x="589" y="208" text-anchor="middle" class="small">executes issue</text>
+
+  <rect class="issue" x="82" y="166" width="82" height="54" rx="8"/>
+  <text x="123" y="190" text-anchor="middle" class="label">Issue</text>
+  <text x="123" y="208" text-anchor="middle" class="small">#104</text>
+
+  <rect class="issue" x="696" y="166" width="82" height="54" rx="8"/>
+  <text x="737" y="190" text-anchor="middle" class="label">Task</text>
+  <text x="737" y="208" text-anchor="middle" class="small">run</text>
+
+  <rect class="gate" x="324" y="260" width="212" height="36" rx="18"/>
+  <text x="430" y="283" text-anchor="middle" class="white">approval + budget hard-stop</text>
+
+  <path class="edge" d="M430 126 L430 142 C430 154 345 160 317 166"/>
+  <path class="edge" d="M430 126 L430 142 C430 154 515 160 543 166"/>
+  <line class="edge" x1="164" y1="193" x2="192" y2="193"/>
+  <line class="edge" x1="664" y1="193" x2="692" y2="193"/>
+  <path class="edge-ink" d="M271 220 C300 245 330 259 360 266"/>
+  <path class="edge-ink" d="M589 220 C560 245 530 259 500 266"/>
+</svg>

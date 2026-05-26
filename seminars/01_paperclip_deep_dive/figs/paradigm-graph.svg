@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 330" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
+  <defs>
+    <marker id="arrow-graph" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2563EB"/>
+    </marker>
+    <marker id="arrow-graph-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0F2C59"/>
+    </marker>
+    <style>
+      .bg { fill: #FAFAF9; }
+      .node { fill: #E9F2FB; stroke: #2563EB; stroke-width: 2; }
+      .gate { fill: #FEF3C7; stroke: #D97706; stroke-width: 2; }
+      .done { fill: #ECFDF5; stroke: #059669; stroke-width: 2; }
+      .label { fill: #0F2C59; font-size: 15px; font-weight: 800; }
+      .small { fill: #57534E; font-size: 11px; font-weight: 650; }
+      .edge { stroke: #2563EB; stroke-width: 2.5; fill: none; marker-end: url(#arrow-graph); }
+      .edge-muted { stroke: #0F2C59; stroke-width: 2; fill: none; marker-end: url(#arrow-graph-muted); }
+      .halo { paint-order: stroke fill; stroke: #FAFAF9; stroke-width: 4px; stroke-linejoin: round; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="860" height="330"/>
+
+  <rect x="30" y="34" width="800" height="248" rx="12" fill="#FFFFFF" stroke="#D6D3D1" stroke-width="1.5"/>
+  <text x="58" y="72" class="label">StateGraph</text>
+
+  <rect class="node" x="72" y="142" width="118" height="62" rx="10"/>
+  <text x="131" y="168" text-anchor="middle" class="label">research</text>
+  <text x="131" y="188" text-anchor="middle" class="small">node</text>
+
+  <rect class="node" x="244" y="142" width="118" height="62" rx="10"/>
+  <text x="303" y="168" text-anchor="middle" class="label">draft</text>
+  <text x="303" y="188" text-anchor="middle" class="small">node</text>
+
+  <rect class="gate" x="416" y="142" width="128" height="62" rx="10"/>
+  <text x="480" y="168" text-anchor="middle" class="label">review</text>
+  <text x="480" y="188" text-anchor="middle" class="small">HITL gate</text>
+
+  <rect class="done" x="598" y="142" width="118" height="62" rx="10"/>
+  <text x="657" y="168" text-anchor="middle" class="label">publish</text>
+  <text x="657" y="188" text-anchor="middle" class="small">END</text>
+
+  <rect class="node" x="416" y="234" width="128" height="48" rx="10"/>
+  <text x="480" y="263" text-anchor="middle" class="label">revise</text>
+
+  <line class="edge" x1="190" y1="173" x2="240" y2="173"/>
+  <line class="edge" x1="362" y1="173" x2="412" y2="173"/>
+  <line class="edge" x1="544" y1="173" x2="594" y2="173"/>
+
+  <path class="edge-muted" d="M480 204 L480 230"/>
+
+  <path class="edge-muted" d="M416 258 C330 258 303 236 303 208"/>
+
+  <rect x="640" y="52" width="142" height="34" rx="17" fill="#0F2C59"/>
+  <text x="711" y="74" text-anchor="middle" font-size="12" font-weight="800" fill="#FFFFFF">traceable path</text>
+</svg>

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 330" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
+  <defs>
+    <marker id="arrow-skill" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#D97706"/>
+    </marker>
+    <style>
+      .bg { fill: #FAFAF9; }
+      .loop { fill: #0F2C59; }
+      .box { fill: #FFF7ED; stroke: #D97706; stroke-width: 2; }
+      .active { fill: #FEF3C7; stroke: #D97706; stroke-width: 2.4; }
+      .label { fill: #0F2C59; font-size: 15px; font-weight: 800; }
+      .small { fill: #57534E; font-size: 11px; font-weight: 650; }
+      .white { fill: #FFFFFF; font-size: 15px; font-weight: 800; }
+      .white-small { fill: #FFFFFF; font-size: 11px; font-weight: 650; }
+      .edge { stroke: #D97706; stroke-width: 2.5; fill: none; marker-end: url(#arrow-skill); }
+      .dash { stroke: #D97706; stroke-width: 2; stroke-dasharray: 6 5; fill: none; marker-end: url(#arrow-skill); }
+      .halo { paint-order: stroke fill; stroke: #FAFAF9; stroke-width: 4px; stroke-linejoin: round; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="860" height="330"/>
+  <rect x="30" y="34" width="800" height="248" rx="12" fill="#FFFFFF" stroke="#D6D3D1" stroke-width="1.5"/>
+  <text x="58" y="72" class="label">Main loop with staged loading</text>
+
+  <circle class="loop" cx="155" cy="178" r="62"/>
+  <text x="155" y="170" text-anchor="middle" class="white">Agent</text>
+  <text x="155" y="190" text-anchor="middle" class="white-small">main loop</text>
+
+  <rect class="box" x="316" y="78" width="160" height="54" rx="10"/>
+  <text x="396" y="101" text-anchor="middle" class="label">Skill index</text>
+  <text x="396" y="120" text-anchor="middle" class="small">name + trigger</text>
+
+  <rect class="active" x="316" y="154" width="160" height="54" rx="10"/>
+  <text x="396" y="177" text-anchor="middle" class="label">SKILL.md</text>
+  <text x="396" y="196" text-anchor="middle" class="small">procedure</text>
+
+  <rect class="box" x="316" y="230" width="160" height="54" rx="10"/>
+  <text x="396" y="253" text-anchor="middle" class="label">Resources</text>
+  <text x="396" y="272" text-anchor="middle" class="small">scripts + files</text>
+
+  <rect class="box" x="604" y="154" width="160" height="54" rx="10"/>
+  <text x="684" y="177" text-anchor="middle" class="label">Task output</text>
+  <text x="684" y="196" text-anchor="middle" class="small">same loop, new ability</text>
+
+  <path class="edge" d="M214 165 C252 126 274 106 312 105"/>
+  <path class="edge" d="M218 178 C252 178 280 181 312 181"/>
+  <path class="dash" d="M214 194 C252 232 276 257 312 257"/>
+  <path class="edge" d="M476 181 L600 181"/>
+</svg>
