@@ -3942,7 +3942,7 @@ html.reader-size-large .continuous-mode {
 <h3 id="의사결정-포인트-2">의사결정 포인트</h3>
 <p>조직형은 단순히 &quot;여러 에이전트가 있다&quot;는 뜻이 아니다. 누가 맡는지, 어떤 목표의 일부인지, 어디서 사람 승인이 필요한지, 어느 예산 한도 안에서 움직이는지가 같은 시스템 안에 묶여야 조직형에 가깝다. 그래서 핵심 단위도 대화나 노드가 아니라 <strong>이슈 / 태스크</strong> 다. 승인 큐와 예산 한도는 권고 사항이 아니라 실행을 멈추는 조건이 되며, 이 점이 일반적인 supervisor 구조와 가장 크게 다르다. 프로젝트 단위 산출물, 사람 승인, 비용 한도, 병렬 위임이 동시에 있는 업무라면 조직형 사고 방식이 자연스러운 출발점이 된다.</p>
 <h3 id="3장에서-확인할-사례">3장에서 확인할 사례</h3>
-<p>본 리포트 3장에서는 Paperclip을 조직형 패러다임의 사례로 본다. 핵심은 8개 서브시스템 전체를 외우는 것이 아니라, <strong>목표가 이슈로 쪼개지고, 조직도 위에서 위임되며, 승인·예산이 실행 중 차단 규칙으로 작동한다</strong> 는 점을 확인하는 것이다.</p>
+<p>본 리포트 3장에서는 Paperclip을 조직형 패러다임의 사례로 본다. 핵심은 내부 구현 전체를 외우는 것이 아니라, <strong>목표가 이슈로 쪼개지고, 조직도 위에서 위임되며, 승인·예산이 실행 중 차단 규칙으로 작동한다</strong> 는 점을 확인하는 것이다.</p>
 <h2 id="2.4-보조-패턴-감독자라우터">2.4 보조 패턴 — 감독자·라우터</h2>
 <blockquote>
 <p><strong>위상 정리</strong> — 감독자·라우터는 독립된 오케스트레이션 유형이라기보다, 그래프형·역할형·조직형 안에 들어가는 <strong>제어 패턴</strong> 이다. 핵심 질문은 &quot;다음 작업자나 경로를 누가 고르는가&quot;다.</p>
@@ -4179,7 +4179,7 @@ html.reader-size-large .continuous-mode {
 </tr>
 </tbody>
 </table>
-<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 17</span><span class="asset-caption__title">Paperclip 아키텍처 — React UI ↔ Node.js API 서버 (8 서브시스템) ↔ Postgres·Adapters·Plugins</span></figcaption><img src="figs/paperclip-architecture.svg" alt="Paperclip 아키텍처 — React UI ↔ Node.js API 서버 (8 서브시스템) ↔ Postgres·Adapters·Plugins" /><small class="asset-note">Paperclip의 전체 아키텍처. 이번 회차에서는 8개 서브시스템 전체보다 Company / Org Chart / Issue / Governance의 관계에 집중한다. 작성자 시각화.</small></figure>
+<figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 17</span><span class="asset-caption__title">Paperclip 아키텍처 — React UI ↔ Node.js API 서버 ↔ Postgres·Adapters·Plugins</span></figcaption><img src="figs/paperclip-architecture.svg" alt="Paperclip 아키텍처 — React UI ↔ Node.js API 서버 ↔ Postgres·Adapters·Plugins" /><small class="asset-note">Paperclip의 전체 아키텍처. 이번 회차에서는 내부 모듈 전체보다 Company / Org Chart / Issue / Governance의 관계에 집중한다. 작성자 시각화.</small></figure>
 <p>이 구조의 장점은 목표와 작업의 연결이 끊기지 않는다는 점이다. 하나의 이슈는 어떤 회사, 어떤 프로젝트, 어떤 상위 목표, 어떤 담당 에이전트에 속하는지 추적된다. 그래서 실행 결과를 볼 때도 &quot;이 에이전트가 무슨 말을 했나&quot;가 아니라 <strong>&quot;이 목표를 위해 어떤 이슈가 어떻게 처리됐나&quot;</strong> 로 볼 수 있다.</p>
 <h2 id="3.3-heartbeat-계속-도는-루프가-아니라-깨워서-일시키는-루프">3.3 Heartbeat — 계속 도는 루프가 아니라 깨워서 일시키는 루프</h2>
 <figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 18</span><span class="asset-caption__title">Heartbeat 한 사이클 — 6 단계 라이프사이클</span></figcaption><img src="figs/heartbeat-loop.svg" alt="Heartbeat 한 사이클 — 6 단계 라이프사이클" /><small class="asset-note">Issue 생성 → enqueue → wake → atomic checkout(execution lock) → adapter 실행 → sleep. 하나의 issue는 한 번에 한 에이전트만 맡는다. 작성자 시각화.</small></figure>

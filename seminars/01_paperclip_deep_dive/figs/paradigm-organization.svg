@@ -14,7 +14,9 @@
       .small { fill: #57534E; font-size: 11px; font-weight: 650; }
       .white { fill: #FFFFFF; font-size: 13px; font-weight: 800; }
       .edge { stroke: #E11D48; stroke-width: 2.5; fill: none; marker-end: url(#arrow-org); }
+      .branch { stroke: #E11D48; stroke-width: 2.5; fill: none; }
       .edge-ink { stroke: #0F2C59; stroke-width: 2.2; fill: none; marker-end: url(#arrow-org-ink); }
+      .branch-ink { stroke: #0F2C59; stroke-width: 2.2; fill: none; }
       .halo { paint-order: stroke fill; stroke: #FAFAF9; stroke-width: 4px; stroke-linejoin: round; }
     </style>
   </defs>
@@ -42,10 +44,13 @@
   <rect class="gate" x="324" y="260" width="212" height="36" rx="18"/>
   <text x="430" y="283" text-anchor="middle" class="white">approval + budget hard-stop</text>
 
-  <path class="edge" d="M430 126 L430 142 C430 154 345 160 317 166"/>
-  <path class="edge" d="M430 126 L430 142 C430 154 515 160 543 166"/>
+  <path class="branch" d="M430 126 L430 146 M271 146 L589 146"/>
+  <line class="edge" x1="271" y1="146" x2="271" y2="162"/>
+  <line class="edge" x1="589" y1="146" x2="589" y2="162"/>
   <line class="edge" x1="164" y1="193" x2="192" y2="193"/>
   <line class="edge" x1="664" y1="193" x2="692" y2="193"/>
-  <path class="edge-ink" d="M271 220 C300 245 330 259 360 266"/>
-  <path class="edge-ink" d="M589 220 C560 245 530 259 500 266"/>
+  <path class="branch-ink" d="M271 220 L271 240 L360 240"/>
+  <line class="edge-ink" x1="360" y1="240" x2="360" y2="256"/>
+  <path class="branch-ink" d="M589 220 L589 240 L500 240"/>
+  <line class="edge-ink" x1="500" y1="240" x2="500" y2="256"/>
 </svg>

@@ -23,7 +23,7 @@
   <!-- Node.js API server (big container with 8 subsystem chips) -->
   <g>
     <rect x="80" y="130" width="640" height="215" rx="10" fill="#FFFFFF" stroke="#0F2C59" stroke-width="2.5"/>
-    <text x="400" y="158" font-size="14" font-weight="700" text-anchor="middle" fill="#0F2C59">Node.js API 서버 — 8 서브시스템</text>
+    <text x="400" y="158" font-size="14" font-weight="700" text-anchor="middle" fill="#0F2C59">Node.js API 서버 — 운영 모듈</text>
 
     <!-- Chip row 1 -->
     <g>
