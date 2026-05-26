@@ -1,10 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 330" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="95 65 670 225" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
   <defs>
     <marker id="arrow-role" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#059669"/>
     </marker>
     <style>
-      .bg { fill: #FAFAF9; }
       .card { fill: #ECFDF5; stroke: #059669; stroke-width: 2; }
       .center { fill: #FFFFFF; stroke: #0F2C59; stroke-width: 2; }
       .label { fill: #0F2C59; font-size: 15px; font-weight: 800; }
@@ -13,9 +12,6 @@
       .halo { paint-order: stroke fill; stroke: #FAFAF9; stroke-width: 4px; stroke-linejoin: round; }
     </style>
   </defs>
-  <rect class="bg" x="0" y="0" width="860" height="330"/>
-  <rect x="30" y="34" width="800" height="248" rx="12" fill="#FFFFFF" stroke="#D6D3D1" stroke-width="1.5"/>
-  <text x="58" y="72" class="label">Group conversation</text>
 
   <rect class="center" x="350" y="126" width="160" height="78" rx="14"/>
   <text x="430" y="158" text-anchor="middle" class="label">shared thread</text>
@@ -42,5 +38,4 @@
   <path class="turn" d="M594 233 C548 230 526 207 506 184"/>
   <path class="turn" d="M350 184 C322 212 300 231 266 233"/>
   <path class="turn" d="M262 233 C300 278 562 278 598 233"/>
-  <text x="430" y="292" text-anchor="middle" class="small halo">runtime handoff</text>
 </svg>
