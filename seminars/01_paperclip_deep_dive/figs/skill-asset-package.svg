@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="70 50 860 330" font-family="-apple-system, 'Segoe UI', 'Noto Sans KR', sans-serif">
+  <defs>
+    <marker id="arrow-skill-asset" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0F2C59"/>
+    </marker>
+    <style>
+      .source { fill: #F5F5F4; stroke: #D6D3D1; stroke-width: 1.6; }
+      .package { fill: #FFFFFF; stroke: #0F2C59; stroke-width: 2.4; }
+      .folder-tab { fill: #0F2C59; }
+      .file { fill: #EFF6FF; stroke: #2563EB; stroke-width: 1.8; }
+      .file-warm { fill: #FFF7ED; stroke: #D97706; stroke-width: 1.8; }
+      .agent { fill: #0F2C59; }
+      .agent-alt { fill: #2563EB; }
+      .agent-light { fill: #E0F2FE; stroke: #2563EB; stroke-width: 1.8; }
+      .label { fill: #0F172A; font-size: 15px; font-weight: 800; }
+      .small { fill: #57534E; font-size: 11px; font-weight: 650; }
+      .white { fill: #FFFFFF; font-size: 14px; font-weight: 800; }
+      .white-small { fill: #E0F2FE; font-size: 10px; font-weight: 700; }
+      .line { stroke: #0F2C59; stroke-width: 2.4; fill: none; marker-end: url(#arrow-skill-asset); }
+      .thin { stroke: #94A3B8; stroke-width: 1.6; fill: none; }
+      .dash { stroke: #2563EB; stroke-width: 2; stroke-dasharray: 6 5; fill: none; marker-end: url(#arrow-skill-asset); }
+      .halo { paint-order: stroke fill; stroke: #FAFAF9; stroke-width: 4px; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <g>
+    <rect class="source" x="80" y="92" width="168" height="54" rx="8"/>
+    <text class="label" x="164" y="116" text-anchor="middle">prompt.docx</text>
+    <text class="small" x="164" y="134" text-anchor="middle">긴 지시문</text>
+
+    <rect class="source" x="80" y="166" width="168" height="54" rx="8"/>
+    <text class="label" x="164" y="190" text-anchor="middle">Notion 프롬프트</text>
+    <text class="small" x="164" y="208" text-anchor="middle">팀별 복사본</text>
+
+    <rect class="source" x="80" y="240" width="168" height="54" rx="8"/>
+    <text class="label" x="164" y="264" text-anchor="middle">개인 체크리스트</text>
+    <text class="small" x="164" y="282" text-anchor="middle">비공식 기준</text>
+  </g>
+
+  <path class="line" d="M258 193 C298 193 318 193 354 193"/>
+  <text class="small halo" x="306" y="174" text-anchor="middle">자산화</text>
+
+  <g>
+    <path class="package" d="M364 106 H454 L472 130 H666 A12 12 0 0 1 678 142 V300 A12 12 0 0 1 666 312 H376 A12 12 0 0 1 364 300 Z"/>
+    <path class="folder-tab" d="M364 106 H454 L472 130 H364 Z"/>
+    <text class="white" x="420" y="125" text-anchor="middle">skill folder</text>
+
+    <rect class="file" x="390" y="150" width="122" height="44" rx="7"/>
+    <text class="label" x="451" y="170" text-anchor="middle">SKILL.md</text>
+    <text class="small" x="451" y="186" text-anchor="middle">이름 · 조건 · 절차</text>
+
+    <rect class="file" x="528" y="150" width="122" height="44" rx="7"/>
+    <text class="label" x="589" y="170" text-anchor="middle">guidelines</text>
+    <text class="small" x="589" y="186" text-anchor="middle">톤 · 예시</text>
+
+    <rect class="file-warm" x="390" y="214" width="122" height="44" rx="7"/>
+    <text class="label" x="451" y="234" text-anchor="middle">checklist</text>
+    <text class="small" x="451" y="250" text-anchor="middle">검수 기준</text>
+
+    <rect class="file-warm" x="528" y="214" width="122" height="44" rx="7"/>
+    <text class="label" x="589" y="234" text-anchor="middle">scripts</text>
+    <text class="small" x="589" y="250" text-anchor="middle">보조 실행</text>
+
+    <path class="thin" d="M402 280 H640"/>
+    <text class="small" x="521" y="298" text-anchor="middle">Git · versioned · shared</text>
+  </g>
+
+  <path class="line" d="M690 193 C726 193 746 193 778 193"/>
+  <text class="small halo" x="734" y="174" text-anchor="middle">필요 시 로드</text>
+
+  <g>
+    <circle class="agent" cx="838" cy="124" r="42"/>
+    <text class="white" x="838" y="121" text-anchor="middle">Claude</text>
+    <text class="white-small" x="838" y="139" text-anchor="middle">Code</text>
+
+    <circle class="agent-alt" cx="838" cy="214" r="42"/>
+    <text class="white" x="838" y="211" text-anchor="middle">Cursor</text>
+    <text class="white-small" x="838" y="229" text-anchor="middle">IDE</text>
+
+    <rect class="agent-light" x="792" y="274" width="92" height="54" rx="12"/>
+    <text class="label" x="838" y="296" text-anchor="middle">Paperclip</text>
+    <text class="small" x="838" y="314" text-anchor="middle">agents</text>
+  </g>
+
+  <path class="dash" d="M678 158 C720 138 744 128 792 124"/>
+  <path class="dash" d="M678 193 C720 204 744 210 792 214"/>
+  <path class="dash" d="M678 236 C720 260 744 286 788 298"/>
+</svg>
