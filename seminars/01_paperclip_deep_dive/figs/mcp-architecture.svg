@@ -43,11 +43,11 @@
   <!-- MCP Gateway (middle) -->
   <g>
     <rect x="290" y="180" width="220" height="100" rx="8" fill="#0F2C59"/>
-    <text x="400" y="207" font-size="14" font-weight="700" text-anchor="middle" fill="#FFFFFF">MCP 서버</text>
-    <text x="400" y="226" font-size="10" text-anchor="middle" fill="#FFFFFF" opacity="0.85">stdio / SSE / HTTP</text>
+    <text x="400" y="207" font-size="14" font-weight="700" text-anchor="middle" fill="#FFFFFF">MCP 게이트웨이</text>
+    <text x="400" y="226" font-size="10" text-anchor="middle" fill="#FFFFFF" opacity="0.85">라우팅 · 인증 · 비밀값</text>
     <line x1="310" y1="240" x2="490" y2="240" stroke="#FFFFFF" stroke-opacity="0.3" stroke-width="0.5"/>
     <text x="400" y="258" font-size="10" text-anchor="middle" fill="#FFFFFF" opacity="0.95">Docker MCP 게이트웨이</text>
-    <text x="400" y="272" font-size="9" text-anchor="middle" fill="#FFFFFF" opacity="0.7">(중앙 인증 + 비밀값 관리)</text>
+    <text x="400" y="272" font-size="9" text-anchor="middle" fill="#FFFFFF" opacity="0.7">(서버 실행 관리)</text>
   </g>
 
   <!-- Arrows host → MCP -->
