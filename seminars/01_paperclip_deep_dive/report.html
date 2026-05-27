@@ -4514,29 +4514,52 @@ html.reader-size-large .continuous-mode {
       if (settings && !settings.contains(e.target)) window.closeSettingsPanel();
     });
 
-    // Auto-hide floating controls on idle (5s) — 슬라이드 deck.js 패턴 이식.
-    // 읽기 매체이므로 scroll·touchstart 도 트리거에 포함, idle 은 5초로 여유.
-    var chromeTimer = null;
-    function hideChrome() {
+    // Auto-hide floating controls — Medium/Substack scroll-direction reveal +
+    // edge-hover boost. idle timer 가 아니라 사용자 의도(읽기 vs 탐색)에 연동.
+    // - 아래로 스크롤 = 읽는 중 → 숨김
+    // - 위로 스크롤 = 탐색 의도 → 표시
+    // - scrollY < 100 (페이지 최상단 부근) = 항상 표시
+    // - 마우스가 좌/우 가장자리 100px 영역 = 즉시 표시
+    // - TOC 드로어 / 설정 패널 열림 = 강제 표시
+    var SCROLL_THRESHOLD = 8;
+    var TOP_ZONE = 100;
+    var EDGE_ZONE = 100;
+    var lastScrollY = window.scrollY || window.pageYOffset || 0;
+
+    function isAnyPanelOpen() {
       var drawer = document.getElementById('tocDrawer');
       var panel = document.getElementById('settingsPanel');
-      if ((drawer && drawer.classList.contains('is-open'))
-          || (panel && panel.classList.contains('is-open'))) {
-        chromeTimer = setTimeout(hideChrome, 5000);
-        return;
-      }
-      document.body.classList.add('chrome-hidden');
+      return (drawer && drawer.classList.contains('is-open'))
+          || (panel && panel.classList.contains('is-open'));
     }
     function showChrome() {
+      if (!document.body.classList.contains('chrome-hidden')) return;
       document.body.classList.remove('chrome-hidden');
-      if (chromeTimer) clearTimeout(chromeTimer);
-      chromeTimer = setTimeout(hideChrome, 5000);
     }
-    document.addEventListener('mousemove', showChrome, { passive: true });
-    document.addEventListener('scroll', showChrome, { passive: true });
+    function hideChrome() {
+      if (isAnyPanelOpen()) return;
+      if ((window.scrollY || 0) < TOP_ZONE) return;
+      if (document.body.classList.contains('chrome-hidden')) return;
+      document.body.classList.add('chrome-hidden');
+    }
+    function onScroll() {
+      var y = window.scrollY || window.pageYOffset || 0;
+      var dy = y - lastScrollY;
+      if (Math.abs(dy) < SCROLL_THRESHOLD) return;
+      if (y < TOP_ZONE) showChrome();
+      else if (dy > 0) hideChrome();
+      else showChrome();
+      lastScrollY = y;
+    }
+    function onMouseMove(e) {
+      if (e.clientX <= EDGE_ZONE || e.clientX >= window.innerWidth - EDGE_ZONE) {
+        showChrome();
+      }
+    }
+    document.addEventListener('scroll', onScroll, { passive: true });
+    document.addEventListener('mousemove', onMouseMove, { passive: true });
     document.addEventListener('touchstart', showChrome, { passive: true });
     document.addEventListener('keydown', showChrome);
-    showChrome();
   }
 
   // ===== TOC auto-generation =====
