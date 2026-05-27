@@ -1337,6 +1337,21 @@ pre .err {
 .report-settings-toggle {
   position: static;
 }
+/* 5초 무동작 시 좌상단 TOC 토글·우상단 설정 토글 자동 숨김 — body.chrome-hidden 클래스로 토글, report.js 가 mousemove/scroll/touchstart/keydown 에서 복귀시킨다. */
+body.chrome-hidden .report-nav-toggle,
+body.chrome-hidden .report-settings {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.report-nav-toggle,
+.report-settings {
+  transition: opacity 0.2s ease, background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+@media print {
+  body.chrome-hidden .report-nav-toggle,
+  body.chrome-hidden .report-settings { opacity: 1; }
+}
 .report-settings-panel {
   position: absolute;
   top: 50px;
@@ -4498,6 +4513,30 @@ html.reader-size-large .continuous-mode {
       var settings = document.querySelector('.report-settings');
       if (settings && !settings.contains(e.target)) window.closeSettingsPanel();
     });
+
+    // Auto-hide floating controls on idle (5s) — 슬라이드 deck.js 패턴 이식.
+    // 읽기 매체이므로 scroll·touchstart 도 트리거에 포함, idle 은 5초로 여유.
+    var chromeTimer = null;
+    function hideChrome() {
+      var drawer = document.getElementById('tocDrawer');
+      var panel = document.getElementById('settingsPanel');
+      if ((drawer && drawer.classList.contains('is-open'))
+          || (panel && panel.classList.contains('is-open'))) {
+        chromeTimer = setTimeout(hideChrome, 5000);
+        return;
+      }
+      document.body.classList.add('chrome-hidden');
+    }
+    function showChrome() {
+      document.body.classList.remove('chrome-hidden');
+      if (chromeTimer) clearTimeout(chromeTimer);
+      chromeTimer = setTimeout(hideChrome, 5000);
+    }
+    document.addEventListener('mousemove', showChrome, { passive: true });
+    document.addEventListener('scroll', showChrome, { passive: true });
+    document.addEventListener('touchstart', showChrome, { passive: true });
+    document.addEventListener('keydown', showChrome);
+    showChrome();
   }
 
   // ===== TOC auto-generation =====
