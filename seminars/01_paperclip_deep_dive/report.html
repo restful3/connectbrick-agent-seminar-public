@@ -3132,30 +3132,46 @@ html.reader-size-large .continuous-mode {
 }
 .continuous-mode .report-cover__kicker {
   order: 1;
-  margin-bottom: 18px;
-  padding: 0;
-  background: transparent;
-  border-radius: 0;
-  gap: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-start;
+  margin-bottom: 22px;
+  padding: 6px 14px;
+  background: var(--brand-soft);
+  border-radius: 999px;
+  color: var(--brand-primary);
   font-size: 12px;
+  font-weight: 800;
   letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.continuous-mode .report-cover__kicker::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand-primary);
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.18);
 }
 .continuous-mode .report-cover__title {
   order: 3;
   max-width: 100%;
-  margin: 0 0 16px;
+  margin: 0 0 18px;
   font-size: 48px;
   line-height: 1.06;
   letter-spacing: 0;
+  white-space: nowrap;
   word-break: keep-all;
-  overflow-wrap: break-word;
+  overflow-wrap: normal;
 }
 .continuous-mode .report-cover__subtitle {
   order: 4;
-  max-width: 68ch;
-  margin: 0 0 28px;
-  font-size: 18px;
-  line-height: 1.65;
+  max-width: 36ch;
+  margin: 0 0 30px;
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.5;
   color: var(--text-secondary);
 }
 .continuous-mode .report-cover__meta {
@@ -3506,12 +3522,12 @@ html.reader-size-large .continuous-mode {
   }
   .continuous-mode .report-cover__kicker {
     font-size: 11px;
-    white-space: normal;
+    white-space: nowrap;
   }
   .continuous-mode .report-cover__title {
-    font-size: clamp(24px, 6.4vw, 28px);
+    font-size: clamp(20px, 6vw, 28px);
     line-height: 1.14;
-    white-space: normal;
+    white-space: nowrap;
     word-break: keep-all;
     overflow-wrap: normal;
   }
@@ -3674,8 +3690,9 @@ html.reader-size-large .continuous-mode {
     <span class="report-cover__wordmark-name">송태영</span>
     <span class="report-cover__wordmark-sub">Agentic AI Research</span>
   </div>
+  <span class="report-cover__kicker">ConnectBrick Seminar</span>
   <h1 class="report-cover__title">AI 에이전트 오케스트레이션</h1>
-  <p class="report-cover__subtitle">커넥트브릭(젝터스튜디오) · 1회차 · 기술 동향과 운영 구조</p>
+  <p class="report-cover__subtitle">능력 경쟁 이후, 코디네이션을 어떻게 설계할 것인가</p>
   <dl class="report-cover__meta">
     <div><dt>저자</dt><dd>송태영</dd></div>
     <div><dt>발행</dt><dd>2026-05-28</dd></div>
@@ -3741,7 +3758,7 @@ html.reader-size-large .continuous-mode {
 </tr>
 </tbody>
 </table>
-<p>Paperclip은 이번 회차의 목적지가 아니라 <strong>조직형 패러다임을 이해하기 위한 구체 사례</strong> 다. 상세 시연 절차는 본문 자료로 만들지 않고, 발표자가 별도로 준비한 <code>quantsquard-company</code> 시연에서 실행 흐름을 확인한다.</p>
+<p>Paperclip은 이번 회차의 목적지가 아니라 <strong>조직형 패러다임을 이해하기 위한 구체 사례다</strong>. 상세 시연 절차는 본문 자료로 만들지 않고, 발표자가 별도로 준비한 <code>quantsquard-company</code> 시연에서 실행 흐름을 확인한다.</p>
 <h3 id="핵심-용어-짧은-사전">핵심 용어 짧은 사전</h3>
 <table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 2</span><span class="asset-caption__title">핵심 용어 짧은 사전</span></div></caption>
 <thead>
