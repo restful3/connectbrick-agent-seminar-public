@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>1회차 — AI 에이전트 기술 동향 &amp; 패러다임 비교</title>
+  <title>AI 에이전트 오케스트레이션</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -3634,14 +3634,119 @@ html.reader-size-large .continuous-mode {
     <span class="report-cover__wordmark-name">송태영</span>
     <span class="report-cover__wordmark-sub">Agentic AI Research</span>
   </div>
-  <h1 class="report-cover__title">1회차 <br><span style="color:var(--brand-primary);">—</span> AI 에이전트 기술 동향 &amp; 패러다임 비교</h1>
-  <p class="report-cover__subtitle">커넥트브릭(젝터스튜디오) · 1회차</p>
+  <h1 class="report-cover__title">AI 에이전트 오케스트레이션</h1>
+  <p class="report-cover__subtitle">커넥트브릭(젝터스튜디오) · 1회차 · 기술 동향과 운영 구조</p>
   <dl class="report-cover__meta">
     <div><dt>저자</dt><dd>송태영</dd></div>
     <div><dt>발행</dt><dd>2026-05-28</dd></div>
   </dl>
 </section>
 
+
+    <aside class="section-divider" aria-hidden="true">
+      <div class="section-divider__tag">섹션 00</div>
+      <h2 class="section-divider__title">핵심 요약</h2>
+      <p class="section-divider__subtitle">임원 5분 핵심 요약 — §1~§6 의 결론을 한 페이지에</p>
+      <div class="section-divider__rule"></div>
+      <div class="section-divider__num">00</div>
+    </aside>
+    
+<section class="report-section s0 page-break">
+<div class="report-section__kicker">Section 00 · 0. 핵심 요약</div>
+<h1>0. 핵심 요약</h1>
+<div class="callout--hero">
+  <span class="callout__kicker">Session 01</span>
+  <span class="callout__body">능력 경쟁 이후, 여러 에이전트와 도구와 사람 승인을 <strong>어떤 구조로 나누고 어디서 멈출지</strong>를 정리한다.</span>
+</div>
+<p>본 리포트는 커넥트브릭 개발팀 6명을 대상으로 한 <strong>1회차 세미나의 상세 자료</strong> 다. 본 발표는 90분 내외로 진행하고, Paperclip 실행 흐름은 별도 시연에서 확인한다.</p>
+<div class="section-summary">
+  <div class="section-summary__kicker">핵심 질문</div>
+  <div class="section-summary__body">
+    <ul>
+      <li><strong>왜 지금인가</strong> — 모델 능력보다 여러 호출·도구·승인을 조정하는 능력이 새 병목이다.</li>
+      <li><strong>어떻게 나눌 것인가</strong> — 그래프형, 역할·핸드오프형, 조직형을 업무 모양에 맞춰 선택한다.</li>
+      <li><strong>어디서 멈출 것인가</strong> — Paperclip 사례로 승인·예산·감사 로그가 실행 규칙이 되는 방식을 본다.</li>
+    </ul>
+  </div>
+</div>
+<h3 id="구성">구성</h3>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 1</span><span class="asset-caption__title">구성</span></div></caption>
+<thead>
+<tr>
+<th>장</th>
+<th>제목</th>
+<th>분량</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>주간 동향 요약 — 에이전트 생태계 2026년 5월</td>
+<td>약 30분</td>
+</tr>
+<tr>
+<td>2</td>
+<td>에이전트 오케스트레이션의 유형 (그래프 / 역할·핸드오프 / 조직 + 보조 패턴)</td>
+<td>약 30분</td>
+</tr>
+<tr>
+<td>3</td>
+<td>조직형 패러다임 사례 — Paperclip</td>
+<td>약 30분</td>
+</tr>
+<tr>
+<td>4</td>
+<td>정리 — 별도 시연과 질의응답으로 연결</td>
+<td>5분 내외</td>
+</tr>
+</tbody>
+</table>
+<p>Paperclip은 이번 회차의 목적지가 아니라 <strong>조직형 패러다임을 이해하기 위한 구체 사례</strong> 다. 상세 시연 절차는 본문 자료로 만들지 않고, 발표자가 별도로 준비한 <code>quantsquard-company</code> 시연에서 실행 흐름을 확인한다.</p>
+<h3 id="핵심-용어-짧은-사전">핵심 용어 짧은 사전</h3>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 2</span><span class="asset-caption__title">핵심 용어 짧은 사전</span></div></caption>
+<thead>
+<tr>
+<th>용어</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AI 에이전트</strong></td>
+<td>목표를 받고, 도구를 호출하고, 중간 결과를 보며 다음 행동을 선택하는 AI 실행 단위</td>
+</tr>
+<tr>
+<td><strong>멀티에이전트</strong></td>
+<td>여러 에이전트가 역할을 나누어 하나의 목표를 처리하는 구조</td>
+</tr>
+<tr>
+<td><strong>오케스트레이션</strong></td>
+<td>여러 에이전트·도구·승인 단계를 어떤 순서와 규칙으로 조정할지 정하는 일</td>
+</tr>
+<tr>
+<td><strong>HITL</strong></td>
+<td>Human-in-the-loop. 사람이 중간 검토·승인·중단 권한으로 루프 안에 들어가는 방식</td>
+</tr>
+<tr>
+<td><strong>MCP</strong></td>
+<td>Model Context Protocol. AI 에이전트가 외부 도구·데이터 소스와 연결되는 표준 인터페이스</td>
+</tr>
+<tr>
+<td><strong>스킬</strong></td>
+<td>반복 가능한 작업 절차·프롬프트·스크립트를 하나의 폴더에 정리한 능력 단위</td>
+</tr>
+<tr>
+<td><strong>거버넌스</strong></td>
+<td>누가 승인하고, 어디서 멈추며, 비용·권한·감사 로그를 어떻게 통제하는지에 대한 운영 규칙</td>
+</tr>
+<tr>
+<td><strong>내부 실사용</strong></td>
+<td>만든 제품이나 도입 후보 도구를 외부 고객에게 권하기 전에 내부 업무에 먼저 사용해 보는 방식</td>
+</tr>
+</tbody>
+</table>
+<p>자세한 출처는 본문 1~4장과 참고문헌을 참조한다.</p>
+</section>
 
     <aside class="section-divider" aria-hidden="true">
       <div class="section-divider__tag">섹션 01</div>
@@ -3688,7 +3793,7 @@ html.reader-size-large .continuous-mode {
 <p>MCP가 에이전트와 도구/데이터를 잇는 표준이라면, Google의 <strong>A2A(Agent2Agent)</strong> 는 에이전트와 에이전트를 잇는 표준을 겨냥한다. Google은 A2A를 2025-04-09 공개하면서, 서로 다른 벤더·프레임워크의 에이전트가 서로를 발견하고, 소통하고, 조율하도록 하는 공개 프로토콜이라고 설명했고, MCP를 보완한다고 명시했다.<sup class="ref-cite"><a href="https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/" target="_blank" rel="noopener">[11]</a></sup> 출시 시점에 Atlassian, Box, Cohere, MongoDB, PayPal, Salesforce, SAP, ServiceNow, Workday 등 50개 이상 파트너가 참여했다.<sup class="ref-cite"><a href="https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/" target="_blank" rel="noopener">[11]</a></sup></p>
 <figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 5</span><span class="asset-caption__title">Google A2A Agent Card / discovery diagram</span></figcaption><img src="figs/google-a2a-agent-card.png" alt="Google A2A Agent Card / discovery diagram" /><small class="asset-note">A2A Agent Card discovery. 각 원격 에이전트가 <code>/.well-known/agent-card.json</code>에 이름·능력·endpoint를 노출하고, 호출 에이전트가 실행 중 적절한 전문 에이전트로 요청을 보낸다. 출처: Google Developers Blog.</small></figure>
 <p>Google의 2026-03 <em>Developer's Guide to AI Agent Protocols</em> 는 MCP, A2A, UCP, AP2, A2UI, AG-UI를 경쟁 표준이 아니라 <strong>계층별 문제 해결 도구</strong> 로 정리한다.<sup class="ref-cite"><a href="https://developers.googleblog.com/en/developers-guide-to-ai-agent-protocols/" target="_blank" rel="noopener">[12]</a></sup></p>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 1</span><span class="asset-caption__title">1.2.3 A2A와 프로토콜 계층화 — 도구 연결 다음은 에이전트 간 연결</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 3</span><span class="asset-caption__title">1.2.3 A2A와 프로토콜 계층화 — 도구 연결 다음은 에이전트 간 연결</span></div></caption>
 <thead>
 <tr>
 <th>계층</th>
@@ -3839,7 +3944,7 @@ html.reader-size-large .continuous-mode {
 <p><strong>위상 정리</strong> — 감독자·라우터는 독립된 오케스트레이션 유형이라기보다, 그래프형·역할형·조직형 안에 들어가는 <strong>제어 패턴</strong> 이다. 핵심 질문은 &quot;다음 작업자나 경로를 누가 고르는가&quot;다.</p>
 </blockquote>
 <p>Anthropic의 라우팅 / 조정자-작업자 패턴<sup class="ref-cite"><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">[18]</a></sup>, LangChain의 감독자 / 하위 에이전트 패턴<sup class="ref-cite"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent" target="_blank" rel="noopener">[19]</a></sup>, CrewAI의 계층형 절차는 모두 중앙 조정자가 작업을 해석하고, 적절한 작업자나 전문 에이전트에게 일을 넘긴다는 점에서 닮아 있다. 다만 이것을 그래프형·역할형·조직형과 같은 레벨의 &quot;네 번째 유형&quot;으로 두면 레이어가 섞인다. 감독자·라우터는 어느 구조에도 들어갈 수 있는 <strong>선택 장치</strong> 에 가깝다.</p>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 2</span><span class="asset-caption__title">2.4 보조 패턴 — 감독자·라우터</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 4</span><span class="asset-caption__title">2.4 보조 패턴 — 감독자·라우터</span></div></caption>
 <thead>
 <tr>
 <th>들어가는 위치</th>
@@ -3892,7 +3997,7 @@ html.reader-size-large .continuous-mode {
 <p>스킬은 새 에이전트를 추가하는 방식이라기보다 <strong>반복되는 기준을 자산으로 만드는 방식</strong> 에 가깝다. 보고서 작성 기준, 데이터 검수 체크리스트, 브랜드 톤, 반복 실행 스크립트처럼 자주 쓰는 절차를 스킬로 묶으면 작업 품질과 표현 기준을 일관되게 유지할 수 있다. 다만 스킬 자체가 승인·예산을 강제하는 것은 아니다. 어떤 스킬을 언제 부르고, 어떤 행동을 막을지는 그래프, 역할 인계, 조직형 운영 제어 계층 같은 오케스트레이션 구조가 정해야 한다.</p>
 <h2 id="2.6-비교표-의사결정-가이드">2.6 비교표 + 의사결정 가이드</h2>
 <h3 id="오케스트레이션-유형-비교">오케스트레이션 유형 비교</h3>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 3</span><span class="asset-caption__title">오케스트레이션 유형 비교</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 5</span><span class="asset-caption__title">오케스트레이션 유형 비교</span></div></caption>
 <thead>
 <tr>
 <th>차원</th>
@@ -3959,7 +4064,7 @@ html.reader-size-large .continuous-mode {
 </tbody>
 </table>
 <h3 id="보조-패턴의-위치">보조 패턴의 위치</h3>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 4</span><span class="asset-caption__title">보조 패턴의 위치</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 6</span><span class="asset-caption__title">보조 패턴의 위치</span></div></caption>
 <thead>
 <tr>
 <th>패턴</th>
@@ -4033,7 +4138,7 @@ html.reader-size-large .continuous-mode {
 <p>즉 Paperclip의 은유는 &quot;좋은 에이전트 한 명&quot;이 아니라 <strong>회사</strong> 다. 사람은 목표를 주고, CEO 에이전트는 일을 쪼개고, 하위 에이전트는 이슈를 처리하며, 중요한 결정은 승인 큐에서 멈춘다.</p>
 <h2 id="3.2-핵심-모델-회사-단위-조직도-이슈">3.2 핵심 모델 — 회사 단위, 조직도, 이슈</h2>
 <p>이번 세미나에서는 Paperclip의 구조를 세 가지 핵심 모델로 읽으면 충분하다.</p>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 5</span><span class="asset-caption__title">3.2 핵심 모델 — 회사 단위, 조직도, 이슈</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 7</span><span class="asset-caption__title">3.2 핵심 모델 — 회사 단위, 조직도, 이슈</span></div></caption>
 <thead>
 <tr>
 <th>모델</th>
@@ -4078,7 +4183,7 @@ html.reader-size-large .continuous-mode {
 <p>Paperclip 사례에서 가장 봐야 할 지점은 거버넌스다. 대부분의 에이전트 프레임워크는 &quot;리뷰 단계를 넣을 수 있다&quot;에 가깝다. 반면 Paperclip은 특정 결정과 단계 전환을 <strong>시스템이 멈춰 세우는 규칙</strong> 으로 둔다.<sup class="ref-cite"><a href="https://github.com/paperclipai/paperclip/blob/master/docs/start/core-concepts.md" target="_blank" rel="noopener">[26]</a></sup></p>
 <figure class="report-figure"><figcaption class="asset-caption asset-caption--figure"><span class="asset-caption__chip">그림 19</span><span class="asset-caption__title">승인 대기열 — 상태 머신</span></figcaption><img src="figs/approval-state-machine.svg" alt="승인 대기열 — 상태 머신" /><small class="asset-note">제출 → 대기 → 승인/반려/수정 요청 → 재제출 → 대기. 미승인 시 다음 실행이 차단된다. 작성자 시각화.</small></figure>
 <p>대표적으로 두 가지가 있다.</p>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 6</span><span class="asset-caption__title">3.4 운영 통제 — 알림이 아니라 차단</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 8</span><span class="asset-caption__title">3.4 운영 통제 — 알림이 아니라 차단</span></div></caption>
 <thead>
 <tr>
 <th>장치</th>
@@ -4106,7 +4211,7 @@ html.reader-size-large .continuous-mode {
 <p>이 메시지는 Paperclip에만 한정되지 않는다. 고객 데이터 수정, 외부 발행, 광고비 집행처럼 되돌리기 어려운 행동은 <strong>승인 한도와 비용 한도</strong> 가 실행 경로 안에 있어야 한다. 조직형 패러다임은 바로 이 지점을 프레임워크의 중심에 둔다.</p>
 <h2 id="3.6-한계-조직형이-모델-품질을-보장하지는-않는다">3.6 한계 — 조직형이 모델 품질을 보장하지는 않는다</h2>
 <p>Paperclip이 제공하는 것은 운영 구조의 안전망이지, 모델 출력의 진실성 보장은 아니다.</p>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 7</span><span class="asset-caption__title">3.6 한계 — 조직형이 모델 품질을 보장하지는 않는다</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 9</span><span class="asset-caption__title">3.6 한계 — 조직형이 모델 품질을 보장하지는 않는다</span></div></caption>
 <thead>
 <tr>
 <th>Paperclip이 강한 것</th>
@@ -4159,7 +4264,7 @@ html.reader-size-large .continuous-mode {
 <p><strong>이 장의 한 줄</strong> — 오늘의 결론은 특정 프레임워크를 고르는 것이 아니라, 자사 워크플로의 모양과 멈춤 규칙을 먼저 정의해야 한다는 것이다.</p>
 </blockquote>
 <h2 id="4.1-오늘의-3개-메시지">4.1 오늘의 3개 메시지</h2>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 8</span><span class="asset-caption__title">4.1 오늘의 3개 메시지</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 10</span><span class="asset-caption__title">4.1 오늘의 3개 메시지</span></div></caption>
 <thead>
 <tr>
 <th>메시지</th>
@@ -4191,7 +4296,7 @@ html.reader-size-large .continuous-mode {
 </ol>
 <h2 id="4.3-질의응답-토론-시드">4.3 질의응답 토론 시드</h2>
 <p>질의응답에서는 Paperclip 기능 자체보다 커넥트브릭의 실제 업무 모양을 확인하는 쪽이 중요하다.</p>
-<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 9</span><span class="asset-caption__title">4.3 질의응답 토론 시드</span></div></caption>
+<table class="cmp-table"><caption class="cmp-table__caption asset-caption asset-caption--table"><div class="asset-caption__inner"><span class="asset-caption__chip">표 11</span><span class="asset-caption__title">4.3 질의응답 토론 시드</span></div></caption>
 <thead>
 <tr>
 <th>질문</th>
@@ -4247,7 +4352,7 @@ html.reader-size-large .continuous-mode {
     <li id="ref-17" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[17]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Anthropic Help Center. (2026). *Use the Claude Agent SDK with your Claude plan*. <a href="https://support.claude.com/en/articles/15036540-use-the-claude-agent-sdk-with-your-claude-plan" target="_blank" rel="noopener">https://support.claude.com/en/articles/15036540-use-the-claude-agent-sdk-with-your-claude-plan</a></span></li>
     <li id="ref-27" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[27]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Docker Docs. (2026). *MCP Gateway*. <a href="https://docs.docker.com/ai/mcp-catalog-and-toolkit/mcp-gateway/" target="_blank" rel="noopener">https://docs.docker.com/ai/mcp-catalog-and-toolkit/mcp-gateway/</a></span></li>
   </ol>
-  <h4>2장 에이전트 패러다임 비교</h4>
+  <h4>2장 에이전트 오케스트레이션 유형</h4>
   <ol class="references" style="list-style:none; padding:0;">
     <li id="ref-18" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[18]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">Anthropic. (2024-12). *Building Effective Agents*. <a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">https://www.anthropic.com/engineering/building-effective-agents</a></span></li>
     <li id="ref-19" style="display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);"><span style="flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-weight:800;color:var(--brand-primary);min-width:36px;">[19]</span><span style="flex:1;font-size:9.5pt;line-height:1.5;">LangChain. (2026). *Multi-agent systems* and *LangGraph Multi-Agent Supervisor* — <a href="https://docs.langchain.com/oss/python/langchain/multi-agent" target="_blank" rel="noopener">https://docs.langchain.com/oss/python/langchain/multi-agent</a> ; <a href="https://docs.langchain.com/oss/python/langchain/multi-agent/subagents" target="_blank" rel="noopener">https://docs.langchain.com/oss/python/langchain/multi-agent/subagents</a> ; <a href="https://docs.langchain.com/oss/python/langchain/multi-agent/handoffs" target="_blank" rel="noopener">https://docs.langchain.com/oss/python/langchain/multi-agent/handoffs</a> ; <a href="https://docs.langchain.com/oss/python/langchain/multi-agent/skills" target="_blank" rel="noopener">https://docs.langchain.com/oss/python/langchain/multi-agent/skills</a> ; <a href="https://reference.langchain.com/python/langgraph-supervisor" target="_blank" rel="noopener">https://reference.langchain.com/python/langgraph-supervisor</a></span></li>
