@@ -3098,9 +3098,9 @@ html.reader-size-large .continuous-mode {
   page-break-after: auto !important;
   min-height: auto;
   width: auto;
-  max-width: 760px;
+  max-width: var(--reader-column-width);
   margin: 0 auto;
-  padding: 72px 32px 44px;
+  padding: 72px clamp(20px, 5vw, 32px) 44px;
   background: transparent;
   border-bottom: 1px solid rgba(15,44,89,0.12);
   box-sizing: border-box;
@@ -3110,9 +3110,7 @@ html.reader-size-large .continuous-mode {
   display: none;
 }
 .continuous-mode .report-cover__wordmark {
-  margin-bottom: 40px;
-  padding-left: 12px;
-  border-left: 3px solid var(--brand-primary);
+  display: none;
 }
 .continuous-mode .report-cover__wordmark-name {
   font-size: 22px;
@@ -3145,11 +3143,12 @@ html.reader-size-large .continuous-mode {
 .continuous-mode .report-cover__title {
   order: 3;
   max-width: 100%;
-  margin: 18px 0 16px;
+  margin: 0 0 16px;
   font-size: 48px;
   line-height: 1.06;
   letter-spacing: 0;
-  overflow-wrap: anywhere;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 .continuous-mode .report-cover__subtitle {
   order: 4;
@@ -3467,6 +3466,13 @@ html.reader-size-large .continuous-mode {
 
 /* ----- 14. Responsive — narrow viewports ----- */
 @media (max-width: 720px) {
+  html:has(.continuous-mode),
+  body:has(> .continuous-mode),
+  .continuous-mode {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
   .report-nav-toggle {
     top: auto;
     bottom: 18px;
@@ -3485,6 +3491,11 @@ html.reader-size-large .continuous-mode {
     transform-origin: bottom right;
   }
   .continuous-mode .report-cover {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box;
     padding: 44px 18px 32px;
   }
   .continuous-mode .report-cover__wordmark {
@@ -3498,11 +3509,17 @@ html.reader-size-large .continuous-mode {
     white-space: normal;
   }
   .continuous-mode .report-cover__title {
-    font-size: 34px;
-    line-height: 1.12;
+    font-size: clamp(24px, 6.4vw, 28px);
+    line-height: 1.14;
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: normal;
   }
   .continuous-mode .report-cover__subtitle {
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
   .continuous-mode .report-cover__meta {
     display: grid;
@@ -3512,8 +3529,31 @@ html.reader-size-large .continuous-mode {
   .continuous-mode .report-toc,
   .continuous-mode .report-section,
   .continuous-mode .report-appendix {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box;
     padding-left: 18px;
     padding-right: 18px;
+  }
+  .continuous-mode .callout--hero,
+  .continuous-mode .section-summary {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+  }
+  .continuous-mode .report-cover > *,
+  .continuous-mode .report-section > *,
+  .continuous-mode .report-appendix > * {
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+  .continuous-mode .callout--hero .callout__body,
+  .continuous-mode .section-summary__body li {
+    font-size: 14px;
+    overflow-wrap: anywhere;
   }
   .continuous-mode .report-toc {
     padding-top: 24px;
@@ -3658,7 +3698,7 @@ html.reader-size-large .continuous-mode {
   <span class="callout__kicker">Session 01</span>
   <span class="callout__body">능력 경쟁 이후, 여러 에이전트와 도구와 사람 승인을 <strong>어떤 구조로 나누고 어디서 멈출지</strong>를 정리한다.</span>
 </div>
-<p>본 리포트는 커넥트브릭 개발팀 6명을 대상으로 한 <strong>1회차 세미나의 상세 자료</strong> 다. 본 발표는 90분 내외로 진행하고, Paperclip 실행 흐름은 별도 시연에서 확인한다.</p>
+<p>본 리포트는 커넥트브릭 개발팀 6명을 대상으로 한 <strong>1회차 세미나의 상세 자료</strong>다. 본 발표는 90분 내외로 진행하고, Paperclip 실행 흐름은 별도 시연에서 확인한다.</p>
 <div class="section-summary">
   <div class="section-summary__kicker">핵심 질문</div>
   <div class="section-summary__body">
