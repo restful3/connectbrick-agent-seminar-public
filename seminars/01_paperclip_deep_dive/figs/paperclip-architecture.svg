@@ -28,45 +28,45 @@
     <!-- Chip row 1 -->
     <g>
       <rect x="102" y="176" width="140" height="54" rx="6" fill="#F5F5F4" stroke="#A8A29E" stroke-width="1"/>
-      <text x="172" y="198" font-size="11" font-weight="700" text-anchor="middle" fill="#0F2C59">① Identity</text>
-      <text x="172" y="216" font-size="9" text-anchor="middle" fill="#6B6B72">&amp; Access</text>
+      <text x="172" y="198" font-size="11" font-weight="700" text-anchor="middle" fill="#0F2C59">① 신원</text>
+      <text x="172" y="216" font-size="9" text-anchor="middle" fill="#6B6B72">권한 관리</text>
     </g>
     <g>
       <rect x="254" y="176" width="140" height="54" rx="6" fill="#F5F5F4" stroke="#A8A29E" stroke-width="1"/>
-      <text x="324" y="198" font-size="11" font-weight="700" text-anchor="middle" fill="#0F2C59">② Org Chart</text>
-      <text x="324" y="216" font-size="9" text-anchor="middle" fill="#6B6B72">&amp; Agents</text>
+      <text x="324" y="198" font-size="11" font-weight="700" text-anchor="middle" fill="#0F2C59">② 조직도</text>
+      <text x="324" y="216" font-size="9" text-anchor="middle" fill="#6B6B72">에이전트</text>
     </g>
     <g>
       <rect x="406" y="176" width="140" height="54" rx="6" fill="#F5F5F4" stroke="#A8A29E" stroke-width="1"/>
-      <text x="476" y="198" font-size="11" font-weight="700" text-anchor="middle" fill="#0F2C59">③ Work &amp; Task</text>
-      <text x="476" y="216" font-size="9" text-anchor="middle" fill="#6B6B72">Goal/Issue 트리</text>
+      <text x="476" y="198" font-size="11" font-weight="700" text-anchor="middle" fill="#0F2C59">③ 작업</text>
+      <text x="476" y="216" font-size="9" text-anchor="middle" fill="#6B6B72">목표/이슈 트리</text>
     </g>
     <g>
       <rect x="558" y="176" width="140" height="54" rx="6" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
-      <text x="628" y="198" font-size="11" font-weight="700" text-anchor="middle" fill="#92400E">④ Heartbeat</text>
+      <text x="628" y="198" font-size="11" font-weight="700" text-anchor="middle" fill="#92400E">④ 하트비트</text>
       <text x="628" y="216" font-size="9" text-anchor="middle" fill="#92400E">핵심 루프</text>
     </g>
 
     <!-- Chip row 2 -->
     <g>
       <rect x="102" y="246" width="140" height="54" rx="6" fill="#F5F5F4" stroke="#A8A29E" stroke-width="1"/>
-      <text x="172" y="268" font-size="11" font-weight="700" text-anchor="middle" fill="#0F2C59">⑤ Workspaces</text>
-      <text x="172" y="286" font-size="9" text-anchor="middle" fill="#6B6B72">git worktree</text>
+      <text x="172" y="268" font-size="11" font-weight="700" text-anchor="middle" fill="#0F2C59">⑤ 작업공간</text>
+      <text x="172" y="286" font-size="9" text-anchor="middle" fill="#6B6B72">git 작업트리</text>
     </g>
     <g>
       <rect x="254" y="246" width="140" height="54" rx="6" fill="#F5F5F4" stroke="#A8A29E" stroke-width="1"/>
-      <text x="324" y="268" font-size="11" font-weight="700" text-anchor="middle" fill="#0F2C59">⑥ Governance</text>
-      <text x="324" y="286" font-size="9" text-anchor="middle" fill="#6B6B72">&amp; Approvals</text>
+      <text x="324" y="268" font-size="11" font-weight="700" text-anchor="middle" fill="#0F2C59">⑥ 운영 통제</text>
+      <text x="324" y="286" font-size="9" text-anchor="middle" fill="#6B6B72">승인</text>
     </g>
     <g>
       <rect x="406" y="246" width="140" height="54" rx="6" fill="#F5F5F4" stroke="#A8A29E" stroke-width="1"/>
-      <text x="476" y="268" font-size="11" font-weight="700" text-anchor="middle" fill="#0F2C59">⑦ Budget</text>
-      <text x="476" y="286" font-size="9" text-anchor="middle" fill="#6B6B72">&amp; Cost Control</text>
+      <text x="476" y="268" font-size="11" font-weight="700" text-anchor="middle" fill="#0F2C59">⑦ 예산</text>
+      <text x="476" y="286" font-size="9" text-anchor="middle" fill="#6B6B72">비용 통제</text>
     </g>
     <g>
       <rect x="558" y="246" width="140" height="54" rx="6" fill="#F5F5F4" stroke="#A8A29E" stroke-width="1"/>
-      <text x="628" y="268" font-size="11" font-weight="700" text-anchor="middle" fill="#0F2C59">⑧ Routines</text>
-      <text x="628" y="286" font-size="9" text-anchor="middle" fill="#6B6B72">cron/webhook</text>
+      <text x="628" y="268" font-size="11" font-weight="700" text-anchor="middle" fill="#0F2C59">⑧ 루틴</text>
+      <text x="628" y="286" font-size="9" text-anchor="middle" fill="#6B6B72">일정/웹훅</text>
     </g>
 
     <!-- Annotation: 자세한 설명 = 표 참조 (없음 — 표에 위임) -->
@@ -86,8 +86,8 @@
   <g>
     <rect x="80" y="390" width="200" height="60" rx="6" fill="#FFFFFF" stroke="#0369A1" stroke-width="2"/>
     <text x="180" y="412" font-size="12" font-weight="700" text-anchor="middle" fill="#0F2C59">PostgreSQL</text>
-    <text x="180" y="430" font-size="9" text-anchor="middle" fill="#6B6B72">issues · activity ·</text>
-    <text x="180" y="443" font-size="9" text-anchor="middle" fill="#6B6B72">cost · secrets</text>
+    <text x="180" y="430" font-size="9" text-anchor="middle" fill="#6B6B72">이슈 · 활동 ·</text>
+    <text x="180" y="443" font-size="9" text-anchor="middle" fill="#6B6B72">비용 · 비밀값</text>
   </g>
 
   <!-- 외부 에이전트 어댑터 -->
@@ -95,14 +95,14 @@
     <rect x="300" y="390" width="200" height="60" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="2"/>
     <text x="400" y="412" font-size="12" font-weight="700" text-anchor="middle" fill="#0F2C59">외부 에이전트 어댑터</text>
     <text x="400" y="430" font-size="9" text-anchor="middle" fill="#6B6B72">Claude Code · Codex · CLI ·</text>
-    <text x="400" y="443" font-size="9" text-anchor="middle" fill="#6B6B72">HTTP · Plugin</text>
+    <text x="400" y="443" font-size="9" text-anchor="middle" fill="#6B6B72">HTTP · 플러그인</text>
   </g>
 
   <!-- Plugins -->
   <g>
     <rect x="520" y="390" width="200" height="60" rx="6" fill="#FFFFFF" stroke="#A8A29E" stroke-width="2"/>
-    <text x="620" y="412" font-size="12" font-weight="700" text-anchor="middle" fill="#0F2C59">Plugins</text>
-    <text x="620" y="430" font-size="9" text-anchor="middle" fill="#6B6B72">out-of-process</text>
-    <text x="620" y="443" font-size="9" text-anchor="middle" fill="#6B6B72">workers</text>
+    <text x="620" y="412" font-size="12" font-weight="700" text-anchor="middle" fill="#0F2C59">플러그인</text>
+    <text x="620" y="430" font-size="9" text-anchor="middle" fill="#6B6B72">외부 프로세스</text>
+    <text x="620" y="443" font-size="9" text-anchor="middle" fill="#6B6B72">작업자</text>
   </g>
 </svg>

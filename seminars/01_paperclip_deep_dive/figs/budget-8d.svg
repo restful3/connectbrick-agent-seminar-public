@@ -10,53 +10,53 @@
   <!-- Center: cost event -->
   <g>
     <rect x="320" y="220" width="160" height="60" rx="8" fill="#0F2C59"/>
-    <text x="400" y="244" font-size="13" font-weight="700" text-anchor="middle" fill="#FFFFFF">cost event</text>
-    <text x="400" y="262" font-size="9" text-anchor="middle" fill="#FFFFFF" opacity="0.8">provider/model</text>
-    <text x="400" y="274" font-size="9" text-anchor="middle" fill="#FFFFFF" opacity="0.8">input+output tokens</text>
+    <text x="400" y="244" font-size="13" font-weight="700" text-anchor="middle" fill="#FFFFFF">비용 기록</text>
+    <text x="400" y="262" font-size="9" text-anchor="middle" fill="#FFFFFF" opacity="0.8">제공자/모델</text>
+    <text x="400" y="274" font-size="9" text-anchor="middle" fill="#FFFFFF" opacity="0.8">입력+출력 토큰</text>
   </g>
 
   <!-- 8 dimensions around the center -->
   <!-- top row (4) -->
   <g>
     <rect x="40" y="100" width="130" height="44" rx="6" fill="#FFFFFF" stroke="#2563EB" stroke-width="1.5"/>
-    <text x="105" y="120" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">① company</text>
+    <text x="105" y="120" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">① 회사</text>
     <text x="105" y="134" font-size="9" text-anchor="middle" fill="#6B6B72">회사 단위 월간 한도</text>
   </g>
   <g>
     <rect x="210" y="100" width="130" height="44" rx="6" fill="#FFFFFF" stroke="#2563EB" stroke-width="1.5"/>
-    <text x="275" y="120" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">② agent</text>
+    <text x="275" y="120" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">② 에이전트</text>
     <text x="275" y="134" font-size="9" text-anchor="middle" fill="#6B6B72">에이전트별 한도</text>
   </g>
   <g>
     <rect x="460" y="100" width="130" height="44" rx="6" fill="#FFFFFF" stroke="#2563EB" stroke-width="1.5"/>
-    <text x="525" y="120" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">③ project</text>
+    <text x="525" y="120" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">③ 프로젝트</text>
     <text x="525" y="134" font-size="9" text-anchor="middle" fill="#6B6B72">프로젝트 단위</text>
   </g>
   <g>
     <rect x="630" y="100" width="130" height="44" rx="6" fill="#FFFFFF" stroke="#2563EB" stroke-width="1.5"/>
-    <text x="695" y="120" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">④ goal</text>
+    <text x="695" y="120" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">④ 목표</text>
     <text x="695" y="134" font-size="9" text-anchor="middle" fill="#6B6B72">목표 단위</text>
   </g>
 
   <!-- bottom row (4) -->
   <g>
     <rect x="40" y="360" width="130" height="44" rx="6" fill="#FFFFFF" stroke="#2563EB" stroke-width="1.5"/>
-    <text x="105" y="380" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">⑤ issue</text>
+    <text x="105" y="380" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">⑤ 이슈</text>
     <text x="105" y="394" font-size="9" text-anchor="middle" fill="#6B6B72">티켓 단위</text>
   </g>
   <g>
     <rect x="210" y="360" width="130" height="44" rx="6" fill="#FFFFFF" stroke="#2563EB" stroke-width="1.5"/>
-    <text x="275" y="380" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">⑥ provider</text>
+    <text x="275" y="380" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">⑥ 제공자</text>
     <text x="275" y="394" font-size="9" text-anchor="middle" fill="#6B6B72">Anthropic/OpenAI/…</text>
   </g>
   <g>
     <rect x="460" y="360" width="130" height="44" rx="6" fill="#FFFFFF" stroke="#2563EB" stroke-width="1.5"/>
-    <text x="525" y="380" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">⑦ model</text>
+    <text x="525" y="380" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">⑦ 모델</text>
     <text x="525" y="394" font-size="9" text-anchor="middle" fill="#6B6B72">Opus/Sonnet/Haiku</text>
   </g>
   <g>
     <rect x="630" y="360" width="130" height="44" rx="6" fill="#FFFFFF" stroke="#2563EB" stroke-width="1.5"/>
-    <text x="695" y="380" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">⑧ month (UTC)</text>
+    <text x="695" y="380" font-size="11" font-weight="600" text-anchor="middle" fill="#0F2C59">⑧ 월(UTC)</text>
     <text x="695" y="394" font-size="9" text-anchor="middle" fill="#6B6B72">월간 리셋</text>
   </g>
 
@@ -79,10 +79,10 @@
     <rect x="220" y="450" width="400" height="22" rx="4" fill="none"/>
     <line x1="540" y1="446" x2="540" y2="476" stroke="#D97706" stroke-width="2"/>
     <text x="540" y="442" font-size="10" font-weight="700" text-anchor="middle" fill="#D97706">80%</text>
-    <text x="540" y="487" font-size="9" text-anchor="middle" fill="#D97706">soft alert</text>
+    <text x="540" y="487" font-size="9" text-anchor="middle" fill="#D97706">경고</text>
     <line x1="620" y1="446" x2="620" y2="476" stroke="#E11D48" stroke-width="2"/>
     <text x="620" y="442" font-size="10" font-weight="700" text-anchor="middle" fill="#E11D48">100%</text>
-    <text x="620" y="487" font-size="9" text-anchor="middle" fill="#E11D48">hard stop · auto-pause</text>
+    <text x="620" y="487" font-size="9" text-anchor="middle" fill="#E11D48">중단 · 일시정지</text>
   </g>
 
 </svg>

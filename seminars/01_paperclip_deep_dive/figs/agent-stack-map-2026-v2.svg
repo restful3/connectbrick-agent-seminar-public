@@ -3,31 +3,31 @@
 
   <g transform="translate(55,95)">
     <rect x="0" y="0" width="790" height="48" rx="8" fill="#0F2C59"/>
-    <text x="24" y="30" font-size="15" font-weight="800" fill="#FFFFFF">5. Governance / Production discipline</text>
-    <text x="390" y="30" font-size="12" fill="#FFFFFF" opacity="0.92">budget · approval · audit · observability · eval · HITL</text>
+    <text x="24" y="30" font-size="15" font-weight="800" fill="#FFFFFF">5. 운영 통제 / 상용 운영 규칙</text>
+    <text x="360" y="30" font-size="12" fill="#FFFFFF" opacity="0.92">예산 · 승인 · 감사 · 관찰성 · 평가 · HITL</text>
   </g>
 
   <g transform="translate(55,153)">
     <rect x="0" y="0" width="790" height="48" rx="8" fill="#2563EB"/>
-    <text x="24" y="30" font-size="15" font-weight="800" fill="#FFFFFF">4. Orchestration</text>
-    <text x="230" y="30" font-size="12" fill="#FFFFFF" opacity="0.95">LangGraph · CrewAI · AutoGen/AG2 · Paperclip org chart · ADK</text>
+    <text x="24" y="30" font-size="15" font-weight="800" fill="#FFFFFF">4. 오케스트레이션</text>
+    <text x="245" y="30" font-size="12" fill="#FFFFFF" opacity="0.95">LangGraph · CrewAI · AutoGen/AG2 · Paperclip 조직도 · ADK</text>
   </g>
 
   <g transform="translate(55,211)">
     <rect x="0" y="0" width="790" height="48" rx="8" fill="#A7C7E7" stroke="#0F2C59" stroke-width="1.5"/>
-    <text x="24" y="30" font-size="15" font-weight="800" fill="#0F2C59">3. Protocols</text>
-    <text x="190" y="30" font-size="12" fill="#0F2C59">MCP(agent↔tool/data) · A2A(agent↔agent) · UCP/AP2(commerce/payment) · AG-UI(UI stream)</text>
+    <text x="24" y="30" font-size="15" font-weight="800" fill="#0F2C59">3. 프로토콜</text>
+    <text x="180" y="30" font-size="12" fill="#0F2C59">MCP(도구/데이터) · A2A(에이전트 간) · UCP/AP2(상거래/결제) · AG-UI(UI 이벤트)</text>
   </g>
 
   <g transform="translate(55,269)">
     <rect x="0" y="0" width="790" height="48" rx="8" fill="#E9F2FB" stroke="#2563EB" stroke-width="1.5"/>
-    <text x="24" y="30" font-size="15" font-weight="800" fill="#0F2C59">2. Agent harness / runtime</text>
-    <text x="280" y="30" font-size="12" fill="#0F2C59">OpenAI Agents SDK · Claude Agent SDK · Google ADK · sandbox · memory · filesystem tools</text>
+    <text x="24" y="30" font-size="15" font-weight="800" fill="#0F2C59">2. 에이전트 실행 하네스</text>
+    <text x="285" y="30" font-size="12" fill="#0F2C59">OpenAI Agents SDK · Claude Agent SDK · Google ADK · 샌드박스 · 메모리 · 파일 도구</text>
   </g>
 
   <g transform="translate(55,327)">
     <rect x="0" y="0" width="790" height="48" rx="8" fill="#FFFFFF" stroke="#6B6B72" stroke-width="1.2"/>
-    <text x="24" y="30" font-size="15" font-weight="800" fill="#0F2C59">1. Foundation models</text>
-    <text x="260" y="30" font-size="12" fill="#6B6B72">Claude · GPT · Gemini · open models · model routing by cost/latency/quality</text>
+    <text x="24" y="30" font-size="15" font-weight="800" fill="#0F2C59">1. 기반 모델</text>
+    <text x="190" y="30" font-size="12" fill="#6B6B72">Claude · GPT · Gemini · 오픈 모델 · 비용/지연/품질 기준 라우팅</text>
   </g>
 </svg>

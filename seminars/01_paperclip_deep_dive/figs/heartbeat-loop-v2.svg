@@ -13,56 +13,56 @@
 
   <!-- center pulse -->
   <circle cx="480" cy="280" r="126" fill="url(#centerGrad)"/>
-  <text x="480" y="265" font-size="22" font-weight="650" text-anchor="middle" fill="#0F2C59">DB-backed</text>
-  <text x="480" y="294" font-size="22" font-weight="650" text-anchor="middle" fill="#0F2C59">Wakeup Queue</text>
-  <text x="480" y="323" font-size="14" text-anchor="middle" fill="#6B6B72">(coalescing + atomic lock)</text>
+  <text x="480" y="265" font-size="22" font-weight="650" text-anchor="middle" fill="#0F2C59">DB 기반</text>
+  <text x="480" y="294" font-size="22" font-weight="650" text-anchor="middle" fill="#0F2C59">깨우기 큐</text>
+  <text x="480" y="323" font-size="14" text-anchor="middle" fill="#6B6B72">(중복 병합 + 잠금)</text>
 
   <!-- 6 nodes around the circle -->
   <!-- Node 1: top -->
   <g>
     <circle cx="480" cy="88" r="76" fill="#FFFFFF" stroke="#0F2C59" stroke-width="2.7"/>
     <text x="480" y="64" font-size="22" font-weight="700" text-anchor="middle" fill="#2563EB">①</text>
-    <text x="480" y="99" font-size="17" font-weight="650" text-anchor="middle" fill="#0F0F10">Issue 생성</text>
-    <text x="480" y="124" font-size="12" text-anchor="middle" fill="#6B6B72">cron/webhook/위임</text>
+    <text x="480" y="99" font-size="17" font-weight="650" text-anchor="middle" fill="#0F0F10">이슈 생성</text>
+    <text x="480" y="124" font-size="12" text-anchor="middle" fill="#6B6B72">일정/웹훅/위임</text>
   </g>
 
   <!-- Node 2: upper right -->
   <g>
     <circle cx="730" cy="188" r="76" fill="#FFFFFF" stroke="#0F2C59" stroke-width="2.7"/>
     <text x="730" y="164" font-size="22" font-weight="700" text-anchor="middle" fill="#2563EB">②</text>
-    <text x="730" y="199" font-size="17" font-weight="650" text-anchor="middle" fill="#0F0F10">enqueue</text>
-    <text x="730" y="224" font-size="12" text-anchor="middle" fill="#6B6B72">coalescing</text>
+    <text x="730" y="199" font-size="17" font-weight="650" text-anchor="middle" fill="#0F0F10">큐 등록</text>
+    <text x="730" y="224" font-size="12" text-anchor="middle" fill="#6B6B72">중복 병합</text>
   </g>
 
   <!-- Node 3: lower right -->
   <g>
     <circle cx="730" cy="372" r="76" fill="#FFFFFF" stroke="#0F2C59" stroke-width="2.7"/>
     <text x="730" y="348" font-size="22" font-weight="700" text-anchor="middle" fill="#2563EB">③</text>
-    <text x="730" y="383" font-size="17" font-weight="650" text-anchor="middle" fill="#0F0F10">wake</text>
-    <text x="730" y="408" font-size="12" text-anchor="middle" fill="#6B6B72">budget 체크</text>
+    <text x="730" y="383" font-size="17" font-weight="650" text-anchor="middle" fill="#0F0F10">깨우기</text>
+    <text x="730" y="408" font-size="12" text-anchor="middle" fill="#6B6B72">예산 확인</text>
   </g>
 
   <!-- Node 4: bottom -->
   <g>
     <circle cx="480" cy="472" r="76" fill="#FFFFFF" stroke="#D97706" stroke-width="3.2"/>
     <text x="480" y="448" font-size="22" font-weight="700" text-anchor="middle" fill="#D97706">④</text>
-    <text x="480" y="483" font-size="17" font-weight="700" text-anchor="middle" fill="#D97706">atomic checkout</text>
-    <text x="480" y="508" font-size="12" text-anchor="middle" fill="#6B6B72">execution lock</text>
+    <text x="480" y="483" font-size="17" font-weight="700" text-anchor="middle" fill="#D97706">원자적 배정</text>
+    <text x="480" y="508" font-size="12" text-anchor="middle" fill="#6B6B72">중복 실행 잠금</text>
   </g>
 
   <!-- Node 5: lower left -->
   <g>
     <circle cx="230" cy="372" r="76" fill="#FFFFFF" stroke="#0F2C59" stroke-width="2.7"/>
     <text x="230" y="348" font-size="22" font-weight="700" text-anchor="middle" fill="#2563EB">⑤</text>
-    <text x="230" y="383" font-size="17" font-weight="650" text-anchor="middle" fill="#0F0F10">adapter 실행</text>
-    <text x="230" y="408" font-size="12" text-anchor="middle" fill="#6B6B72">LLM call + skill</text>
+    <text x="230" y="383" font-size="17" font-weight="650" text-anchor="middle" fill="#0F0F10">어댑터 실행</text>
+    <text x="230" y="408" font-size="12" text-anchor="middle" fill="#6B6B72">LLM 호출 + 스킬</text>
   </g>
 
   <!-- Node 6: upper left -->
   <g>
     <circle cx="230" cy="188" r="76" fill="#FFFFFF" stroke="#059669" stroke-width="3.2"/>
     <text x="230" y="164" font-size="22" font-weight="700" text-anchor="middle" fill="#059669">⑥</text>
-    <text x="230" y="199" font-size="17" font-weight="700" text-anchor="middle" fill="#059669">sleep (DB 영속)</text>
+    <text x="230" y="199" font-size="17" font-weight="700" text-anchor="middle" fill="#059669">대기 복귀</text>
     <text x="230" y="224" font-size="12" text-anchor="middle" fill="#6B6B72">세션 상태 저장</text>
   </g>
 

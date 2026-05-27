@@ -25,18 +25,18 @@
   <text class="label" x="98" y="372">낮은 거버넌스</text>
 
   <circle cx="250" cy="170" r="38" fill="#2563EB"/>
-  <text class="bubble-text" x="250" y="174" text-anchor="middle">Graph</text>
+  <text class="bubble-text" x="250" y="174" text-anchor="middle">그래프형</text>
   <text class="muted halo" x="250" y="226" text-anchor="middle">명시적 단계</text>
 
   <circle cx="535" cy="255" r="38" fill="#059669"/>
-  <text class="bubble-text" x="535" y="259" text-anchor="middle">Role-play</text>
+  <text class="bubble-text" x="535" y="259" text-anchor="middle">역할형</text>
   <text class="muted halo" x="535" y="306" text-anchor="middle">대화 수렴</text>
 
   <circle cx="230" cy="305" r="38" fill="#D97706"/>
-  <text class="bubble-text" x="230" y="309" text-anchor="middle">Skill</text>
+  <text class="bubble-text" x="230" y="309" text-anchor="middle">스킬형</text>
   <text class="muted halo" x="230" y="356" text-anchor="middle">단일 루프</text>
 
   <circle cx="560" cy="140" r="42" fill="#E11D48"/>
   <text class="bubble-text" x="560" y="144" text-anchor="middle">조직형</text>
-  <text class="muted halo" x="560" y="196" text-anchor="middle">런타임 차단</text>
+  <text class="muted halo" x="560" y="196" text-anchor="middle">실행 중 차단</text>
 </svg>

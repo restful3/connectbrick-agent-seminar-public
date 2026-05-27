@@ -23,26 +23,26 @@
 
   <rect class="role" x="360" y="72" width="140" height="54" rx="10"/>
   <text x="430" y="95" text-anchor="middle" class="label">CEO</text>
-  <text x="430" y="114" text-anchor="middle" class="small">goal owner</text>
+  <text x="430" y="114" text-anchor="middle" class="small">목표 책임</text>
 
   <rect class="role" x="196" y="166" width="150" height="54" rx="10"/>
-  <text x="271" y="189" text-anchor="middle" class="label">Director</text>
-  <text x="271" y="208" text-anchor="middle" class="small">delegates tasks</text>
+  <text x="271" y="189" text-anchor="middle" class="label">디렉터</text>
+  <text x="271" y="208" text-anchor="middle" class="small">작업 위임</text>
 
   <rect class="role" x="514" y="166" width="150" height="54" rx="10"/>
-  <text x="589" y="189" text-anchor="middle" class="label">Worker</text>
-  <text x="589" y="208" text-anchor="middle" class="small">executes issue</text>
+  <text x="589" y="189" text-anchor="middle" class="label">작업자</text>
+  <text x="589" y="208" text-anchor="middle" class="small">이슈 실행</text>
 
   <rect class="issue" x="82" y="166" width="82" height="54" rx="8"/>
-  <text x="123" y="190" text-anchor="middle" class="label">Issue</text>
+  <text x="123" y="190" text-anchor="middle" class="label">이슈</text>
   <text x="123" y="208" text-anchor="middle" class="small">#104</text>
 
   <rect class="issue" x="696" y="166" width="82" height="54" rx="8"/>
-  <text x="737" y="190" text-anchor="middle" class="label">Task</text>
-  <text x="737" y="208" text-anchor="middle" class="small">run</text>
+  <text x="737" y="190" text-anchor="middle" class="label">작업</text>
+  <text x="737" y="208" text-anchor="middle" class="small">실행</text>
 
   <rect class="gate" x="324" y="260" width="212" height="36" rx="18"/>
-  <text x="430" y="283" text-anchor="middle" class="white">approval + budget hard-stop</text>
+  <text x="430" y="283" text-anchor="middle" class="white">승인 + 예산 차단</text>
 
   <path class="branch" d="M430 126 L430 146 M271 146 L589 146"/>
   <line class="edge" x1="271" y1="146" x2="271" y2="162"/>

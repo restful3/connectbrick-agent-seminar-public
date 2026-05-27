@@ -5,22 +5,22 @@
   <line x1="400" y1="80" x2="400" y2="460" stroke="#D1D5DB" stroke-width="1"/>
   <line x1="50" y1="270" x2="750" y2="270" stroke="#D1D5DB" stroke-width="1"/>
 
-  <!-- Q1: Context Anxiety (top-left) -->
+  <!-- Q1: context pressure (top-left) -->
   <g>
     <rect x="70" y="100" width="310" height="150" rx="6" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
-    <text x="225" y="125" font-size="13" font-weight="700" text-anchor="middle" fill="#92400E">① Context Anxiety</text>
+    <text x="225" y="125" font-size="13" font-weight="700" text-anchor="middle" fill="#92400E">① 컨텍스트 불안</text>
     <text x="225" y="146" font-size="11" text-anchor="middle" fill="#0F0F10">컨텍스트 차오르면</text>
     <text x="225" y="162" font-size="11" font-weight="600" text-anchor="middle" fill="#0F0F10">"다 끝났다"고 조기 선언</text>
     <line x1="100" y1="180" x2="350" y2="180" stroke="#D97706" stroke-width="0.5" stroke-dasharray="2 2"/>
     <text x="225" y="200" font-size="9" font-weight="600" text-anchor="middle" fill="#92400E">대응</text>
-    <text x="225" y="216" font-size="10" text-anchor="middle" fill="#0F0F10">review stage에 정량 기준 적용</text>
+    <text x="225" y="216" font-size="10" text-anchor="middle" fill="#0F0F10">검수 단계에 정량 기준 적용</text>
     <text x="225" y="232" font-size="9" font-style="italic" text-anchor="middle" fill="#6B6B72">(최소 길이/항목 수 검증)</text>
   </g>
 
-  <!-- Q2: Poor Self-eval (top-right) -->
+  <!-- Q2: weak self-evaluation (top-right) -->
   <g>
     <rect x="420" y="100" width="310" height="150" rx="6" fill="#FEE2E2" stroke="#E11D48" stroke-width="1.5"/>
-    <text x="575" y="125" font-size="13" font-weight="700" text-anchor="middle" fill="#991B1B">② Poor Self-evaluation</text>
+    <text x="575" y="125" font-size="13" font-weight="700" text-anchor="middle" fill="#991B1B">② 부실한 자기평가</text>
     <text x="575" y="146" font-size="11" text-anchor="middle" fill="#0F0F10">자기 결과물을</text>
     <text x="575" y="162" font-size="11" font-weight="600" text-anchor="middle" fill="#0F0F10">칭찬하며 통과시킴</text>
     <line x1="450" y1="180" x2="700" y2="180" stroke="#E11D48" stroke-width="0.5" stroke-dasharray="2 2"/>
@@ -38,7 +38,7 @@
     <line x1="100" y1="376" x2="350" y2="376" stroke="#4338CA" stroke-width="0.5" stroke-dasharray="2 2"/>
     <text x="225" y="395" font-size="9" font-weight="600" text-anchor="middle" fill="#3730A3">대응</text>
     <text x="225" y="411" font-size="10" text-anchor="middle" fill="#0F0F10">단계 ≤ 5 또는 HITL 게이트</text>
-    <text x="225" y="427" font-size="9" font-style="italic" text-anchor="middle" fill="#6B6B72">(executionPolicy review/approval)</text>
+    <text x="225" y="427" font-size="9" font-style="italic" text-anchor="middle" fill="#6B6B72">(실행 정책 검토/승인)</text>
   </g>
 
   <!-- Q4: Dangerous Autonomy (bottom-right) -->
@@ -49,7 +49,7 @@
     <text x="575" y="356" font-size="11" font-weight="700" text-anchor="middle" fill="#7F1D1D">C/D 드라이브 삭제 사례</text>
     <line x1="450" y1="376" x2="700" y2="376" stroke="#7F1D1D" stroke-width="0.5" stroke-dasharray="2 2"/>
     <text x="575" y="395" font-size="9" font-weight="600" text-anchor="middle" fill="#7F1D1D">대응</text>
-    <text x="575" y="411" font-size="10" text-anchor="middle" fill="#0F0F10">adapter capability allowlist</text>
+    <text x="575" y="411" font-size="10" text-anchor="middle" fill="#0F0F10">어댑터 허용 목록</text>
     <text x="575" y="427" font-size="9" font-style="italic" text-anchor="middle" fill="#6B6B72">(rm -rf, DROP/DELETE 차단)</text>
   </g>
 

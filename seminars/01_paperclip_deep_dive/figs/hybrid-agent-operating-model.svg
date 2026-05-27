@@ -21,28 +21,28 @@
   <path class="support" d="M615 288 C668 246 728 188 779 161"/>
 
   <rect class="org" x="36" y="74" width="140" height="62" rx="8"/>
-  <text class="label" x="106" y="101" text-anchor="middle">Goal</text>
-  <text class="small" x="106" y="119" text-anchor="middle">project issue</text>
+  <text class="label" x="106" y="101" text-anchor="middle">목표</text>
+  <text class="small" x="106" y="119" text-anchor="middle">프로젝트 이슈</text>
 
   <rect class="org" x="220" y="74" width="140" height="62" rx="8"/>
-  <text class="label" x="290" y="101" text-anchor="middle">Delegate</text>
-  <text class="small" x="290" y="119" text-anchor="middle">org chart</text>
+  <text class="label" x="290" y="101" text-anchor="middle">위임</text>
+  <text class="small" x="290" y="119" text-anchor="middle">조직도</text>
 
   <rect class="role" x="470" y="44" width="150" height="62" rx="8"/>
-  <text class="label" x="545" y="71" text-anchor="middle">Draft Crew</text>
-  <text class="small" x="545" y="89" text-anchor="middle">role discussion</text>
+  <text class="label" x="545" y="71" text-anchor="middle">초안 팀</text>
+  <text class="small" x="545" y="89" text-anchor="middle">역할 토론</text>
 
   <rect class="graph" x="470" y="154" width="150" height="62" rx="8"/>
-  <text class="label" x="545" y="181" text-anchor="middle">Review Gate</text>
-  <text class="small" x="545" y="199" text-anchor="middle">HITL checkpoint</text>
+  <text class="label" x="545" y="181" text-anchor="middle">검수 게이트</text>
+  <text class="small" x="545" y="199" text-anchor="middle">HITL 체크포인트</text>
 
   <rect class="org" x="710" y="99" width="140" height="62" rx="8"/>
-  <text class="label" x="780" y="126" text-anchor="middle">Publish</text>
-  <text class="small" x="780" y="144" text-anchor="middle">approved task</text>
+  <text class="label" x="780" y="126" text-anchor="middle">발행</text>
+  <text class="small" x="780" y="144" text-anchor="middle">승인된 작업</text>
 
   <rect class="skill" x="245" y="288" width="390" height="58" rx="8"/>
-  <text class="label" x="440" y="313" text-anchor="middle">Shared Skill Assets</text>
-  <text class="small" x="440" y="332" text-anchor="middle">brand tone · SOP · checklist · scripts</text>
+  <text class="label" x="440" y="313" text-anchor="middle">공유 스킬 자산</text>
+  <text class="small" x="440" y="332" text-anchor="middle">브랜드 톤 · 절차 · 체크리스트 · 스크립트</text>
 
   <line x1="176" y1="105" x2="216" y2="105" stroke="#0F2C59" stroke-width="2" marker-end="url(#arrow-hybrid)"/>
   <path d="M360 97 C396 72 430 75 466 75" fill="none" stroke="#0F2C59" stroke-width="2" marker-end="url(#arrow-hybrid)"/>

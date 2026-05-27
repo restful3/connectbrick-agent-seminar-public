@@ -19,23 +19,23 @@
   </defs>
 
   <rect class="node" x="72" y="142" width="118" height="62" rx="10"/>
-  <text x="131" y="168" text-anchor="middle" class="label">research</text>
-  <text x="131" y="188" text-anchor="middle" class="small">node</text>
+  <text x="131" y="168" text-anchor="middle" class="label">리서치</text>
+  <text x="131" y="188" text-anchor="middle" class="small">노드</text>
 
   <rect class="node" x="244" y="142" width="118" height="62" rx="10"/>
-  <text x="303" y="168" text-anchor="middle" class="label">draft</text>
-  <text x="303" y="188" text-anchor="middle" class="small">node</text>
+  <text x="303" y="168" text-anchor="middle" class="label">초안</text>
+  <text x="303" y="188" text-anchor="middle" class="small">노드</text>
 
   <rect class="gate" x="416" y="142" width="128" height="62" rx="10"/>
-  <text x="480" y="168" text-anchor="middle" class="label">review</text>
-  <text x="480" y="188" text-anchor="middle" class="small">HITL gate</text>
+  <text x="480" y="168" text-anchor="middle" class="label">검수</text>
+  <text x="480" y="188" text-anchor="middle" class="small">HITL 게이트</text>
 
   <rect class="done" x="598" y="142" width="118" height="62" rx="10"/>
-  <text x="657" y="168" text-anchor="middle" class="label">publish</text>
-  <text x="657" y="188" text-anchor="middle" class="small">END</text>
+  <text x="657" y="168" text-anchor="middle" class="label">발행</text>
+  <text x="657" y="188" text-anchor="middle" class="small">종료</text>
 
   <rect class="node" x="416" y="234" width="128" height="48" rx="10"/>
-  <text x="480" y="263" text-anchor="middle" class="label">revise</text>
+  <text x="480" y="263" text-anchor="middle" class="label">수정</text>
 
   <line class="edge" x1="190" y1="173" x2="240" y2="173"/>
   <line class="edge" x1="362" y1="173" x2="412" y2="173"/>

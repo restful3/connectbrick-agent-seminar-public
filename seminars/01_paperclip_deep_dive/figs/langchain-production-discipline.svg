@@ -2,21 +2,21 @@
   <rect x="55" y="75" width="615" height="215" fill="#FAFAF9"/>
 
   <g transform="translate(70,100)">
-    <text x="0" y="0" font-size="13" font-weight="700" fill="#0F0F10">Production adoption</text>
+    <text x="0" y="0" font-size="13" font-weight="700" fill="#0F0F10">상용 운영 도입</text>
     <rect x="0" y="14" width="500" height="24" rx="5" fill="#E5E7EB"/>
     <rect x="0" y="14" width="286.5" height="24" rx="5" fill="#2563EB"/>
     <text x="510" y="32" font-size="14" font-weight="800" fill="#0F2C59">57.3%</text>
   </g>
 
   <g transform="translate(70,165)">
-    <text x="0" y="0" font-size="13" font-weight="700" fill="#0F0F10">Observability</text>
+    <text x="0" y="0" font-size="13" font-weight="700" fill="#0F0F10">관찰성</text>
     <rect x="0" y="14" width="500" height="24" rx="5" fill="#E5E7EB"/>
     <rect x="0" y="14" width="445" height="24" rx="5" fill="#0F2C59"/>
     <text x="510" y="32" font-size="14" font-weight="800" fill="#0F2C59">89%</text>
   </g>
 
   <g transform="translate(70,230)">
-    <text x="0" y="0" font-size="13" font-weight="700" fill="#0F0F10">Offline evaluation</text>
+    <text x="0" y="0" font-size="13" font-weight="700" fill="#0F0F10">사전 평가</text>
     <rect x="0" y="14" width="500" height="24" rx="5" fill="#E5E7EB"/>
     <rect x="0" y="14" width="262" height="24" rx="5" fill="#A7C7E7" stroke="#0F2C59" stroke-width="1"/>
     <text x="510" y="32" font-size="14" font-weight="800" fill="#0F2C59">52.4%</text>

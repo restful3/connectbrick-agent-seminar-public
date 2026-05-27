@@ -18,24 +18,24 @@
   </defs>
 
   <circle class="loop" cx="155" cy="178" r="62"/>
-  <text x="155" y="170" text-anchor="middle" class="white">Agent</text>
-  <text x="155" y="190" text-anchor="middle" class="white-small">main loop</text>
+  <text x="155" y="170" text-anchor="middle" class="white">에이전트</text>
+  <text x="155" y="190" text-anchor="middle" class="white-small">메인 루프</text>
 
   <rect class="box" x="316" y="78" width="160" height="54" rx="10"/>
-  <text x="396" y="101" text-anchor="middle" class="label">Skill index</text>
-  <text x="396" y="120" text-anchor="middle" class="small">name + trigger</text>
+  <text x="396" y="101" text-anchor="middle" class="label">스킬 인덱스</text>
+  <text x="396" y="120" text-anchor="middle" class="small">이름 + 조건</text>
 
   <rect class="active" x="316" y="154" width="160" height="54" rx="10"/>
   <text x="396" y="177" text-anchor="middle" class="label">SKILL.md</text>
-  <text x="396" y="196" text-anchor="middle" class="small">procedure</text>
+  <text x="396" y="196" text-anchor="middle" class="small">절차</text>
 
   <rect class="box" x="316" y="230" width="160" height="54" rx="10"/>
-  <text x="396" y="253" text-anchor="middle" class="label">Resources</text>
-  <text x="396" y="272" text-anchor="middle" class="small">scripts + files</text>
+  <text x="396" y="253" text-anchor="middle" class="label">리소스</text>
+  <text x="396" y="272" text-anchor="middle" class="small">스크립트 + 파일</text>
 
   <rect class="box" x="604" y="154" width="160" height="54" rx="10"/>
-  <text x="684" y="177" text-anchor="middle" class="label">Task output</text>
-  <text x="684" y="196" text-anchor="middle" class="small">same loop, new ability</text>
+  <text x="684" y="177" text-anchor="middle" class="label">작업 결과</text>
+  <text x="684" y="196" text-anchor="middle" class="small">같은 루프, 새 능력</text>
 
   <path class="edge" d="M214 165 C252 126 274 106 312 105"/>
   <path class="edge" d="M218 178 C252 178 280 181 312 181"/>
