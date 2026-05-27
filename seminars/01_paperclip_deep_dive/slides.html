@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Agent 기술 동향 & 패러다임 비교</title>
+  <title>AI Agent 기술 동향 & 오케스트레이션 비교</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -66,7 +66,7 @@
   <div class="cover-signature"></div>
   <div class="cover-hero">
     <div class="cover-kicker animate-in">ConnectBrick Seminar</div>
-    <h1 class="animate-in delay-1">AI Agent 패러다임 비교</h1>
+    <h1 class="animate-in delay-1">AI Agent<br>오케스트레이션</h1>
     <p class="cover-subtitle animate-in delay-2">능력 경쟁 이후, 코디네이션을 어떻게 설계할 것인가</p>
   </div>
   <div class="cover-meta">
@@ -107,7 +107,7 @@
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>01</span> / 22</span>
+    <span class="slide-footer__page"><span>01</span> / 23</span>
   </div>
 </section>
 <section class="slide slide--section" aria-label="Section 01 divider">
@@ -156,7 +156,7 @@
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>02</span> / 22</span>
+    <span class="slide-footer__page"><span>02</span> / 23</span>
   </div>
 </section>
 <section class="slide" aria-label="모델 위에 운영 계층이 쌓인다">
@@ -177,7 +177,7 @@
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>03</span> / 22</span>
+    <span class="slide-footer__page"><span>03</span> / 23</span>
   </div>
 </section>
 <section class="slide" aria-label="5 메타 트렌드">
@@ -200,7 +200,7 @@
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>04</span> / 22</span>
+    <span class="slide-footer__page"><span>04</span> / 23</span>
   </div>
 </section>
 <section class="slide" aria-label="MCP에서 A2A로">
@@ -212,17 +212,15 @@
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
-<img src="figs/mcp-architecture.svg" alt="MCP 생태계 — 호스트와 MCP 서버" style="max-height: 270px;">
-<div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-top:12px;">
-  <div class="flow__step"><div class="flow__title">MCP</div><div class="flow__desc">도구·데이터 접근 계약<br>DB · Slack · Shopify · GA4</div></div>
-  <div class="flow__step"><div class="flow__title">A2A</div><div class="flow__desc">전문 에이전트 간 발견과 호출<br>가격 분석 · 재고 · 카피</div></div>
-  <div class="flow__step"><div class="flow__title">UI / Payment</div><div class="flow__desc">결과 표시와 거래 실행<br>승인 큐 · 대시보드 · 주문</div></div>
-</div>
+<img src="figs/mcp-architecture.svg" alt="MCP 생태계 — 호스트와 MCP 서버" style="max-height: 385px;">
+<blockquote>
+<p>MCP는 도구·데이터 접근 계약이고, A2A는 전문 에이전트 간 발견과 호출 계약으로 확장됩니다.</p>
+</blockquote>
 
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>05</span> / 22</span>
+    <span class="slide-footer__page"><span>05</span> / 23</span>
   </div>
 </section>
 <section class="slide" aria-label="Skills — 프롬프트 자산이 SOP가 된다">
@@ -235,25 +233,22 @@
   
   <div class="slide-body">
 <p style="max-width: 1120px; margin-bottom: 16px; font-size: 18px; font-weight: 700; line-height: 1.45; color: var(--text);">브랜드 톤·금지어·캠페인 절차는 긴 프롬프트가 아니라, 필요할 때만 로드되는 스킬 패키지로 관리됩니다.</p>
-<pre><code class="language-text">brand-tone/
+<pre style="max-width: 560px; font-size: 17px; line-height: 1.6;"><code class="language-text">brand-tone/
 ├── SKILL.md
 ├── guidelines.md
 └── forbidden.json
 
 campaign-setup/
 ├── SKILL.md
-└── checklist.md
-</code></pre>
-<div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-top:18px;">
-  <div class="flow__step"><div class="flow__title">폴더 단위</div><div class="flow__desc">흩어진 프롬프트가 버전 관리되는 작업 패키지가 됩니다.</div></div>
-  <div class="flow__step"><div class="flow__title">단계적 로딩</div><div class="flow__desc">전체 지침을 매번 붙이지 않고 필요한 순간에만 불러옵니다.</div></div>
-  <div class="flow__step"><div class="flow__title">공통 SOP</div><div class="flow__desc">브랜드 톤과 금지어를 여러 에이전트가 같은 기준으로 씁니다.</div></div>
-</div>
+└── checklist.md</code></pre>
+<blockquote>
+<p>반복되는 기준은 매번 긴 프롬프트로 붙이지 않고, 버전 관리되는 작업 패키지로 호출합니다.</p>
+</blockquote>
 
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>06</span> / 22</span>
+    <span class="slide-footer__page"><span>06</span> / 23</span>
   </div>
 </section>
 <section class="slide" aria-label="production의 질문은 “잘 쓰나”가 아니다">
@@ -274,7 +269,7 @@ campaign-setup/
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>07</span> / 22</span>
+    <span class="slide-footer__page"><span>07</span> / 23</span>
   </div>
 </section>
 <section class="slide" aria-label="다단계 워크플로는 작은 오류도 복리로 커진다">
@@ -295,7 +290,7 @@ campaign-setup/
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>08</span> / 22</span>
+    <span class="slide-footer__page"><span>08</span> / 23</span>
   </div>
 </section>
 <section class="slide slide--section" aria-label="Section 02 divider">
@@ -356,7 +351,7 @@ campaign-setup/
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>09</span> / 22</span>
+    <span class="slide-footer__page"><span>09</span> / 23</span>
   </div>
 </section>
 <section class="slide" aria-label="그래프형 — 결정적 분기와 승인 게이트">
@@ -377,7 +372,7 @@ campaign-setup/
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>10</span> / 22</span>
+    <span class="slide-footer__page"><span>10</span> / 23</span>
   </div>
 </section>
 <section class="slide" aria-label="역할/핸드오프형 — 발산과 다관점 검토">
@@ -396,7 +391,7 @@ campaign-setup/
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>11</span> / 22</span>
+    <span class="slide-footer__page"><span>11</span> / 23</span>
   </div>
 </section>
 <section class="slide" aria-label="Skills — 프롬프트 자산의 코드화">
@@ -415,7 +410,7 @@ campaign-setup/
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>12</span> / 22</span>
+    <span class="slide-footer__page"><span>12</span> / 23</span>
   </div>
 </section>
 <section class="slide" aria-label="조직형 — 승인과 예산이 런타임 규칙이 된다">
@@ -434,7 +429,7 @@ campaign-setup/
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>13</span> / 22</span>
+    <span class="slide-footer__page"><span>13</span> / 23</span>
   </div>
 </section>
 <section class="slide" aria-label="유형 선택 기준">
@@ -484,7 +479,7 @@ campaign-setup/
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>14</span> / 22</span>
+    <span class="slide-footer__page"><span>14</span> / 23</span>
   </div>
 </section>
 <section class="slide" aria-label="실무 보정 네 가지">
@@ -507,7 +502,7 @@ campaign-setup/
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>15</span> / 22</span>
+    <span class="slide-footer__page"><span>15</span> / 23</span>
   </div>
 </section>
 <section class="slide" aria-label="실제 운영은 하이브리드다">
@@ -519,15 +514,15 @@ campaign-setup/
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
-<div class="callout">
-  <strong>기본 뼈대는 조직형</strong>으로 두고, 작업 배분은 감독자/라우터, 작성 단계는 역할/핸드오프형, 반복 기준은 Skills, 승인 라인은 그래프형 체크포인트로 섞을 수 있습니다.
-</div>
 <img src="figs/hybrid-agent-operating-model.svg" alt="하이브리드 에이전트 운영 구조" style="max-height: 360px;">
+<blockquote>
+<p>기본 뼈대는 조직형, 작업 배분은 감독자/라우터, 작성 단계는 역할/핸드오프형, 반복 기준은 Skills로 섞을 수 있습니다.</p>
+</blockquote>
 
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>16</span> / 22</span>
+    <span class="slide-footer__page"><span>16</span> / 23</span>
   </div>
 </section>
 <section class="slide slide--section" aria-label="Section 03 divider">
@@ -563,7 +558,7 @@ campaign-setup/
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>17</span> / 22</span>
+    <span class="slide-footer__page"><span>17</span> / 23</span>
   </div>
 </section>
 <section class="slide" aria-label="Company → Issue">
@@ -581,7 +576,7 @@ campaign-setup/
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>18</span> / 22</span>
+    <span class="slide-footer__page"><span>18</span> / 23</span>
   </div>
 </section>
 <section class="slide" aria-label="Heartbeat 루프">
@@ -599,7 +594,7 @@ campaign-setup/
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>19</span> / 22</span>
+    <span class="slide-footer__page"><span>19</span> / 23</span>
   </div>
 </section>
 <section class="slide" aria-label="승인 전에는 멈춘다">
@@ -611,16 +606,15 @@ campaign-setup/
   <div class="slide-title-rule"></div>
   
   <div class="slide-body">
-<img src="figs/approval-state-machine.svg" alt="Approval Queue 상태 머신" style="max-height: 335px;">
-<div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:14px; margin-top:12px;">
-  <div class="flow__step" style="padding:16px 18px 14px;"><div class="flow__title">Approval Queue</div><div class="flow__desc">회사 레벨 결정은 사람 승인 전 진행을 차단합니다.</div></div>
-  <div class="flow__step" style="padding:16px 18px 14px;"><div class="flow__title">Execution Policy</div><div class="flow__desc">이슈별 review / approval stage를 강제합니다.</div></div>
-</div>
+<img src="figs/approval-state-machine.svg" alt="Approval Queue 상태 머신" style="max-height: 310px; max-width: 860px;">
+<blockquote>
+<p>Approval Queue와 Execution Policy의 공통점은 “알림”이 아니라 “승인 전 진행 차단”입니다.</p>
+</blockquote>
 
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>20</span> / 22</span>
+    <span class="slide-footer__page"><span>20</span> / 23</span>
   </div>
 </section>
 <section class="slide" aria-label="비용도 실행 조건이다">
@@ -640,7 +634,7 @@ campaign-setup/
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>21</span> / 22</span>
+    <span class="slide-footer__page"><span>21</span> / 23</span>
   </div>
 </section>
 <section class="slide" aria-label="Paperclip이 보장하지 않는 것">
@@ -686,7 +680,31 @@ campaign-setup/
   </div>
   <div class="slide-footer">
     <span>커넥트브릭 격주 세미나</span>
-    <span class="slide-footer__page"><span>22</span> / 22</span>
+    <span class="slide-footer__page"><span>22</span> / 23</span>
+  </div>
+</section>
+<section class="slide" aria-label="오늘의 결론">
+  <div class="slide-header">
+    <div class="brand-mark"><div class="brand-mark__stack"><span class="brand-mark__name">송태영</span><span class="brand-mark__sub">Agentic AI Research</span></div></div>
+    <div class="slide-section-tag">Takeaway</div>
+  </div>
+  <h1 class="slide-title animate-in">오늘의 결론</h1>
+  <div class="slide-title-rule"></div>
+  
+  <div class="slide-body">
+<div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; align-items:stretch;">
+  <div class="flow__step"><div class="flow__num">1</div><div class="flow__title">코디네이션</div><div class="flow__desc">모델 한 번의 답변보다 여러 호출·도구·사람 승인을 조정하는 능력이 새 병목입니다.</div></div>
+  <div class="flow__step"><div class="flow__num">2</div><div class="flow__title">유형 선택</div><div class="flow__desc">그래프형, 역할/핸드오프형, 조직형은 일을 나누고 멈추는 방식이 다릅니다.</div></div>
+  <div class="flow__step"><div class="flow__num">3</div><div class="flow__title">런타임 거버넌스</div><div class="flow__desc">외부 발행·비용 집행·고객 데이터 변경에는 알림보다 차단 규칙이 필요합니다.</div></div>
+</div>
+<blockquote>
+<p>Session 2의 질문은 “어떤 툴을 쓸까”가 아니라 “우리 업무는 어디서 멈춰야 하는가”입니다.</p>
+</blockquote>
+
+  </div>
+  <div class="slide-footer">
+    <span>커넥트브릭 격주 세미나</span>
+    <span class="slide-footer__page"><span>23</span> / 23</span>
   </div>
 </section>
 <section class="slide slide--closing" aria-label="별도 시연에서 볼 것">
@@ -718,7 +736,7 @@ campaign-setup/
       <button onclick="prevSlide()" aria-label="Previous slide">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
-      <span class="slide-counter"><input id="slideCur" type="text" inputmode="numeric" value="1" aria-label="현재 페이지 — 번호 입력 후 Enter" /> / <span id="slideTotal">27</span></span>
+      <span class="slide-counter"><input id="slideCur" type="text" inputmode="numeric" value="1" aria-label="현재 페이지 — 번호 입력 후 Enter" /> / <span id="slideTotal">28</span></span>
       <button onclick="nextSlide()" aria-label="Next slide">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
       </button>
