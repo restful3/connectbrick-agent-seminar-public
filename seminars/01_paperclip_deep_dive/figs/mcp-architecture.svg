@@ -84,7 +84,7 @@
   </g>
   <g>
     <rect x="600" y="315" width="160" height="34" rx="5" fill="#FFFFFF" stroke="#059669" stroke-width="1.5" stroke-dasharray="4 2"/>
-    <text x="680" y="335" font-size="11" font-weight="500" text-anchor="middle" fill="#0F0F10">자체 SaaS / API</text>
+    <text x="680" y="335" font-size="11" font-weight="500" text-anchor="middle" fill="#0F0F10">커스텀 / 확장</text>
   </g>
 
   <!-- Arrows MCP → data -->
