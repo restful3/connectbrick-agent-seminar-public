@@ -1337,7 +1337,9 @@ pre .err {
 .report-settings-toggle {
   position: static;
 }
-/* 5초 무동작 시 좌상단 TOC 토글·우상단 설정 토글 자동 숨김 — body.chrome-hidden 클래스로 토글, report.js 가 mousemove/scroll/touchstart/keydown 에서 복귀시킨다. */
+/* 스크롤 방향 기반 자동 숨김 (Medium 스타일) — 아래로 스크롤 시 body.chrome-hidden 으로
+   좌상단 TOC 토글·우상단 설정 토글을 숨기고, 위로 스크롤·최상단·좌우 가장자리 hover·
+   터치·키 입력 시 report.js 가 복귀시킨다. 인쇄 시 컨트롤 숨김은 아래 @media print 블록이 담당. */
 body.chrome-hidden .report-nav-toggle,
 body.chrome-hidden .report-settings {
   opacity: 0;
@@ -1347,10 +1349,6 @@ body.chrome-hidden .report-settings {
 .report-nav-toggle,
 .report-settings {
   transition: opacity 0.2s ease, background 0.15s ease, color 0.15s ease, transform 0.15s ease;
-}
-@media print {
-  body.chrome-hidden .report-nav-toggle,
-  body.chrome-hidden .report-settings { opacity: 1; }
 }
 .report-settings-panel {
   position: absolute;
